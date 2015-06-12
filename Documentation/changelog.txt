@@ -7,17 +7,20 @@ TO DO:
     - Add a function to print a report [ONLINE].
     - Revamp the function to print a report [OFFLINE].
     - Add a function to read a netCDF file to acquire geographic information [ONLINE].
+    - Add a proper logging system to allow a proper bug tracker [ONLINE][OFFLINE].
 
 
 KNOWN ISSUES:
 =============
     - PyInstaller seems to be unable to locate by itself netCDF4 plugins dedicated to python. Temporary solution: the ".spec" file has been modified to include manually the netCDF4 plugins [OFFLINE].
     - On Windows Operating Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the terminal concerning python and the module "win32com". As this module is not called by ASMM Creator, and as ASMM Creator doesn't crash after this error, this issue is not critical and doesn't prevent the use of the software [OFFLINE].
+    
+    - in the [ONLINE] version, two lines need to be activated to allow a proper operation of the downloading and uploading servlet, based on the platform for devlopment and production: see in the "Asmm_eufar.java" file, section "open an existing xml file" openFile() and "save an xml file" saveFile(), to comment and uncomment dedicated lines. !!! IMPORTANT !!!
 
 
 June 12 2015, Release version 0.9.6
 ===================================
-  As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.6 [OFFLINE].
+  As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.6 [OFFLINE][ONLINE].
 
 
 June 11-12 2015, Release version 0.9.6b21-22
