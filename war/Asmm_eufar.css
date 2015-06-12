@@ -1,0 +1,276 @@
+/* Formatting specific to the StockWatcher application */
+
+    body {
+  padding: 10px;
+}
+
+@font-face {
+    font-family: DroidSans;
+    src: url(font/DroidSans.ttf);
+}
+
+
+@font-face {
+    font-family: DroidSansFallback;
+    src: url(font/DroidSansFallbackFull.ttf);
+}
+
+@font-face {
+    font-family: FreeSans;
+    src: url(font/FreeSans.ttf);
+}
+
+.infoButton {
+  width: 25px;
+  height: 25px;
+  margin-left: 20px;
+}
+
+.infoButton-down-hovering {
+  background-color: #cccccc;
+}
+
+.infoButton-up-hovering {
+  background-color: #cfcfcf;
+}
+
+.sa_delButton {
+  width: 25px;
+  height: 25px;
+  margin-left: 10px;
+}
+
+.sa_delButton-down-hovering {
+  background-color: #cccccc;
+}
+
+.sa_delButton-up-hovering {
+  background-color: #cfcfcf;
+}
+
+/* .dockPanel { */
+/*   background-image: url("images/asmm_shadow.png"); */
+/*   background-repeat: repeat-y; */
+	
+	
+/* } */
+
+/* .gwt-DockLayoutPanel-east {
+  background-color: red !important;
+	
+	
+} */
+
+
+
+.fi_textBox {
+  width: 300px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+.gi_textBox {
+  width: 100px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+.so_textBox {
+  width: 150px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+
+.ci_textList {
+  width: 150px;
+  height: 30px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+.ci_textList option {
+  background-color: #ffffff;
+}
+
+.sa_textArea {
+  width: 800px;
+  height: 100px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  background-color: #ffffff;
+}
+
+.gi_titleText {
+  font-family: DroidSansFallback;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.gi_titleText2 {
+  font-family: DroidSansFallback;
+  margin-left: 20px;
+  margin-bottom: 0px;
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+
+.gi_coordButton {
+  width: 280px; 
+  height:18px; 
+  margin-left:60px; 
+  margin-top:10px; 
+  align-text: right;
+
+}
+
+
+
+.sa_checkBox {
+  margin-left: 40px;
+  font-family: DroidSansFallback;
+}
+
+.sa_verticalPanel {
+  border: 1px solid grey;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.so_verticalPanel {
+  margin-top: 5px;
+  margin-left: 10px;
+  height: 150px;
+  width:350px;
+  background-color:  #ffffff;
+  border: 1px solid #ccc;
+}
+
+.flexTable {
+  height: 10px;
+  width: 350px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.flexTable-SecondColumn {
+  width: 40px;
+}
+
+
+.gwt-Label {
+  font-family: DroidSansFallback !important;
+  margin-left: 20px !important;
+  text-align: justify !important;
+	
+}
+
+.gwt-CheckBox {
+  font-family: DroidSansFallback !important;
+  margin-left: 20px !important;
+}
+
+
+.gwt-StackLayoutPanel {
+  border-bottom: 1px solid #bbbbbb !important;
+}
+
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
+  cursor: pointer !important;
+  cursor: hand !important;
+  font-size: 1.05em !important;
+  font-family: DroidSans !important;
+  padding: 3px !important;
+  border: 1px solid #bbbbbb !important;
+  border-bottom: 0px !important;
+  background: #d3def6 !important;
+}
+
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering {
+  background: #bfcaec !important;
+  font-size: 1.2em !important;
+}
+
+
+.gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
+  background: #e6e6e6 !important;
+}
+
+
+.gwt-DateBox {
+  padding: 5px 4px !important;
+  border: 1px solid #ccc !important;
+  width: 80px !important;
+  height: 15px !important;
+  margin-left: 20px !important;
+  font-size: 12px !important;
+  font-weight: bold !important;
+  font-family: FreeSans !important;
+  background-color: #ffffff !important;
+}
+
+
+.gwt-MenuBar .gwt-MenuItem {
+  font-family: DroidSansFallback !important;
+  font-size: 15px !important;
+  vertical-align: top !important;
+}
+
+.gwt-MenuBar-vertical .gwt-MenuItem {
+  padding: 5px 20px 0px 5px !important;
+  vertical-align: bottom !important;
+}
+
+.table-center {
+  text-align: center;
+}
+
+.myUploadBox {
+  background: #e5e5e5;
+  padding: 4px 8px 4px 4px;
+  cursor: default;
+  font-family: FreeSans;
+  border: 1px solid black;
+  
+}
+
+.myAddBox {
+  width: 215px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}

@@ -1,0 +1,88 @@
+CHANGELOG
+=========
+
+TO DO:
+    - Add a function to print a report.
+    - Add a function to read a netCDF file to acquire geographic information.
+
+
+
+May 4 2015, Release version 0.4.0b3
+======================================
+  ADDED:
+    - a button with a dedicated function has been introduced in the diffrent panel to let the user enter his own checkBoxes.
+
+
+April 28 2015, Release version 0.4.0b2
+======================================
+  ADDED:
+    - a function to parse XML code within all fields.
+    
+  FIXED:
+    - North and South Latitudes of the bounding box were saved as "NorthLongitudes" and SouthLongitudes".
+
+
+April 28 2015, Release version 0.4.0b1
+======================================
+  A function to allow upload of xml file has been started.
+  
+  ADDED:
+    - a server-side function to handle upload of xml file.
+    - the first function to upload file from client-side has been introduce in the main gwt application.
+
+
+April 28 2015, Release version 0.3.0
+====================================
+  Since the code is stable, the software is released in the current state, and version number increases to 0.3.0.
+
+
+April 23-27 2015, Release version 0.3.0b1-b2
+============================================
+  ADDED:
+    - a function to generate XML file from PHP script has been created. Its a simple and temporary function.
+    - dictionnaries to handle checkboxes and the xml schema of those checkboxes.
+    
+  FIXED:
+    - the final xml code was written in the last textArea of the program when the "Save" function was triggered.
+    - the "Scientific Aims Comments" item wasn't saved in the XML file.
+
+
+April 22 2015, Release version 0.2.0
+==================================== 
+  Since the code is stable, the software is released in the current state, and version number increases to 0.2.0.
+ 
+ 
+April 22 2015, Release version 0.2.0b1
+==================================== 
+  ADDED:
+    - a new function to create a new file if the different fields are not empty.
+    - GWTQuery has been added to the program as a library.
+
+
+April 21 2015, Release version 0.1.0
+====================================
+  Since the GUI is stable, the software is released in the current state, and version number increases to 0.1.0.
+  
+
+April 21 2015, Release version 0.1.0b11
+=======================================
+  The GUI has been finished and his stable. A set of icons and a headband have been created to improve the GUI.
+
+
+April 20 2015, Release version 0.1.0b10
+=======================================
+  Expansion of the GUI.
+    
+
+April 13-17 2015, Release version 0.1.0b4-b9
+============================================
+  Expansion of the GUI.
+  
+    
+April 9-10 2015, Release version 0.1.0b1-b3
+===========================================
+  This project - Airborne Science Mission Metadata (ASMM) - was motivated by the need to create a standard set of mission reports, aiding in classification and searches of data sets based on flight phenomena, mission parameters or other criteria. To meet this goal, an XML format has been developed to store the mission report data in a standard manner, and an easy-to-use graphical user interface has been developed to facilitate creation and display of the standard XML files. This project contains the source code and executables for the ASMM creator as well as documentation describing the ASMM XML schema.
+  This tool has been first developed using Python 2.7. This is the first online version using Java and GWT. The version 0.9.5 of ASMM has been used to create the Java version.
+  
+  First version of the graphical user interface.
+    
