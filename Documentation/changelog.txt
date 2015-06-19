@@ -18,13 +18,39 @@ KNOWN ISSUES:
     - in the [ONLINE] version, two lines need to be activated to allow a proper operation of the downloading and uploading servlet, based on the platform for devlopment and production: see in the "Asmm_eufar.java" file, section "open an existing xml file" openFile() and "save an xml file" saveFile(), to comment and uncomment dedicated lines. !!! IMPORTANT !!!
 
 
+June 19 2015, Release version 0.9.7
+===================================
+  As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.7 [OFFLINE][ONLINE].
+
+
+June 18-19 2015, Release version 0.9.7b2-b3
+===========================================
+  MODIFIED:
+    - the Line Edits to enter the aircraft and operator have been replaced by combobox to list first all the aircraft and operators open to Transnational Access. If a user needs to enter a non TA operator/aircraft, he will select "Other" and two new Line Edits will appear [ONLINE][OFFLINE][mainwindow.py][button_functions.py][sql_functions.py][Ui_mainwindow.py].
+    - the Line Edit to enter the country has been replaced by a combobox listing all countries [ONLINE][OFFLINE][mainwindow.py][Ui_mainwindow.py][sql_functions.py].
+    - the function to save an xml file has been modified to take care of the new country and operator/aircraft comboboxes [ONLINE][OFFLINE][asmm_xml.py].
+    - the function to create a new file has been modified to take care of the new country and operator/aircraft comboboxes [ONLINE][OFFLINE][mainwindow.py].
+    
+  FIXED:
+    - fixed a bug which prevents a total clear of all user-defined checkboxes [ONLINE].
+
+
+June 17 2015, Release version 0.9.7b1
+=====================================
+  ADDED:
+    - a function to append the suffix "modified" to the browser window title has been introduced when a modification is brought to a field, the suffix disapears if the file is saved or cleared [ONLINE].
+    - when a user wants to create a new file and some fields are not empty or have been changed, a function will ask him if he wants to save the file before creating a new one [ONLINE].
+    - when a user tries to open an xml file and some fields are not empty, it is not prompted if the user wants to save his work before opening the xml file [ONLINE].
+    - new window has been added to replace an internal window (asking if the user wants to save a previous file before loading a new one or clearing all fields) [OFFLINE][mainwindow.py][Ui_presavewindow.py].
+
+
 June 12 2015, Release version 0.9.6
 ===================================
   As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.6 [OFFLINE][ONLINE].
 
 
-June 11-12 2015, Release version 0.9.6b21-22
-============================================
+June 11-12 2015, Release version 0.9.6b21-b22
+=============================================
   MODIFIED:
     - the function to save xml file has been modified to include all new checkboxes created by the user [OFFLINE][asmm_xml.py].
     - the ASMM menu has been a bit reorganized with the introduction of information about the ASMM XML Standard [OFFLINE][mainwindow.py].
