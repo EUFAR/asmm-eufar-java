@@ -4,18 +4,66 @@ CHANGELOG
 
 TO DO:
 ======
-    - Add a function to print a report [ONLINE].
     - Revamp the function to print a report [OFFLINE].
-    - Add a function to read a netCDF file to acquire geographic information [ONLINE].
     - Add a proper logging system to allow a proper bug tracker [ONLINE][OFFLINE].
 
 
 KNOWN ISSUES:
-=============
+=============   
     - PyInstaller seems to be unable to locate by itself netCDF4 plugins dedicated to python. Temporary solution: the ".spec" file has been modified to include manually the netCDF4 plugins [OFFLINE].
     - On Windows Operating Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the terminal concerning python and the module "win32com". As this module is not called by ASMM Creator, and as ASMM Creator doesn't crash after this error, this issue is not critical and doesn't prevent the use of the software [OFFLINE].
     
-    - in the [ONLINE] version, two lines need to be activated to allow a proper operation of the downloading and uploading servlet, based on the platform for devlopment and production: see in the "Asmm_eufar.java" file, section "open an existing xml file" openFile() and "save an xml file" saveFile(), to comment and uncomment dedicated lines. !!! IMPORTANT !!!
+    - !!! IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, uploading and printing servlets, based on the platform of devlopment and production: see in the "Asmm_eufar.java" file, find those lines at the started:
+      
+        //String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7 Server
+        String asmmPath = new String(""); // for Eclipse Dev Mode
+
+
+June 22 2015, Release version 0.9.9b1 [ONLINE]
+=====================================
+  A proper logging system is being introduced in ASMM Creator Online. I will be introduced in ASMM Creator Offline once the v0.9.8 is released.
+
+
+June 22 2015, Release version 0.9.8 [ONLINE]
+===================================
+  As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.8 [ONLINE].
+
+
+July 2-22 2015, Release version 0.9.8b12-b20
+============================================
+  It is now possible to upload images to be included in the PDF report (request from UK airborne research operators) in the online version of ASMM.
+  A new layout has been introduced to allow a browser-like layout for small wide screen (automatically) and other screens (manually).
+  
+  MODIFIED:
+    - the item "Campaign" has been changed to "Project acronym", the xml code reflects the change [ONLINE].
+    - the items "Mountainous", "Hilly" and "Flat" have been moved to the same column [ONLINE].
+    - the "Country" selection has been changed to comply with the EUFAR Metadata Creator system, the xml code reflects the change [ONLINE].
+    - few adjustments in the GUI [ONLINE].
+    
+  FIXED:
+    - all included images are now well cleaned if a new file is created or an existing xml file is loaded [ONLINE].
+    - once an infobutton is clicked, the linked clickhandler is deactivated permanently, it has been fixed [ONLINE].
+    - in the section "Supporting Surface-based Observations", if there is no text in a textbox and a "+" button is clicked, an empty widget with a "x" button is created in the listpanel [ONLINE].
+    - with the modification of the country selection, the printing function couldn't work properly, it has been fixed [ONLINE].
+    - few spelling mistakes have been corrected [ONLINE].
+    - in the pdf report, textboxes for the Geographic Bounding Box were inverted [ONLINE].
+    
+  ADDED:
+    - the focus has been added to all popup windows with a textbox to enter text [ONLINE].
+    - the Keyboard Event Handler has been added to all necessary textboxes [ONLINE].
+    - the printing function now warns the user about the necessary time to generate and download the pdf report, depending on the network connexion and the number/size of the image(s) [ONLINE].
+    - the function to create checkboxes now doesn't allow more than 12 checkboxes per section to comply with the pdf report generator [ONLINE].
+    - if a user try to create a new checkbox with the name of an existing checkbox, the new checkbox won't be created [ONLINE].
+    - it is now impossible to create empty checkbox [ONLINE].
+
+
+June 22 - July 2 2015, Release version 0.9.8b1-b11
+==================================================
+  A new plugin to print pdf report from user inputs has been introduced in the online version of ASMM. The pdf template has been produced using Jasper Reports 6.1.0 and Eclipse 4.4.
+    
+  FIXED:
+    - few spelling mistakes have been corrected [ONLINE].
+    - the country and role comboboxes were saved even when the displayed text was "Do your choice..." [ONLINE].
 
 
 June 19 2015, Release version 0.9.7

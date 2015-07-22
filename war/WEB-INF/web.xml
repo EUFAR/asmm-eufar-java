@@ -26,6 +26,26 @@
 	<url-pattern>/upload</url-pattern>
   </servlet-mapping>
   
+  <servlet>
+	<servlet-name>PrintFunction</servlet-name>
+	<servlet-class>com.eufar.asmm.server.PrintFunction</servlet-class>
+  </servlet>
+		  
+  <servlet-mapping>
+	<servlet-name>PrintFunction</servlet-name>
+	<url-pattern>/print</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>UploadImage</servlet-name>
+	<servlet-class>com.eufar.asmm.server.UploadImage</servlet-class>
+  </servlet>
+		  
+  <servlet-mapping>
+	<servlet-name>UploadImage</servlet-name>
+	<url-pattern>/image</url-pattern>
+  </servlet-mapping>
+  
   <filter>
  	<filter-name>clearCache</filter-name>
  	<filter-class>com.eufar.asmm.server.clearCache</filter-class>
@@ -35,6 +55,26 @@
  	<filter-name>clearCache</filter-name>
  	<url-pattern>/*</url-pattern>
   </filter-mapping>
+  
+  <!-- <servlet>
+	<servlet-name>LoggingSystem</servlet-name>
+	<servlet-class>com.eufar.asmm.server.LoggingSystem</servlet-class>
+  </servlet>
+		  
+  <servlet-mapping>
+	<servlet-name>LoggingSystem</servlet-name>
+	<url-pattern>/logging</url-pattern>
+  </servlet-mapping> -->
+  
+  <!-- remote logging -->
+  <servlet>
+    <servlet-name>remoteLogging</servlet-name>
+    <servlet-class>com.google.gwt.logging.server.RemoteLoggingServiceImpl</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>remoteLogging</servlet-name>
+    <url-pattern>/asmm_eufar/remote_logging</url-pattern>
+  </servlet-mapping>
   
   
   <!-- Default page to serve -->

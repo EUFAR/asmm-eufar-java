@@ -124,9 +124,29 @@
   font-size: 12px;
   font-weight: bold;
   font-family: FreeSans;
-  margin-left: 20px;
+  margin-left: 10px;
   background-color: #ffffff;
 }
+
+
+.gi_textBox2 {
+  width: 100px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 10px;
+  margin-top: 10px;
+  background-color: #ffffff;
+}
+
+
+.gi_boundTab {
+  margin-left: 20px;
+}
+
 
 .so_textBox {
   width: 150px;
@@ -195,17 +215,18 @@
 }
 
 
-
 .sa_checkBox {
   margin-left: 40px;
   font-family: DroidSansFallback;
 }
+
 
 .sa_verticalPanel {
   border: 1px solid grey;
   margin-left: 20px;
   margin-top: 20px;
 }
+
 
 .so_verticalPanel {
   margin-top: 5px;
@@ -216,12 +237,14 @@
   border: 1px solid #ccc;
 }
 
+
 .flexTable {
   height: 10px;
   width: 350px;
   font-size: 12px;
   font-weight: bold;
 }
+
 
 .flexTable-SecondColumn {
   width: 40px;
@@ -265,6 +288,58 @@
 .gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
   background: #e6e6e6 !important;
 }
+
+
+.gwt-TabLayoutPanel {
+	
+}
+
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
+	
+}
+
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
+  overflow: auto !important;
+  padding: 6px !important;
+  background: #e6e6e6 !important; 
+}
+
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+ /*  margin-left: 3px !important;
+  margin-right: 3px !important;
+  padding: 3px 8px 3px 8px !important; */
+  cursor: pointer !important;
+  cursor: hand !important;
+  color: black !important;
+  font-size: 1.1em !important;
+  color: #000000 !important;
+  text-align: left !important;
+  background: #d3def6 !important;
+  font-family: DroidSans !important;
+}
+
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
+  cursor: default !important;
+  background: #e6e6e6 !important;
+  font-size: 1.2em !important;
+  color: #000000 !important;
+  font-family: DroidSans !important;
+}
+
+
+.gwt-TabLayoutPanelScrollPanel {
+  background: #e6e6e6 !important;
+}
+
+
+.gwt-TabLayoutPanelScrollButton:hover {
+  background: #c8c8c8!important;
+}
+
 
 
 .gwt-DateBox {
@@ -314,4 +389,43 @@
   font-family: FreeSans;
   margin-left: 20px;
   background-color: #ffffff;
+}
+
+.au_textBox {
+  width: 250px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+
+.geoTextList {
+  width: 200px;
+  height: 30px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  background-color: #ffffff;
+}
+
+.geoTextList:disabled {
+  width: 200px;
+  height: 30px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  margin-bottom: 10px;
+  background-color: #d6d6d6;
 }

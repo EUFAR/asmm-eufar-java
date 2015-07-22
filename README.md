@@ -2,7 +2,7 @@
 
 Information 
 
-A detailed changelog can be found in the Documentation directory. Current version: 0.9.7
+A detailed changelog can be found in the Documentation directory. Current version: 0.9.8
 This is an Online version of the following software: https://github.com/eufarn7sp/asmm-eufar. It has been coded with Java and Google Web Toolkit.
 
 Overview
@@ -21,5 +21,13 @@ This software needs the following libraries to allow proper operation:
   - GWT Query 1.4.2
   - Commons Fileupload 1.2.2
   - Commons io 2.3
-
+  - commons-beanutils-1.9.0.jar
+  - commons-collections-3.2.1.jar
+  - commons-digester-2.1.jar
+  - commons-javaflow-20060411.jar
+  - commons-logging-1.1.1.jar
+  - iText-2.1.7.js2.jar
+  - jasperreports-6.1.0.jar
+  - jasperreports-fonts-6.1.0.jar
+  - jasperreports-javaflow-6.1.0.jar
 
