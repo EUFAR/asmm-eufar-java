@@ -5,33 +5,30 @@
 }
 
 @font-face {
-    font-family: DroidSans;
-    src: url(font/DroidSans.ttf);
+  font-family: DroidSans;
+  src: url(font/DroidSans.ttf);
 }
 
 
 @font-face {
-    font-family: DroidSansFallback;
-    src: url(font/DroidSansFallbackFull.ttf);
+  font-family: DroidSansFallback;
+  src: url(font/DroidSansFallbackFull.ttf);
 }
 
 @font-face {
-    font-family: FreeSans;
-    src: url(font/FreeSans.ttf);
+  font-family: FreeSans;
+  src: url(font/FreeSans.ttf);
 }
 
 .infoButton {
   width: 25px;
   height: 25px;
   margin-left: 20px;
+  margin-top: 2px;
 }
 
-.infoButton-down-hovering {
+.infoButton:hover {
   background-color: #cccccc;
-}
-
-.infoButton-up-hovering {
-  background-color: #cfcfcf;
 }
 
 .sa_delButton {
@@ -48,29 +45,16 @@
   background-color: #cfcfcf;
 }
 
-/* .dockPanel { */
-/*   background-image: url("images/asmm_shadow.png"); */
-/*   background-repeat: repeat-y; */
-	
-	
-/* } */
-
-/* .gwt-DockLayoutPanel-east {
-  background-color: red !important;
-	
-	
-} */
 
 .fi_image {
 	margin-left: 30px;
-	margin-top: 6px;
+	margin-top: 2px;
 }
 
 
 .fi_textList {
   width: 150px;
-  height: 30px;
-  padding: 5px 4px;
+  height: 25px;
   border: 1px solid #ccc;
   font-size: 12px;
   font-weight: bold;
@@ -81,8 +65,7 @@
 
 .fi_textList2 {
   width: 200px;
-  height: 30px;
-  padding: 5px 4px;
+  height: 25px;
   border: 1px solid #ccc;
   font-size: 12px;
   font-weight: bold;
@@ -93,8 +76,7 @@
 
 .fi_textList2:disabled {
   width: 200px;
-  height: 30px;
-  padding: 5px 4px;
+  height: 25px;
   border: 1px solid #ccc;
   font-size: 12px;
   font-weight: bold;
@@ -124,7 +106,6 @@
   font-size: 12px;
   font-weight: bold;
   font-family: FreeSans;
-  margin-left: 10px;
   background-color: #ffffff;
 }
 
@@ -137,8 +118,6 @@
   font-size: 12px;
   font-weight: bold;
   font-family: FreeSans;
-  margin-left: 10px;
-  margin-top: 10px;
   background-color: #ffffff;
 }
 
@@ -163,7 +142,7 @@
 
 .ci_textList {
   width: 150px;
-  height: 30px;
+  height: 27px;
   padding: 5px 4px;
   border: 1px solid #ccc;
   font-size: 12px;
@@ -243,6 +222,7 @@
   width: 350px;
   font-size: 12px;
   font-weight: bold;
+  font-family: FreeSans;
 }
 
 
@@ -255,7 +235,6 @@
   font-family: DroidSansFallback !important;
   margin-left: 20px !important;
   text-align: justify !important;
-	
 }
 
 .gwt-CheckBox {
@@ -269,7 +248,6 @@
 }
 
 .gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
-  cursor: pointer !important;
   cursor: hand !important;
   font-size: 1.05em !important;
   font-family: DroidSans !important;
@@ -341,7 +319,6 @@
 }
 
 
-
 .gwt-DateBox {
   padding: 5px 4px !important;
   border: 1px solid #ccc !important;
@@ -356,7 +333,7 @@
 
 
 .gwt-MenuBar .gwt-MenuItem {
-  font-family: DroidSansFallback !important;
+  font-family: DroidSans !important;
   font-size: 15px !important;
   vertical-align: top !important;
 }
@@ -406,26 +383,44 @@
 
 .geoTextList {
   width: 200px;
-  height: 30px;
-  padding: 5px 4px;
+  height: 25px;
   border: 1px solid #ccc;
   font-size: 12px;
   font-weight: bold;
   font-family: FreeSans;
   margin-left: 20px;
-  margin-bottom: 10px;
   background-color: #ffffff;
 }
 
 .geoTextList:disabled {
   width: 200px;
-  height: 30px;
-  padding: 5px 4px;
+  height: 25px;
   border: 1px solid #ccc;
   font-size: 12px;
   font-weight: bold;
   font-family: FreeSans;
   margin-left: 20px;
-  margin-bottom: 10px;
   background-color: #d6d6d6;
 }
+
+
+.uploadImage {
+  padding: 1px 1px 1px 1px;
+  
+}
+
+
+.uploadImage:hover {
+  padding: 0px 0px 0px 0px;
+  border: 1px solid #000000;
+  cursor: pointer;
+}
+
+
+.popupText {
+  font-family: DroidSansFallback;
+  margin-left: 20px;
+  text-align: justify;
+  font-size: 12px;
+}
+

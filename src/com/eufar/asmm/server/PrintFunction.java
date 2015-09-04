@@ -2,6 +2,7 @@ package com.eufar.asmm.server;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -30,10 +31,7 @@ public class PrintFunction extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
- 
-		System.out.println("PDF rendering started...");
-		
-		
+		System.out.println("PrintFunction - the function started");
         // set header as pdf
         response.setContentType("application/pdf");
         String fileName = request.getParameter("filename");
@@ -47,7 +45,11 @@ public class PrintFunction extends HttpServlet {
         ServletContext context = getServletContext();
         String iconLocation = context.getRealPath("/icons");
         String reportLocation = context.getRealPath("/pdf");
-        String tmpLocation = context.getRealPath("/tmp");
+        //String tmpLocation = context.getRealPath("/tmp");
+        String tmpLocation = "/tmp";
+        System.out.println("PrintFunction - directories mapped: " + iconLocation);
+        System.out.println("PrintFunction - directories mapped: " + reportLocation);
+        System.out.println("PrintFunction - directories mapped: " + tmpLocation);
         
         
         // list all objects and parameters
@@ -73,8 +75,20 @@ public class PrintFunction extends HttpServlet {
 	            	String valueP = value.substring(0,value.lastIndexOf("*"));
 	            	value = value.substring(value.lastIndexOf("*") + 1);
 	            	map.put(nameP, valueP);
-	            	System.out.println("Picture: " + valueP);
-	            	System.out.println("Caption: " + value);
+	            	
+	            	System.out.println("PrintFunction - picture: " + valueP);
+	            	if (new File(valueP).isFile()) {
+	            		System.out.println("PrintFunction - picture: the file exists.");
+	            	} else {
+	            		System.out.println("PrintFunction - picture: the file doesn't exist.");
+	            	}
+	            	if (new File(valueP).canRead()) {
+	            		System.out.println("PrintFunction - picture: the file can be read.");
+	            	} else {
+	            		System.out.println("PrintFunction - picture: the file can't be read.");
+	            	}
+	            	
+	            	System.out.println("PrintFunction - caption: " + value);
             	}
             }
             if (value.startsWith("http")) {
@@ -82,8 +96,8 @@ public class PrintFunction extends HttpServlet {
             	String valueP = value.substring(0,value.lastIndexOf("*"));
             	value = value.substring(value.lastIndexOf("*") + 1);
             	map.put(nameP, valueP);
-            	System.out.println("Picture (URL): " + valueP);
-            	System.out.println("Caption: " + value);
+            	System.out.println("PrintFunction - picture (URL): " + valueP);
+            	System.out.println("PrintFunction - caption: " + value);
             }
             map.put(name, value);
         }
@@ -101,21 +115,21 @@ public class PrintFunction extends HttpServlet {
             // get report
             fis = new FileInputStream(reportLocation + "/asmm_report_template.jasper");
             bufferedInputStream = new BufferedInputStream(fis);
-            System.out.println("Report template found and loaded...");
+            System.out.println("PrintFunction - template loaded");
             
  
             // fill it
             JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource(objectMap);
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
             JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), dataSource);
-            System.out.println("Report template has been filled in with data...");
+            System.out.println("PrintFunction - data parsed in report");
  
             
             // export to pdf
             JasperExportManager.exportReportToPdfStream(jasperPrint, baos);
             response.setContentLength(baos.size());
             baos.writeTo(servletOutputStream);
-            System.out.println("Report is ready to be exported to PDF...");
+            System.out.println("PrintFunction - report ready to be exported");
  
             
             // close it
@@ -123,7 +137,7 @@ public class PrintFunction extends HttpServlet {
             bufferedInputStream.close();
  
         } catch (Exception ex) {
-        	System.out.println(ex);
+        	System.out.println("A problem occured during PDF rendition: " + ex);
             
         } finally {
             servletOutputStream.flush();

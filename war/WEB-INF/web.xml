@@ -56,16 +56,6 @@
  	<url-pattern>/*</url-pattern>
   </filter-mapping>
   
-  <!-- <servlet>
-	<servlet-name>LoggingSystem</servlet-name>
-	<servlet-class>com.eufar.asmm.server.LoggingSystem</servlet-class>
-  </servlet>
-		  
-  <servlet-mapping>
-	<servlet-name>LoggingSystem</servlet-name>
-	<url-pattern>/logging</url-pattern>
-  </servlet-mapping> -->
-  
   <!-- remote logging -->
   <servlet>
     <servlet-name>remoteLogging</servlet-name>

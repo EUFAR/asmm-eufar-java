@@ -33,14 +33,18 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
+import org.apache.commons.io.FilenameUtils;
+
+import com.google.gwt.thirdparty.guava.common.io.Files;
 
 @SuppressWarnings("hiding")
 public class UploadImage<FileItem> extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
-	private static final String DATA_DIRECTORY = "tmp";
+	private static final String DATA_DIRECTORY = "/tmp";
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 5;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 5;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		System.out.println("UploadImage - the function started");
 		@SuppressWarnings("unused")
 		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -50,30 +54,49 @@ public class UploadImage<FileItem> extends HttpServlet implements Servlet {
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 		double maxSize = (MAX_REQUEST_SIZE / 1024) / 1024;
-		System.out.println("Max image size: " + maxSize + " Mbytes");
+		System.out.println("UploadImage - max image size: " + maxSize + " Mbytes");
 		try {
 			List items = upload.parseRequest(request);
 			Iterator iter = items.iterator();
 			while(iter.hasNext()){
 				Object obj = iter.next();
 				org.apache.commons.fileupload.FileItem item = (org.apache.commons.fileupload.FileItem)obj;
-				if (!item.isFormField()) {
-                    File uploadedFile = File.createTempFile("tmp_", ".jpg", new File(uploadFolder));
-                    uploadedFile.deleteOnExit();
-                    item.write(uploadedFile);
-                    double fileSize = item.getSize();
-                    fileSize = (fileSize / 1024) / 1024;
-                    response.setCharacterEncoding("UTF-8");
+				String fileExt = FilenameUtils.getExtension(item.getName());
+				if (fileExt.matches("(jpg|jpeg|bmp|png|JPG|JPEG|BMP|PNG)")) {
+						System.out.println("UploadImage - image accepted");
+						if (!item.isFormField()) {
+		                    File uploadedFile = File.createTempFile("tmp_", "." + fileExt, new File(uploadFolder));
+		                    item.write(uploadedFile);
+		                    Files.copy(uploadedFile, new File("/tmp/" + uploadedFile.getName())); // temporary
+		                    double fileSize = item.getSize();
+		                    fileSize = (fileSize / 1024) / 1024;
+		                    response.setCharacterEncoding("UTF-8");
+							response.setContentType("text/html");
+							response.getWriter().write(uploadedFile.getName());
+							System.out.println("UploadImage - " + uploadedFile.getPath() + ": upload ok...");
+							System.out.println("UploadImage - " + uploadedFile.getPath() + ": " + fileSize + " MBytes");
+							if (new File(uploadedFile.getPath()).isFile()) {
+			            		System.out.println("PrintFunction - picture (webapps): the file exists.");
+			            	} else {
+			            		System.out.println("PrintFunction - picture (webapps): the file doesn't exist.");
+			            	}
+			            	if (new File(uploadedFile.getPath()).isFile()) {
+			            		System.out.println("PrintFunction - picture (webapps): the file can be read.");
+			            	} else {
+			            		System.out.println("PrintFunction - picture (webapps): the file can't be read.");
+			            	}
+		                } else {
+		                	System.out.println("UploadImage - a problem occured with the file format");
+		                }
+				} else {
+					System.out.println("UploadImage - image rejected: wrong format");
+					response.setCharacterEncoding("UTF-8");
 					response.setContentType("text/html");
-					response.getWriter().write(uploadedFile.getName());
-					System.out.println(uploadedFile.getName() + ": upload ok...");
-					System.out.println(uploadedFile.getName() + ": " + fileSize + " MBytes");
-                } else {
-                	System.out.println("error");
-                }
+					response.getWriter().write("format");
+				}
 			}
 		} catch (Exception ex) {
-			System.out.println(ex);
+			System.out.println("UploadImage - a problem occured: " + ex);
 			response.getWriter().write("ERROR:" + ex.getMessage());
 		}
 	}	

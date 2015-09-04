@@ -34,11 +34,10 @@ public class clearCache implements Filter {
 		HttpServletRequest httpRequest = (HttpServletRequest) request;
 		String requestURI = httpRequest.getRequestURI();
 		if (requestURI.contains(".nocache.")) {
-			System.out.println(new Date() + ": ASMM has started");
 			try {
 				ServletContext context = getFilterConfig().getServletContext();
-		        String tmpLocation = context.getRealPath("tmp");
-				FileUtils.cleanDirectory(new File(tmpLocation));
+		        String tmpLocation = context.getRealPath("/tmp");
+				//FileUtils.cleanDirectory(new File(tmpLocation));
 			} catch (Exception ex) {System.out.println(ex);}
 			Date now = new Date();
 			HttpServletResponse httpResponse = (HttpServletResponse) response;
