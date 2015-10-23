@@ -34,7 +34,7 @@ public class pdfSave {
 			List<ListBox> allListBox = $("*", Asmm_eufar.subDockPanel).widgets(ListBox.class);
 			for (int i = 0; i < allListBox.size(); i++) {
 				TextBox textBox = new TextBox();
-				if (allListBox.get(i).getSelectedItemText() == "Make your choice...") {
+				if (allListBox.get(i).getSelectedItemText() == "Make a choice...") {
 					textBox.setText("");
 				} else {
 					textBox.setText(allListBox.get(i).getSelectedItemText());

@@ -67,7 +67,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.0.0 (2015-09-03)");
+	public static String asmmVersion = new String("1.0.1 (2015-10-21)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.5.0");
 	public static String javaVersion = new String("1.7.0");
@@ -121,7 +121,7 @@ public class Asmm_eufar implements EntryPoint {
 	private Label fi_managerLabel = new Label("Flight manager:");
 	private Label fi_aircraftLabel = new Label("Platform/Aircraft:");
 	private Label fi_operatorLabel = new Label("Operator:");
-	private Label fi_countryLabel = new Label("Country:");
+	private Label fi_countryLabel = new Label("Location:");
 	public static Image fi_operatorImage = Resources.smallImage("fwdarrow");
 	public static Image fi_aircraftImage = Resources.smallImage("fwdarrow");
 	private Image geoFollowImage = Resources.smallImage("fwdarrow");
@@ -369,9 +369,11 @@ public class Asmm_eufar implements EntryPoint {
 	private VerticalPanel verticalPanel37 = new VerticalPanel();
 	public static VerticalPanel verticalPanel38 = new VerticalPanel();
 	public static VerticalPanel verticalPanel73 = new VerticalPanel();
+	private VerticalPanel verticalPanel79 = new VerticalPanel();
 	private HorizontalPanel horizontalPanel15 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel16 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel45 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel48 = new HorizontalPanel();
 	private Label ar_comLabel = new Label("Comments:");
 	public static TextArea ar_comArea = new TextArea();
 	public static TreeMap<String, String> measurementMap = Resources.measurementMap();
@@ -393,6 +395,8 @@ public class Asmm_eufar implements EntryPoint {
 	private VerticalPanel verticalPanel40 = new VerticalPanel();
 	public static VerticalPanel verticalPanel41 = new VerticalPanel();
 	public static VerticalPanel verticalPanel74 = new VerticalPanel();
+	private VerticalPanel verticalPanel77= new VerticalPanel();
+	private VerticalPanel verticalPanel78= new VerticalPanel();
 	private HorizontalPanel horizontalPanel17 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel18 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel46 = new HorizontalPanel();
@@ -418,7 +422,6 @@ public class Asmm_eufar implements EntryPoint {
 	private VerticalPanel verticalPanel43 = new VerticalPanel();
 	private VerticalPanel verticalPanel44 = new VerticalPanel();
 	private VerticalPanel verticalPanel45 = new VerticalPanel();
-	private VerticalPanel verticalPanel46 = new VerticalPanel();
 	public static VerticalPanel verticalPanel47 = new VerticalPanel();
 	public static VerticalPanel verticalPanel75 = new VerticalPanel();
 	private HorizontalPanel horizontalPanel19 = new HorizontalPanel();
@@ -762,6 +765,8 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel05.getElement().setAttribute("style", "margin-top:20px !important; height: 110px !important; width: 300px !important;");
 		verticalPanel07.getElement().setAttribute("style", "height: 110px !important; width: 300px !important;");
 		verticalPanel08.getElement().setAttribute("style", "margin-top:20px !important; height: 110px !important; width: 300px !important;");
+		verticalPanel06.getElement().setAttribute("style", "margin-left: 55px !important;");
+		verticalPanel09.getElement().setAttribute("style", "margin-left: 55px !important;");
 		rootLogger.log(Level.INFO, "Scientific Aims panel initialized");
 
 
@@ -815,14 +820,16 @@ public class Asmm_eufar implements EntryPoint {
 		gi_maxText.setStyleName("gi_textBox");
 		gi_boundTable.setStyleName("gi_boundTab");
 		gi_situationLabel.setStyleName("gi_titleText2");
-		horizontalPanel03.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel15.getElement().setAttribute("style", "margin-left: 20px !important;");
-		horizontalPanel05.getElement().setAttribute("style", "margin-left: 25px !important;");
-		verticalPanel63.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel64.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel65.getElement().setAttribute("style", "margin-left: 40px !important;");
 		gi_comLabel.setStyleName("gi_titleText2");
 		gi_comArea.setStyleName("sa_textArea");
+		horizontalPanel03.getElement().setAttribute("style", "margin-left: 40px !important;");
+		verticalPanel15.getElement().setAttribute("style", "margin-left: 20px !important;");
+		horizontalPanel05.getElement().setAttribute("style", "margin-left: 40px !important;");
+		verticalPanel63.getElement().setAttribute("style", "margin-left: 150px !important;");
+		verticalPanel64.getElement().setAttribute("style", "margin-left: 150px !important;");
+		verticalPanel65.getElement().setAttribute("style", "margin-left: 150px !important;");
+		gi_mmLabel.getElement().setAttribute("style", "margin-left: 210px !important;");
+		
 		rootLogger.log(Level.INFO, "Geographic Information panel initialized");
 
 
@@ -867,9 +874,9 @@ public class Asmm_eufar implements EntryPoint {
 		af_cycloStationary.setStyleName("sa_checkBox");
 		af_comLabel.setStyleName("gi_titleText2");
 		af_comArea.setStyleName("sa_textArea");
-		verticalPanel17.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel18.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel19.getElement().setAttribute("style", "margin-left: 40px !important;");
+		verticalPanel17.getElement().setAttribute("style", "margin-left: 50px !important;");
+		verticalPanel18.getElement().setAttribute("style", "margin-left: 50px !important;");
+		verticalPanel19.getElement().setAttribute("style", "margin-left: 50px !important;");
 		rootLogger.log(Level.INFO, "Atmospheric Synoptic Features panel initialized");
 
 
@@ -908,9 +915,9 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel25.add(horizontalPanel10);
 		ct_comLabel.setStyleName("gi_titleText2");
 		ct_comArea.setStyleName("sa_textArea");
-		verticalPanel22.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel23.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel24.getElement().setAttribute("style", "margin-left: 40px !important;");
+		verticalPanel22.getElement().setAttribute("style", "margin-left: 60px !important;");
+		verticalPanel23.getElement().setAttribute("style", "margin-left: 60px !important;");
+		verticalPanel24.getElement().setAttribute("style", "margin-left: 60px !important;");
 		rootLogger.log(Level.INFO, "Cloud Types and Forms Sampled During Flight panel initialized");
 
 
@@ -947,9 +954,9 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel30.add(horizontalPanel12);
 		cp_comLabel.setStyleName("gi_titleText2");
 		cp_comArea.setStyleName("sa_textArea");
-		verticalPanel27.getElement().setAttribute("style", "margin-left: 40px !important;");
-		verticalPanel28.getElement().setAttribute("style", "margin-left: 60px !important;");
-		verticalPanel29.getElement().setAttribute("style", "margin-left: 50px !important;");
+		verticalPanel27.getElement().setAttribute("style", "margin-left: 115px !important;");
+		verticalPanel28.getElement().setAttribute("style", "margin-left: 115px !important;");
+		verticalPanel29.getElement().setAttribute("style", "margin-left: 115px !important;");
 		rootLogger.log(Level.INFO, "Cloud, Precipitation and Aerosol Particles Sampled panel initialized");
 
 
@@ -986,31 +993,28 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel35.add(horizontalPanel14);
 		lo_comLabel.setStyleName("gi_titleText2");
 		lo_comArea.setStyleName("sa_textArea");
-		lo_desert.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_snow.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_urban.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_lakeIce.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_mountainous.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_vegetation.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_hilly.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_forest.getElement().setAttribute("style", "margin-left:70px !important;");
-		lo_flat.getElement().setAttribute("style", "margin-left:70px !important;");
+		verticalPanel32.getElement().setAttribute("style", "margin-left:190px !important;");
+		verticalPanel33.getElement().setAttribute("style", "margin-left:190px !important;");
+		verticalPanel34.getElement().setAttribute("style", "margin-left:190px !important;");
 		rootLogger.log(Level.INFO, "Land or Oceans Surfaces Overflown panel initialized");
 
 
 		// Assemble Altitude Range of Measurement panel
 		verticalPanel36.add(ar_boundaryLayer);
-		verticalPanel36.add(ar_nearSurface);
-		verticalPanel36.add(ar_subCloud);
+		horizontalPanel48.add(ar_subCloud);
+		horizontalPanel48.add(ar_nearSurface);
+		verticalPanel36.add(horizontalPanel48);
 		verticalPanel36.add(ar_inCloud);
 		verticalPanel36.setSpacing(10);
 		horizontalPanel15.add(verticalPanel36);
-		verticalPanel37.add(ar_lowerTroposphere);
-		verticalPanel37.add(ar_midTroposphere);
 		verticalPanel37.add(ar_upperTroposphere);
-		verticalPanel37.add(ar_lowerstratosphere);
+		verticalPanel37.add(ar_midTroposphere);
 		verticalPanel37.setSpacing(10);
 		horizontalPanel15.add(verticalPanel37);
+		verticalPanel79.add(ar_lowerTroposphere);
+		verticalPanel79.add(ar_lowerstratosphere);
+		verticalPanel79.setSpacing(10);
+		horizontalPanel15.add(verticalPanel79);
 		verticalPanel38.add(horizontalPanel15);
 		verticalPanel38.add(new HTML("<br>"));
 		horizontalPanel45.add(GuiModification.addCatButton(ar_addCatTable, ar_addCatMap, verticalPanel73));
@@ -1023,13 +1027,11 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel38.add(horizontalPanel16);
 		ar_inCloud.setStyleName("sa_checkBox");
 		ar_subCloud.setStyleName("sa_checkBox");
-		ar_nearSurface.setStyleName("sa_checkBox");
+		ar_nearSurface.setStyleName("sa_checkBox2");
 		ar_comLabel.setStyleName("gi_titleText2");
 		ar_comArea.setStyleName("sa_textArea");
-		ar_lowerTroposphere.getElement().setAttribute("style", "margin-left:100px !important;");
-		ar_midTroposphere.getElement().setAttribute("style", "margin-left:100px !important;");
-		ar_upperTroposphere.getElement().setAttribute("style", "margin-left:100px !important;");
-		ar_lowerstratosphere.getElement().setAttribute("style", "margin-left:100px !important;");
+		verticalPanel37.getElement().setAttribute("style", "margin-left:200px !important;");
+		verticalPanel79.getElement().setAttribute("style", "margin-left:200px !important;");
 		rootLogger.log(Level.INFO, "Altitude Range of Measurement panel initialized");
 
 
@@ -1037,16 +1039,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel39.add(fm_levelRuns);
 		verticalPanel39.add(fm_stacked);
 		verticalPanel39.add(fm_separated);
-		verticalPanel39.add(fm_racetracks);
-		verticalPanel39.add(fm_orbits);
 		verticalPanel39.setSpacing(10);
 		horizontalPanel17.add(verticalPanel39);
-		verticalPanel40.add(fm_lagrangianDescents);
-		verticalPanel40.add(fm_ascDescents);
-		verticalPanel40.add(fm_dropsondeDeployed);
-		verticalPanel40.add(fm_selfCalibration);
+		verticalPanel40.add(fm_racetracks);
+		verticalPanel40.add(fm_orbits);
 		verticalPanel40.setSpacing(10);
 		horizontalPanel17.add(verticalPanel40);
+		verticalPanel77.add(fm_lagrangianDescents);
+		verticalPanel77.add(fm_ascDescents);
+		verticalPanel77.setSpacing(10);
+		horizontalPanel17.add(verticalPanel77);
+		verticalPanel78.add(fm_dropsondeDeployed);
+		verticalPanel78.add(fm_selfCalibration);
+		verticalPanel78.setSpacing(10);
+		horizontalPanel17.add(verticalPanel78);
 		verticalPanel41.add(horizontalPanel17);
 		horizontalPanel46.add(GuiModification.addCatButton(fm_addCatTable, fm_addCatMap, verticalPanel74));
 		horizontalPanel46.add(Elements.addInfoButton("newCheckBox"));
@@ -1060,18 +1066,17 @@ public class Asmm_eufar implements EntryPoint {
 		fm_stacked.setStyleName("sa_checkBox");
 		fm_comLabel.setStyleName("gi_titleText2");
 		fm_comArea.setStyleName("sa_textArea");
-		fm_lagrangianDescents.getElement().setAttribute("style", "margin-left:100px !important;");
-		fm_ascDescents.getElement().setAttribute("style", "margin-left:100px !important;");
-		fm_dropsondeDeployed.getElement().setAttribute("style", "margin-left:100px !important;");
-		fm_selfCalibration.getElement().setAttribute("style", "margin-left:100px !important;");
+		verticalPanel40.getElement().setAttribute("style", "margin-left:105px !important;");
+		verticalPanel77.getElement().setAttribute("style", "margin-left:105px !important;");
+		verticalPanel78.getElement().setAttribute("style", "margin-left:105px !important;");
 		rootLogger.log(Level.INFO, "Types of Flight Manoeuvre panel initialized");
 
 
 		// Assemble Satellite Coordination panel
 		verticalPanel42.add(sc_polarLabel);
+		verticalPanel42.add(sc_atrain);
 		verticalPanel42.add(sc_metop);
 		verticalPanel42.add(sc_npoess);
-		verticalPanel42.add(sc_atrain);
 		verticalPanel42.add(sc_other);
 		verticalPanel42.setSpacing(10);
 		horizontalPanel19.add(verticalPanel42);
@@ -1079,19 +1084,18 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel43.add(sc_msg);
 		verticalPanel43.add(sc_other2);
 		verticalPanel43.setSpacing(10);
-		verticalPanel45.add(verticalPanel43);
-		verticalPanel44.add(sc_modis);
+		horizontalPanel19.add(verticalPanel43);
+		verticalPanel44.add(sc_airs);
+		verticalPanel44.add(sc_amsuMhs);
+		verticalPanel44.add(sc_caliop);
 		verticalPanel44.add(sc_cloudsat);
 		verticalPanel44.setSpacing(10);
-		verticalPanel45.add(verticalPanel44);
+		horizontalPanel19.add(verticalPanel44);
+		verticalPanel45.add(sc_cris);
+		verticalPanel45.add(sc_iasi);
+		verticalPanel45.add(sc_modis);
+		verticalPanel45.setSpacing(10);
 		horizontalPanel19.add(verticalPanel45);
-		verticalPanel46.add(sc_caliop);
-		verticalPanel46.add(sc_iasi);
-		verticalPanel46.add(sc_airs);
-		verticalPanel46.add(sc_cris);
-		verticalPanel46.add(sc_amsuMhs);
-		verticalPanel46.setSpacing(10);
-		horizontalPanel19.add(verticalPanel46);
 		verticalPanel47.add(horizontalPanel19);
 		verticalPanel47.add(new HTML("<br>"));
 		horizontalPanel47.add(GuiModification.addCatButton(sc_addCatTable, sc_addCatMap, verticalPanel75));
@@ -1115,10 +1119,9 @@ public class Asmm_eufar implements EntryPoint {
 		sc_comLabel.setStyleName("gi_titleText2");
 		sc_comArea.setStyleName("sa_textArea");
 		verticalPanel42.getElement().setAttribute("style", "width: 200px !important;");
-		verticalPanel43.getElement().setAttribute("style", "width: 220px !important;");
-		verticalPanel44.getElement().setAttribute("style", "margin-left:10px !important;");
-		verticalPanel45.getElement().setAttribute("style", "margin-left:10px !important;");
-		verticalPanel46.getElement().setAttribute("style", "margin-left:20px !important; margin-top: 20px !important;");
+		verticalPanel43.getElement().setAttribute("style", "width: 220px !important; margin-left: 120px !important;");
+		verticalPanel44.getElement().setAttribute("style", "margin-left:120px !important; margin-top: 20px !important;");
+		verticalPanel45.getElement().setAttribute("style", "margin-left:120px !important; margin-top: 20px !important;");
 		rootLogger.log(Level.INFO, "Satellite Coordination panel initialized");
 
 
@@ -1346,7 +1349,7 @@ public class Asmm_eufar implements EntryPoint {
 		// question before exiting if the document has been modified
 		Window.addWindowClosingHandler(new Window.ClosingHandler() {
 			public void onWindowClosing(Window.ClosingEvent closingEvent) {
-				if (Asmm_eufar.isModified) {
+				if (isModified) {
 					closingEvent.setMessage("Are you sure?");
 				}
 			}

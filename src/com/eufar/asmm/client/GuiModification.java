@@ -116,7 +116,7 @@ public class GuiModification {
 	public static PushButton addCatButton(final FlexTable flexTable, final TreeMap<String, String> treeMap, final VerticalPanel verticalPanel) {
 		final PushButton addButton = new PushButton("Add a new CheckBox");
 		addButton.setTabIndex(-1);
-		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 420px !important; "
+		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 440px !important; "
 				+ "font-family: DroidSansFallback !important; font-size: 12px; text-align: center !important; padding-top: 5px; font-weight: "
 				+ "bold !important;");
 		addButton.addClickHandler(new ClickHandler() {

@@ -31,20 +31,6 @@
   background-color: #cccccc;
 }
 
-.sa_delButton {
-  width: 25px;
-  height: 25px;
-  margin-left: 10px;
-}
-
-.sa_delButton-down-hovering {
-  background-color: #cccccc;
-}
-
-.sa_delButton-up-hovering {
-  background-color: #cfcfcf;
-}
-
 
 .fi_image {
 	margin-left: 30px;
@@ -98,6 +84,50 @@
   background-color: #ffffff;
 }
 
+
+.ci_textList {
+  width: 150px;
+  height: 25px;
+  border: 1px solid #ccc;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+
+.sa_checkBox {
+  margin-left: 40px;
+  font-family: DroidSansFallback;
+}
+
+
+.sa_checkBox2 {
+  margin-left: 20px;
+  font-family: DroidSansFallback;
+}
+
+
+.sa_verticalPanel {
+  border: 1px solid grey;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+
+.sa_textArea {
+  width: 950px;
+  height: 100px;
+  border: 1px solid #ccc;
+  margin-left: 20px;
+  font-size: 12px;
+  font-weight: bold;
+  font-family: FreeSans;
+  background-color: #ffffff;
+}
+
+
 .gi_textBox {
   width: 100px;
   height: 15px;
@@ -123,7 +153,7 @@
 
 
 .gi_boundTab {
-  margin-left: 20px;
+  margin-left: 40px;
 }
 
 
@@ -139,33 +169,6 @@
   background-color: #ffffff;
 }
 
-
-.ci_textList {
-  width: 150px;
-  height: 27px;
-  padding: 5px 4px;
-  border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
-  margin-left: 20px;
-  background-color: #ffffff;
-}
-
-.ci_textList option {
-  background-color: #ffffff;
-}
-
-.sa_textArea {
-  width: 800px;
-  height: 100px;
-  border: 1px solid #ccc;
-  margin-left: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
-  background-color: #ffffff;
-}
 
 .gi_titleText {
   font-family: DroidSansFallback;
@@ -191,19 +194,6 @@
   margin-top:10px; 
   align-text: right;
 
-}
-
-
-.sa_checkBox {
-  margin-left: 40px;
-  font-family: DroidSansFallback;
-}
-
-
-.sa_verticalPanel {
-  border: 1px solid grey;
-  margin-left: 20px;
-  margin-top: 20px;
 }
 
 

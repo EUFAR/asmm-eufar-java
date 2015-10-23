@@ -2,30 +2,79 @@
 CHANGELOG
 =========
 
-TESTED ON:
-==========
+ONLINE VERSION TESTED ON:
+========================
     - Firefox 31.5.3, 38.0.1, 39, 40 (succeeded)
     - Chrome 44 (succeeded)
     - Internet Explorer 11 (failed on one computer and succeeded on others)
     - Safari 5.1.7, 8.0.5 (succeeded)
     - Opera 30 (succeeded)
-
-TO DO:
-======
-    - Revamp the function to print a report [OFFLINE].
-    - Add a proper logging system to allow a proper bug tracker [OFFLINE].
-    - remove the patch which add the use of two folders -> feed the GUI from local computer ?
+    
+OFFLINE VERSION TESTED ON:
+=========================
+    - Mageia 4
+    - Xubuntu 15.04
+    - Windows 7
+    - Windows 8.1
 
 
 KNOWN ISSUES:
-=============   
-    - PyInstaller seems to be unable to locate by itself netCDF4 plugins dedicated to python. Temporary solution: the ".spec" file has been modified to include manually the netCDF4 plugins [OFFLINE].
-    - On Windows Operating Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the terminal concerning python and the module "win32com". As this module is not called by ASMM Creator, and as ASMM Creator doesn't crash after this error, this issue is not critical and doesn't prevent the use of the software [OFFLINE].
+=============
+    - On Windows Operating Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the terminal concerning python and the module "win32com". As this module is not called by ASMM Creator, and as ASMM Creator seems to work properly, this issue is not critical and doesn't prevent the use of the software [OFFLINE].
     
-    - !!! IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, uploading and printing servlets, based on the platform of devlopment or production: see in the "Asmm_eufar.java" file, find those lines at the beginning:
+    - !!! IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, uploading and printing servlets, based on the platform of development or production: see in the "Asmm_eufar.java" file, find those lines at the beginning:
       
-        String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server
+        String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat Server
         String asmmPath = new String(""); // for Eclipse Dev Mode
+
+
+October 20 2015, Release version 1.0.1 [ONLINE][OFFLINE]
+==================================================
+  As the code is stable, no more bug has been found and ready to be used in production, the software is released in the current state, and version number increases to 1.0.1 [ONLINE][OFFLINE].
+  
+  
+October 20 2015, Release version 1.0.1b1 [ONLINE][OFFLINE]
+====================================================
+  FIXED:
+    - a small bug prevented the read of the name of the aircraft in few circumstances [ONLINE].
+
+
+September 17 2015, Release version 1.0.0 [OFFLINE]
+==================================================
+  As the code is stable, no more bug has been found and ready to be used in production, the software is released in the current state, and version number increases to 1.0.0 [OFFLINE].
+
+
+September 17-18 2015, Release version 1.0.0b1-2 [OFFLINE]
+====================================================
+  A browser-like tab system is developed for ASMM, to resemble to the online version. Currently, ASMM will switch from a GUI to another based on the resolution and height of the screen.
+
+
+September 17 2015, Release version 0.9.8 [OFFLINE]
+==================================================
+  As the code is stable, no more bug has been found and ready to be used in production, the software is released in the current state, and version number increases to 0.9.8 [OFFLINE].
+
+
+September 7-15 2015, Release version 0.9.8b1-6 [OFFLINE]
+========================================================
+  The Python version of ASMM is currently being modified and expanded to achieve the same functionalities than the online version. A new pdf report template has been created to handle images and new user-defined checkboxes.
+  
+  MODIFIED:
+    - a new function (the EMC one) has been introduced for the selection of the localisation [mainwindow.py][sql_functions.py][OFFLINE].
+    - few adjustments in the GUI [UI_mainwindow.py][mainwindow.py][OFFLINE].
+    - about windows have been reworked [mainwindow.py][OFFLINE].
+    - modified the function to create a new file to comply with all adjustments in the GUI [mainwindow.py][OFFLINE].
+    - simplified the function to create new checkboxes [mainwindow.py][button_functions.py][OFFLINE].
+    - modified the function to write and read xml file to comply with all adjustments in the GUI [mainwindow.py][asmm_xml.py][OFFLINE].
+    
+  ADDED:
+    - it is now possible to add an image from a file stored on the computer or from an URL [mainwindow.py][button_functions.py][Ui_addUrl.py][OFFLINE].
+    - the "delete" button in the "Image" section is now linked to the position of the associated image : it will delete the associated image and not the last one [mainwindow.py][button_functions.py][OFFLINE].
+    - when a user clicks on an image, a popup opens to display a greater version of the image [mainwindow.py][button_functions.py][OFFLINE].
+    - a new pdf report template has been introduced to handle all new user-defined checkboxes and images [asmm_pdf.py][mainwindow.py][OFFLINE].
+    
+  FIXED:
+    - an issue prevented the read of the aircraft in an xml file when multiple aircraft exist for the same operator [asmm_xml.py][OFFLINE].
+    - when an image is loaded into the ASMM GUI, and if a pdf report is generated, the image is flipped because of the coordinate system of Reportlab and the use of the option "bottomup=0"; this has been fixed a copy of the image during loading into GUI, and by flipping it before loading into the pdf template [buttons_function.py][asmm_pdf.py][OFFLINE].
 
 
 September 3 2015, Release version 1.0.0 [ONLINE]
@@ -104,7 +153,7 @@ July 22 2015, Release version 0.9.8 [ONLINE]
   As the code is stable and no more bug has been found, the software is released in the current state, and version number increases to 0.9.8 [ONLINE].
 
 
-July 2-22 2015, Release version 0.9.8b12-b20
+July 2-22 2015, Release version 0.9.8b12-b20 [ONLINE]
 ============================================
   It is now possible to upload images to be included in the PDF report (request from UK airborne research operators) in the online version of ASMM.
   A new layout has been introduced to allow a browser-like layout for small wide screen (automatically) and other screens (manually).
@@ -132,7 +181,7 @@ July 2-22 2015, Release version 0.9.8b12-b20
     - it is now impossible to create empty checkbox [ONLINE].
 
 
-June 22 - July 2 2015, Release version 0.9.8b1-b11
+June 22 - July 2 2015, Release version 0.9.8b1-b11 [ONLINE]
 ==================================================
   A new plugin to print pdf report from user inputs has been introduced in the online version of ASMM. The pdf template has been produced using Jasper Reports 6.1.0 and Eclipse 4.4.
     

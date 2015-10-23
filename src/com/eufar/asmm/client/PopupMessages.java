@@ -1096,6 +1096,11 @@ public class PopupMessages {
 				+ "those lines at the beginning:<ul><li>String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server</li><li>"
 				+ "String asmmPath = new String(''); // for Eclipse Dev Mode</li></ul></li></ul><br>"
 				
+				+ "<b><u>October 20 2015, Release version 1.0.1 [ONLINE][OFFLINE]</u></b><br>As the code is stable, no more bug has been found "
+				+ "and ready to be used in production, the software is released in the current state, and version number increases to 1.0.1 "
+				+ "[ONLINE][OFFLINE].<br><br>"
+				+ "<b><u>October 20 2015, Release version 1.0.1b1 [ONLINE][OFFLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
+				+ "<li>a small bug prevented the read of the name of the aircraft in few circumstances [ONLINE].</li></ul></li></ul><br>"
 				+ "<b><u>September 3 2015, Release version 1.0.0 [ONLINE]</u></b><br>As the code is stable, no more bug has been found and ready "
 				+ "to be used in production, the software is released in the current state, and version number increases to 1.0.0 [ONLINE].<br>"
 				+ "<br>"

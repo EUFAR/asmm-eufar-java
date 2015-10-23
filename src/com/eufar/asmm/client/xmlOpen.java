@@ -68,6 +68,7 @@ public class xmlOpen {
 			} catch (Exception ex) {
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'operator' failed: " + ex.getMessage());
 			}
+			
 			try {
 				aircraft = doc.getElementsByTagName("platform").item(0).getFirstChild().getNodeValue();
 				for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
@@ -75,7 +76,7 @@ public class xmlOpen {
 						k = 1;
 						if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][1]) {
 							break;
-						} else if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == "Make your choice...") {
+						} else if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == "Make a choice...") {
 							for (int j = 0; j < Asmm_eufar.fi_aircraftText.getItemCount(); j++) {
 								if (Asmm_eufar.operatorsAircraft[i][1] == Asmm_eufar.fi_aircraftText.getItemText(j)) {
 									Asmm_eufar.fi_aircraftText.setSelectedIndex(j);
