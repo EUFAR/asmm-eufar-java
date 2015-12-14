@@ -61,7 +61,7 @@ public class xmlOpen {
 					}
 				}
 				if (l == 0) {
-					Asmm_eufar.fi_operatorText.setSelectedIndex(14);
+					Asmm_eufar.fi_operatorText.setSelectedIndex(1);
 					GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
 					Asmm_eufar.fi_otherOpsText.setText(operator);
 				}
@@ -90,7 +90,7 @@ public class xmlOpen {
 					Asmm_eufar.fi_otherAiText.setText(aircraft);
 				} else if (l == 1 & k == 0) {
 					String tmp = Asmm_eufar.fi_operatorText.getSelectedItemText();
-					Asmm_eufar.fi_operatorText.setSelectedIndex(14);
+					Asmm_eufar.fi_operatorText.setSelectedIndex(1);
 					GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
 					Asmm_eufar.fi_otherOpsText.setText(tmp);
 					Asmm_eufar.fi_otherAiText.setText(aircraft);

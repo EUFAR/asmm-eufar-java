@@ -46,7 +46,7 @@ public class GuiModification {
 			int screen_width = Window.getClientWidth();
 			float band_height = (float) screen_width/ratio;
 			Asmm_eufar.subDockPanel.clear();
-			Asmm_eufar.subDockPanel.addNorth(new HTML("<img src='icons/emc_top.jpg' alt='EUFAR Metadata Creator' height='" + 
+			Asmm_eufar.subDockPanel.addNorth(new HTML("<img src='icons/asmm_top.jpg' alt='EUFAR Metadata Creator' height='" + 
 					Float.toString(band_height) + "px' width='" + Integer.toString(screen_width) + "px'>"), band_height);
 			Asmm_eufar.subDockPanel.addNorth(Asmm_eufar.mainMenu, 30);
 			Asmm_eufar.subDockPanel.add(Asmm_eufar.tabPanel);
@@ -80,12 +80,12 @@ public class GuiModification {
 				Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherAiText);
 			}
 			Asmm_eufar.rootLogger.log(Level.INFO, "Aircraft panel cleared");
-		} else if (string == "Other") {
+		} else if (string == "Other...") {
 			Asmm_eufar.horizontalPanel26.add(Asmm_eufar.fi_operatorImage);
 			Asmm_eufar.horizontalPanel27.add(Asmm_eufar.fi_aircraftImage);
 			Asmm_eufar.fi_aircraftText.clear();
 			Asmm_eufar.fi_aircraftText.setEnabled(true);
-			Asmm_eufar.fi_aircraftText.addItem("Other");
+			Asmm_eufar.fi_aircraftText.addItem("Other...");
 			Asmm_eufar.fiGrid.setWidget(5, 2, Asmm_eufar.fi_otherOpsText);
 			Asmm_eufar.fiGrid.setWidget(6, 2, Asmm_eufar.fi_otherAiText);
 			Asmm_eufar.rootLogger.log(Level.INFO, "Other selected");
@@ -117,8 +117,7 @@ public class GuiModification {
 		final PushButton addButton = new PushButton("Add a new CheckBox");
 		addButton.setTabIndex(-1);
 		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 440px !important; "
-				+ "font-family: DroidSansFallback !important; font-size: 12px; text-align: center !important; padding-top: 5px; font-weight: "
-				+ "bold !important;");
+				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px;");
 		addButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Asmm_eufar.rootLogger.log(Level.INFO, "New checkbox invoked...");
@@ -233,9 +232,9 @@ public class GuiModification {
 				horizontalPanel01.add(cancelButton);
 				verticalPanel01.add(horizontalPanel01);
 				checkboxDialog.add(verticalPanel01);
-				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: DroidSansFallback !important; "
+				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: MyFont !important; "
 						+ "font-weight: bold !important;");
-				cancelButton.getElement().setAttribute("style", "margin-left:45px !important; font-family: DroidSansFallback !important; "
+				cancelButton.getElement().setAttribute("style", "margin-left:45px !important; font-family: MyFont !important; "
 						+ "font-weight: bold !important;");
 				horizontalPanel01.getElement().setAttribute("style", "margin-top:40px !important;");
 				checkboxDialog.setSize( "260px", "170px" );

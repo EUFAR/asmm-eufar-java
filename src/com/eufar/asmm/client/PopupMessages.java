@@ -9,6 +9,7 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
+import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -57,8 +58,8 @@ public class PopupMessages {
 		image.getElement().setAttribute("style", "margin-right: 10px !important;");
 		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel.add(okButton);
-		okButton.getElement().setAttribute("style", "font-family: DroidSansFallback !important; font-weight: bold !important; margin-top: "
-				+ "10px !important;");
+		okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; margin-top: "
+				+ "10px !important; font-size: 14px !important;");
 		verticalPanel.getElement().setAttribute("style", "margin: 10px;");
 		myOpenDialog.setSize("700px", "500px");
 		myOpenDialog.setStyleName("myUploadBox");
@@ -92,8 +93,8 @@ public class PopupMessages {
 		label.setStyleName("popupText");
 		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: DroidSansFallback !important; font-weight: bold "
-				+ "!important; margin-top: 20px !important;");
+		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
+				+ "!important; font-size: 14px !important;");
 		aboutDialog.setSize( "500px", "180px" );
 		aboutDialog.setStyleName("myUploadBox");
 		aboutDialog.setModal(true);
@@ -139,10 +140,9 @@ public class PopupMessages {
 		myOpenDialog.setStyleName("myUploadBox");
 		verticalPanel02.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:120px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
+		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; "
+				+ "font-size: 14px !important;");
+		cancelButton.getElement().setAttribute("style", "margin-left:120px !important; font-family: MyFontBold !important;");
 		horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 		myOpenDialog.setSize("350px", "130px");
 		myOpenDialog.setModal(true);
@@ -180,8 +180,8 @@ public class PopupMessages {
 		aboutDialog.setStyleName("myUploadBox");
 		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: DroidSansFallback !important; font-weight: bold "
-				+ "!important; margin-top: 20px !important; margin-bottom: 10px !important;");
+		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
+				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
 		aboutDialog.setSize( "500px", "270px" );
 		aboutDialog.setModal(true);
 		aboutDialog.center();
@@ -216,8 +216,8 @@ public class PopupMessages {
 		aboutDialog.setStyleName("myUploadBox");
 		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: DroidSansFallback !important; font-weight: bold "
-				+ "!important; margin-top: 20px !important; margin-bottom: 10px !important;");
+		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
+				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
 		aboutDialog.setSize( "500px", "140px" );
 		aboutDialog.setModal(true);
 		aboutDialog.center();
@@ -248,8 +248,8 @@ public class PopupMessages {
 		infoDialog.setStyleName("myUploadBox");
 		verticalPanel01.getElement().setAttribute("style","margin-left: 10px !important; margin-right: 10px !important; margin-top: 10px"
 				+ " !important;");
-		button.getElement().setAttribute("style", "margin-left: 145px !important; font-family: DroidSansFallback !important; font-weight:"
-				+ " bold !important; margin-top: 20px !important; margin-bottom: 10px !important;");
+		button.getElement().setAttribute("style", "margin-left: 145px !important; font-family: MyFontBold !important; margin-top: 20px "
+				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
 		infoDialog.setSize( "350px", "50px" );
 		infoDialog.setModal(true);
 		infoDialog.center();
@@ -307,12 +307,13 @@ public class PopupMessages {
 					+ "!important;");
 			label2.getElement().setAttribute("style", "margin-top: 20px !important; margin-bottom: 20px !important; text-decoration: "
 					+ "underline !important; font-weight: bold !important;");
-			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important; margin-top: 10px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: DroidSansFallback !important;"
-					+ " font-weight: bold !important; margin-top: 10px !important;");
-			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: DroidSansFallback !important;"
-					+ " font-weight: bold !important; margin-top: 10px !important; height: 30px !important; width: 180px !important");
+			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
+					+ "10px !important; font-size: 14px !important;");
+			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
+					+ " margin-top: 10px !important; font-size: 14px !important;");
+			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
+					+ " margin-top: 10px !important; height: 30px !important; width: 180px !important; "
+					+ "font-size: 14px !important;");
 			infoDialog.setSize( "130px", "180px" );
 			infoDialog.setModal(true);
 			infoDialog.center();
@@ -373,12 +374,13 @@ public class PopupMessages {
 					+ "!important;");
 			label2.getElement().setAttribute("style", "margin-top: 20px !important; margin-bottom: 20px !important; text-decoration: "
 					+ "underline !important; font-weight: bold !important;");
-			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important; margin-top: 10px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: DroidSansFallback !important;"
-					+ " font-weight: bold !important; margin-top: 10px !important;");
-			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: DroidSansFallback !important;"
-					+ " font-weight: bold !important; margin-top: 10px !important; height: 30px !important; width: 180px !important");
+			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
+					+ "10px !important; font-size: 14px !important;");
+			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
+					+ " margin-top: 10px !important; font-size: 14px !important;");
+			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
+					+ " margin-top: 10px !important; height: 30px !important; width: 180px !important; "
+					+ "font-size: 14px !important;");
 			infoDialog.setSize( "130px", "180px" );
 			infoDialog.setModal(true);
 			infoDialog.center();
@@ -466,10 +468,10 @@ public class PopupMessages {
 		verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
 		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
 
-		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:75px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
+		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
+		cancelButton.getElement().setAttribute("style", "margin-left:75px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
 		horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 		myOpenDialog.setSize( "130px", "180px" );
 		myOpenDialog.setModal(true);
@@ -578,10 +580,10 @@ public class PopupMessages {
 				+ "!important;");
 		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
 		fileName.getElement().setAttribute("style", "width:230px !important; margin-left: 20px !important;");
-		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:70px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
+		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
+		cancelButton.getElement().setAttribute("style", "margin-left:70px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
 		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 		mySaveDialog.setSize( "370px", "180px" );
 		mySaveDialog.setModal(true);
@@ -680,10 +682,10 @@ public class PopupMessages {
 				+ "!important;");
 		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
 		fileName.getElement().setAttribute("style", "width:230px !important; margin-left: 20px !important;");
-		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: DroidSansFallback !important; font-weight: "
-				+ "bold !important;");
+		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
+		cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFontBold !important; font-size: "
+				+ "14px !important;");
 		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 		mySaveDialog.setSize( "370px", "180px" );
 		mySaveDialog.setModal(true);
@@ -754,10 +756,10 @@ public class PopupMessages {
 					}
 					final String captionText = new String(legendeBox.getText());
 					final int row = Asmm_eufar.imageTab.getRowCount();
-					final Image image = new Image("tmp/" + ret);
+					final Image image = new Image("/tmp/" + ret);
 					final PushButton delButton = new PushButton(Resources.smallImage("del"));
-					final Label label = new Label(captionText);
-					Asmm_eufar.imagePath.add("tmp/" + ret);
+					final Label label = new Label(captionText);	
+					Asmm_eufar.imagePath.add("/tmp/" + ret);
 					image.addLoadHandler(new LoadHandler() {
 						public void onLoad(LoadEvent event) {
 							int height = image.getHeight();
@@ -809,8 +811,7 @@ public class PopupMessages {
 							verticalPanel.add(image);
 							verticalPanel.add(okButton);
 							myOpenDialog.setStyleName("myUploadBox");
-							okButton.getElement().setAttribute("style", "font-family: DroidSansFallback !important; "
-									+ "font-weight: bold !important;");
+							okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; font-size: 14px !important;");
 							myOpenDialog.setGlassEnabled(true);
 							myOpenDialog.setModal(true);
 							myOpenDialog.center();
@@ -853,10 +854,10 @@ public class PopupMessages {
 			myFileUpload.getElement().setAttribute("style", "margin-left:20px !important;");
 			label2.getElement().setAttribute("style", "margin-top:10px !important; text-decoration: underline !important; font-weight: "
 					+ "bold !important; margin-bottom: 10px !important");
-			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important;");
+			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
+					+ "14px !important;");
+			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: MyFontBold !important; font-size: "
+					+ "14px !important;");
 			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 			myOpenDialog.setSize( "130px", "180px" );
 			myOpenDialog.setModal(true);
@@ -957,8 +958,7 @@ public class PopupMessages {
 							verticalPanel.add(image);
 							verticalPanel.add(okButton);
 							myOpenDialog.setStyleName("myUploadBox");
-							okButton.getElement().setAttribute("style", "font-family: DroidSansFallback !important; "
-									+ "font-weight: bold !important;");
+							okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; font-size: 14px !important;");
 							myOpenDialog.setGlassEnabled(true);
 							myOpenDialog.setModal(true);
 							myOpenDialog.center();
@@ -1011,10 +1011,10 @@ public class PopupMessages {
 					+ "!important");
 			label3.getElement().setAttribute("style", "margin-top:10px !important; text-decoration: underline !important; font-weight: "
 					+ "bold !important; margin-bottom: 10px !important");
-			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: DroidSansFallback !important; font-weight: "
-					+ "bold !important;");
+			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
+					+ "14px !important;");
+			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: MyFontBold !important; font-size: "
+					+ "14px !important;");
 			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 			myOpenDialog.setSize( "350px", "180px" );
 			myOpenDialog.setModal(true);
@@ -1046,8 +1046,8 @@ public class PopupMessages {
 		verticalPanel01.add(horizontalPanel01);
 		verticalPanel01.add(button);
 		infoDialog.add(verticalPanel01);
-		button.getElement().setAttribute("style", "margin-left: 120px !important; font-family: DroidSansFallback !important; font-weight:"
-				+ " bold !important; margin-top: 20px !important;");
+		button.getElement().setAttribute("style", "margin-left: 120px !important; font-family: MyFontBold !important; margin-top: "
+				+ "20px !important; font-size: 14px !important;");
 		verticalPanel01.getElement().setAttribute("style", "margin: 10px;");
 		infoDialog.setSize( "300px", "100px" );
 		infoDialog.setModal(true);
@@ -1083,36 +1083,24 @@ public class PopupMessages {
 				+ "<u>TESTED ON:</u><ul><li>Firefox 31.5.3, 38.0.1, 39, 40 (succeeded)</li><li>Chrome 44 "
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
-				+ "<u>TO DO:</u><ul><li>Revamp the function to print a report [OFFLINE]</li><li>Add a proper logging system to allow a proper "
-				+ "bug tracker [OFFLINE].</li><li>remove the patch which add the use of two folders -> feed the GUI from local computer ? [ONLINE]"
-				+ "</li></ul><br>"
-				+ "<u>KNOWN ISSUES:</u><ul><li>PyInstaller seems to be unable to locate by itself netCDF4 plugins dedicated to python. Temporary "
-				+ "solution: the '.spec' file has been modified to include manually the netCDF4 plugins [OFFLINE].</li><li>On Windows Operating "
-				+ "Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the "
-				+ "terminal concerning python and the module 'win32com'. As this module is not called by ASMM Creator, and as ASMM Creator "
-				+ "doesn't crash after this error, this issue is not critical and doesn't prevent the use of the software [OFFLINE].</li><li>!!! "
+				+ "<u>KNOWN ISSUES:</u><ul><li>!!! "
 				+ "IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, "
 				+ "uploading and printing servlets, based on the platform of devlopment or production: see in the 'Asmm_eufar.java' file, find "
 				+ "those lines at the beginning:<ul><li>String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server</li><li>"
 				+ "String asmmPath = new String(''); // for Eclipse Dev Mode</li></ul></li></ul><br>"
 				
-				+ "<b><u>October 20 2015, Release version 1.0.1 [ONLINE][OFFLINE]</u></b><br>As the code is stable, no more bug has been found "
-				+ "and ready to be used in production, the software is released in the current state, and version number increases to 1.0.1 "
-				+ "[ONLINE][OFFLINE].<br><br>"
-				+ "<b><u>October 20 2015, Release version 1.0.1b1 [ONLINE][OFFLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
+				+ "<b><u>December 14 2015, Release version 1.0.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
+				+ "<li>the top banner wasn't displayed when the GUI was in 'Tab' mode.</li><li>few mistakes have been corrected in the GUI</li>"
+				+ "</ul></li><li>MODIFIED:<ul><li>the current fonts have been replaced by the one from the EUFAR website.</li></ul></li></ul><br>"
+				+ "<b><u>October 20 2015, Release version 1.0.1 [ONLINE][OFFLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
 				+ "<li>a small bug prevented the read of the name of the aircraft in few circumstances [ONLINE].</li></ul></li></ul><br>"
-				+ "<b><u>September 3 2015, Release version 1.0.0 [ONLINE]</u></b><br>As the code is stable, no more bug has been found and ready "
-				+ "to be used in production, the software is released in the current state, and version number increases to 1.0.0 [ONLINE].<br>"
-				+ "<br>"
-				+ "<b><u>August 31-September 3 2015, Release version 0.9.11b1-3 [ONLINE]</u></b><br>All functions have heen dispatched into new "
+				+ "<b><u>September 3 2015, Release version 1.0.0 [ONLINE]</u></b><br>All functions have heen dispatched into new "
 				+ "java files to allow a better following of the code.<br><ul style='list-style-type:none'><li>FIXED:<ul><li>when a document is "
 				+ "modified and clear function invoked, if the user want to save the file, the open function will be invoked once the file is "
 				+ "saved, it has been fixed [ONLINE].</li></ul></li><li>MODIFIED:<ul><li>few adjustments in the GUI [ONLINE].</li></ul></li><li>"
 				+ "ADDED:<ul><li>if the user wants to exit ASMM and if the document has been modified, ASMM will ask if the user wants to exit "
 				+ "before to save it [ONLINE].</li></ul></li></ul><br>"
-				+ "<b><u>August 18 2015, Release version 0.9.10[ONLINE]</u></b><br>As the code is stable and no more bug has been found, the "
-				+ "software is released in the current state, and version number increases to 0.9.10 [ONLINE].<br><br>"
-				+ "<b><u>August 11-17 2015, Release version 0.9.10b1-3 [ONLINE]</u></b><br>The changelog has been introduced in ASMM Online.<br>"
+				+ "<b><u>August 18 2015, Release version 0.9.10[ONLINE]</u></b><br>The changelog has been introduced in ASMM Online.<br>"
 				+ "<ul style='list-style-type:none'><li>FIXED:<ul><li>few issues in the GUI related to infoButton [ONLINE].</li><li>an issue "
 				+ "prevented the display of images in the pdf report. As this issue concerned only one computer and couldn't be reproduced so "
 				+ "far, a temporary solution has been implemented : the upload function dedicated to image know write a copy of the image in the "
@@ -1120,9 +1108,7 @@ public class PopupMessages {
 				+ "</li></li><li>'Do your choice...' sentence has been corrected to 'Make your choice...' [ONLINE].</li>"
 				+ "</ul></li><li>ADDED:<ul><li>new logging messages added to check image upload and rights [ONLINE].</li></ul></li><li>MODIFIED:"
 				+ "<ul><li>icons have been reworked to increase resolution, improve shape and optimize weight [ONLINE].</li></ul></li></ul><br>"
-				+ "<b><u>July 28 2015, Release version 0.9.9 [ONLINE]</u></b><br>As the code is stable and no more bug has been found, the "
-				+ "software is released in the current state, and version number increases to 0.9.9 [ONLINE].<br><br>"
-				+ "<b><u>July 22-28 2015, Release version 0.9.9b1-b5 [ONLINE]</u></b><br>A proper logging system is being introduced in ASMM "
+				+ "<b><u>July 28 2015, Release version 0.9.9 [ONLINE]</u></b><br>A proper logging system is being introduced in ASMM "
 				+ "Creator Online. It will be introduced in ASMM Creator Offline once the v0.9.8 is released.  Because off compatibility issues "
 				+ "with Internet Explorer, a popup message has been introduced to warn user if they use IE.<br><ul style='list-style-type:none'>"
 				+ "<li>FIXED:<ul><li>the 'Country' listbox wasn't reseted correctly when clearfields() was invoked [ONLINE].</li><li>a 'java.lang"
@@ -1319,16 +1305,6 @@ public class PopupMessages {
 				+ "mission report data in a standard manner, and an easy-to-use graphical user interface has been developed to facilitate "
 				+ "creation and display of the standard XML files. This project contains the source code and executables for the ASMM creator as "
 				+ "well as documentation describing the ASMM XML schema.  ASMM Creator was coded by Matt Freer (EUFAR)");  
-		
-				// <br><ul style='list-style-type:none'><li>
-				// <ul><li>
-				// </li><li>
-				// </li></ul></li><li>
-				// </li></ul></li></ul><br><b><u>
-				// <b><u>
-				// </u></b><br><ul style='list-style-type:none'><li>
-				// <br><br><b><u>
-		
 		return string;
 	}
 }

@@ -196,17 +196,18 @@ public class Resources {
 	public static ArrayList<String> roleList() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("Make a choice...");
-		list.add("Mission Scientist");
 		list.add("Flight Manager");
-		list.add("Scientist");
-		list.add("Pilot");
+		list.add("Mission Scientist");
 		list.add("Other");
+		list.add("Pilot");
+		list.add("Scientist");
 		return list;
 	}
 	
 	public static ArrayList<String> operatorList() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("Make a choice...");
+		list.add("Other...");
 		list.add("Alfred Wegener Institute");
 		list.add("CNR - Istituto per i Sistemi Agricoli e Forestali del Mediterraneo");
 		list.add("CNR - Istituto di Metodologie per l'Analisi Ambientale");
@@ -220,7 +221,6 @@ public class Resources {
 		list.add("NERC - British Antarctic Survey");
 		list.add("SAFIRE");
 		list.add("UEDIN - Airborne GeoSciences");
-		list.add("Other");
     	return list;
 	}
 	

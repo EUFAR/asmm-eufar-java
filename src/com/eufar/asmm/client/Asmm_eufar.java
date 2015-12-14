@@ -67,7 +67,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.0.1 (2015-10-21)");
+	public static String asmmVersion = new String("1.0.2 (2015-12-14)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.5.0");
 	public static String javaVersion = new String("1.7.0");
@@ -1219,11 +1219,9 @@ public class Asmm_eufar implements EntryPoint {
 				}
 			});
 		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 20px !important; "
-				+ "font-family: DroidSansFallback !important; font-size: 12px; text-align: center !important; padding-top: 5px; font-weight: "
-				+ "bold !important;");
+				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px;");
 		urlButton.getElement().setAttribute("style", "width: 180px !important; height: 18px !important; margin-left: 40px !important; "
-				+ "font-family: DroidSansFallback !important; font-size: 12px; text-align: center !important; padding-top: 5px; font-weight: "
-				+ "bold !important;");
+				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px;");
 		informationLab.getElement().setAttribute("style","margin-top: 10px !important; margin-bottom: 10px !important; margin-right: 20px "
 				+ "!important;");
 		imageLab.getElement().setAttribute("style", "text-decoration: underline !important; font-weight: bold !important; margin-left: "
@@ -1238,8 +1236,14 @@ public class Asmm_eufar implements EntryPoint {
 		int screenHeight = Utilities.getScreenHeight();
 		int screenWidth = Utilities.getScreenWidth();
 		float ratio = (float) screenWidth / screenHeight;
-		if (screenHeight < 1050 & ratio > 1.5 & ratio < 1.8) {
-			GuiModification.changeLayout();
+		rootLogger.log(Level.INFO, "Screen height: " + screenHeight);
+		rootLogger.log(Level.INFO, "Screen width: " + screenWidth);
+		rootLogger.log(Level.INFO, "Size ratio: " + ratio);
+		
+		if (screenHeight < 1000) {
+			if (ratio > 1.5 & ratio < 1.8) {
+				GuiModification.changeLayout();
+			}
 		} 
 		else {
 		

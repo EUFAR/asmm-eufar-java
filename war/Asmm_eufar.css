@@ -5,19 +5,13 @@
 }
 
 @font-face {
-  font-family: DroidSans;
-  src: url(font/DroidSans.ttf);
-}
-
-
-@font-face {
-  font-family: DroidSansFallback;
-  src: url(font/DroidSansFallbackFull.ttf);
+  font-family: MyFont;
+  src: url(font/SourceSansPro-Regular.ttf);
 }
 
 @font-face {
-  font-family: FreeSans;
-  src: url(font/FreeSans.ttf);
+  font-family: MyFontBold;
+  src: url(font/SourceSansPro-Semibold.ttf);
 }
 
 .infoButton {
@@ -42,9 +36,8 @@
   width: 150px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -53,9 +46,8 @@
   width: 200px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -64,9 +56,8 @@
   width: 200px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #d6d6d6;
 }
@@ -74,12 +65,11 @@
 
 .fi_textBox {
   width: 250px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -89,9 +79,8 @@
   width: 150px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -99,13 +88,15 @@
 
 .sa_checkBox {
   margin-left: 40px;
-  font-family: DroidSansFallback;
+  font-size: 14px;
+  font-family: MyFont;
 }
 
 
 .sa_checkBox2 {
   margin-left: 20px;
-  font-family: DroidSansFallback;
+  font-size: 14px;
+  font-family: MyFont;
 }
 
 
@@ -121,9 +112,8 @@
   height: 100px;
   border: 1px solid #ccc;
   margin-left: 20px;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   background-color: #ffffff;
 }
 
@@ -133,9 +123,8 @@
   height: 15px;
   padding: 5px 4px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   background-color: #ffffff;
 }
 
@@ -145,9 +134,8 @@
   height: 15px;
   padding: 5px 4px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   background-color: #ffffff;
 }
 
@@ -157,43 +145,20 @@
 }
 
 
-.so_textBox {
-  width: 150px;
-  height: 15px;
-  padding: 5px 4px;
-  border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
-  margin-left: 20px;
-  background-color: #ffffff;
-}
-
-
 .gi_titleText {
-  font-family: DroidSansFallback;
+  font-family: MyFontBold;
   margin-left: 20px;
   margin-bottom: 10px;
   text-decoration: underline;
-  font-weight: bold;
+  font-size: 14px;
 }
 
 .gi_titleText2 {
-  font-family: DroidSansFallback;
+  font-family: MyFontBold;
   margin-left: 20px;
   margin-bottom: 0px;
   text-decoration: underline;
-  font-weight: bold;
-}
-
-
-.gi_coordButton {
-  width: 280px; 
-  height:18px; 
-  margin-left:60px; 
-  margin-top:10px; 
-  align-text: right;
-
+  font-size: 14px;
 }
 
 
@@ -207,12 +172,24 @@
 }
 
 
+.so_textBox {
+  width: 150px;
+  height: 15px;
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFont;
+  margin-left: 20px;
+  background-color: #ffffff;
+}
+
+
 .flexTable {
   height: 10px;
   width: 350px;
   font-size: 12px;
   font-weight: bold;
-  font-family: FreeSans;
+  font-family: MyFont;
 }
 
 
@@ -222,13 +199,14 @@
 
 
 .gwt-Label {
-  font-family: DroidSansFallback !important;
+  font-family: MyFont !important;
   margin-left: 20px !important;
   text-align: justify !important;
+  font-size: 14px !important;
 }
 
 .gwt-CheckBox {
-  font-family: DroidSansFallback !important;
+  font-family: MyFont !important;
   margin-left: 20px !important;
 }
 
@@ -239,12 +217,13 @@
 
 .gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
   cursor: hand !important;
-  font-size: 1.05em !important;
-  font-family: DroidSans !important;
+  font-size: 1.1em !important;
+  font-family: MyFont !important;
   padding: 3px !important;
   border: 1px solid #bbbbbb !important;
   border-bottom: 0px !important;
   background: #d3def6 !important;
+  
 }
 
 .gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering {
@@ -286,7 +265,7 @@
   color: #000000 !important;
   text-align: left !important;
   background: #d3def6 !important;
-  font-family: DroidSans !important;
+  font-family: MyFont !important;
 }
 
 
@@ -295,7 +274,7 @@
   background: #e6e6e6 !important;
   font-size: 1.2em !important;
   color: #000000 !important;
-  font-family: DroidSans !important;
+  font-family: MyFont !important;
 }
 
 
@@ -315,15 +294,14 @@
   width: 80px !important;
   height: 15px !important;
   margin-left: 20px !important;
-  font-size: 12px !important;
-  font-weight: bold !important;
-  font-family: FreeSans !important;
+  font-size: 14px !important;
+  font-family: MyFontBold !important;
   background-color: #ffffff !important;
 }
 
 
 .gwt-MenuBar .gwt-MenuItem {
-  font-family: DroidSans !important;
+  font-family: MyFont !important;
   font-size: 15px !important;
   vertical-align: top !important;
 }
@@ -341,7 +319,8 @@
   background: #e5e5e5;
   padding: 4px 8px 4px 4px;
   cursor: default;
-  font-family: FreeSans;
+  font-family: MyFont;
+  font-size: 14px;
   border: 1px solid black;
   
 }
@@ -351,9 +330,8 @@
   height: 15px;
   padding: 5px 4px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFontBold;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -363,9 +341,8 @@
   height: 15px;
   padding: 5px 4px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFontBold;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -375,9 +352,8 @@
   width: 200px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
 }
@@ -386,9 +362,8 @@
   width: 200px;
   height: 25px;
   border: 1px solid #ccc;
-  font-size: 12px;
-  font-weight: bold;
-  font-family: FreeSans;
+  font-size: 14px;
+  font-family: MyFont;
   margin-left: 20px;
   background-color: #d6d6d6;
 }
@@ -408,9 +383,9 @@
 
 
 .popupText {
-  font-family: DroidSansFallback;
+  font-family: MyFont;
   margin-left: 20px;
   text-align: justify;
-  font-size: 12px;
+  font-size: 14px;
 }
 
