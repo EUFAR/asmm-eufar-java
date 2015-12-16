@@ -120,8 +120,8 @@
 
 .gi_textBox {
   width: 100px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFont;
@@ -131,8 +131,8 @@
 
 .gi_textBox2 {
   width: 100px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFont;
@@ -174,8 +174,8 @@
 
 .so_textBox {
   width: 150px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFont;
@@ -188,8 +188,7 @@
   height: 10px;
   width: 350px;
   font-size: 12px;
-  font-weight: bold;
-  font-family: MyFont;
+  font-family: MyFontBold;
 }
 
 
@@ -255,9 +254,6 @@
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
- /*  margin-left: 3px !important;
-  margin-right: 3px !important;
-  padding: 3px 8px 3px 8px !important; */
   cursor: pointer !important;
   cursor: hand !important;
   color: black !important;
@@ -297,12 +293,13 @@
   font-size: 14px !important;
   font-family: MyFontBold !important;
   background-color: #ffffff !important;
+  text-align: center !important;
 }
 
 
 .gwt-MenuBar .gwt-MenuItem {
   font-family: MyFont !important;
-  font-size: 15px !important;
+  font-size: 14px !important;
   vertical-align: top !important;
 }
 
@@ -327,8 +324,8 @@
 
 .myAddBox {
   width: 215px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFontBold;
@@ -338,8 +335,8 @@
 
 .au_textBox {
   width: 250px;
-  height: 15px;
-  padding: 5px 4px;
+  height: 17px;
+  padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFontBold;

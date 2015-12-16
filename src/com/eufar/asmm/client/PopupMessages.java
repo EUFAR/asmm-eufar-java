@@ -9,7 +9,6 @@ import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
 import com.google.gwt.event.dom.client.LoadEvent;
 import com.google.gwt.event.dom.client.LoadHandler;
-import com.google.gwt.user.client.Timer;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.DialogBox;
@@ -55,9 +54,10 @@ public class PopupMessages {
 		scrollPanel.add(label);
 		scrollPanel.setHeight("500px");
 		scrollPanel.setWidth("700px");
-		image.getElement().setAttribute("style", "margin-right: 10px !important;");
 		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel.add(okButton);
+		image.getElement().setAttribute("style", "margin-right: 10px !important;");
+		label.setStyleName("popupText");
 		okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; margin-top: "
 				+ "10px !important; font-size: 14px !important;");
 		verticalPanel.getElement().setAttribute("style", "margin: 10px;");
@@ -1089,6 +1089,8 @@ public class PopupMessages {
 				+ "those lines at the beginning:<ul><li>String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server</li><li>"
 				+ "String asmmPath = new String(''); // for Eclipse Dev Mode</li></ul></li></ul><br>"
 				
+				+ "<b><u>December 16 2015, Release version 1.0.3 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
+				+ "<li>few mistakes have been corrected in the GUI</li></ul></li></ul><br>"
 				+ "<b><u>December 14 2015, Release version 1.0.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
 				+ "<li>the top banner wasn't displayed when the GUI was in 'Tab' mode.</li><li>few mistakes have been corrected in the GUI</li>"
 				+ "</ul></li><li>MODIFIED:<ul><li>the current fonts have been replaced by the one from the EUFAR website.</li></ul></li></ul><br>"

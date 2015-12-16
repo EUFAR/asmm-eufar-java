@@ -9,18 +9,10 @@ ONLINE VERSION TESTED ON:
     - Internet Explorer 11 (failed on one computer and succeeded on others)
     - Safari 5.1.7, 8.0.5 (succeeded)
     - Opera 30 (succeeded)
-    
-OFFLINE VERSION TESTED ON:
-=========================
-    - Mageia 4
-    - Xubuntu 15.04
-    - Windows 7
-    - Windows 8.1
 
 
 KNOWN ISSUES:
 =============
-    - On Windows Operating Systemps, in particular Win8.1, the reading of a netcdf file to obtain latitude/longitude coordinates raises an error in the terminal concerning python and the module "win32com". As this module is not called by ASMM Creator, and as ASMM Creator seems to work properly, this issue is not critical and doesn't prevent the use of the software [OFFLINE].
     
     - !!! IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, uploading and printing servlets, based on the platform of development or production: see in the "Asmm_eufar.java" file, find those lines at the beginning:
       
@@ -28,24 +20,30 @@ KNOWN ISSUES:
         String asmmPath = new String(""); // for Eclipse Dev Mode
 
 
+December 16 2015, Release version 1.0.3 [ONLINE]
+================================================
+  FIXED:
+    - few mistakes have been corrected in the GUI.
+    
+    
+December 14 2015, Release version 1.0.2 [ONLINE]
+================================================
+  FIXED:
+    - the top banner wasn't displayed when the GUI was in 'Tab' mode.
+    - few mistakes have been corrected in the GUI.
+    
+  MODIFIED:
+    - the current fonts have been replaced by the one from the EUFAR website.
+
+
 October 20 2015, Release version 1.0.1 [ONLINE][OFFLINE]
 ==================================================
-  As the code is stable, no more bug has been found and ready to be used in production, the software is released in the current state, and version number increases to 1.0.1 [ONLINE][OFFLINE].
-  
-  
-October 20 2015, Release version 1.0.1b1 [ONLINE][OFFLINE]
-====================================================
   FIXED:
     - a small bug prevented the read of the name of the aircraft in few circumstances [ONLINE].
 
 
 September 17 2015, Release version 1.0.0 [OFFLINE]
 ==================================================
-  As the code is stable, no more bug has been found and ready to be used in production, the software is released in the current state, and version number increases to 1.0.0 [OFFLINE].
-
-
-September 17-18 2015, Release version 1.0.0b1-2 [OFFLINE]
-====================================================
   A browser-like tab system is developed for ASMM, to resemble to the online version. Currently, ASMM will switch from a GUI to another based on the resolution and height of the screen.
 
 
