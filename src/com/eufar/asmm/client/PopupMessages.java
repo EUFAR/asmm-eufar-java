@@ -1089,6 +1089,9 @@ public class PopupMessages {
 				+ "those lines at the beginning:<ul><li>String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server</li><li>"
 				+ "String asmmPath = new String(''); // for Eclipse Dev Mode</li></ul></li></ul><br>"
 				
+				+ "<b><u>February 16 2016, Release version 1.0.4 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
+				+ "<li>the link to the Standards and Protocols webpage on the EUFAR website was the old one and gave a 404 error. It has been "
+				+ "updated.</li></ul></li></ul><br>"
 				+ "<b><u>December 16 2015, Release version 1.0.3 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
 				+ "<li>few mistakes have been corrected in the GUI</li></ul></li></ul><br>"
 				+ "<b><u>December 14 2015, Release version 1.0.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"

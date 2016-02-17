@@ -67,7 +67,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.0.3 (2015-12-16)");
+	public static String asmmVersion = new String("1.0.4 (2016-02-16)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.5.0");
 	public static String javaVersion = new String("1.7.0");
@@ -564,7 +564,7 @@ public class Asmm_eufar implements EntryPoint {
 		};
 		Command launchN7SPPage = new Command()  {
 			public void execute() {
-				Window.open("http://www.eufar.net/N6SP", "_blank", "");
+				Window.open("http://www.eufar.net/cms/standards-and-protocols/", "_blank", "");
 			}
 		};
 		Command exitFile = new Command()  {
