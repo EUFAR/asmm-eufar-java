@@ -38,4 +38,3 @@ public class Elements {
 		return infoButton;
 	}
 }
-

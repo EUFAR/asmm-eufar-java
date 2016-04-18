@@ -67,11 +67,11 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.0.4 (2016-02-16)");
+	public static String asmmVersion = new String("1.0.5 (2016-04-12)");
 	public static String gwtVersion = new String("2.7.0");
-	public static String eclipseVersion = new String("4.5.0");
+	public static String eclipseVersion = new String("4.5.2");
 	public static String javaVersion = new String("1.7.0");
-	public static String jasperVersion = new String("6.1.0");
+	public static String jasperVersion = new String("6.2.1");
 	public static String xmlVersion = new String("v1.0a");
 	public static String titleString = new String("ASMM Creator");
 	public static Boolean isModified = new Boolean(false);
@@ -83,10 +83,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static ArrayList<String> listboxName = Resources.listboxName();
 	public static ArrayList<String> dateboxName = Resources.dateboxName();
 	public static HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
-	
-	
-	public static String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7 Server
-	//public static String asmmPath = new String(""); // for Eclipse Dev Mode
+	public static String asmmPath = new String("");
 	
 
 	// Menu items initialization
@@ -101,7 +98,7 @@ public class Asmm_eufar implements EntryPoint {
 	private String imageConf = "<img src='icons/preferences_menu_icon.png'/>";
 	private String imageLog = "<img src='icons/changelog_menu_icon.png'/>";
 	private String imageReload = "<img src='icons/reload_menu_icon.png'/>";
-
+	
 
 	// Flight Information items initialization
 	public static FlexTable fiGrid = new FlexTable();
@@ -528,6 +525,9 @@ public class Asmm_eufar implements EntryPoint {
 	private void onModuleLoad2() {
 		rootLogger.log(Level.INFO, "***************************************************************");
 		rootLogger.log(Level.INFO, "ASMM has started on: " + Navigator.getUserAgent());
+		if (GWT.getHostPageBaseURL() != "http://127.0.0.1:8888/") {
+			asmmPath = GWT.getHostPageBaseURL();
+		}
 		rootLogger.log(Level.INFO, "PATH: " + asmmPath);
 
 		
@@ -829,7 +829,6 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel64.getElement().setAttribute("style", "margin-left: 150px !important;");
 		verticalPanel65.getElement().setAttribute("style", "margin-left: 150px !important;");
 		gi_mmLabel.getElement().setAttribute("style", "margin-left: 210px !important;");
-		
 		rootLogger.log(Level.INFO, "Geographic Information panel initialized");
 
 
@@ -1290,6 +1289,7 @@ public class Asmm_eufar implements EntryPoint {
 			subDockPanel.add(stackPanel);
 			dockPanel.add(subDockPanel);
 			RootLayoutPanel.get().add(dockPanel);
+			Window.setTitle(titleString);
 		}
 		rootLogger.log(Level.INFO, "Main panel initialized");
 

@@ -35,34 +35,35 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
-@SuppressWarnings("hiding")
+@SuppressWarnings({"hiding", "rawtypes"})
 public class UploadFunction<FileItem> extends HttpServlet implements Servlet {
 	private static final long serialVersionUID = 1L;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("UploadFunction - the function started");
 		response.setContentType("text/html;charset=UTF-8");
 		response.addHeader("Cache-Control","no-cache,no-store");
-		@SuppressWarnings("unused")
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		FileItemFactory factory = new DiskFileItemFactory();
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		try {
 			List items = upload.parseRequest(request);
 			Iterator iter = items.iterator();
-			while(iter.hasNext()){
+			while (iter.hasNext()) {
 				Object obj = iter.next();
-				if(obj == null) continue;
 				org.apache.commons.fileupload.FileItem item = (org.apache.commons.fileupload.FileItem)obj;
 				if (FilenameUtils.getExtension(item.getName()).matches("(xml|XML)")) {
-					if(item.isFormField()){
+					if (item.isFormField()) {
 						String name = item.getName();
 						String value = "";
-						if(name.compareTo("textBoxFormElement")==0){value = item.getString();} 
-						else {value = item.getString();}
+						if (name.compareTo("textBoxFormElement") == 0) {
+							value = item.getString();
+						} 
+						else {
+							value = item.getString();
+						}
 						response.getWriter().write(name + "=" + value + "\n");
 					} 
 					else {
-						byte[] fileContents = item.get();
+						byte [] fileContents = item.get();
 						String message = new String(fileContents);
 						response.setCharacterEncoding("UTF-8");
 						response.setContentType("text/html");

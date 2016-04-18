@@ -35,30 +35,28 @@ import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.FilenameUtils;
 
-import com.google.gwt.thirdparty.guava.common.io.Files;
 
 @SuppressWarnings("hiding")
 public class UploadImage<FileItem> extends HttpServlet implements Servlet {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1546989855214562L;
 	private static final String DATA_DIRECTORY = "/tmp";
     private static final int MAX_MEMORY_SIZE = 1024 * 1024 * 5;
     private static final int MAX_REQUEST_SIZE = 1024 * 1024 * 5;
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("UploadImage - the function started");
-		@SuppressWarnings("unused")
-		boolean isMultipart = ServletFileUpload.isMultipartContent(request);
 		DiskFileItemFactory factory = new DiskFileItemFactory();
 		factory.setSizeThreshold(MAX_MEMORY_SIZE);
-        factory.setRepository(new File(System.getProperty("java.io.tmpdir")));
-        String uploadFolder = getServletContext().getRealPath("") + File.separator + DATA_DIRECTORY;
+        String uploadFolder = getServletContext().getRealPath("") + DATA_DIRECTORY;
 		ServletFileUpload upload = new ServletFileUpload(factory);
 		upload.setSizeMax(MAX_REQUEST_SIZE);
 		double maxSize = (MAX_REQUEST_SIZE / 1024) / 1024;
 		System.out.println("UploadImage - max image size: " + maxSize + " Mbytes");
 		try {
+			@SuppressWarnings("rawtypes")
 			List items = upload.parseRequest(request);
+			@SuppressWarnings("rawtypes")
 			Iterator iter = items.iterator();
-			while(iter.hasNext()){
+			while (iter.hasNext()) {
 				Object obj = iter.next();
 				org.apache.commons.fileupload.FileItem item = (org.apache.commons.fileupload.FileItem)obj;
 				String fileExt = FilenameUtils.getExtension(item.getName());
@@ -67,7 +65,6 @@ public class UploadImage<FileItem> extends HttpServlet implements Servlet {
 						if (!item.isFormField()) {
 		                    File uploadedFile = File.createTempFile("tmp_", "." + fileExt, new File(uploadFolder));
 		                    item.write(uploadedFile);
-		                    Files.copy(uploadedFile, new File("/tmp/" + uploadedFile.getName())); // temporary
 		                    double fileSize = item.getSize();
 		                    fileSize = (fileSize / 1024) / 1024;
 		                    response.setCharacterEncoding("UTF-8");

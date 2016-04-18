@@ -60,9 +60,10 @@ public class PopupMessages {
 		label.setStyleName("popupText");
 		okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; margin-top: "
 				+ "10px !important; font-size: 14px !important;");
-		verticalPanel.getElement().setAttribute("style", "margin: 10px;");
+		verticalPanel.getElement().setAttribute("style", "margin: 10px 0px 10px 10px;");
 		myOpenDialog.setSize("700px", "500px");
 		myOpenDialog.setStyleName("myUploadBox");
+		myOpenDialog.getElement().setAttribute("style", "padding: 4px 0px 4px 4px !important;");
 		myOpenDialog.setModal(true);
 		myOpenDialog.center();
 	}
@@ -756,10 +757,10 @@ public class PopupMessages {
 					}
 					final String captionText = new String(legendeBox.getText());
 					final int row = Asmm_eufar.imageTab.getRowCount();
-					final Image image = new Image("/tmp/" + ret);
+					final Image image = new Image("tmp/" + ret);
 					final PushButton delButton = new PushButton(Resources.smallImage("del"));
 					final Label label = new Label(captionText);	
-					Asmm_eufar.imagePath.add("/tmp/" + ret);
+					Asmm_eufar.imagePath.add("tmp/" + ret);
 					image.addLoadHandler(new LoadHandler() {
 						public void onLoad(LoadEvent event) {
 							int height = image.getHeight();
@@ -1080,15 +1081,19 @@ public class PopupMessages {
 	private static String logText() {
 		String string = new String(""
 				+ "<b><u>CHANGELOG</u></b><br><br>"
-				+ "<u>TESTED ON:</u><ul><li>Firefox 31.5.3, 38.0.1, 39, 40 (succeeded)</li><li>Chrome 44 "
+				+ "<u>TESTED ON:</u><ul><li>Firefox 31.5.3, 38.0.1, 39, 40, 45.0.1 (succeeded)</li><li>Chrome 44 "
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
-				+ "<u>KNOWN ISSUES:</u><ul><li>!!! "
-				+ "IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, "
-				+ "uploading and printing servlets, based on the platform of devlopment or production: see in the 'Asmm_eufar.java' file, find "
-				+ "those lines at the beginning:<ul><li>String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat7/8 Server</li><li>"
-				+ "String asmmPath = new String(''); // for Eclipse Dev Mode</li></ul></li></ul><br>"
 				
+				+ "<b><u>April 11 2016, Release version 1.0.5 [ONLINE]</u></b><br>As the issue reported in Release 0.9.10 couldn't be reprod"
+				+ "uced so far and as it can lead to problem with the new EUFAR server, the copy of the uploaded image in /tmp directory to feed"
+				+ " the pdf report has been canceled until further notice. All images will be stored in the 'tmp' directory of the ASMM package."
+				+ "<br>Few java libraries have been removed as they were finally useless in ASMM."
+				+ "<ul style='list-style-type:none'><li>FIXED:<ul><li>few typos in the GUI</li></ul></li></ul><ul style='list-style-type:none'>"
+				+ "<li>MODIFIED:<ul><li>few comments were added for a better understanding in the back-end functions</li><li>ASMM can now dedect "
+				+ "if the server is the dev one or the production one.</li><li>Source Sans Pro is now used in the pdf report template. All other "
+				+ "fonts have been removed.</li></ul></li></ul><ul style='list-style-type:none'><li>ADDED:<ul><li>XML code is now formatted to pretty XML code "
+				+ "for a better readability</li></ul></li></ul><br>"
 				+ "<b><u>February 16 2016, Release version 1.0.4 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul>"
 				+ "<li>the link to the Standards and Protocols webpage on the EUFAR website was the old one and gave a 404 error. It has been "
 				+ "updated.</li></ul></li></ul><br>"

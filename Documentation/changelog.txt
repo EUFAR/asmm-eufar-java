@@ -11,13 +11,22 @@ ONLINE VERSION TESTED ON:
     - Opera 30 (succeeded)
 
 
-KNOWN ISSUES:
-=============
+April 12 2016, Release version 1.0.5 [ONLINE]
+=============================================
+  As the issue reported in Release 0.9.10 couldn't be reproduced so far and as it can lead to problem with the new EUFAR server, the copy of the uploaded image in /tmp directory to feed the pdf report has been canceled until further notice. All images will be stored in the "tmp" directory of the ASMM package.
+  Few java libraries have been removed as they were finally useless in ASMM.
+  
+  FIXED:
+    - few typos in the GUI
     
-    - !!! IMPORTANT !!! in the [ONLINE] version, a line need to be activated or commented to allow a proper operation of the downloading, uploading and printing servlets, based on the platform of development or production: see in the "Asmm_eufar.java" file, find those lines at the beginning:
-      
-        String asmmPath = new String(GWT.getHostPageBaseURL()); // for Tomcat Server
-        String asmmPath = new String(""); // for Eclipse Dev Mode
+  MODIFIED:
+    - few comments were added for a better understanding in the back-end functions
+    - ASMM can now dedect if the server is the dev one or the production one.
+    - Source Sans Pro is now used in the pdf report template. All other fonts have been removed.
+    
+  ADDED:
+    - XML code is now formatted to pretty XML code for a better readability
+    
 
 February 16 2016, Release version 1.0.4 [ONLINE]
 ================================================

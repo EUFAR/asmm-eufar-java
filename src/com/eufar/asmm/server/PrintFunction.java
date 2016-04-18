@@ -28,10 +28,13 @@ import net.sf.jasperreports.engine.util.JRLoader;
 
 public class PrintFunction extends HttpServlet {
 	static { System.setProperty("java.awt.headless", "true"); } 
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 15689423512487565L;
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 		System.out.println("PrintFunction - the function started");
+		
+		
         // set header as pdf
         response.setContentType("application/pdf");
         String fileName = request.getParameter("filename");
@@ -41,12 +44,11 @@ public class PrintFunction extends HttpServlet {
         response.setHeader("Cache-Control", "must-revalidate, post-check=0, pre-check=0");
         
         
-        // get icons and pdf folders
+        // get icons, pdf and tmp folders
         ServletContext context = getServletContext();
         String iconLocation = context.getRealPath("/icons");
         String reportLocation = context.getRealPath("/pdf");
-        //String tmpLocation = context.getRealPath("/tmp");
-        String tmpLocation = "/tmp";
+        String tmpLocation = context.getRealPath("/tmp");
         System.out.println("PrintFunction - directories mapped: " + iconLocation);
         System.out.println("PrintFunction - directories mapped: " + reportLocation);
         System.out.println("PrintFunction - directories mapped: " + tmpLocation);
@@ -121,7 +123,7 @@ public class PrintFunction extends HttpServlet {
             // fill it
             JRMapCollectionDataSource dataSource = new JRMapCollectionDataSource(objectMap);
             JasperReport jasperReport = (JasperReport) JRLoader.loadObject(bufferedInputStream);
-            JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), dataSource);
+			JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, new HashMap(), dataSource);
             System.out.println("PrintFunction - data parsed in report");
  
             
@@ -137,7 +139,7 @@ public class PrintFunction extends HttpServlet {
             bufferedInputStream.close();
  
         } catch (Exception ex) {
-        	System.out.println("A problem occured during PDF rendition: " + ex);
+        	System.out.println("A problem occured during PDF generation: " + ex);
             
         } finally {
             servletOutputStream.flush();
