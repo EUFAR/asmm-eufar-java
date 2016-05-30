@@ -32,6 +32,7 @@ import java.util.List;
 public class ScrollableTabLayoutPanel extends TabLayoutPanel {
     private static final String SCROLL_BUTTON_STYLE = "gwt-TabLayoutPanelScrollButton";
     private static final String SCROLL_PANEL_STYLE = "gwt-TabLayoutPanelScrollPanel";
+    private static final String POP_UP_STYLE = "gwt-TabLayoutPanelScrollPopup";
 
     private final double barHeight;
     private final Unit barUnit;
@@ -45,7 +46,7 @@ public class ScrollableTabLayoutPanel extends TabLayoutPanel {
     private static Resources DEFAULT_RESOURCES;
 
     public ScrollableTabLayoutPanel() {
-        this(30, Unit.PX);
+        this(35, Unit.PX);
     }
 
     public ScrollableTabLayoutPanel(double barHeight, Unit barUnit) {
@@ -230,10 +231,14 @@ public class ScrollableTabLayoutPanel extends TabLayoutPanel {
                                 }
 
                                 popup.setPopupPosition(left, top);
+                                
                             }
                         });
                     }
                 });
+                
+                popup.setStyleName(POP_UP_STYLE);
+                
             }
         };
     }

@@ -8,57 +8,17 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.event.dom.client.KeyCodes;
 import com.google.gwt.event.dom.client.KeyDownEvent;
 import com.google.gwt.event.dom.client.KeyDownHandler;
-import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
-import com.google.gwt.user.client.ui.HTML;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.PushButton;
-import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class GuiModification {
-	
-	
-	// change layout
-	public static void changeLayout() {
-		if (!Asmm_eufar.tabLayout) {		
-			Asmm_eufar.tabPanel.clear();
-			Asmm_eufar.tabPanel.add(Asmm_eufar.fiScroll,"Flight Information");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.ciScroll,"Contact Information");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.saScroll,"Scientific Aims");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.giScroll,"Geographic Information");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.afScroll,"Atmospheric Synoptic Features");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.ctScroll,"Cloud Types and Forms Sampled During Flight");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.cpScroll,"Cloud, Precipitation and Aerosol Particles Sampled");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.loScroll,"Land or Oceans Surfaces Overflown");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.arScroll,"Altitude Range of Measurement");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.fmScroll,"Types of Flight Manoeuvre");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.scScroll,"Satellite Coordination");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.soScroll,"Supporting Surface-based Observations");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.nfScroll,"Additional Notes on the Flight");
-			Asmm_eufar.tabPanel.add(Asmm_eufar.ipScroll,"Images included in the PDF report");
-			float ratio = 1166/80;
-			int screen_width = Window.getClientWidth();
-			float band_height = (float) screen_width/ratio;
-			Asmm_eufar.subDockPanel.clear();
-			Asmm_eufar.subDockPanel.addNorth(new HTML("<img src='icons/asmm_top.jpg' alt='EUFAR Metadata Creator' height='" + 
-					Float.toString(band_height) + "px' width='" + Integer.toString(screen_width) + "px'>"), band_height);
-			Asmm_eufar.subDockPanel.addNorth(Asmm_eufar.mainMenu, 30);
-			Asmm_eufar.subDockPanel.add(Asmm_eufar.tabPanel);
-			RootLayoutPanel rp=RootLayoutPanel.get();
-			rp.clear();
-			rp.add(Asmm_eufar.subDockPanel);
-			Asmm_eufar.tabLayout = true;
-			Asmm_eufar.rootLogger.log(Level.INFO, "Layout changed");
-		} else {
-			Asmm_eufar.rootLogger.log(Level.INFO, "Layout already changed");
-		}
-	}
 	
 	
 	// function to reload the page
@@ -117,7 +77,8 @@ public class GuiModification {
 		final PushButton addButton = new PushButton("Add a new CheckBox");
 		addButton.setTabIndex(-1);
 		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 440px !important; "
-				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px;");
+				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px !important; "
+				+ "color: #4f4f4f;");
 		addButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Asmm_eufar.rootLogger.log(Level.INFO, "New checkbox invoked...");
@@ -134,7 +95,7 @@ public class GuiModification {
 				final TextBox textBox = new TextBox();
 				final Button submitButton = new Button("Submit");
 				checkboxDialog.setGlassEnabled(true);
-				label01.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
+				label01.setStyleName("addCatPopupText");
 				verticalPanel01.add(label01);
 				verticalPanel01.add(textBox);
 				textBox.setStyleName("myAddBox");
@@ -234,10 +195,10 @@ public class GuiModification {
 				checkboxDialog.add(verticalPanel01);
 				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: MyFont !important; "
 						+ "font-weight: bold !important;");
-				cancelButton.getElement().setAttribute("style", "margin-left:45px !important; font-family: MyFont !important; "
+				cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFont !important; "
 						+ "font-weight: bold !important;");
 				horizontalPanel01.getElement().setAttribute("style", "margin-top:40px !important;");
-				checkboxDialog.setSize( "260px", "170px" );
+				checkboxDialog.setSize( "280px", "170px" );
 				checkboxDialog.setModal(true);
 				checkboxDialog.center();
 				checkboxDialog.setStyleName("myUploadBox");

@@ -104,53 +104,6 @@ public class PopupMessages {
 	}
 	
 	
-	// display a warning to change the layout 
-	public static void layoutPanel() {
-		final DialogBox myOpenDialog = new DialogBox();
-		final VerticalPanel verticalPanel01 = new VerticalPanel();
-		final VerticalPanel verticalPanel02 = new VerticalPanel();
-		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
-		final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
-		final Label label = new Label("You have the possibility to change the global layout to a browser-like horizontal layout. Once the new "
-				+ "layout is selected, you have to reload EMC to revert back to the original layout.");
-		final Button submitButton = new Button("Ok");
-		final Button cancelButton = new Button("Cancel");
-		submitButton.addClickHandler(new ClickHandler() {			
-			@Override
-			public void onClick(ClickEvent event) {
-				myOpenDialog.hide();
-				GuiModification.changeLayout();
-			}
-		});
-		cancelButton.addClickHandler(new ClickHandler() {			
-			@Override
-			public void onClick(ClickEvent event) {
-				myOpenDialog.hide();
-			}
-		});
-		myOpenDialog.setGlassEnabled(true);
-		myOpenDialog.add(verticalPanel02);
-		verticalPanel02.add(horizontalPanel01);
-		horizontalPanel01.add(Resources.popupImage("preferences"));
-		horizontalPanel01.add(verticalPanel01);
-		verticalPanel01.add(label);
-		horizontalPanel02.add(submitButton);
-		horizontalPanel02.add(cancelButton);
-		verticalPanel01.add(horizontalPanel02);
-		label.setStyleName("popupText");
-		myOpenDialog.setStyleName("myUploadBox");
-		verticalPanel02.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; "
-				+ "font-size: 14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:120px !important; font-family: MyFontBold !important;");
-		horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-		myOpenDialog.setSize("350px", "130px");
-		myOpenDialog.setModal(true);
-		myOpenDialog.center();
-	}
-	
-	
 	// create a window with text dedicated to ASMM
 	public static void aboutWindow() {
 		Asmm_eufar.rootLogger.log(Level.INFO, "About ASMM invoked...");
@@ -306,16 +259,16 @@ public class PopupMessages {
 			infoDialog.setStyleName("myUploadBox");
 			verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 					+ "!important;");
-			label2.getElement().setAttribute("style", "margin-top: 20px !important; margin-bottom: 20px !important; text-decoration: "
-					+ "underline !important; font-weight: bold !important;");
+			label.setStyleName("myUploadTextLabel");
+			label2.setStyleName("myUploadTextLabel2");
 			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
 					+ "10px !important; font-size: 14px !important;");
 			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
 					+ " margin-top: 10px !important; font-size: 14px !important;");
 			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; height: 30px !important; width: 180px !important; "
+					+ " margin-top: 10px !important; height: 30px !important; width: 150px !important; "
 					+ "font-size: 14px !important;");
-			infoDialog.setSize( "130px", "180px" );
+			infoDialog.setSize("130px","180px");
 			infoDialog.setModal(true);
 			infoDialog.center();
 			infoDialog.show();
@@ -373,16 +326,16 @@ public class PopupMessages {
 			infoDialog.setStyleName("myUploadBox");
 			verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
 					+ "!important;");
-			label2.getElement().setAttribute("style", "margin-top: 20px !important; margin-bottom: 20px !important; text-decoration: "
-					+ "underline !important; font-weight: bold !important;");
+			label.setStyleName("myUploadTextLabel");
+			label2.setStyleName("myUploadTextLabel2");
 			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
 					+ "10px !important; font-size: 14px !important;");
 			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
 					+ " margin-top: 10px !important; font-size: 14px !important;");
 			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; height: 30px !important; width: 180px !important; "
+					+ " margin-top: 10px !important; height: 30px !important; width: 150px !important; "
 					+ "font-size: 14px !important;");
-			infoDialog.setSize( "130px", "180px" );
+			infoDialog.setSize("130px","180px");
 			infoDialog.setModal(true);
 			infoDialog.center();
 			infoDialog.show();
@@ -467,14 +420,13 @@ public class PopupMessages {
 		verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
 		verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
-
+		label.setStyleName("myUploadTextLabel");
 		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:75px !important; font-family: MyFontBold !important; font-size: "
+		cancelButton.getElement().setAttribute("style", "margin-left:90px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
 		horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-		myOpenDialog.setSize( "130px", "180px" );
+		myOpenDialog.setSize("130px","150px");
 		myOpenDialog.setModal(true);
 		myOpenDialog.center();
 	}
@@ -575,18 +527,18 @@ public class PopupMessages {
 		verticalPanel02.add(myForm);	
 		verticalPanel03.add(horizontalPanel01);
 		mySaveDialog.add(verticalPanel03);	
-		fileName.setStyleName("gi_textBox");
+		fileName.setStyleName("myUploadTextBox");
 		mySaveDialog.setStyleName("myUploadBox");
 		verticalPanel03.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
+		label.setStyleName("myUploadTextLabel");
 		fileName.getElement().setAttribute("style", "width:230px !important; margin-left: 20px !important;");
 		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:70px !important; font-family: MyFontBold !important; font-size: "
+		cancelButton.getElement().setAttribute("style", "margin-left:90px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
 		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-		mySaveDialog.setSize( "370px", "180px" );
+		mySaveDialog.setSize("370px","150px");
 		mySaveDialog.setModal(true);
 		mySaveDialog.center();
 		fileName.setFocus(true);
@@ -677,15 +629,14 @@ public class PopupMessages {
 		verticalPanel03.add(horizontalPanel01);
 		mySaveDialog.add(verticalPanel03);	
 		mySaveDialog.setStyleName("myUploadBox");
-		label.setStyleName("gwt-Label");
-		fileName.setStyleName("gi_textBox");
+		label.setStyleName("myUploadTextLabel");
+		fileName.setStyleName("myUploadTextBox");
 		verticalPanel03.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
 				+ "!important;");
-		label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:30px !important; margin-top:10px !important;");
-		fileName.getElement().setAttribute("style", "width:230px !important; margin-left: 20px !important;");
+		fileName.getElement().setAttribute("style", "width:250px !important; margin-left: 20px !important;");
 		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFontBold !important; font-size: "
+		cancelButton.getElement().setAttribute("style", "margin-left:105px !important; font-family: MyFontBold !important; font-size: "
 				+ "14px !important;");
 		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 		mySaveDialog.setSize( "370px", "180px" );
@@ -822,14 +773,14 @@ public class PopupMessages {
 					Asmm_eufar.imageCaption.add(captionText);
 					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
-					label.getElement().setAttribute("style", "width: 200px !important;");
+					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
 					Asmm_eufar.imageTab.insertRow(row);
 					Asmm_eufar.imageTab.setWidget(row, 0, image);
 					Asmm_eufar.imageTab.setWidget(row, 1, label);
 					Asmm_eufar.imageTab.setWidget(row, 2, delButton);
 					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_CENTER);
-					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_CENTER);
 					delButton.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
 							int removedIndex = Asmm_eufar.imageTab.getCellForEvent(event).getRowIndex();
@@ -851,16 +802,15 @@ public class PopupMessages {
 			verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
 					+ "!important;");
 			verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-			label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:10px !important; margin-top:10px !important;");
+			label.setStyleName("addImagePopupText");
 			myFileUpload.getElement().setAttribute("style", "margin-left:20px !important;");
-			label2.getElement().setAttribute("style", "margin-top:10px !important; text-decoration: underline !important; font-weight: "
-					+ "bold !important; margin-bottom: 10px !important");
+			label2.setStyleName("addImagePopupCaption");
 			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
 					+ "14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: MyFontBold !important; font-size: "
+			cancelButton.getElement().setAttribute("style", "margin-left:93px !important; font-family: MyFontBold !important; font-size: "
 					+ "14px !important;");
 			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-			myOpenDialog.setSize( "130px", "180px" );
+			myOpenDialog.setSize("390px", "180px");
 			myOpenDialog.setModal(true);
 			myOpenDialog.center();
 			
@@ -970,13 +920,14 @@ public class PopupMessages {
 					Asmm_eufar.imageCaption.add(captionText);
 					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
-					label.getElement().setAttribute("style", "width: 200px !important;");
+					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
 					Asmm_eufar.imageTab.insertRow(row);
 					Asmm_eufar.imageTab.setWidget(row, 0, image);
 					Asmm_eufar.imageTab.setWidget(row, 1, label);
 					Asmm_eufar.imageTab.setWidget(row, 2, delButton);
-					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_RIGHT);
+					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_CENTER);
+					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_CENTER);
 					delButton.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
 							int removedIndex = Asmm_eufar.imageTab.getCellForEvent(event).getRowIndex();
@@ -1005,16 +956,14 @@ public class PopupMessages {
 			legendeBox.setStyleName("au_textBox");
 			myOpenDialog.setStyleName("myUploadBox");
 			verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-			label.getElement().setAttribute("style", "margin-right:20px !important; margin-bottom:10px !important; margin-top:10px !important;");
+			label.setStyleName("addImagePopupText");
 			verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
 					+ "!important;");
-			label2.getElement().setAttribute("style", "text-decoration: underline !important; font-weight: bold !important; margin-bottom: 10px "
-					+ "!important");
-			label3.getElement().setAttribute("style", "margin-top:10px !important; text-decoration: underline !important; font-weight: "
-					+ "bold !important; margin-bottom: 10px !important");
+			label2.setStyleName("addImagePopupCaption");
+			label3.setStyleName("addImagePopupCaption");
 			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
 					+ "14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:73px !important; font-family: MyFontBold !important; font-size: "
+			cancelButton.getElement().setAttribute("style", "margin-left:93px !important; font-family: MyFontBold !important; font-size: "
 					+ "14px !important;");
 			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
 			myOpenDialog.setSize( "350px", "180px" );
@@ -1085,6 +1034,8 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
+				+ "<b><u>May 27 2016, Release version 1.1.0 [ONLINE]</u></b><br>The style used in ASMM has been modified and harmonized to "
+				+ "comply with the EUFAR website style. JasperReports plugin has been updated.<br><br>"
 				+ "<b><u>April 11 2016, Release version 1.0.5 [ONLINE]</u></b><br>As the issue reported in Release 0.9.10 couldn't be reprod"
 				+ "uced so far and as it can lead to problem with the new EUFAR server, the copy of the uploaded image in /tmp directory to feed"
 				+ " the pdf report has been canceled until further notice. All images will be stored in the 'tmp' directory of the ASMM package."

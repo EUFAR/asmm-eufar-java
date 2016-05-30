@@ -262,6 +262,7 @@ public class Utilities {
 					widget.setText("");
 					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
+					label.setStyleName("so_tableTextLabel");
 					flexTable.insertRow(row);
 					flexTable.setWidget(row, 0, label);
 					flexTable.setWidget(row, 1, delButton);
@@ -298,6 +299,7 @@ public class Utilities {
 				widget.setText("");
 				delButton.setPixelSize(25, 25);
 				delButton.setStyleName("infoButton");
+				label.setStyleName("so_tableTextLabel");
 				flexTable.insertRow(row);
 				flexTable.setWidget(row, 0, label);
 				flexTable.setWidget(row, 1, delButton);
@@ -328,6 +330,7 @@ public class Utilities {
 		itemList.add(string);
 		delButton.setPixelSize(25, 25);
 		delButton.setStyleName("infoButton");
+		label.setStyleName("so_tableTextLabel");
 		flexTable.insertRow(row);
 		flexTable.setWidget(row, 0, label);
 		flexTable.setWidget(row, 1, delButton);

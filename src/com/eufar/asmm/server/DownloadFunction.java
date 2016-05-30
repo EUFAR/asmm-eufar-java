@@ -89,5 +89,7 @@ public class DownloadFunction extends HttpServlet {
 
 
 	public void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {doPost(request, response);}
+		throws ServletException, IOException {
+			doPost(request, response);
+		}
 }

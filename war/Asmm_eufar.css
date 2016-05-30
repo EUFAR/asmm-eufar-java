@@ -12,6 +12,19 @@
   src: url(font/SourceSansPro-Semibold.ttf);
 }
 
+
+@font-face {
+  font-family: MyFontBoldItalic;
+  src: url(font/SourceSansPro-SemiboldItalic.ttf);
+}
+
+
+@font-face {
+  font-family: MyFontLight;
+  src: url(font/SourceSansPro-ExtraLight.ttf);
+}
+
+
 .infoButton {
   width: 25px;
   height: 25px;
@@ -20,7 +33,73 @@
 }
 
 .infoButton:hover {
-  background-color: #cccccc;
+  background: rgb(238,238,238);
+}
+
+
+.fi_line {
+  margin-left: 30px;
+}
+
+
+.fi_mainText {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 55px;
+  font-family: MyFont;
+  font-weight: 500;
+  font-size: 12px;
+  color: rgb(130,130,130);
+}
+
+
+.fi_pathText {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  margin-left: 6px;
+  margin-right: 6px;
+  font-family: MyFont;
+  font-weight: 500;
+  font-size: 12px;
+  color: #ffa126;
+}
+
+
+.fi_pathText2 {
+  margin-top: 6px;
+  margin-bottom: 6px;
+  font-family: MyFont;
+  font-weight: 500;
+  font-size: 12px;
+  color: #ffa126;
+}
+
+
+.fi_grid {
+  margin-left: 30px;
+}
+
+
+.ci_grid {
+  margin-left: 30px;
+}
+
+
+.fi_textLabel {
+  font-family: MyFont;
+  color: #4f4f4f;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+.fi_textLabelTitle {
+  font-family: MyFontBold;
+  color: #4f4f4f;
+  font-size: 14px;
+  text-align: justify;
+  text-decoration: underline;
+  margin-left: 10px;
 }
 
 
@@ -37,8 +116,14 @@
   font-size: 14px;
   font-family: MyFont;
   margin-left: 20px;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
 }
+
+
+.fi_textList:focus {
+  border: 1px solid #ffa126;
+}
+
 
 .fi_textList2 {
   width: 200px;
@@ -47,8 +132,14 @@
   font-size: 14px;
   font-family: MyFont;
   margin-left: 20px;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
 }
+
+
+.fi_textList2:focus {
+  border: 1px solid #ffa126;
+}
+
 
 .fi_textList2:disabled {
   width: 200px;
@@ -69,7 +160,22 @@
   font-size: 14px;
   font-family: MyFont;
   margin-left: 20px;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
+}
+
+
+.fi_textBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.fi_verticalPanel {
+  background: white;
+  margin-left: 30px;
+  margin-top: -6px;
+  width: 750px;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 
@@ -80,14 +186,30 @@
   font-size: 14px;
   font-family: MyFont;
   margin-left: 20px;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
 }
+
+
+.ci_textList:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.sa_verticalPanel2 {
+  background: white;
+  margin-left: 30px;
+  margin-top: -6px;
+  width: 1100px;
+  padding-bottom: 10px;
+}
+
 
 
 .sa_checkBox {
   margin-left: 40px;
   font-size: 14px;
   font-family: MyFont;
+  color: #4f4f4f;
 }
 
 
@@ -95,6 +217,14 @@
   margin-left: 20px;
   font-size: 14px;
   font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.sa_checkBox3 {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
 }
 
 
@@ -112,7 +242,21 @@
   margin-left: 20px;
   font-size: 14px;
   font-family: MyFont;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
+}
+
+
+.sa_textArea:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.gi_verticalPanel {
+  background: white;
+  margin-left: 30px;
+  margin-top: -6px;
+  width: 1100px;
+  padding-bottom: 10px;
 }
 
 
@@ -123,7 +267,12 @@
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFont;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
+}
+
+
+.gi_textBox:focus {
+  border: 1px solid #ffa126;
 }
 
 
@@ -134,7 +283,26 @@
   border: 1px solid #ccc;
   font-size: 14px;
   font-family: MyFont;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
+}
+
+
+.gi_textBox2:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.gi_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.gi_textLabel {
+  font-family: MyFont;
+  color: #4f4f4f;
+  font-size: 14px;
 }
 
 
@@ -145,18 +313,145 @@
 
 .gi_titleText {
   font-family: MyFontBold;
-  margin-left: 20px;
+  margin-left: 0px;
   margin-bottom: 10px;
   text-decoration: underline;
   font-size: 14px;
+  color: #4f4f4f;
 }
 
 .gi_titleText2 {
   font-family: MyFontBold;
-  margin-left: 20px;
+  margin-left: 0px;
   margin-bottom: 0px;
   text-decoration: underline;
   font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.af_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.af_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.ct_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.ct_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.cp_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.cp_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.lo_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.lo_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.ar_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.ar_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.fm_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.fm_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.sc_titleText {
+  font-family: MyFontBold;
+  margin-left: 10px;
+  text-decoration: underline;
+  font-size: 14px;
+  color: #4f4f4f;
+}
+
+
+.sc_checkBox {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.so_textLabel {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+}
+
+
+.so_tableTextLabel {
+  font-size: 14px;
+  font-family: MyFontBold;
 }
 
 
@@ -167,6 +462,7 @@
   width:350px;
   background-color:  #ffffff;
   border: 1px solid #ccc;
+  background: rgb(238,238,238);
 }
 
 
@@ -179,6 +475,31 @@
   font-family: MyFont;
   margin-left: 20px;
   background-color: #ffffff;
+  background: rgb(238,238,238);
+}
+
+
+.so_textBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.im_textLabel {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 0px;
+  margin-left: 10px;
+}
+
+
+.im_captionLabel {
+  font-size: 14px;
+  font-family: MyFont;
+  color: #4f4f4f;
+  width: 200px;
 }
 
 
@@ -186,7 +507,7 @@
   height: 10px;
   width: 350px;
   font-size: 12px;
-  font-family: MyFontBold;
+  font-family: MyFont;
 }
 
 
@@ -195,117 +516,234 @@
 }
 
 
-.gwt-Label {
-  font-family: MyFont !important;
-  margin-left: 20px !important;
-  text-align: justify !important;
-  font-size: 14px !important;
-}
-
 .gwt-CheckBox {
   font-family: MyFont !important;
   margin-left: 20px !important;
 }
 
 
-.gwt-StackLayoutPanel {
-  border-bottom: 1px solid #bbbbbb !important;
-}
-
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader {
-  cursor: hand !important;
-  font-size: 1.1em !important;
-  font-family: MyFont !important;
-  padding: 3px !important;
-  border: 1px solid #bbbbbb !important;
-  border-bottom: 0px !important;
-  background: #d3def6 !important;
-  
-}
-
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelHeader-hovering {
-  background: #bfcaec !important;
-  font-size: 1.2em !important;
-}
-
-
-.gwt-StackLayoutPanel .gwt-StackLayoutPanelContent {
-  background: #e6e6e6 !important;
-}
-
-
 .gwt-TabLayoutPanel {
-	
+  
 }
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTabs {
-	
+  background: #616266 !important;
+}
+
+
+.gwt-TabLayoutPanel .gwt-TabLayoutPanelContentContainer {
 }
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContent {
   overflow: auto !important;
-  padding: 6px !important;
-  background: #e6e6e6 !important; 
+  background: rgb(238,238,238) !important;
 }
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab {
+  font-family: MyFont !important;
+  font-size: 14px !important;
+  margin-left: 4px !important;
+  padding: 0px 10px 4px 10px !important;
   cursor: pointer !important;
   cursor: hand !important;
-  color: black !important;
-  font-size: 1.1em !important;
-  color: #000000 !important;
-  text-align: left !important;
-  background: #d3def6 !important;
-  font-family: MyFont !important;
+  color: white !important;
+  font-weight: normal !important;
+  text-align: center !important;
+  background: #616266 !important;
+  border-radius: 3px 3px 0px 0px !important;
 }
-
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
   cursor: default !important;
-  background: #e6e6e6 !important;
-  font-size: 1.2em !important;
-  color: #000000 !important;
+  background: #616266 !important;
+  border-bottom: 5px solid #ffa126 !important;
+}
+
+
+.gwt-MenuBar {
+  cursor: default !important;  
+}
+
+
+.gwt-MenuBar-horizontal {
+  margin-top: 0px !important;
+  margin-left: 30px !important;
+  background: white !important;
+  border: 0px solid !important;
+}
+
+
+.gwt-MenuBar-horizontal .gwt-MenuItem {
+  border: 5px Solid #616266 !important;
+  font-family: MyFontLight !important;
+  color: #ffa126 !important;
+  font-size: 16px !important;
+  vertical-align: middle !important;
+  padding: 5px 10px 5px 10px !important;
+  background: #616266 !important;
+}
+
+
+.gwt-MenuBar-horizontal .gwt-MenuItem-selected {
+	border-bottom: 5px Solid #616266 !important;
+	background: #616266 !important;
+}
+
+
+.gwt-MenuBar-vertical {
+  margin-top: 0px !important;
+  margin-left: 0px !important;
+  background: white !important;
+}
+
+
+.gwt-MenuBar-vertical table {
+  border-collapse: collapse !important;
+}
+
+
+.gwt-MenuBar-vertical .gwt-MenuItem {
   font-family: MyFont !important;
+  font-size: 14px !important;
+  padding: 5px 20px 5px 20px !important;
 }
 
 
-.gwt-TabLayoutPanelScrollPanel {
-  background: #e6e6e6 !important;
+.gwt-MenuBar-vertical .gwt-MenuItem-selected {
+	background: rgb(240,240,240) !important;
 }
 
 
-.gwt-TabLayoutPanelScrollButton:hover {
-  background: #c8c8c8!important;
+.gwt-MenuBar-vertical .gwt-MenuItemSeparator {
+  padding: 10px 0px 10px 0px !important;
+}
+
+
+.gwt-MenuBar-vertical .gwt-MenuItemSeparator .menuSeparatorInner {
+  height: 1px !important;
+  padding: 0px !important;
+  border: 0px !important;
+  border-top: 1px solid #ccc !important;
+  overflow: hidden !important;
+}
+
+
+.gwt-MenuBar-vertical .subMenuIcon {
+  padding-right: 10px !important;
+  padding-left: 10px !important;
+}
+
+
+.gwt-MenuBar-vertical .subMenuIcon-selected {
+  background: rgb(240,240,240) !important;
+}
+
+
+.gwt-MenuBarPopup {
+  margin-left: -5px !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupTopCenter {
+  border-top: 1px solid rgb(180,180,180) !important;
+  background: white !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupBottomCenter {
+ border-bottom: 1px solid rgb(180,180,180) !important;
+  background: white !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupMiddleLeft {
+  border-right: 1px solid rgb(180,180,180) !important;
+  background: transparent !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupMiddleRight {
+  border-left: 1px solid rgb(180,180,180) !important;
+  background: transparent !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupTopLeftInner {
+  width: 5px;
+  height: 5px;
+  zoom: 1;
+}
+
+
+.gwt-MenuBarPopup .menuPopupTopRightInner {
+  width: 8px;
+  height: 5px;
+  zoom: 1;
+}
+
+
+.gwt-MenuBarPopup .menuPopupBottomLeftInner {
+  width: 5px;
+  height: 8px;
+  zoom: 1;
+}
+
+
+.gwt-MenuBarPopup .menuPopupBottomRightInner {
+  width: 8px;
+  height: 8px;
+  zoom: 1;
+}
+
+
+.gwt-MenuBarPopup .menuPopupTopLeft {
+  border-right: 1px solid rgb(180,180,180) !important;
+  border-top: 0px solid rgb(180,180,180) !important;
+  background: transparent !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupTopRight {
+  border-left: 1px solid rgb(180,180,180) !important;
+  border-top: 0px solid rgb(180,180,180) !important;
+  background: transparent !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupBottomLeft {
+  border-right: 1px solid rgb(180,180,180) !important;
+  border-top: 0px solid rgb(180,180,180) !important;
+  background: transparent !important;
+}
+
+
+.gwt-MenuBarPopup .menuPopupBottomRight {
+  border-left: 1px solid rgb(180,180,180) !important;
+  border-top: 0px solid rgb(180,180,180) !important;
+  background: transparent !important;
 }
 
 
 .gwt-DateBox {
-  padding: 3px 3px !important;
+  padding: 5px 4px !important;
   border: 1px solid #ccc !important;
-  width: 65px !important;
-  height: 17px !important;
-  margin-left: 20px !important;
-  font-size: 14px !important;
+  width: 80px !important;
+  height: 15px !important;
   font-family: MyFont !important;
-  background-color: #ffffff !important;
-  text-align: left !important;
+  font-size: 14px !important;
+  background: rgb(238,238,238) !important;
+  text-align: center !important;
+  margin-left: 10px !important;
 }
 
 
-.gwt-MenuBar .gwt-MenuItem {
-  font-family: MyFont !important;
-  font-size: 14px !important;
-  vertical-align: top !important;
+.gwt-DateBox:focus {
+  border: 1px solid #ffa126 !important;
 }
 
-/* .gwt-MenuBar-vertical .gwt-MenuItem {
-  padding: 5px 20px 5px 5px !important;
-  font-family: MyFont !important;
-  font-size: 26px !important;
-} */
 
 .table-center {
   text-align: center;
@@ -313,7 +751,7 @@
 
 .myUploadBox {
   background: #e5e5e5;
-  padding: 4px 8px 4px 4px;
+  padding: 10px 10px 10px 10px;
   cursor: default;
   font-family: MyFont;
   font-size: 14px;
@@ -321,8 +759,44 @@
   
 }
 
+
+.myUploadTextBox {
+  width: 100px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFont;
+  background: white;
+}
+
+
+.myUploadTextBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.myUploadTextLabel {
+  margin-bottom:30px;
+  margin-left: 20px;
+  font-family: MyFont;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+.myUploadTextLabel2 {
+  margin-left: 20px;
+  font-family: MyFont;
+  font-size: 14px;
+  margin-bottom: 20px;
+  text-decoration: underline;
+  font-weight: bold !important;
+}
+
+
 .myAddBox {
-  width: 215px;
+  width: 235px;
   height: 17px;
   padding: 3px 3px;
   border: 1px solid #ccc;
@@ -331,6 +805,12 @@
   margin-left: 20px;
   background-color: #ffffff;
 }
+
+
+.myAddBox:focus {
+  border: 1px solid #ffa126;
+}
+
 
 .au_textBox {
   width: 250px;
@@ -344,6 +824,11 @@
 }
 
 
+.au_textBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
 .geoTextList {
   width: 200px;
   height: 25px;
@@ -351,7 +836,7 @@
   font-size: 14px;
   font-family: MyFont;
   margin-left: 20px;
-  background-color: #ffffff;
+  background: rgb(238,238,238);
 }
 
 .geoTextList:disabled {
@@ -362,6 +847,11 @@
   font-family: MyFont;
   margin-left: 20px;
   background-color: #d6d6d6;
+}
+
+
+.geoTextList:focus {
+  border: 1px solid #ffa126;
 }
 
 
@@ -385,3 +875,41 @@
   font-size: 14px;
 }
 
+
+.addCatPopupText {
+  font-family: MyFont;
+  font-size: 14px;
+  margin-right:20px;
+  margin-bottom:30px;
+  margin-top:10px;
+  margin-left: 10px;
+}
+
+
+.addImagePopupText {
+  margin-bottom:20px;
+  font-family: MyFont;
+  font-size: 14px;
+  margin-left: 20px;
+  text-align: justify;
+}
+
+
+.addImagePopupCaption {
+  font-family: MyFont;
+  font-size: 14px;
+  margin-top:20px;
+  margin-left: 20px;
+  text-decoration: underline;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+
+.gwt-TabLayoutPanelScrollPanel {
+  background: rgb(238,238,238);
+}
+
+.gwt-TabLayoutPanelScrollPopup {
+  border: 0px solid black;
+}
