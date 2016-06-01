@@ -28,7 +28,7 @@ import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 
 public class PopupMessages {
 	
-	public enum infoEnum{NEWCHECKBOX;}
+	public enum infoEnum{NEWCHECKBOX, INFOSOUTHNORTH, INFOWESTEAST, INFOMINMAX;}
 	
 	
 	// create a popup panel displaying a changelog
@@ -1017,6 +1017,21 @@ public class PopupMessages {
 					+ "will not be saved and will be lost.</b></p><p align=justify>As the PDF report generator is limited to 12 checkboxes "
 					+ "per section, you cannot create more than 12 checkboxes per section in ASMM Creator Online.</p>");
 			break;
+		case INFOSOUTHNORTH:
+			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+					+ "southbound and northbound longitudes of the bounding box shall be expressed in decimal degree (-90.00 for South to "
+					+ "90.00 for North) with a precision of two decimals.</p>");
+			break;
+		case INFOWESTEAST:
+			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+					+ "westbound and eastbound longitudes of the bounding box shall be expressed in decimal degree (-180.00 for West to "
+					+ "180.00 for East) with a precision of two decimals.</p>");
+			break;
+		case INFOMINMAX:
+			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+					+ "minimum and maximum altitudes of the bounding box shall be expressed in meters (0.00 for the ground to xxxx.xx for "
+					+ "the maximum altitude) with, if possible, a precision of two decimals.</p>");
+			break;
 		default:
 			infoLabel.setHTML("No information for this item");
 			break;
@@ -1034,6 +1049,9 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
+				+ "<b><u>June 1 2016, Release version 1.1.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>ADDED:<ul><li>3 info "
+				+ "buttons have been added to the 'Geographic Information' panel to give few guidelines to the user to fill in well all "
+				+ "textboxes related to the geographic bounding box.</li></ul></li></ul><br>"
 				+ "<b><u>May 27 2016, Release version 1.1.0 [ONLINE]</u></b><br>The style used in ASMM has been modified and harmonized to "
 				+ "comply with the EUFAR website style. JasperReports plugin has been updated.<br><br>"
 				+ "<b><u>April 11 2016, Release version 1.0.5 [ONLINE]</u></b><br>As the issue reported in Release 0.9.10 couldn't be reprod"

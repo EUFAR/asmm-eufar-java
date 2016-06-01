@@ -11,8 +11,14 @@ ONLINE VERSION TESTED ON:
     - Opera 30 (succeeded)
 
 
+June 1 2016, Release version 1.1.1 [ONLINE]
+===========================================
+  ADDED:
+    - 3 info buttons have been added to the "Geographic Information" panel to give few guidelines to the user to fill in well all textboxes related to the geographic bounding box.
+
+
 May 27 2016, Release version 1.1.0 [ONLINE]
-=============================================
+===========================================
   The style used in ASMM has been modified and harmonized to comply with the EUFAR website style. JasperReports plugin has been updated.
 
 

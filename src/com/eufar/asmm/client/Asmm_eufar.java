@@ -62,7 +62,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.1.0 (2016-05-27)");
+	public static String asmmVersion = new String("1.1.1 (2016-06-01)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.5.2");
 	public static String javaVersion = new String("1.7.0");
@@ -224,6 +224,9 @@ public class Asmm_eufar implements EntryPoint {
 	public static TreeMap<String, String> gi_addCatMap = new TreeMap<String, String>();
 	public static FlexTable gi_addCatTable = new FlexTable();
 	private FlexTable gi_boundTable = new FlexTable();
+	public static PushButton gi_infoButtonSN = Elements.addInfoButton("infoSouthNorth");
+	public static PushButton gi_infoButtonWE = Elements.addInfoButton("infoWestEast");
+	public static PushButton gi_infoButtonMM = Elements.addInfoButton("infoMinMax");
 	private HorizontalPanel gi_polar = Elements.checkBox("Polar");
 	private HorizontalPanel gi_midLatitudes = Elements.checkBox("Mid-latitudes");
 	private HorizontalPanel gi_subTropical = Elements.checkBox("Sub-tropical");
@@ -876,7 +879,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel53.add(gi_mainLab);
 		horizontalPanel53.add(gi_pathLab);
 		horizontalPanel53.add(gi_pathLab2);
-		horizontalPanel54.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel54.add(new HTML("<hr  style=\"width:1150px;height:10px;background:#c0c0c0;border:0px;\" />"));
 		verticalPanel80.add(horizontalPanel53);
 		verticalPanel80.add(horizontalPanel54);
 		verticalPanel80.add(verticalPanel11);
@@ -885,12 +888,15 @@ public class Asmm_eufar implements EntryPoint {
 		gi_boundTable.setWidget(0, 0, gi_nsLabel);
 		gi_boundTable.setWidget(0, 1, gi_northText);
 		gi_boundTable.setWidget(0, 2, gi_southText);
-		gi_boundTable.setWidget(0, 3, gi_mmLabel);
-		gi_boundTable.setWidget(0, 4, gi_minText);
-		gi_boundTable.setWidget(0, 5, gi_maxText);
+		gi_boundTable.setWidget(0, 3, gi_infoButtonSN);
+		gi_boundTable.setWidget(0, 4, gi_mmLabel);
+		gi_boundTable.setWidget(0, 5, gi_minText);
+		gi_boundTable.setWidget(0, 6, gi_maxText);
+		gi_boundTable.setWidget(0, 7, gi_infoButtonMM);
 		gi_boundTable.setWidget(1, 0, gi_weLabel);
 		gi_boundTable.setWidget(1, 1, gi_westText);
 		gi_boundTable.setWidget(1, 2, gi_eastText);
+		gi_boundTable.setWidget(1, 3, gi_infoButtonWE);
 		verticalPanel11.add(gi_boundTable);
 		verticalPanel11.add(new HTML("<br>"));
 		verticalPanel11.add(gi_situationLabel);
@@ -954,6 +960,9 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel64.getElement().setAttribute("style", "margin-left: 150px !important;");
 		verticalPanel65.getElement().setAttribute("style", "margin-left: 150px !important;");
 		gi_mmLabel.getElement().setAttribute("style", "margin-left: 210px !important;");
+		gi_infoButtonSN.getElement().setAttribute("style", "margin-left: 0px !important;");
+		gi_infoButtonWE.getElement().setAttribute("style", "margin-left: 0px !important;");
+		gi_infoButtonMM.getElement().setAttribute("style", "margin-left: 0px !important;");
 		rootLogger.log(Level.INFO, "Geographic Information panel initialized");
 
 
@@ -1027,7 +1036,7 @@ public class Asmm_eufar implements EntryPoint {
 		af_pathLab.setStyleName("fi_pathText");
 		af_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel56.setStyleName("fi_line");
-		verticalPanel20.setStyleName("gi_verticalPanel");
+		verticalPanel20.setStyleName("af_verticalPanel");
 		verticalPanel17.getElement().setAttribute("style", "margin-left: 50px !important;");
 		verticalPanel18.getElement().setAttribute("style", "margin-left: 50px !important;");
 		verticalPanel19.getElement().setAttribute("style", "margin-left: 50px !important;");
@@ -1094,7 +1103,7 @@ public class Asmm_eufar implements EntryPoint {
 		ct_pathLab.setStyleName("fi_pathText");
 		ct_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel58.setStyleName("fi_line");
-		verticalPanel25.setStyleName("gi_verticalPanel");
+		verticalPanel25.setStyleName("af_verticalPanel");
 		verticalPanel22.getElement().setAttribute("style", "margin-left: 60px !important;");
 		verticalPanel23.getElement().setAttribute("style", "margin-left: 60px !important;");
 		verticalPanel24.getElement().setAttribute("style", "margin-left: 60px !important;");
@@ -1157,7 +1166,7 @@ public class Asmm_eufar implements EntryPoint {
 		cp_pathLab.setStyleName("fi_pathText");
 		cp_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel60.setStyleName("fi_line");
-		verticalPanel30.setStyleName("gi_verticalPanel");
+		verticalPanel30.setStyleName("af_verticalPanel");
 		verticalPanel27.getElement().setAttribute("style", "margin-left: 115px !important;");
 		verticalPanel28.getElement().setAttribute("style", "margin-left: 115px !important;");
 		verticalPanel29.getElement().setAttribute("style", "margin-left: 115px !important;");
@@ -1220,7 +1229,7 @@ public class Asmm_eufar implements EntryPoint {
 		lo_pathLab.setStyleName("fi_pathText");
 		lo_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel62.setStyleName("fi_line");
-		verticalPanel35.setStyleName("gi_verticalPanel");
+		verticalPanel35.setStyleName("af_verticalPanel");
 		verticalPanel32.getElement().setAttribute("style", "margin-left:190px !important;");
 		verticalPanel33.getElement().setAttribute("style", "margin-left:190px !important;");
 		verticalPanel34.getElement().setAttribute("style", "margin-left:190px !important;");
@@ -1274,7 +1283,7 @@ public class Asmm_eufar implements EntryPoint {
 		ar_pathLab.setStyleName("fi_pathText");
 		ar_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel64.setStyleName("fi_line");
-		verticalPanel38.setStyleName("gi_verticalPanel");
+		verticalPanel38.setStyleName("af_verticalPanel");
 		verticalPanel37.getElement().setAttribute("style", "margin-left:200px !important;");
 		verticalPanel79.getElement().setAttribute("style", "margin-left:200px !important;");
 		rootLogger.log(Level.INFO, "Altitude Range of Measurement panel initialized");
@@ -1329,7 +1338,7 @@ public class Asmm_eufar implements EntryPoint {
 		fm_pathLab.setStyleName("fi_pathText");
 		fm_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel66.setStyleName("fi_line");
-		verticalPanel41.setStyleName("gi_verticalPanel");
+		verticalPanel41.setStyleName("af_verticalPanel");
 		verticalPanel40.getElement().setAttribute("style", "margin-left:105px !important;");
 		verticalPanel77.getElement().setAttribute("style", "margin-left:105px !important;");
 		verticalPanel78.getElement().setAttribute("style", "margin-left:105px !important;");
@@ -1400,7 +1409,7 @@ public class Asmm_eufar implements EntryPoint {
 		sc_pathLab.setStyleName("fi_pathText");
 		sc_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel68.setStyleName("fi_line");
-		verticalPanel47.setStyleName("gi_verticalPanel");
+		verticalPanel47.setStyleName("af_verticalPanel");
 		verticalPanel42.getElement().setAttribute("style", "width: 200px !important;");
 		verticalPanel43.getElement().setAttribute("style", "width: 220px !important; margin-left: 120px !important;");
 		verticalPanel44.getElement().setAttribute("style", "margin-left:120px !important; margin-top: 20px !important;");
@@ -1477,7 +1486,7 @@ public class Asmm_eufar implements EntryPoint {
 		so_pathLab.setStyleName("fi_pathText");
 		so_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel70.setStyleName("fi_line");
-		verticalPanel61.setStyleName("gi_verticalPanel");
+		verticalPanel61.setStyleName("af_verticalPanel");
 		verticalPanel48.getElement().setAttribute("style", "margin-top:10px !important;");
 		verticalPanel53.getElement().setAttribute("style", "margin-top:10px !important;");
 		verticalPanel55.getElement().setAttribute("style", "margin-left:160px !important;");
@@ -1499,7 +1508,7 @@ public class Asmm_eufar implements EntryPoint {
 		nf_pathLab.setStyleName("fi_pathText");
 		nf_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel72.setStyleName("fi_line");
-		verticalPanel66.setStyleName("gi_verticalPanel");
+		verticalPanel66.setStyleName("af_verticalPanel");
 		nf_comArea.getElement().setAttribute("style", "margin-top: 20px; width: 1016px;");
 		rootLogger.log(Level.INFO, "Additional Notes on the Flight panel initialized...");
 		
@@ -1548,7 +1557,7 @@ public class Asmm_eufar implements EntryPoint {
 		im_pathLab.setStyleName("fi_pathText");
 		im_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel74.setStyleName("fi_line");
-		verticalPanel76.setStyleName("gi_verticalPanel");
+		verticalPanel76.setStyleName("af_verticalPanel");
 		rootLogger.log(Level.INFO, "Image Uploading panel initialized");
 		
 		
