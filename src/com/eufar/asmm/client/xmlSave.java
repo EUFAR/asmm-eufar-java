@@ -51,19 +51,17 @@ public class xmlSave {
 			Element flightManager = doc.createElement("asmm:FlightManager");
 			flightManager.appendChild(doc.createTextNode(Asmm_eufar.fi_managerText.getText()));
 			flightInformation.appendChild(flightManager);
-			if (Asmm_eufar.horizontalPanel26.getWidgetCount() > 1) {
-				Element flightAircraft = doc.createElement("asmm:Platform");
+			Element flightAircraft = doc.createElement("asmm:Platform");
+			Element flightOperator = doc.createElement("asmm:Operator");
+			if (Asmm_eufar.fi_otherAiText.isVisible() == true) {
 				flightAircraft.appendChild(doc.createTextNode(Asmm_eufar.fi_otherAiText.getText()));
 				flightInformation.appendChild(flightAircraft);			
-				Element flightOperator = doc.createElement("asmm:Operator");
 				flightOperator.appendChild(doc.createTextNode(Asmm_eufar.fi_otherOpsText.getText()));
 				flightInformation.appendChild(flightOperator);
 			} else {
 				if (Asmm_eufar.fi_operatorText.getSelectedItemText() == "Make a choice...") {
-					Element flightAircraft = doc.createElement("asmm:Platform");
 					flightAircraft.appendChild(doc.createTextNode(""));
 					flightInformation.appendChild(flightAircraft);			
-					Element flightOperator = doc.createElement("asmm:Operator");
 					flightOperator.appendChild(doc.createTextNode(""));
 					flightInformation.appendChild(flightOperator);
 				} else {
@@ -72,7 +70,6 @@ public class xmlSave {
 					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
 						if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][1]) {
 							k = 1;
-							Element flightAircraft = doc.createElement("asmm:Platform");
 							flightAircraft.appendChild(doc.createTextNode(Asmm_eufar.operatorsAircraft[i][3]));
 							flightInformation.appendChild(flightAircraft);
 							break;
@@ -81,19 +78,16 @@ public class xmlSave {
 					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
 						if (Asmm_eufar.fi_operatorText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][0]) {
 							j = 1;
-							Element flightOperator = doc.createElement("asmm:Operator");
 							flightOperator.appendChild(doc.createTextNode(Asmm_eufar.operatorsAircraft[i][2]));
 							flightInformation.appendChild(flightOperator);
 							break;
 						}
 					}
 					if (k == 0) {
-						Element flightAircraft = doc.createElement("asmm:Platform");
 						flightAircraft.appendChild(doc.createTextNode(""));
 						flightInformation.appendChild(flightAircraft);
 					}
 					if (j == 0) {
-						Element flightOperator = doc.createElement("asmm:Operator");
 						flightOperator.appendChild(doc.createTextNode(""));
 						flightInformation.appendChild(flightOperator);
 					}

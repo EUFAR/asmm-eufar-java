@@ -75,7 +75,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.0 (2016-08-11)");
+	public static String asmmVersion = new String("1.2.1 (2016-08-11)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.6.0");
 	public static String javaVersion = new String("1.7.0.79");

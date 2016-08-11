@@ -32,15 +32,18 @@ public class xmlOpen {
 					getNodeValue()));
 			try {
 				Asmm_eufar.fi_campaignText.setText(doc.getElementsByTagName("projectacronym").item(0).getFirstChild().getNodeValue());
-			} catch (Exception ex) {Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'projectacronym' failed: " + ex.getMessage());
+			} catch (Exception ex) {
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'projectacronym' failed: " + ex.getMessage());
 			}
 			try {
 				Asmm_eufar.fi_scientistText.setText(doc.getElementsByTagName("missionscientist").item(0).getFirstChild().getNodeValue());
-			} catch (Exception ex) {Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'missionscientist' failed: " + ex.getMessage());
+			} catch (Exception ex) {
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'missionscientist' failed: " + ex.getMessage());
 			}
 			try {
 				Asmm_eufar.fi_managerText.setText(doc.getElementsByTagName("flightmanager").item(0).getFirstChild().getNodeValue());
-			} catch (Exception ex) {Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'flightmanager' failed: " + ex.getMessage());
+			} catch (Exception ex) {
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'flightmanager' failed: " + ex.getMessage());
 			}
 			int l = 0;
 			int k = 0;
@@ -48,22 +51,24 @@ public class xmlOpen {
 			String aircraft = "";
 			try {
 				operator = doc.getElementsByTagName("operator").item(0).getFirstChild().getNodeValue();
-				for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
-					if (operator == Asmm_eufar.operatorsAircraft[i][2]) {
-						l = 1;
-						for (int j = 0; j < Asmm_eufar.operatorList.size(); j++) {
-							if (Asmm_eufar.operatorsAircraft[i][0] == Asmm_eufar.operatorList.get(j)) {
-								Asmm_eufar.fi_operatorText.setSelectedIndex(j);
-								GuiModification.aircraftSelection(Asmm_eufar.operatorsAircraft[j][0]);
-								break;
+				if (operator.length() > 0) {
+					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
+						if (operator == Asmm_eufar.operatorsAircraft[i][2]) {
+							l = 1;
+							for (int j = 0; j < Asmm_eufar.operatorList.size(); j++) {
+								if (Asmm_eufar.operatorsAircraft[i][0] == Asmm_eufar.operatorList.get(j)) {
+									Asmm_eufar.fi_operatorText.setSelectedIndex(j);
+									GuiModification.aircraftSelection(Asmm_eufar.operatorsAircraft[j][0]);
+									break;
+								}
 							}
 						}
 					}
-				}
-				if (l == 0) {
-					Asmm_eufar.fi_operatorText.setSelectedIndex(1);
-					GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
-					Asmm_eufar.fi_otherOpsText.setText(operator);
+					if (l == 0) {
+						Asmm_eufar.fi_operatorText.setSelectedIndex(1);
+						GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
+						Asmm_eufar.fi_otherOpsText.setText(operator);
+					}
 				}
 			} catch (Exception ex) {
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'operator' failed: " + ex.getMessage());
@@ -132,7 +137,7 @@ public class xmlOpen {
 						Asmm_eufar.geoLocationLst.setSelectedIndex(4);
 						break;
 					}
-				}			
+				}
 			} catch (Exception ex) {
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'localisation' failed: " + ex.getMessage());
 			}
@@ -257,7 +262,9 @@ public class xmlOpen {
 			/// Cloud Types and Forms Sampled During Flight ///
 			///////////////////////////////////////////////////
 			NodeList cloudTypes = doc.getElementsByTagName("ct_code");
-			for (int i=0; i< cloudTypes.getLength(); i++) {Utilities.checkBox(Asmm_eufar.ctScroll, Asmm_eufar.cloudMap, cloudTypes.item(i).getFirstChild().getNodeValue());}
+			for (int i=0; i< cloudTypes.getLength(); i++) {
+				Utilities.checkBox(Asmm_eufar.ctScroll, Asmm_eufar.cloudMap, cloudTypes.item(i).getFirstChild().getNodeValue());
+			}
 			try {
 				Asmm_eufar.ct_comArea.setText(doc.getElementsByTagName("ct_other").item(0).getFirstChild().getNodeValue());
 			} catch (Exception ex) {

@@ -200,12 +200,6 @@ public class PopupMessages {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
 	// open an existing xml file - 1
 	public static void openAction() {
 		final DialogBox myOpenDialog = new DialogBox();
@@ -264,7 +258,10 @@ public class PopupMessages {
 						return;
 					}
 					ret = event.getResults();
-					ret = ret.replaceAll("\t", "").replace("\n", "");
+					ret = ret.replaceAll("\t", "");
+					ret = ret.replaceAll("\n", "");
+					ret = ret.replaceAll(">\\s+<", "><");
+					
 				} catch (Exception ex) {
 					Asmm_eufar.rootLogger.log(Level.SEVERE, "a problem occured after submission completed: ", ex);
 				}
@@ -971,7 +968,10 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
-				+"<b><u>August 11 2016, Release version 1.2.0 [ONLINE]</u></b><br>The style used in ASMM has been modified and harmonized to"
+				+ "<b><u>August 11 2016, Release version 1.2.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>if an"
+				+ " xml file is open and no aircraft is in the xml file, the dedicated combobox are set on 'Other'. It has been fixed.</li>"
+				+ "<li>the xml saving function didn't save well aircraft information.</li></ul></li></ul><br>"
+				+ "<b><u>August 11 2016, Release version 1.2.0 [ONLINE]</u></b><br>The style used in ASMM has been modified and harmonized to"
 				+ " comply with the EUFAR website style. Few changes in the GUI have been made to comply with the recommandations of the last"
 				+ " meeting between N7SP and N8DB.<ul style='list-style-type:none'><li>ADDED:<ul><li>a function to check mandatory fields has"
 				+ " been introduced.</li><li>infoButtons have been added.</li><li>a page on the EUFAR website is dedicated to the help for "

@@ -27,5 +27,5 @@ This software needs the following libraries to allow proper operation:
   - commons-javaflow-20060411.jar
   - commons-logging-1.1.1.jar
   - iText-2.1.7.js2.jar
-  - jasperreports-6.1.0.jar
+  - jasperreports-6.2.2.jar
 
