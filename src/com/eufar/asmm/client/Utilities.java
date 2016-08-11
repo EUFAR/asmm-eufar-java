@@ -18,12 +18,16 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
+import com.google.gwt.user.client.ui.TextBoxBase;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 public class Utilities {
 	
@@ -106,19 +110,23 @@ public class Utilities {
 	// modify the window title to add " - modified"
 	public static void docIsModified() {
 		Asmm_eufar.isModified = true;
-		if (!Asmm_eufar.titleString.contains("modified")) {
-			Asmm_eufar.titleString = Asmm_eufar.titleString + " - modified";
-		}
+		Asmm_eufar.titleString = "ASMM Creator - modified";
 		Window.setTitle(Asmm_eufar.titleString);
 	}
 
 
 	// modify the window title to remove " - modified"
-	public static void docNotModified() {
+	public static void docNotModorSaved() {
 		Asmm_eufar.isModified = false;
-		if (Asmm_eufar.titleString.contains("modified")) {
-			Asmm_eufar.titleString = Asmm_eufar.titleString.substring(0, 22);
-		}
+		Asmm_eufar.titleString = "ASMM Creator";
+		Window.setTitle(Asmm_eufar.titleString);
+	}
+	
+	
+	// modify the window title to add " - saved"
+	public static void docIsSaved() {
+		Asmm_eufar.isModified = false;
+		Asmm_eufar.titleString = "ASMM Creator - saved";
 		Window.setTitle(Asmm_eufar.titleString);
 	}
 
@@ -138,6 +146,7 @@ public class Utilities {
 	// clear all fields
 	public static void clearFields() {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Cleaning all fields in progress...");
+		runCheckDefault();
 		List<TextBox> allTextBox = $("*", Asmm_eufar.subDockPanel).widgets(TextBox.class);
 		List<TextArea> allTextArea = $("*", Asmm_eufar.subDockPanel).widgets(TextArea.class);
 		List<CheckBox> allCheckBox = $("*", Asmm_eufar.subDockPanel).widgets(CheckBox.class);
@@ -237,14 +246,17 @@ public class Utilities {
 		Asmm_eufar.imageTab.removeAllRows();
 		Asmm_eufar.imageCaption.clear();
 		Asmm_eufar.imagePath.clear();
-		Utilities.docNotModified();
+		Utilities.docNotModorSaved();
 		Asmm_eufar.rootLogger.log(Level.INFO, "Cleaning all fields finished.");
 	}
 	
 	
 	// add element to a list and a widget
-	public static PushButton addListButton(final FlexTable flexTable, final TextBox widget, final ArrayList<String> itemList) {
-		final PushButton addButton = new PushButton(Resources.smallImage("plus"));
+	public static SimplePanel addListButton(final FlexTable flexTable, final TextBox widget, final ArrayList<String> itemList) {
+		final Image image = new Image("icons/plus_icon.png");
+		final SimplePanel addButton = new SimplePanel(image);
+		addButton.setPixelSize(25, 25);
+		addButton.setStyleName("infoButton");
 		widget.addKeyDownHandler(new KeyDownHandler() {
 			public void onKeyDown(KeyDownEvent event) {
 				if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
@@ -256,7 +268,8 @@ public class Utilities {
 					Utilities.docIsModified();
 					final String widgetText = widget.getText();
 					final int row = flexTable.getRowCount();
-					final PushButton delButton = new PushButton(Resources.smallImage("del"));
+					final Image image = new Image("icons/del_icon.png");
+					final SimplePanel delButton = new SimplePanel(image);
 					final Label label = new Label(widgetText);
 					itemList.add(widgetText);
 					widget.setText("");
@@ -267,7 +280,7 @@ public class Utilities {
 					flexTable.setWidget(row, 0, label);
 					flexTable.setWidget(row, 1, delButton);
 					flexTable.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-					delButton.addClickHandler(new ClickHandler() {
+					image.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
 							Asmm_eufar.rootLogger.log(Level.INFO, "Item will be removed from list: " + widgetText);
 							Utilities.docIsModified();
@@ -281,10 +294,8 @@ public class Utilities {
 				}
 			}
 		});
-		addButton.setPixelSize(25, 25);
-		addButton.setTabIndex(-1);
 		addButton.setStyleName("infoButton");
-		addButton.addClickHandler(new ClickHandler() {
+		image.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (widget.getText() == "") {
 					return;
@@ -293,7 +304,8 @@ public class Utilities {
 				Utilities.docIsModified();
 				final String widgetText = widget.getText();
 				final int row = flexTable.getRowCount();
-				final PushButton delButton = new PushButton(Resources.smallImage("del"));
+				final Image image = new Image("icons/del_icon.png");
+				final SimplePanel delButton = new SimplePanel(image);
 				final Label label = new Label(widgetText);
 				itemList.add(widgetText);
 				widget.setText("");
@@ -304,7 +316,7 @@ public class Utilities {
 				flexTable.setWidget(row, 0, label);
 				flexTable.setWidget(row, 1, delButton);
 				flexTable.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-				delButton.addClickHandler(new ClickHandler() {
+				image.addClickHandler(new ClickHandler() {
 					public void onClick(ClickEvent event) {
 						Asmm_eufar.rootLogger.log(Level.INFO, "Item will be removed from list: " + widgetText);
 						Utilities.docIsModified();
@@ -346,5 +358,43 @@ public class Utilities {
 			}
 		});
 		Asmm_eufar.rootLogger.log(Level.INFO, "Item added to list (xmlfile)");
+	}
+	
+	
+	// put all labels and text to default color and position
+	public static void runCheckDefault() {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Default display before check in progress...");
+		boolean otherOpsState = Asmm_eufar.fi_otherOpsText.isVisible();
+		List<Label> allLabel = $("*", Asmm_eufar.subDockPanel).widgets(Label.class);
+		List<TextBoxBase> allBox = $("*", Asmm_eufar.subDockPanel).widgets(TextBoxBase.class);
+		List<DateBox> allDateBox = $("*", Asmm_eufar.subDockPanel).widgets(DateBox.class);
+		List<ListBox> allListBox = $("*", Asmm_eufar.subDockPanel).widgets(ListBox.class);
+		for (int i = 0; i < allLabel.size(); i++) {
+			String style = allLabel.get(i).getStylePrimaryName();
+			allLabel.get(i).getElement().setAttribute("style","");
+			allLabel.get(i).setStyleName(style);
+		}
+		for (int i = 0; i < allBox.size(); i++) {
+			String style = allBox.get(i).getStylePrimaryName();
+			allBox.get(i).getElement().setAttribute("style","");
+			allBox.get(i).setStyleName(style);
+		}
+		for (int i = 0; i < allDateBox.size(); i++) {
+			String style = allDateBox.get(i).getStylePrimaryName();
+			allDateBox.get(i).getElement().setAttribute("style","");
+			allDateBox.get(i).setStyleName(style);
+		}
+		for (int i = 0; i < allListBox.size(); i++) {
+			String style = allListBox.get(i).getStylePrimaryName();
+			allListBox.get(i).getElement().setAttribute("style","");
+			allListBox.get(i).setStyleName(style);
+		}
+		Asmm_eufar.fi_otherOpsText.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherAiText.setVisible(otherOpsState);
+		Asmm_eufar.fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");
+		for (int i = 0; i < 9; i++) {
+			Asmm_eufar.tabPanel.getTabWidget(i).getElement().setAttribute("style","color: white !important;");
+		}
+		Asmm_eufar.rootLogger.log(Level.INFO, "Default display set.");
 	}
 }

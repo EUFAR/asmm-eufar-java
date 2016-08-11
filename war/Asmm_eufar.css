@@ -2,6 +2,12 @@
   padding: 10px;
 }
 
+
+@font-face {
+  font-family: MyFontHeader;
+  src: url(font/Cinzel-Regular.otf);
+}
+
 @font-face {
   font-family: MyFont;
   src: url(font/SourceSansPro-Regular.ttf);
@@ -25,15 +31,60 @@
 }
 
 
+@font-face {
+  font-family: MyFontItalic;
+  src: url(font/SourceSansPro-Italic.ttf);
+}
+
+
 .infoButton {
   width: 25px;
   height: 25px;
   margin-left: 20px;
-  margin-top: 2px;
 }
 
-.infoButton:hover {
+
+.infoButton:active {
+  transform: translateX(1px) translateY(1px);
+}
+
+
+.headerTextLabel {
+  font-family: MyFontHeader;
+  color: #616265;
+  font-size: 28px;
+  margin-top: 26px;
+  font-weight: 400;
+  text-align: center
+}
+
+
+.headerHorizontalPanel {
+  height: 80px;
+  width: 100%;
+  background: white;
+  background-image: url(icons/logo_small_header.png);
+  background-repeat: no-repeat;
+  background-size: auto;
+}
+
+
+.fi_dateBox {
+  padding: 5px 4px;
+  border: 1px solid #ccc;
+  width: 80px;
+  height: 15px;
+  font-family: MyFontItalic;
+  font-size: 14px;
   background: rgb(238,238,238);
+  text-align: center;
+  margin-left: 20px;
+  color: #4f4f4f;
+}
+
+
+.fi_dateBox:focus {
+  border: 1px solid #ffa126 !important;
 }
 
 
@@ -43,7 +94,7 @@
 
 
 .fi_mainText {
-  margin-top: 6px;
+  margin-top: 10px;
   margin-bottom: 6px;
   margin-left: 55px;
   font-family: MyFont;
@@ -53,8 +104,23 @@
 }
 
 
+.fi_mainText2 {
+  margin-left: 30px;
+  font-family: MyFontHeader;
+  font-weight: 400;
+  font-size: 26px;
+  color: white;
+  background: #616264;
+  width: 560px;
+  height: 42px;
+  padding-left: 0px;
+  padding-top: 8px;
+  text-align: center;
+}
+
+
 .fi_pathText {
-  margin-top: 6px;
+  margin-top: 10px;
   margin-bottom: 6px;
   margin-left: 6px;
   margin-right: 6px;
@@ -66,7 +132,7 @@
 
 
 .fi_pathText2 {
-  margin-top: 6px;
+  margin-top: 10px;
   margin-bottom: 6px;
   font-family: MyFont;
   font-weight: 500;
@@ -86,7 +152,7 @@
 
 
 .fi_textLabel {
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
   font-size: 14px;
   text-align: justify;
@@ -114,9 +180,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -130,9 +197,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -146,9 +214,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background-color: #d6d6d6;
+  color: #4f4f4f;
 }
 
 
@@ -158,9 +227,10 @@
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -172,10 +242,18 @@
 .fi_verticalPanel {
   background: white;
   margin-left: 30px;
-  margin-top: -6px;
-  width: 750px;
+  margin-top: -7px;
+  width: 1200px;
   padding-top: 10px;
   padding-bottom: 10px;
+}
+
+
+.fi_starLabel {
+  font-family: MyFontBold;
+  color: #ED1C24;
+  font-size: 16px;
+  margin-left: 5px;
 }
 
 
@@ -184,9 +262,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -198,8 +277,8 @@
 .sa_verticalPanel2 {
   background: white;
   margin-left: 30px;
-  margin-top: -6px;
-  width: 1100px;
+  margin-top: -7px;
+  width: 1200px;
   padding-bottom: 10px;
 }
 
@@ -207,23 +286,17 @@
 
 .sa_checkBox {
   margin-left: 40px;
-  font-size: 14px;
-  font-family: MyFont;
   color: #4f4f4f;
 }
 
 
 .sa_checkBox2 {
   margin-left: 20px;
-  font-size: 14px;
-  font-family: MyFont;
   color: #4f4f4f;
 }
 
 
 .sa_checkBox3 {
-  font-size: 14px;
-  font-family: MyFont;
   color: #4f4f4f;
 }
 
@@ -241,8 +314,9 @@
   border: 1px solid #ccc;
   margin-left: 20px;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   background: rgb(238,238,238);
+  color: #4f4f4f
 }
 
 
@@ -254,8 +328,8 @@
 .gi_verticalPanel {
   background: white;
   margin-left: 30px;
-  margin-top: -6px;
-  width: 1150px;
+  margin-top: -7px;
+  width: 1200px;
   padding-bottom: 10px;
 }
 
@@ -266,8 +340,9 @@
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -282,8 +357,9 @@
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -300,7 +376,7 @@
 
 
 .gi_textLabel {
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
   font-size: 14px;
 }
@@ -333,8 +409,8 @@
 .af_verticalPanel {
   background: white;
   margin-left: 30px;
-  margin-top: -6px;
-  width: 1100px;
+  margin-top: -7px;
+  width: 1200px;
   padding-bottom: 10px;
 }
 
@@ -351,7 +427,7 @@
 
 .af_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -367,7 +443,7 @@
 
 .ct_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -383,7 +459,7 @@
 
 .cp_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -399,7 +475,7 @@
 
 .lo_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -415,7 +491,7 @@
 
 .ar_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -431,7 +507,7 @@
 
 .fm_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -447,14 +523,14 @@
 
 .sc_checkBox {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
 
 .so_textLabel {
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontBold;
   color: #4f4f4f;
 }
 
@@ -462,6 +538,7 @@
 .so_tableTextLabel {
   font-size: 14px;
   font-family: MyFontBold;
+  color: #4f4f4f;
 }
 
 
@@ -473,6 +550,11 @@
   background-color:  #ffffff;
   border: 1px solid #ccc;
   background: rgb(238,238,238);
+  overflow: auto;
+}
+
+.so_horizontalPanel {
+  width:360px;
 }
 
 
@@ -482,10 +564,10 @@
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
-  background-color: #ffffff;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 
@@ -515,7 +597,7 @@
 
 .flexTable {
   height: 10px;
-  width: 350px;
+  width: 335px;
   font-size: 12px;
   font-family: MyFont;
 }
@@ -533,7 +615,7 @@
 
 
 .gwt-TabLayoutPanel {
-  
+   background: #616266 !important;
 }
 
 
@@ -543,6 +625,7 @@
 
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelContentContainer {
+  border: 0px solid !important;
 }
 
 
@@ -556,14 +639,15 @@
   font-family: MyFont !important;
   font-size: 14px !important;
   margin-left: 4px !important;
-  padding: 0px 10px 4px 10px !important;
+  padding: 0px 10px 6px 10px !important;
   cursor: pointer !important;
   cursor: hand !important;
   color: white !important;
-  font-weight: normal !important;
+  font-weight: 300 !important;
   text-align: center !important;
   background: #616266 !important;
   border-radius: 3px 3px 0px 0px !important;
+  text-transform: uppercase;
 }
 
 .gwt-TabLayoutPanel .gwt-TabLayoutPanelTab-selected {
@@ -574,32 +658,37 @@
 
 
 .gwt-MenuBar {
-  cursor: default !important;  
+  cursor: default !important;
 }
 
 
 .gwt-MenuBar-horizontal {
-  margin-top: 0px !important;
-  margin-left: 30px !important;
-  background: white !important;
-  border: 0px solid !important;
+  border: 1px solid #616266 !important;
+  height: 38px! important;
+  background: #616266 !important;
+  padding-top: 2px !important;
 }
 
 
 .gwt-MenuBar-horizontal .gwt-MenuItem {
-  border: 5px Solid #616266 !important;
-  font-family: MyFontLight !important;
-  color: #ffa126 !important;
-  font-size: 16px !important;
-  vertical-align: middle !important;
-  padding: 5px 10px 5px 10px !important;
+  height: 21px !important;
+  border: 1px solid #616266 !important;
+  border-radius: 3px !important;
   background: #616266 !important;
 }
 
 
+.gwt-MenuBar-horizontal .gwt-MenuItem:hover {
+  border: 1px solid black !important;
+  border-radius: 3px !important;
+  background: black !important;
+}
+
+
 .gwt-MenuBar-horizontal .gwt-MenuItem-selected {
-	border-bottom: 5px Solid #616266 !important;
-	background: #616266 !important;
+  border: 1px solid black !important;
+  border-radius: 3px !important;
+  background: black !important;
 }
 
 
@@ -607,11 +696,13 @@
   margin-top: 0px !important;
   margin-left: 0px !important;
   background: white !important;
+  
 }
 
 
 .gwt-MenuBar-vertical table {
   border-collapse: collapse !important;
+  
 }
 
 
@@ -623,7 +714,7 @@
 
 
 .gwt-MenuBar-vertical .gwt-MenuItem-selected {
-	background: rgb(240,240,240) !important;
+  background: rgb(240,240,240) !important;
 }
 
 
@@ -664,7 +755,7 @@
 
 
 .gwt-MenuBarPopup .menuPopupBottomCenter {
- border-bottom: 1px solid rgb(180,180,180) !important;
+  border-bottom: 1px solid rgb(180,180,180) !important;
   background: white !important;
 }
 
@@ -737,105 +828,480 @@
 }
 
 
-.gwt-DateBox {
-  padding: 5px 4px !important;
-  border: 1px solid #ccc !important;
-  width: 80px !important;
-  height: 15px !important;
-  font-family: MyFont !important;
-  font-size: 14px !important;
-  background: rgb(238,238,238) !important;
-  text-align: center !important;
-  margin-left: 10px !important;
-}
-
-
-.gwt-DateBox:focus {
-  border: 1px solid #ffa126 !important;
-}
-
-
 .table-center {
   text-align: center;
 }
 
-.myUploadBox {
-  background: #e5e5e5;
+
+.aboutAsmmPanel {
+  background: rgb(238,238,238);
   padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.aboutAsmmButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.aboutAsmmText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.aboutExplorerPanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.aboutExplorerButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.aboutExplorerText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.aboutLogPanel {
+  background: rgb(238,238,238);
+  padding: 10px 0px 10px 10px;
   cursor: default;
   font-family: MyFont;
   font-size: 14px;
   border: 1px solid black;
-  
 }
 
 
-.myUploadTextBox {
-  width: 100px;
-  height: 17px;
-  padding: 3px 3px;
-  border: 1px solid #ccc;
-  font-size: 14px;
-  font-family: MyFont;
-  background: white;
+.aboutLogButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
 }
 
 
-.myUploadTextBox:focus {
-  border: 1px solid #ffa126;
-}
-
-
-.myUploadTextLabel {
-  margin-bottom:30px;
-  margin-left: 20px;
+.aboutLogText {
   font-family: MyFont;
   font-size: 14px;
+  color: #4f4f4f;
   text-align: justify;
+  margin-left: 10px;
 }
 
 
-.myUploadTextLabel2 {
-  margin-left: 20px;
+.aboutStandardPanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.aboutStandardButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.aboutStandardText {
   font-family: MyFont;
   font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.aboutInfoPanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.aboutInfoButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.aboutInfoText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.newFilePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.newFileButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.newFileButton2 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 30px !important;
+  margin-right: 30px !important;
+}
+
+
+.newFileButton3 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+}
+
+
+.newFileText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.newFileText2 {
+  font-family: MyFontBold;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: center;
+  margin-top: 10px;
+}
+
+
+.openFilePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.openFileButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 10px !important;
+}
+
+
+.openFileButton2 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 100px !important;
+}
+
+
+.openFileText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+
+.openFileUpload {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
   margin-bottom: 20px;
+}
+
+
+.saveFilePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.saveFileButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 76px !important;
+}
+
+
+.saveFileButton2 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 140px !important;
+}
+
+
+.saveFileText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+
+.saveFileBox {
+  width: 280px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFontItalic;
+  color: #4f4f4f;
+  background: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+
+.saveFileBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.printFilePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.printFileButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 76px !important;
+}
+
+
+.printFileButton2 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 140px !important;
+}
+
+
+.printFileText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-bottom: 30px;
+}
+
+
+.printFileBox {
+  width: 280px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFontItalic;
+  color: #4f4f4f;
+  background: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
+}
+
+
+.printFileBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.openImagePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.openImageButton {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 10px !important;
+}
+
+
+.openImageButton2 {
+  font-family: MyFontBold !important;
+  margin-top: 20px !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 125px !important;
+}
+
+
+.openImageText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-bottom: 20px;
+}
+
+
+.openImageText2 {
+  font-family: MyFontBold;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 10px;
   text-decoration: underline;
-  font-weight: bold !important;
 }
 
 
-.myAddBox {
-  width: 235px;
+.openImageText3 {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.openImageBox {
+  width: 280px;
   height: 17px;
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFontBold;
-  margin-left: 20px;
-  background-color: #ffffff;
+  font-family: MyFontItalic;
+  color: #4f4f4f;
+  background: white;
+  margin-left: 10px;
 }
 
 
-.myAddBox:focus {
-  border: 1px solid #ffa126;
-}
-
-
-.au_textBox {
-  width: 250px;
+.openImageBox2 {
+  width: 280px;
   height: 17px;
   padding: 3px 3px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFontBold;
-  margin-left: 20px;
-  background-color: #ffffff;
+  font-family: MyFontItalic;
+  color: #4f4f4f;
+  background: white;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
 
 
-.au_textBox:focus {
+.openImageBox:focus {
   border: 1px solid #ffa126;
+}
+
+
+.openImageBox2:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.openImageUpload {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.notCompletePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.notCompleteButton1 {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 75px !important;
+}
+
+
+.notCompleteButton2 {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 165px !important;
+}
+
+
+.notCompleteText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+  margin-bottom: 20px;
 }
 
 
@@ -844,9 +1310,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background: rgb(238,238,238);
+  color: #4f4f4f;
 }
 
 .geoTextList:disabled {
@@ -854,9 +1321,10 @@
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
-  font-family: MyFont;
+  font-family: MyFontItalic;
   margin-left: 20px;
   background-color: #d6d6d6;
+  color: #4f4f4f;
 }
 
 
@@ -867,7 +1335,6 @@
 
 .uploadImage {
   padding: 1px 1px 1px 1px;
-  
 }
 
 
@@ -887,8 +1354,9 @@
 
 
 .addCatPopupText {
-  font-family: MyFont;
+  font-family: MyFontBold;
   font-size: 14px;
+  color: #4f4f4f;
   margin-right:20px;
   margin-bottom:30px;
   margin-top:10px;
@@ -916,10 +1384,71 @@
 }
 
 
-.gwt-TabLayoutPanelScrollPanel {
-  background: rgb(238,238,238);
+.gwt-TabLayoutPanelScrollButton {
+  padding-top: 2px;
+  padding-bottom: -2px;
 }
 
-.gwt-TabLayoutPanelScrollPopup {
-  border: 0px solid black;
+
+.gwt-TabLayoutPanelScrollButton:active {
+  transform: translateX(1px) translateY(1px);
+}
+
+
+.footerLeft {
+  width: 102px;
+  height: 30px;
+  background: rgb(239,238,237);
+  border: 1px solid #D2D5D8;
+}
+
+
+.footerRight {
+  width: 78px;
+  height: 30px;
+  background: rgb(239,238,237);
+  border: 1px solid #D2D5D8;
+}
+
+
+.footerCenter {
+  width: 137px;
+  height: 30px;
+  background: rgb(239,238,237);
+  border: 1px solid #D2D5D8;
+}
+
+
+.footerCenter:hover {
+  color: #F9A12A;
+}
+
+
+.footerLeftLabel {
+  font-family: MyFont;
+  font-weight: 700;
+  font-size : 12px;
+  color: #616265;
+  padding: 8px;
+  border-left: 1px solid #D2D5D8;
+}
+
+
+.footerRightLabel {
+  font-family: MyFont;
+  font-weight: 700;
+  font-size : 12px;
+  color: #616265;
+  padding: 8px;
+  border-left: 1px solid #D2D5D8;
+}
+
+
+.footerCenterLabel {
+  font-family: MyFont;
+  font-weight: 700;
+  font-size : 12px;
+  color: #616265;
+  padding: 8px;
+  border-left: 1px solid #D2D5D8;
 }

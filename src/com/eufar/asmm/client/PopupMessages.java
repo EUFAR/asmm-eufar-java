@@ -19,8 +19,8 @@ import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
@@ -28,7 +28,8 @@ import com.google.gwt.user.client.ui.FormPanel.SubmitCompleteEvent;
 
 public class PopupMessages {
 	
-	public enum infoEnum{NEWCHECKBOX, INFOSOUTHNORTH, INFOWESTEAST, INFOMINMAX;}
+	public enum infoEnum{NEWCHECKBOX, INFOSOUTHNORTH, INFOWESTEAST, INFOMINMAX, PROJECTACRONYM, DATE, FLIGHTIDENTIFIER, MISSIONSCIENTIST,
+		FLIGHTMANAGER, OPERATOR, LOCATION, CONTACTNAME, CONTACTROLE, CONTACTEMAIL, COMMENTS, CHECKBOXES, SURFACEOBSERVATIONS;}
 	
 	
 	// create a popup panel displaying a changelog
@@ -56,14 +57,10 @@ public class PopupMessages {
 		scrollPanel.setWidth("700px");
 		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel.add(okButton);
-		image.getElement().setAttribute("style", "margin-right: 10px !important;");
-		label.setStyleName("popupText");
-		okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; margin-top: "
-				+ "10px !important; font-size: 14px !important;");
-		verticalPanel.getElement().setAttribute("style", "margin: 10px 0px 10px 10px;");
-		myOpenDialog.setSize("700px", "500px");
-		myOpenDialog.setStyleName("myUploadBox");
-		myOpenDialog.getElement().setAttribute("style", "padding: 4px 0px 4px 4px !important;");
+		label.setStyleName("aboutLogText");
+		okButton.addStyleName("aboutLogButton");
+		myOpenDialog.setStyleName("aboutLogPanel");
+		myOpenDialog.setSize("700px","500px");
 		myOpenDialog.setModal(true);
 		myOpenDialog.center();
 	}
@@ -89,15 +86,13 @@ public class PopupMessages {
 		horizontalPanel01.add(Resources.popupImage("warning"));
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
+		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel01.add(button);
 		aboutDialog.add(verticalPanel01);
-		label.setStyleName("popupText");
-		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
-				+ "!important; font-size: 14px !important;");
-		aboutDialog.setSize( "500px", "180px" );
-		aboutDialog.setStyleName("myUploadBox");
+		label.setStyleName("aboutExplorerText");
+		button.addStyleName("aboutExplorerButton");
+		aboutDialog.setStyleName("aboutExplorerPanel");
+		aboutDialog.setSize("500px","180px");
 		aboutDialog.setModal(true);
 		aboutDialog.center();
 		aboutDialog.show();
@@ -128,15 +123,13 @@ public class PopupMessages {
 		horizontalPanel01.add(Resources.popupImage("about"));
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
+		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel01.add(button);
 		aboutDialog.add(verticalPanel01);
-		label.setStyleName("popupText");
-		aboutDialog.setStyleName("myUploadBox");
-		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
-				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
-		aboutDialog.setSize( "500px", "270px" );
+		label.setStyleName("aboutAsmmText");
+		aboutDialog.setStyleName("aboutAsmmPanel");
+		button.addStyleName("aboutAsmmButton");
+		aboutDialog.setSize("500px","270px");
 		aboutDialog.setModal(true);
 		aboutDialog.center();
 		aboutDialog.show();
@@ -164,15 +157,13 @@ public class PopupMessages {
 		horizontalPanel01.add(Resources.popupImage("xml"));
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
+		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel01.add(button);
 		aboutDialog.add(verticalPanel01);
-		label.setStyleName("popupText");
-		aboutDialog.setStyleName("myUploadBox");
-		verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		button.getElement().setAttribute("style", "margin-left: 220px !important; font-family: MyFontBold !important; margin-top: 20px "
-				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
-		aboutDialog.setSize( "500px", "140px" );
+		label.setStyleName("aboutStandardText");
+		aboutDialog.setStyleName("aboutStandardPanel");
+		button.addStyleName("aboutStandardButton");
+		aboutDialog.setSize("500px","140px");
 		aboutDialog.setModal(true);
 		aboutDialog.center();
 		aboutDialog.show();
@@ -180,7 +171,7 @@ public class PopupMessages {
 
 	
 	// create a popup panel displaying an informative message
-	public static void infoPanel(final String context, final PushButton infoButton) {
+	public static void infoPanel(final String context, final SimplePanel infoButton) {
 		final DialogBox infoDialog = new DialogBox();
 		final VerticalPanel verticalPanel01 = new VerticalPanel();
 		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
@@ -196,153 +187,23 @@ public class PopupMessages {
 		horizontalPanel01.add(Resources.popupImage("info"));
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
+		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 		verticalPanel01.add(button);
 		infoDialog.add(verticalPanel01);
-		label.setStyleName("popupText");
-		infoDialog.setStyleName("myUploadBox");
-		verticalPanel01.getElement().setAttribute("style","margin-left: 10px !important; margin-right: 10px !important; margin-top: 10px"
-				+ " !important;");
-		button.getElement().setAttribute("style", "margin-left: 145px !important; font-family: MyFontBold !important; margin-top: 20px "
-				+ "!important; margin-bottom: 10px !important; font-size: 14px !important;");
-		infoDialog.setSize( "350px", "50px" );
+		label.setStyleName("aboutInfoText");
+		infoDialog.setStyleName("aboutInfoPanel");
+		button.addStyleName("aboutInfoButton");
+		infoDialog.setSize("350px","50px");
 		infoDialog.setModal(true);
 		infoDialog.center();
 		infoDialog.showRelativeTo(infoButton);
 	}
 	
 	
-	// create a new file by cleaning all widgets
-	public static void newFile() {
-		Asmm_eufar.rootLogger.log(Level.INFO, "Cleaning function invoked... ");
-		if (Asmm_eufar.isModified) {
-			final DialogBox infoDialog = new DialogBox();
-			final VerticalPanel verticalPanel01 = new VerticalPanel();
-			final VerticalPanel verticalPanel02 = new VerticalPanel();
-			final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
-			final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
-			final Label label = new Label("The actual document has been modified. Changes will be lost if the document is not saved.");
-			final Label label2 = new Label("Do you want to save your changes?");
-			final Button saveButton = new Button("Save");
-			final Button cancelButton = new Button("Cancel");
-			final Button createButton = new Button("Clear without saving");	
-			saveButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-					PopupMessages.saveFile("clear");
-				}
-			});
-			cancelButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-				}
-			});
-			createButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-					Utilities.clearFields();
-				}
-			});
-			infoDialog.setGlassEnabled(true);
-			horizontalPanel01.add(Resources.popupImage("warning"));
-			verticalPanel02.add(label);
-			verticalPanel02.add(label2);
-			horizontalPanel01.add(verticalPanel02);
-			verticalPanel01.add(horizontalPanel01);
-			horizontalPanel02.add(saveButton);
-			horizontalPanel02.add(cancelButton);
-			horizontalPanel02.add(createButton);
-			verticalPanel01.add(horizontalPanel02);
-			infoDialog.add(verticalPanel01);
-			infoDialog.setStyleName("myUploadBox");
-			verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-					+ "!important;");
-			label.setStyleName("myUploadTextLabel");
-			label2.setStyleName("myUploadTextLabel2");
-			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
-					+ "10px !important; font-size: 14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; font-size: 14px !important;");
-			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; height: 30px !important; width: 150px !important; "
-					+ "font-size: 14px !important;");
-			infoDialog.setSize("130px","180px");
-			infoDialog.setModal(true);
-			infoDialog.center();
-			infoDialog.show();
-		} else {
-			Utilities.clearFields();
-		}
-	}
 	
 	
-	// open an existing xml file - 1
-	public static void openFile() {
-		Asmm_eufar.rootLogger.log(Level.INFO, "Opening function invoked...");
-		if (Asmm_eufar.isModified) {
-			final DialogBox infoDialog = new DialogBox();
-			final VerticalPanel verticalPanel01 = new VerticalPanel();
-			final VerticalPanel verticalPanel02 = new VerticalPanel();
-			final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
-			final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
-			final Label label = new Label("The actual document has been modified. Changes will be lost if the document is not saved.");
-			final Label label2 = new Label("Do you want to save your changes?");
-			final Button saveButton = new Button("Save");
-			final Button cancelButton = new Button("Cancel");
-			final Button createButton = new Button("Open without saving");
-			saveButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-					PopupMessages.saveFile("open");
-				}
-			});
-			cancelButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-				}
-			});
-			createButton.addClickHandler(new ClickHandler() {			
-				@Override
-				public void onClick(ClickEvent event) {
-					infoDialog.hide();
-					openAction();
-				}
-			});
-			infoDialog.setGlassEnabled(true);
-			horizontalPanel01.add(Resources.popupImage("warning"));
-			verticalPanel02.add(label);
-			verticalPanel02.add(label2);
-			horizontalPanel01.add(verticalPanel02);
-			verticalPanel01.add(horizontalPanel01);
-			horizontalPanel02.add(saveButton);
-			horizontalPanel02.add(cancelButton);
-			horizontalPanel02.add(createButton);
-			verticalPanel01.add(horizontalPanel02);
-			infoDialog.add(verticalPanel01);
-			infoDialog.setStyleName("myUploadBox");
-			verticalPanel01.getElement().setAttribute("style", "margin-left: 10px !important; margin-top: 10px !important; margin-right: 10px "
-					+ "!important;");
-			label.setStyleName("myUploadTextLabel");
-			label2.setStyleName("myUploadTextLabel2");
-			saveButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important; margin-top: "
-					+ "10px !important; font-size: 14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left: 40px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; font-size: 14px !important;");
-			createButton.getElement().setAttribute("style", "margin-left: 20px !important; font-family: MyFontBold !important;"
-					+ " margin-top: 10px !important; height: 30px !important; width: 150px !important; "
-					+ "font-size: 14px !important;");
-			infoDialog.setSize("130px","180px");
-			infoDialog.setModal(true);
-			infoDialog.center();
-			infoDialog.show();
-		} else {
-			openAction();
-		}
-	}
+	
+	
 	
 	
 	// open an existing xml file - 1
@@ -415,17 +276,11 @@ public class PopupMessages {
 		horizontalPanel02.add(cancelButton);
 		verticalPanel01.add(horizontalPanel02);
 		myOpenDialog.add(myUploadForm);
-		myOpenDialog.setStyleName("myUploadBox");
-		myFileUpload.getElement().setAttribute("style", "margin-left:20px !important;");
-		verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-		label.setStyleName("myUploadTextLabel");
-		submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:90px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
+		myOpenDialog.setStyleName("openFilePanel");
+		myFileUpload.setStyleName("openFileUpload");
+		label.setStyleName("openFileText");
+		submitButton.addStyleName("openFileButton");
+		cancelButton.addStyleName("openFileButton2");
 		myOpenDialog.setSize("130px","150px");
 		myOpenDialog.setModal(true);
 		myOpenDialog.center();
@@ -444,7 +299,8 @@ public class PopupMessages {
 		final TextArea xmlTree = new TextArea();
 		final TextBox fileName = new TextBox();
 		final TextBox filebox = new TextBox();
-		final Label label = new Label("Please enter a name to save the XML file.");
+		final Label label = new Label("Please enter a name to save the XML file. As per EUFAR rules, the name of the file should start"
+				+ " by the Flight Identifier.");
 		final FormPanel myForm = new FormPanel();
 		final Button cancelButton = new Button("Cancel/Close");
 		final Button submitButton = new Button("Save");
@@ -469,12 +325,12 @@ public class PopupMessages {
 					return;
 				} else {
 					Asmm_eufar.myFileName = fileName.getText();
-					if (!Asmm_eufar.myFileName.toLowerCase().endsWith(".xml")) {
+					if (!fileName.getText().toLowerCase().endsWith(".xml")) {
 						Asmm_eufar.myFileName = Asmm_eufar.myFileName + ".xml";
 					}
 					filebox.setText(Asmm_eufar.myFileName);
 					myForm.submit();
-					Utilities.docNotModified();
+					Utilities.docIsSaved();
 					if (string == "clear") {
 						Utilities.clearFields();
 					}
@@ -488,13 +344,12 @@ public class PopupMessages {
 						Asmm_eufar.rootLogger.log(Level.INFO, "No filename entered...");
 						return;
 					} else {
-						Asmm_eufar.myFileName = fileName.getText();
-						if (!Asmm_eufar.myFileName.toLowerCase().endsWith(".xml")) {
+						if (!fileName.getText().toLowerCase().endsWith(".xml")) {
 							Asmm_eufar.myFileName = Asmm_eufar.myFileName + ".xml";
 						}
 						filebox.setText(Asmm_eufar.myFileName);
 						myForm.submit();
-						Utilities.docNotModified();
+						Utilities.docIsSaved();
 						if (string == "clear") {
 							Utilities.clearFields();
 						}
@@ -510,12 +365,12 @@ public class PopupMessages {
 		xmlTree.setName("xmltree");
 		verticalPanel01.add(xmlTree);
 		verticalPanel02.add(label);
-		fileName.setText(Asmm_eufar.myFileName);
-		verticalPanel02.add(fileName);
-		Asmm_eufar.myFileName = fileName.getText();
-		if (!Asmm_eufar.myFileName.toLowerCase().endsWith(".xml")) {
-			Asmm_eufar.myFileName = Asmm_eufar.myFileName + ".xml";
+		if (Asmm_eufar.myFileName == "" || Asmm_eufar.myFileName == ".xml") {
+			fileName.setText(Asmm_eufar.fi_flightText.getText());
+		} else {
+			fileName.setText(Asmm_eufar.myFileName);
 		}
+		verticalPanel02.add(fileName);
 		filebox.setName("filename");
 		verticalPanel01.add(filebox);
 		myForm.setAction(Asmm_eufar.asmmPath + "/download");
@@ -527,17 +382,11 @@ public class PopupMessages {
 		verticalPanel02.add(myForm);	
 		verticalPanel03.add(horizontalPanel01);
 		mySaveDialog.add(verticalPanel03);	
-		fileName.setStyleName("myUploadTextBox");
-		mySaveDialog.setStyleName("myUploadBox");
-		verticalPanel03.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		label.setStyleName("myUploadTextLabel");
-		fileName.getElement().setAttribute("style", "width:230px !important; margin-left: 20px !important;");
-		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:90px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
+		fileName.setStyleName("saveFileBox");
+		mySaveDialog.setStyleName("saveFilePanel");
+		label.setStyleName("saveFileText");
+		submitButton.addStyleName("saveFileButton");
+		cancelButton.addStyleName("saveFileButton2");
 		mySaveDialog.setSize("370px","150px");
 		mySaveDialog.setModal(true);
 		mySaveDialog.center();
@@ -583,7 +432,6 @@ public class PopupMessages {
 					}
 					filebox.setText(Asmm_eufar.myPDFName);
 					myForm.submit();
-					Utilities.docNotModified();
 				}
 			}
 		});
@@ -603,7 +451,6 @@ public class PopupMessages {
 						}
 						filebox.setText(Asmm_eufar.myPDFName);
 						myForm.submit();
-						Utilities.docNotModified();
 					}
 				}
 			}
@@ -628,18 +475,12 @@ public class PopupMessages {
 		verticalPanel02.add(myForm);	
 		verticalPanel03.add(horizontalPanel01);
 		mySaveDialog.add(verticalPanel03);	
-		mySaveDialog.setStyleName("myUploadBox");
-		label.setStyleName("myUploadTextLabel");
-		fileName.setStyleName("myUploadTextBox");
-		verticalPanel03.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
-				+ "!important;");
-		fileName.getElement().setAttribute("style", "width:250px !important; margin-left: 20px !important;");
-		submitButton.getElement().setAttribute("style", "margin-left:88px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		cancelButton.getElement().setAttribute("style", "margin-left:105px !important; font-family: MyFontBold !important; font-size: "
-				+ "14px !important;");
-		horizontalPanel01.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-		mySaveDialog.setSize( "370px", "180px" );
+		mySaveDialog.setStyleName("printFilePanel");
+		label.setStyleName("printFileText");
+		fileName.setStyleName("printFileBox");
+		submitButton.addStyleName("printFileButton");
+		cancelButton.addStyleName("printFileButton2");
+		mySaveDialog.setSize("370px","180px");
 		mySaveDialog.setModal(true);
 		mySaveDialog.center();
 		fileName.setFocus(true);
@@ -709,7 +550,8 @@ public class PopupMessages {
 					final String captionText = new String(legendeBox.getText());
 					final int row = Asmm_eufar.imageTab.getRowCount();
 					final Image image = new Image("tmp/" + ret);
-					final PushButton delButton = new PushButton(Resources.smallImage("del"));
+					final Image delImage = new Image("icons/del_icon.png");
+					final SimplePanel delButton = new SimplePanel(delImage);
 					final Label label = new Label(captionText);	
 					Asmm_eufar.imagePath.add("tmp/" + ret);
 					image.addLoadHandler(new LoadHandler() {
@@ -781,7 +623,7 @@ public class PopupMessages {
 					Asmm_eufar.imageTab.setWidget(row, 2, delButton);
 					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_CENTER);
 					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_CENTER);
-					delButton.addClickHandler(new ClickHandler() {
+					delImage.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
 							int removedIndex = Asmm_eufar.imageTab.getCellForEvent(event).getRowIndex();
 							Asmm_eufar.imageCaption.remove(removedIndex);
@@ -797,20 +639,14 @@ public class PopupMessages {
 			horizontalPanel02.add(cancelButton);
 			verticalPanel01.add(horizontalPanel02);
 			myOpenDialog.add(myUploadForm);
-			legendeBox.setStyleName("au_textBox");
-			myOpenDialog.setStyleName("myUploadBox");
-			verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
-					+ "!important;");
-			verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-			label.setStyleName("addImagePopupText");
-			myFileUpload.getElement().setAttribute("style", "margin-left:20px !important;");
-			label2.setStyleName("addImagePopupCaption");
-			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
-					+ "14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:93px !important; font-family: MyFontBold !important; font-size: "
-					+ "14px !important;");
-			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-			myOpenDialog.setSize("390px", "180px");
+			legendeBox.setStyleName("openImageBox");
+			myOpenDialog.setStyleName("openImagePanel");
+			label.setStyleName("openImageText");
+			myFileUpload.setStyleName("openImageUpload");
+			label2.setStyleName("openImageText2");
+			submitButton.addStyleName("openImageButton");
+			cancelButton.addStyleName("openImageButton2");
+			myOpenDialog.setSize("368px","180px");
 			myOpenDialog.setModal(true);
 			myOpenDialog.center();
 			
@@ -856,7 +692,8 @@ public class PopupMessages {
 					myOpenDialog.hide();
 					int row = Asmm_eufar.imageTab.getRowCount();
 					final Image image = new Image(string);
-					final PushButton delButton = new PushButton(Resources.smallImage("del"));
+					final Image delImage = new Image("icons/del_icon.png");
+					final SimplePanel delButton = new SimplePanel(delImage);
 					final Label label = new Label(captionText);
 					image.addLoadHandler(new LoadHandler() {
 						public void onLoad(LoadEvent event) {
@@ -928,7 +765,7 @@ public class PopupMessages {
 					Asmm_eufar.imageTab.setWidget(row, 2, delButton);
 					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 0, HasHorizontalAlignment.ALIGN_CENTER);
 					Asmm_eufar.imageTab.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_CENTER);
-					delButton.addClickHandler(new ClickHandler() {
+					delImage.addClickHandler(new ClickHandler() {
 						public void onClick(ClickEvent event) {
 							int removedIndex = Asmm_eufar.imageTab.getCellForEvent(event).getRowIndex();
 							Asmm_eufar.imageCaption.remove(removedIndex);
@@ -952,21 +789,15 @@ public class PopupMessages {
 			horizontalPanel02.add(submitButton);
 			horizontalPanel02.add(cancelButton);
 			verticalPanel01.add(horizontalPanel02);
-			textBox.setStyleName("au_textBox");
-			legendeBox.setStyleName("au_textBox");
-			myOpenDialog.setStyleName("myUploadBox");
-			verticalPanel01.getElement().setAttribute("style", "margin-right:20px !important;");
-			label.setStyleName("addImagePopupText");
-			verticalPanel02.getElement().setAttribute("style", "margin-left: 5px !important; margin-top: 10px !important; margin-right: 10px "
-					+ "!important;");
-			label2.setStyleName("addImagePopupCaption");
-			label3.setStyleName("addImagePopupCaption");
-			submitButton.getElement().setAttribute("style", "margin-left:20px !important; font-family: MyFontBold !important; font-size: "
-					+ "14px !important;");
-			cancelButton.getElement().setAttribute("style", "margin-left:93px !important; font-family: MyFontBold !important; font-size: "
-					+ "14px !important;");
-			horizontalPanel02.getElement().setAttribute("style", "margin-top:30px !important; margin-bottom:20px !important;");
-			myOpenDialog.setSize( "350px", "180px" );
+			textBox.setStyleName("openImageBox");
+			legendeBox.setStyleName("openImageBox2");
+			myOpenDialog.setStyleName("openImagePanel");
+			label.setStyleName("openImageText3");
+			label2.setStyleName("openImageText2");
+			label3.setStyleName("openImageText2");
+			submitButton.addStyleName("openImageButton");
+			cancelButton.addStyleName("openImageButton2");
+			myOpenDialog.setSize("350px","180px");
 			myOpenDialog.setModal(true);
 			myOpenDialog.center();
 			
@@ -1012,32 +843,123 @@ public class PopupMessages {
 		HTML infoLabel = new HTML();
 		switch (infoEnum.valueOf(context.toUpperCase())) {
 		case NEWCHECKBOX:
-			infoLabel.setHTML("<p align=justify>Use this button to add a new checkbox. Each activated checkbox is then saved in "
-					+ "the XML file with the code <b>xx_User</b>.</p><p align=center style='color:#C80000'><b>All non-activated checkboxes "
-					+ "will not be saved and will be lost.</b></p><p align=justify>As the PDF report generator is limited to 12 checkboxes "
-					+ "per section, you cannot create more than 12 checkboxes per section in ASMM Creator Online.</p>");
+			infoLabel.setHTML("Use this button to add a new checkbox. Each activated checkbox is then saved in "
+					+ "the XML file with the code <b>xx_User</b>.<p align=center style='color:#C80000'><b>All non-activated checkboxes "
+					+ "will not be saved and will be lost.</b></p>As the PDF report generator is limited to 12 checkboxes "
+					+ "per section, you cannot create more than 12 checkboxes per section in ASMM Creator Online.");
 			break;
 		case INFOSOUTHNORTH:
-			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+			infoLabel.setHTML("This is the extent of the resource in the geographic space, given as a bounding box. The "
 					+ "southbound and northbound longitudes of the bounding box shall be expressed in decimal degree (-90.00 for South to "
-					+ "90.00 for North) with a precision of two decimals.</p>");
+					+ "90.00 for North) with a precision of two decimals.");
 			break;
 		case INFOWESTEAST:
-			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+			infoLabel.setHTML("This is the extent of the resource in the geographic space, given as a bounding box. The "
 					+ "westbound and eastbound longitudes of the bounding box shall be expressed in decimal degree (-180.00 for West to "
-					+ "180.00 for East) with a precision of two decimals.</p>");
+					+ "180.00 for East) with a precision of two decimals.");
 			break;
 		case INFOMINMAX:
-			infoLabel.setHTML("<p align=justify>This is the extent of the resource in the geographic space, given as a bounding box. The "
+			infoLabel.setHTML("This is the extent of the resource in the geographic space, given as a bounding box. The "
 					+ "minimum and maximum altitudes of the bounding box shall be expressed in meters (0.00 for the ground to xxxx.xx for "
-					+ "the maximum altitude) with, if possible, a precision of two decimals.</p>");
+					+ "the maximum altitude) with, if possible, a precision of two decimals.");
 			break;
+		case PROJECTACRONYM:
+			infoLabel.setHTML("This is the acronym of the project.<p><u>Example:</u> DACCIWA</p>");
+			break;
+		case DATE:
+			infoLabel.setHTML("This is the date of the flight.<p><u>Example:</u> 2016/02/05</p>");
+			break;
+		case FLIGHTIDENTIFIER:
+			infoLabel.setHTML("This element uniquely identifies the flight and it is generally formed with mandatory and/or optional string"
+					+ " codes. This element is then used to name the ASMM xml file.<p><u>Example:</u> PS001_20160205_xxxxx</p>");
+			break;
+		case MISSIONSCIENTIST:
+			infoLabel.setHTML("This is the name of the Project Investigator.<p><u>Example:</u> John Doe</p>");
+			break;
+		case FLIGHTMANAGER:
+			infoLabel.setHTML("This is the name of the person in charge of the flight.<p><u>Example:</u> Jane Doe</p>");
+			break;
+		case OPERATOR:
+			infoLabel.setHTML("The institution operating the aircraft has to be chosen first, then a new list to select the aircraft will be"
+					+ " available.<p><u>Example:</u> SAFIRE - ATR-42</p>");
+			break;
+		case LOCATION:
+			infoLabel.setHTML("The location of the flight. Once the category has been selected, details will be available.<p><u>Example:</u>"
+					+ " Countries - France</p>");
+			break;
+		case CONTACTNAME:
+			infoLabel.setHTML("This is the name of the person who created the current ASMM file.<p><u>Example:</u> John Doe</p>");
+			break;
+		case CONTACTROLE:
+			infoLabel.setHTML("This is the role of the person who created the current ASMM file.<p><u>Example:</u> Scientist</p>");
+			break;
+		case CONTACTEMAIL:
+			infoLabel.setHTML("This is the electronic address of the person who created the current ASMM file.<p><u>Example:</u> John.Doe@"
+					+ "email.com</p>");
+			break;
+		case COMMENTS:
+			infoLabel.setHTML("In this field, you can write comments based on the category to which the field belongs to.");
+			break;
+		case CHECKBOXES:
+			infoLabel.setHTML("Checkboxes are here to give details about a flight. It can be scientific aims, details about the clouds, or "
+					+ "manoeuvres performed by the aircraft.");
+			break;
+		case SURFACEOBSERVATIONS:
+			infoLabel.setHTML("If the flight was in linked to supporting surface-based instruments, you can add there name here.<p><u>Example:"
+					+ "</u> CIMEL sunphotometers</p>");
+			break;
+			
 		default:
 			infoLabel.setHTML("No information for this item");
 			break;
 		}
 		infoLabel.setWordWrap(true);
 		return infoLabel;
+	}
+	
+	
+	// panel to say that some fields are not complete
+	public static void notcompletePanel(final String string) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Check of all fields panel invoked...");
+		final DialogBox infoDialog = new DialogBox();
+		final VerticalPanel verticalPanel01 = new VerticalPanel();
+		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
+		final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
+		final HTML label = new HTML("All mandatory fields have not been filled in, or have been incorrectly filled in. "
+			+ "You can save your file if you want to complete/correct it later. All fields which have not been completely filled in are "
+			+ "indicated in <span style=\" font-weight:600; color:#c80000;\">red</span>, and in <span style=\" font-weight:600; "
+			+ "color:#0000c8;\">blue</span> for those incorrectly filled in. <span style=\" font-weight:600;\">Do not use an "
+			+ "incomplete/incorrect xml file for storage and/or sql queries.</span>");
+		final Image image = new Image("icons/warning_popup_icon.png");
+		final Button buttonOk = new Button("Save", new ClickHandler() {			
+			@Override
+			public void onClick(ClickEvent event) {
+				infoDialog.hide();
+				PopupMessages.saveFile(string);
+			}
+		});
+		final Button buttonCancel = new Button("Cancel", new ClickHandler() {			
+			@Override
+			public void onClick(ClickEvent event) {
+				infoDialog.hide();
+			}
+		});
+		infoDialog.setGlassEnabled(true);
+		horizontalPanel01.add(image);
+		horizontalPanel01.add(label);
+		verticalPanel01.add(horizontalPanel01);
+		horizontalPanel02.add(buttonOk);
+		horizontalPanel02.add(buttonCancel);
+		verticalPanel01.add(horizontalPanel02);
+		infoDialog.setStyleName("notCompletePanel");
+		buttonOk.addStyleName("notCompleteButton1");
+		buttonCancel.addStyleName("notCompleteButton2");
+		label.addStyleName("notCompleteText");
+		infoDialog.add(verticalPanel01);
+		infoDialog.setSize("350px","150px");
+		infoDialog.setModal(true);
+		infoDialog.center();
+		infoDialog.show();
 	}
 	
 	
@@ -1049,6 +971,12 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
+				+"<b><u>August 11 2016, Release version 1.2.0 [ONLINE]</u></b><br>The style used in ASMM has been modified and harmonized to"
+				+ " comply with the EUFAR website style. Few changes in the GUI have been made to comply with the recommandations of the last"
+				+ " meeting between N7SP and N8DB.<ul style='list-style-type:none'><li>ADDED:<ul><li>a function to check mandatory fields has"
+				+ " been introduced.</li><li>infoButtons have been added.</li><li>a page on the EUFAR website is dedicated to the help for "
+				+ "ASMM.</li></ul></li></ul><ul style='list-style-type:none'><li>FIXED:<ul><li>once data have been entered, if a user try to open a "
+				+ "file, the program doesn't ask to save the current modifications. It has been fixed.</li></ul></li></ul><br>"
 				+ "<b><u>June 1 2016, Release version 1.1.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>ADDED:<ul><li>3 info "
 				+ "buttons have been added to the 'Geographic Information' panel to give few guidelines to the user to fill in well all "
 				+ "textboxes related to the geographic bounding box.</li></ul></li></ul><br>"

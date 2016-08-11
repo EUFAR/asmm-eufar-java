@@ -21,41 +21,33 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 public class GuiModification {
 	
 	
-	// function to reload the page
-	public static native void reloadGUI() /*-{
-		$wnd.location.reload();
-	}-*/;
-	
-	
 	// aircraft selection
 	public static void aircraftSelection(final String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Selection of an aircraft in progress...");
 		if (string == "Make a choice...") {
 			Asmm_eufar.fi_aircraftText.clear();
 			Asmm_eufar.fi_aircraftText.setEnabled(false);
-			if (Asmm_eufar.horizontalPanel26.getWidgetCount() > 1) {
-				Asmm_eufar.horizontalPanel26.remove(1);
-				Asmm_eufar.horizontalPanel27.remove(1);
-				Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherOpsText);
-				Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherAiText);
-			}
+			Asmm_eufar.fi_operatorImage.setVisible(false);
+			Asmm_eufar.fi_otherOpsText.setVisible(false);
+			Asmm_eufar.fi_aircraftImage.setVisible(false);
+			Asmm_eufar.fi_otherAiText.setVisible(false);
 			Asmm_eufar.rootLogger.log(Level.INFO, "Aircraft panel cleared");
 		} else if (string == "Other...") {
-			Asmm_eufar.horizontalPanel26.add(Asmm_eufar.fi_operatorImage);
-			Asmm_eufar.horizontalPanel27.add(Asmm_eufar.fi_aircraftImage);
+			Asmm_eufar.fi_operatorImage.setVisible(true);
+			Asmm_eufar.fi_otherOpsText.setVisible(true);
+			Asmm_eufar.fi_aircraftImage.setVisible(true);
+			Asmm_eufar.fi_otherAiText.setVisible(true);
+			Asmm_eufar.fi_otherOpsText.setText("");
+			Asmm_eufar.fi_otherAiText.setText("");
 			Asmm_eufar.fi_aircraftText.clear();
 			Asmm_eufar.fi_aircraftText.setEnabled(true);
 			Asmm_eufar.fi_aircraftText.addItem("Other...");
-			Asmm_eufar.fiGrid.setWidget(5, 2, Asmm_eufar.fi_otherOpsText);
-			Asmm_eufar.fiGrid.setWidget(6, 2, Asmm_eufar.fi_otherAiText);
 			Asmm_eufar.rootLogger.log(Level.INFO, "Other selected");
 		} else {
-			if (Asmm_eufar.horizontalPanel26.getWidgetCount() > 1) {
-				Asmm_eufar.horizontalPanel26.remove(1);
-				Asmm_eufar.horizontalPanel27.remove(1);
-				Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherOpsText);
-				Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherAiText);
-			}
+			Asmm_eufar.fi_operatorImage.setVisible(false);
+			Asmm_eufar.fi_otherOpsText.setVisible(false);
+			Asmm_eufar.fi_aircraftImage.setVisible(false);
+			Asmm_eufar.fi_otherAiText.setVisible(false);
 			Asmm_eufar.fi_aircraftText.setEnabled(true);
 			Asmm_eufar.fi_aircraftText.clear();
 			Asmm_eufar.fi_aircraftText.addItem("Make a choice...");
@@ -108,11 +100,12 @@ public class GuiModification {
 								return;
 							}
 							if (flexTable.getRowCount() == 0) {
-								final Label label03 = new Label("User-defined:");
+								final Label label03 = new Label("User-defined");
 								verticalPanel.add(flexTable);
 								flexTable.getElement().setAttribute("style", "margin-left: 40px !important;");
 								flexTable.insertRow(0);
 								label03.setStyleName("gi_titleText");
+								label03.getElement().setAttribute("style", "margin-left: 10px !important;");
 								verticalPanel.insert(label03, 1);
 							}
 							int row = flexTable.getRowCount();
@@ -128,6 +121,7 @@ public class GuiModification {
 							treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 							Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 							final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
+							checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
 							((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 							((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 								@Override
@@ -150,9 +144,10 @@ public class GuiModification {
 							return;
 						}
 						if (flexTable.getRowCount() == 0) {
-							final Label label03 = new Label("User-defined:");
+							final Label label03 = new Label("User-defined");
 							verticalPanel.add(flexTable);
 							flexTable.getElement().setAttribute("style", "margin-left: 40px !important;");
+							label03.getElement().setAttribute("style", "margin-left: 10px !important;");
 							flexTable.insertRow(0);
 							label03.setStyleName("gi_titleText");
 							verticalPanel.insert(label03, 1);
@@ -170,6 +165,7 @@ public class GuiModification {
 						treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 						Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 						final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
+						checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
 						((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 						((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 							@Override
@@ -193,10 +189,10 @@ public class GuiModification {
 				horizontalPanel01.add(cancelButton);
 				verticalPanel01.add(horizontalPanel01);
 				checkboxDialog.add(verticalPanel01);
-				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: MyFont !important; "
-						+ "font-weight: bold !important;");
-				cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFont !important; "
-						+ "font-weight: bold !important;");
+				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: MyFontBold !important; "
+						+ "color: #4f4f4f !important;");
+				cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFontBold !important; "
+						+ "color: #4f4f4f !important;");
 				horizontalPanel01.getElement().setAttribute("style", "margin-top:40px !important;");
 				checkboxDialog.setSize( "280px", "170px" );
 				checkboxDialog.setModal(true);

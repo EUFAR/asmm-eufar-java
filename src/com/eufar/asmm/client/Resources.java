@@ -5,7 +5,10 @@ import java.util.HashMap;
 import java.util.TreeMap;
 
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.datepicker.client.DateBox;
 
 public class Resources {
 	
@@ -27,168 +30,168 @@ public class Resources {
 	
 	public static TreeMap<String, String> scientificMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Satellite Cal/Val", "satelliteCalVal");
-		map.put("Anthropogenic pollution", "anthroPollution");
-		map.put("Mesoscale atmospheric impacts", "mesoscaleImpacts");
-		map.put("Microphysics", "cloudMicrophysics");
-		map.put("Dynamics (Cloud)", "cloudDynamics");
-		map.put("Radiative properties", "cloudRadiative");
-		map.put("Convection dynamics", "cloudConvection");
-		map.put("Gaz chemistry", "gasChem");
-		map.put("Oxydants", "gasChemOxidants");
-		map.put("Organics", "gasChemOrganics");
-		map.put("Other (Gaz chemistry)", "gasChemOther");
-		map.put("Aerosol", "aerosol");
-		map.put("Cloud microphysical impacts", "aerosolMicrophysical");
-		map.put("Radiative properties/impacts", "aerosolRadiative");
-		map.put("Radiation","radiation");
-		map.put("Atmospheric spectroscopy", "radiationAtmosSpectroscopy");
-		map.put("Surface properties/retrievals", "radiationSurfProperties");
-		map.put("Other (Radiation)", "radiationOther");
-		map.put("Cloud", "blCloud");
-		map.put("Dynamics (Boundary-layer)", "blDynamics");
+		map.put("Satellite Cal/Val", "Satellite Cal/Val");
+		map.put("Anthropogenic pollution", "Anthropogenic pollution");
+		map.put("Mesoscale atmospheric impacts", "esoscale atmospheric impacts");
+		map.put("Microphysics", "Microphysics");
+		map.put("Dynamics (Cloud)", "Dynamics (Cloud)");
+		map.put("Radiative properties", "Radiative properties");
+		map.put("Convection dynamics", "Convection dynamics");
+		map.put("Gas chemistry", "Gas chemistry");
+		map.put("Oxydants", "Oxydants");
+		map.put("Organics", "Organics");
+		map.put("Other (Gas chemistry)", "Other (Gas chemistry)");
+		map.put("Aerosol", "Aerosol");
+		map.put("Cloud microphysical impacts", "Cloud microphysical impacts");
+		map.put("Radiative properties/impacts", "Radiative properties/impacts");
+		map.put("Radiation","Radiation");
+		map.put("Atmospheric spectroscopy", "Atmospheric spectroscopy");
+		map.put("Surface properties/retrievals", "Surface properties/retrievals");
+		map.put("Other (Radiation)", "Other (Radiation)");
+		map.put("Cloud", "Cloud (Boundary-layer)");
+		map.put("Dynamics (Boundary-layer)", "Dynamics (Boundary-layer)");
 		return map;
 	}
 
 	
 	public static TreeMap<String, String> geographicMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Polar","polar");
-		map.put("Mid-latitudes","midLatitudes");
-		map.put("Sub-tropical","subTropical");
-		map.put("Tropical","tropical");
-		map.put("Maritime","maritime");
-		map.put("Continental","continental");
-		map.put("Oceanic islands","oceanicIslands");
-		map.put("Other","other");
+		map.put("Polar","Polar");
+		map.put("Mid-latitudes","Mid-latitudes");
+		map.put("Sub-tropical","Sub-tropical");
+		map.put("Tropical","Tropical");
+		map.put("Maritime","Maritime");
+		map.put("Continental","Continental");
+		map.put("Oceanic islands","Oceanic islands");
+		map.put("Other","Other");
 		return map;
 	}
 	
 	
 	public static TreeMap<String, String> synopticMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Stationary","stationary");
-		map.put("Anticyclonic","stationaryAnticyclonic");
-		map.put("Cyclonic","stationaryCyclonic");
-		map.put("Warm front","warmFront");
-		map.put("Warm conveyor belt","warmConveyorBelt");
-		map.put("Cold front","coldFront");
-		map.put("Occluded front","occludedFront");
-		map.put("Warm sector","warmSector");
-		map.put("Post-cold-frontal air-mass","postColdFrontalAirMass");
-		map.put("Arctic cold-air outbreak","arcticColdAirOutbreak");
-		map.put("Orographic influence","orographicInfluence");
-		map.put("Sea-breeze front","seaBreezeFront");
-		map.put("Stratospheric fold/intrusion","stratosphericFold");
-		map.put("Extended convergence line","extendedConvergenceLine");
-		map.put("Easterly wave","easterlyWave");
-		map.put("Equatorial wave","equatorialWave");
-		map.put("Tropical cyclone","tropycalCyclone");
-		map.put("Mesoscale organized convection","mesoscaleOrganizedConvection");
+		map.put("Stationary","Stationary");
+		map.put("anticyclonic","Stationary anticyclonic");
+		map.put("cyclonic","Stationary cyclonic");
+		map.put("Warm front","Warm front");
+		map.put("Warm conveyor belt","Warm conveyor belt");
+		map.put("Cold front","Cold front");
+		map.put("Occluded front","Occluded front");
+		map.put("Warm sector","Warm sector");
+		map.put("Post-cold-frontal air-mass","Post-cold-frontal air-mass");
+		map.put("Arctic cold-air outbreak","Arctic cold-air outbreak");
+		map.put("Orographic influence","Orographic influence");
+		map.put("Sea-breeze front","Sea-breeze front");
+		map.put("Stratospheric fold/intrusion","Stratospheric fold/intrusion");
+		map.put("Extended convergence line","Extended convergence line");
+		map.put("Easterly wave","Easterly wave");
+		map.put("Equatorial wave","Equatorial wave");
+		map.put("Tropical cyclone","Tropical cyclone");
+		map.put("Mesoscale organized convection","Mesoscale organized convection");
 		return map;
 	}
 	
 	
 	public static TreeMap<String, String> cloudMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Water clouds","waterClouds");
-		map.put("Mixed-phase clouds","mixedPhaseClouds");
-		map.put("Ice clouds","iceClouds");
-		map.put("Cirrus","cirrus");
-		map.put("Contrails","contrails");
-		map.put("Stratocumulus","stratocumulus");
-		map.put("Shallow cumulus","shallowCumulus");
-		map.put("Cumulus congestus","cumulusCongestus");
-		map.put("Cumulonimbus/towering cumulus","cumulonimbusToweringCumulus");
-		map.put("Altostratus/altocumulus","altostratusAltocumulus");
-		map.put("Wave clouds","waveClouds");
-		map.put("Deep frontal statiform clouds","deepFrontalStratiformClouds");
-		map.put("Cloud-free above aircraft","cloudFreeAboveAircraft");
-		map.put("Cloud-free below aircraft","cloudFreeBelowAircraft");
+		map.put("Water clouds","Water clouds");
+		map.put("Mixed-phase clouds","Mixed-phase clouds");
+		map.put("Ice clouds","Ice clouds");
+		map.put("Cirrus","Cirrus");
+		map.put("Contrails","Contrails");
+		map.put("Stratocumulus","Stratocumulus");
+		map.put("Shallow cumulus","Shallow cumulus");
+		map.put("Cumulus congestus","Cumulus congestus");
+		map.put("Cumulonimbus/towering cumulus","Cumulonimbus/towering cumulus");
+		map.put("Altostratus/altocumulus","Altostratus/altocumulus");
+		map.put("Wave clouds","Wave clouds");
+		map.put("Deep frontal statiform clouds","Deep frontal statiform clouds");
+		map.put("Cloud-free above aircraft","Cloud-free above aircraft");
+		map.put("Cloud-free below aircraft","Cloud-free below aircraft");
 		return map;
 	}
 
 	
 	public static TreeMap<String, String> cpapMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Rain","rain");
-		map.put("Drizzle","drizzle");
-		map.put("Droplets (liquid)","droplets");
-		map.put("Pristine ice crystals","pristineIceCrystals");
-		map.put("Snow/aggregates","snowOrAggregates");
-		map.put("Graupel/hail","graupelOrHail");
-		map.put("Sea-salt aerosol","seaSaltAerosol");
-		map.put("Continental aerosol","continentalAerosol");
-		map.put("Urban plume","urbanPlume");
-		map.put("Biomass burning","biomassBurning");
-		map.put("Desert/mineral dust","desertOrMineralDust");
-		map.put("Volcanic ash","volcanicAsh");
+		map.put("Rain","Rain");
+		map.put("Drizzle","Drizzle");
+		map.put("Droplets (liquid)","Droplets (liquid)");
+		map.put("Pristine ice crystals","Pristine ice crystals");
+		map.put("Snow/aggregates","Snow/aggregates");
+		map.put("Graupel/hail","Graupel/hail");
+		map.put("Sea-salt aerosol","Sea-salt aerosol");
+		map.put("Continental aerosol","Continental aerosol");
+		map.put("Urban plume","Urban plume");
+		map.put("Biomass burning","Biomass burning");
+		map.put("Desert/mineral dust","Desert/mineral dust");
+		map.put("Volcanic ash","Volcanic ash");
 		return map;
 	}
 
 	
 	public static TreeMap<String, String> surfacesMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Ocean","ocean");
-		map.put("Semi-arid","semiArid");
-		map.put("Sea-ice","seaIce");
-		map.put("Desert","desert");
-		map.put("Snow","snow");
-		map.put("Urban","urban");
-		map.put("Lake-ice","lakeIce");
-		map.put("Mountainous","mountainous");
-		map.put("Vegetation","vegetation");
-		map.put("Hilly","hilly");
-		map.put("Forest","forest");
-		map.put("Flat","flat");
+		map.put("Ocean","Ocean");
+		map.put("Semi-arid","Semi-arid");
+		map.put("Sea-ice","Sea-ice");
+		map.put("Desert","Desert");
+		map.put("Snow","Snow");
+		map.put("Urban","Urban");
+		map.put("Lake-ice","Lake-ice");
+		map.put("Mountainous","Mountainous");
+		map.put("Vegetation","Vegetation");
+		map.put("Hilly","Hilly");
+		map.put("Forest","Forest");
+		map.put("Flat","Flat");
 		return map;
 	}
 
 	
 	public static TreeMap<String, String> measurementMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Boundary-layer","boundaryLayer");
-		map.put("near-surface","blNearSurface");
-		map.put("sub-cloud","blSubCloud");
-		map.put("in-cloud","blInCloud");
-		map.put("Lower troposphere","lowerTroposphere");
-		map.put("Mid troposphere","midTroposphere");
-		map.put("Upper troposphere","upperTroposphere");
-		map.put("Lower stratosphere","lowerStratosphere");
+		map.put("Boundary-layer","Boundary-layer");
+		map.put("near-surface","Boundary-layer near-surface");
+		map.put("sub-cloud","Boundary-layer sub-cloud");
+		map.put("in-cloud","Boundary-layer in-cloud");
+		map.put("Lower troposphere","Lower troposphere");
+		map.put("Mid troposphere","Mid troposphere");
+		map.put("Upper troposphere","Upper troposphere");
+		map.put("Lower stratosphere","Lower stratosphere");
 		return map;
 	}
 
 	
 	public static TreeMap<String, String> manoeuvreMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("Straight/level runs","straightLevelRuns");
-		map.put("stacked","stackedStraightLevelRuns");
-		map.put("separated","separatedStraightLevelRuns");
-		map.put("Racetracks","racetracks");
-		map.put("Orbits","orbits");
-		map.put("Lagrangian descents","lagrangianDescents");
-		map.put("Deep profile ascents/descents","deepProfileAscentDescents");
-		map.put("Dropsonde deployed","dropsondeDeployed");
-		map.put("Self-calibration","selfCalibration");
+		map.put("Straight/level runs","Straight/level runs");
+		map.put("stacked","Straight/level runs stacked");
+		map.put("separated","Straight/level runs separated");
+		map.put("Racetracks","Racetracks");
+		map.put("Orbits","Orbits");
+		map.put("Lagrangian descents","Lagrangian descents");
+		map.put("Deep profile ascents/descents","Deep profile ascents/descents");
+		map.put("Dropsonde deployed","Dropsonde deployed");
+		map.put("Self-calibration","Self-calibration");
 		return map;
 	}
 	
 	
 	public static TreeMap<String, String> satelliteMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("METOP","polarMetop");
-		map.put("NPOESS","polarNpoess");
-		map.put("A-train","polarAtrain");
-		map.put("Other (Polar)","polarOther");
-		map.put("MSG","geosynchMsg");
-		map.put("Other (Geosynch)","geosynchOther");
-		map.put("MODIS","modis");
-		map.put("Cloudsat","cloudsat");
-		map.put("CALIOP","caliop");
-		map.put("IASI","iasi");
-		map.put("AIRS","airs");
-		map.put("CriS","cris");
-		map.put("AMSU/MHS","amsuMhs");
+		map.put("METOP","METOP");
+		map.put("NPOESS","NPOESS");
+		map.put("A-train","A-train");
+		map.put("Other (Polar)","Other (Polar)");
+		map.put("MSG","MSG");
+		map.put("Other (Geosynch)","Other (Geosynch)");
+		map.put("MODIS","MODIS");
+		map.put("Cloudsat","Cloudsat");
+		map.put("CALIOP","CALIOP");
+		map.put("IASI","IASI");
+		map.put("AIRS","AIRS");
+		map.put("CriS","CriS");
+		map.put("AMSU/MHS","AMSU/MHS");
 		return map;
 	}
 	
@@ -816,5 +819,36 @@ public class Resources {
 	public static Image smallImage(final String string) {
 		final Image image = new Image("icons/" + string + "_icon.png");
 		return image;
+	}
+	
+	
+	public static HashMap<TextBoxBase, String> correctField() {
+		HashMap<TextBoxBase, String> map = new HashMap<TextBoxBase, String>();
+		map.put(Asmm_eufar.fi_flightText, "string");
+		map.put(Asmm_eufar.fi_campaignText, "string");
+		map.put(Asmm_eufar.fi_scientistText, "string");
+		map.put(Asmm_eufar.fi_managerText, "string");
+		map.put(Asmm_eufar.ci_nameText, "string");
+		map.put(Asmm_eufar.ci_emailText, "email");
+		return map;
+	}
+	
+	
+	public static HashMap<TextBoxBase, Label> requiredField() {
+		HashMap<TextBoxBase, Label> map = new HashMap<TextBoxBase, Label>();
+		map.put(Asmm_eufar.fi_flightText, Asmm_eufar.fi_flightLabel);
+		map.put(Asmm_eufar.fi_campaignText, Asmm_eufar.fi_campaignLabel);
+		map.put(Asmm_eufar.fi_scientistText, Asmm_eufar.fi_scientistLabel);
+		map.put(Asmm_eufar.fi_managerText, Asmm_eufar.fi_managerLabel);
+		map.put(Asmm_eufar.ci_nameText, Asmm_eufar.ci_nameLabel);
+		map.put(Asmm_eufar.ci_emailText, Asmm_eufar.ci_emailLabel);
+		return map;
+	}
+	
+	
+	public static HashMap<DateBox, Label> correctDate() {
+		HashMap<DateBox, Label> map = new HashMap<DateBox, Label>();
+		map.put(Asmm_eufar.fi_dateText, Asmm_eufar.fi_dateLabel);
+		return map;
 	}
 }

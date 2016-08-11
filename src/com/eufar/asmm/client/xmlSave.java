@@ -139,16 +139,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.scientificMap.get(allCheckBox.get(i).getName());
+					Element saCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.sa_addCatMap.get(allCheckBox.get(i).getName());
-						Element saCode = doc.createElement("asmm:SA_User");
-						saCode.appendChild(doc.createTextNode(stringCode));
-						scientificAims.appendChild(saCode);
+						saCode = doc.createElement("asmm:SA_User");
 					} else {
-						Element saCode = doc.createElement("asmm:SA_Code");
-						saCode.appendChild(doc.createTextNode(stringCode));
-						scientificAims.appendChild(saCode);
+						saCode = doc.createElement("asmm:SA_Code");
 					}
+					saCode.appendChild(doc.createTextNode(stringCode));
+					scientificAims.appendChild(saCode);
 				}
 			}
 			Element saComments = doc.createElement("asmm:SA_Other");
@@ -185,16 +184,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.geographicMap.get(allCheckBox.get(i).getName());
+					Element giCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.gi_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:GR_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						geographicalInformation.appendChild(code);
+						giCode = doc.createElement("asmm:GR_User");
 					} else {
-						Element giCode = doc.createElement("asmm:GR_Code");
-						giCode.appendChild(doc.createTextNode(stringCode));
-						geographicalInformation.appendChild(giCode);
+						giCode = doc.createElement("asmm:GR_Code");
 					}
+					giCode.appendChild(doc.createTextNode(stringCode));
+					geographicalInformation.appendChild(giCode);
 				}
 			}
 			Element giComments = doc.createElement("asmm:GR_Other");
@@ -211,16 +209,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.synopticMap.get(allCheckBox.get(i).getName());
+					Element afCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.af_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:AF_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						atmosphericFeatures.appendChild(code);
+						afCode = doc.createElement("asmm:AF_User");
 					} else {
-						Element afCode = doc.createElement("asmm:AF_Code");
-						afCode.appendChild(doc.createTextNode(Asmm_eufar.synopticMap.get(allCheckBox.get(i).getName())));
-						atmosphericFeatures.appendChild(afCode);
+						afCode = doc.createElement("asmm:AF_Code");
 					}
+					afCode.appendChild(doc.createTextNode(stringCode));
+					atmosphericFeatures.appendChild(afCode);
 				}
 			}
 			Element afComments = doc.createElement("asmm:AF_Other");
@@ -237,16 +234,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.cloudMap.get(allCheckBox.get(i).getName());
+					Element ctCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.ct_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:CT_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						cloudTypes.appendChild(code);
+						ctCode = doc.createElement("asmm:CT_User");
 					} else {
-						Element ctCode = doc.createElement("asmm:CT_Code");
-						ctCode.appendChild(doc.createTextNode(Asmm_eufar.cloudMap.get(allCheckBox.get(i).getName())));
-						cloudTypes.appendChild(ctCode);
+						ctCode = doc.createElement("asmm:CT_Code");
 					}
+					ctCode.appendChild(doc.createTextNode(stringCode));
+					cloudTypes.appendChild(ctCode);
 				}
 			}
 			Element ctComments = doc.createElement("asmm:CT_Other");
@@ -263,16 +259,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.cpapMap.get(allCheckBox.get(i).getName());
+					Element cpCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.cp_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:PS_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						cpapTypes.appendChild(code);
+						cpCode = doc.createElement("asmm:PS_User");
 					} else {
-						Element cpCode = doc.createElement("asmm:PS_Code");
-						cpCode.appendChild(doc.createTextNode(Asmm_eufar.cpapMap.get(allCheckBox.get(i).getName())));
-						cpapTypes.appendChild(cpCode);
+						cpCode = doc.createElement("asmm:PS_Code");
 					}
+					cpCode.appendChild(doc.createTextNode(stringCode));
+					cpapTypes.appendChild(cpCode);
 				}
 			}
 			Element cpComments = doc.createElement("asmm:PS_Other");
@@ -289,16 +284,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.surfacesMap.get(allCheckBox.get(i).getName());
+					Element soCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.lo_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:SO_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						surfacesOverflown.appendChild(code);
+						soCode = doc.createElement("asmm:SO_User");
 					} else {
-						Element soCode = doc.createElement("asmm:SO_Code");
-						soCode.appendChild(doc.createTextNode(Asmm_eufar.surfacesMap.get(allCheckBox.get(i).getName())));
-						surfacesOverflown.appendChild(soCode);
+						soCode = doc.createElement("asmm:SO_Code");
 					}
+					soCode.appendChild(doc.createTextNode(stringCode));
+					surfacesOverflown.appendChild(soCode);
 				}
 			}
 			Element soComments = doc.createElement("asmm:SO_Other");
@@ -315,16 +309,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.measurementMap.get(allCheckBox.get(i).getName());
+					Element arCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.ar_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:AR_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						rangeMeasurement.appendChild(code);
+						arCode = doc.createElement("asmm:AR_User");
 					} else {
-						Element arCode = doc.createElement("asmm:AR_Code");
-						arCode.appendChild(doc.createTextNode(Asmm_eufar.measurementMap.get(allCheckBox.get(i).getName())));
-						rangeMeasurement.appendChild(arCode);
+						arCode = doc.createElement("asmm:AR_Code");
 					}
+					arCode.appendChild(doc.createTextNode(stringCode));
+					rangeMeasurement.appendChild(arCode);
 				}
 			}
 			Element arComments = doc.createElement("asmm:AR_Other");
@@ -341,16 +334,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.manoeuvreMap.get(allCheckBox.get(i).getName());
+					Element fmCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.fm_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:FT_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						flightManoeuvre.appendChild(code);
+						fmCode = doc.createElement("asmm:FT_User");
 					} else {
-						Element fmCode = doc.createElement("asmm:FT_Code");
-						fmCode.appendChild(doc.createTextNode(Asmm_eufar.manoeuvreMap.get(allCheckBox.get(i).getName())));
-						flightManoeuvre.appendChild(fmCode);
+						fmCode = doc.createElement("asmm:FT_Code");
 					}
+					fmCode.appendChild(doc.createTextNode(stringCode));
+					flightManoeuvre.appendChild(fmCode);
 				}
 			}
 			Element fmComments = doc.createElement("asmm:FT_Other");
@@ -367,16 +359,15 @@ public class xmlSave {
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
 					String stringCode = Asmm_eufar.satelliteMap.get(allCheckBox.get(i).getName());
+					Element scCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.sc_addCatMap.get(allCheckBox.get(i).getName());
-						Element code = doc.createElement("asmm:SC_User");
-						code.appendChild(doc.createTextNode(stringCode));
-						satelliteCoordination.appendChild(code);
+						scCode = doc.createElement("asmm:SC_User");
 					} else {
-						Element scCode = doc.createElement("asmm:SC_Code");
-						scCode.appendChild(doc.createTextNode(Asmm_eufar.satelliteMap.get(allCheckBox.get(i).getName())));
-						satelliteCoordination.appendChild(scCode);
+						scCode = doc.createElement("asmm:SC_Code");
 					}
+					scCode.appendChild(doc.createTextNode(stringCode));
+					satelliteCoordination.appendChild(scCode);
 				}
 			}
 			Element scComments = doc.createElement("asmm:SC_Other");

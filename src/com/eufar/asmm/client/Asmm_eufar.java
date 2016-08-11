@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,20 +20,29 @@ import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
+import com.google.gwt.event.dom.client.MouseOutEvent;
+import com.google.gwt.event.dom.client.MouseOutHandler;
+import com.google.gwt.event.dom.client.MouseOverEvent;
+import com.google.gwt.event.dom.client.MouseOverHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
+import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.UmbrellaException;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.Window.Navigator;
+import com.google.gwt.user.client.ui.Button;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.DockLayoutPanel;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
+import com.google.gwt.user.client.ui.InlineHTML;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MenuBar;
@@ -40,10 +50,13 @@ import com.google.gwt.user.client.ui.MenuItem;
 import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
+import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.VerticalPanel;
+import com.google.gwt.user.client.ui.Widget;
+import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.datepicker.client.DateBox;
 
 
@@ -57,39 +70,102 @@ public class Asmm_eufar implements EntryPoint {
 	private MenuBar fileMenu = new MenuBar(true);
 	private MenuBar asmmMenu = new MenuBar(true);
 	public static DockLayoutPanel subDockPanel = new DockLayoutPanel(Unit.PX);
-	public static ScrollableTabLayoutPanel tabPanel = new ScrollableTabLayoutPanel(33, Unit.PX);
+	public static ScrollableTabLayoutPanel tabPanel = new ScrollableTabLayoutPanel(42, Unit.PX);
 	public static String myFileName = new String("");
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.1.1 (2016-06-01)");
+	public static String asmmVersion = new String("1.2.0 (2016-08-11)");
 	public static String gwtVersion = new String("2.7.0");
-	public static String eclipseVersion = new String("4.5.2");
-	public static String javaVersion = new String("1.7.0");
+	public static String eclipseVersion = new String("4.6.0");
+	public static String javaVersion = new String("1.7.0.79");
 	public static String jasperVersion = new String("6.2.2");
 	public static String xmlVersion = new String("v1.0a");
 	public static String titleString = new String("ASMM Creator");
 	public static Boolean isModified = new Boolean(false);
 	public static Boolean tabLayout = new Boolean(false);
-	public static HorizontalPanel horizontalPanel26 = new HorizontalPanel();
-	public static HorizontalPanel horizontalPanel27 = new HorizontalPanel();
 	public static ArrayList<String> textboxName = Resources.textboxName();
 	public static ArrayList<String> checkboxName = Resources.checkboxName();
 	public static ArrayList<String> listboxName = Resources.listboxName();
 	public static ArrayList<String> dateboxName = Resources.dateboxName();
 	public static HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
+	private HashMap<TextBoxBase, Label> requiredField = Resources.requiredField();
+	private HashMap<TextBoxBase, String> correctField = Resources.correctField();
 	public static String asmmPath = new String("");
-	private String imageASMM = "<img src='icons/asmm_menu_item.png' height='20' width='280'/>";
+	private VerticalPanel verticalPanel101 = new VerticalPanel();
+	private HorizontalPanel horizontalPanel90 = new HorizontalPanel();
+	private String imageASMM = "<img src='icons/menu_icon.png' height='16' width='20'/>";
+	private int clouds_heading_width = 3840;
+	private int clouds_heading_height = 322;
+	private int screen_width = Utilities.getScreenWidth();
+	private int menu_width = screen_width / 10;
+	private float ratio = (float) clouds_heading_height / clouds_heading_width;
+	private float new_clouds_heading_height = screen_width * ratio;
+	
+	
+	// Header items
+	private HorizontalPanel horizontalPanel87 = new HorizontalPanel();
+	private Label hdTitleLab = new Label("European Facility For Airborne Research");
 	
 
+	// Footer items
+	private HorizontalPanel horizontalPanel112 = new HorizontalPanel();
+	private HorizontalPanelOver horizontalPanel113 = new HorizontalPanelOver();
+	private HorizontalPanelOver horizontalPanel114 = new HorizontalPanelOver();
+	private HorizontalPanelOver horizontalPanel115 = new HorizontalPanelOver();
+	private InlineHTML centerHtml = new InlineHTML("<i class='fa fa-home fa-lg' aria-hidden='true' style='"
+			+ "color:#616265;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private InlineHTML centerHtml2 = new InlineHTML("<i class='fa fa-home fa-lg' aria-hidden='true' style='"
+			+ "color:#F9A12A;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private InlineHTML leftHtml = new InlineHTML("<i class='fa fa-arrow-left fa-lg' aria-hidden='true' style='"
+			+ "color:#616265;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private InlineHTML leftHtml2 = new InlineHTML("<i class='fa fa-arrow-left fa-lg' aria-hidden='true' style='"
+			+ "color:#F9A12A;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private InlineHTML rightHtml = new InlineHTML("<i class='fa fa-arrow-right fa-lg' aria-hidden='true' style='"
+			+ "color:#616265;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private InlineHTML rightHtml2 = new InlineHTML("<i class='fa fa-arrow-right fa-lg' aria-hidden='true' style='"
+			+ "color:#F9A12A;"
+			+ "padding: 8px 8px 8px 8px;"
+			+ "'></i>");
+	private Label centerLabel = new Label("BACK TO HOME");
+	private Label leftLabel = new Label("PREVIOUS");
+	private Label rightLabel = new Label("NEXT");
+	
+	
 	// Flight Information items initialization
 	public static FlexTable fiGrid = new FlexTable();
 	private HorizontalPanel horizontalPanel30 = new HorizontalPanel();
+	public static HorizontalPanel horizontalPanel26 = new HorizontalPanel();
+	public static HorizontalPanel horizontalPanel27 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel49 = new HorizontalPanel();
 	private HorizontalPanel horizontalPanel50 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel75 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel76 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel77 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel78 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel79 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel80 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel81 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel82 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel91 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel92 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel93 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel94 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel95 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel58 = new VerticalPanel();
 	public static VerticalPanel verticalPanel59 = new VerticalPanel();
 	private Label fi_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label fi_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label fi_pathLab = new Label(">");
 	private Label fi_pathLab2 = new Label("Flight and Contact Information");
 	public static ScrollPanel fiScroll = new ScrollPanel(verticalPanel58);
@@ -100,15 +176,23 @@ public class Asmm_eufar implements EntryPoint {
 	public static TextBox fi_managerText = new TextBox();
 	public static TextBox fi_otherOpsText = new TextBox();
 	public static TextBox fi_otherAiText = new TextBox();
-	private Label fi_flightInfo = new Label("Flight Information:");
-	private Label fi_flightLabel = new Label("Flight number:");
-	private Label fi_dateLabel = new Label("Date:");
-	private Label fi_campaignLabel = new Label("Project acronym:");
-	private Label fi_scientistLabel = new Label("Mission scientist:");
-	private Label fi_managerLabel = new Label("Flight manager:");
-	private Label fi_aircraftLabel = new Label("Platform/Aircraft:");
-	private Label fi_operatorLabel = new Label("Operator:");
-	private Label fi_countryLabel = new Label("Location:");
+	private Label fi_starLab01 = new Label("*");
+	private Label fi_starLab02 = new Label("*");
+	private Label fi_starLab03 = new Label("*");
+	private Label fi_starLab04 = new Label("*");
+	private Label fi_starLab05 = new Label("*");
+	private Label fi_starLab06 = new Label("*");
+	private Label fi_starLab07 = new Label("*");
+	private Label fi_starLab08 = new Label("*");
+	private Label fi_flightInfo = new Label("Flight Information");
+	public static Label fi_flightLabel = new Label("Flight identifier");
+	public static Label fi_dateLabel = new Label("Date");
+	public static Label fi_campaignLabel = new Label("Project acronym");
+	public static Label fi_scientistLabel = new Label("Mission scientist");
+	public static Label fi_managerLabel = new Label("Flight manager");
+	private Label fi_aircraftLabel = new Label("Platform/Aircraft");
+	private Label fi_operatorLabel = new Label("Operator");
+	private Label fi_countryLabel = new Label("Location");
 	public static Image fi_operatorImage = Resources.smallImage("fwdarrow");
 	public static Image fi_aircraftImage = Resources.smallImage("fwdarrow");
 	private Image geoFollowImage = Resources.smallImage("fwdarrow");
@@ -124,18 +208,37 @@ public class Asmm_eufar implements EntryPoint {
 	public static ArrayList<String> operatorList = Resources.operatorList();
 	public static ArrayList<String> aircraftList = Resources.aircraftList();
 	public static String[][] operatorsAircraft = Resources.operatorsAircraft();
+	public static SimplePanel fi_infoButton01 = Elements.addInfoButton("PROJECTACRONYM");
+	public static SimplePanel fi_infoButton02 = Elements.addInfoButton("DATE");
+	public static SimplePanel fi_infoButton03 = Elements.addInfoButton("FLIGHTIDENTIFIER");
+	public static SimplePanel fi_infoButton04 = Elements.addInfoButton("MISSIONSCIENTIST");
+	public static SimplePanel fi_infoButton05 = Elements.addInfoButton("FLIGHTMANAGER");
+	public static SimplePanel fi_infoButton06 = Elements.addInfoButton("OPERATOR");
+	public static SimplePanel fi_infoButton07 = Elements.addInfoButton("LOCATION");
 
 
 	// Contact Information items initialization
+	private HorizontalPanel horizontalPanel83 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel84 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel85 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel96 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel97 = new HorizontalPanel();
+	private HorizontalPanel horizontalPanel98 = new HorizontalPanel();
 	public static FlexTable ciGrid = new FlexTable();
 	public static TextBox ci_nameText = new TextBox();
 	public static TextBox ci_emailText = new TextBox();
 	public static ListBox ci_roleText = new ListBox();
-	private Label ci_contactInfo = new Label("Contact Information:");
-	private Label ci_nameLabel = new Label("Name:");
-	private Label ci_roleLabel = new Label("Role:");
-	private Label ci_emailLabel = new Label("Email:");
+	private Label ci_starLab01 = new Label("*");
+	private Label ci_starLab02 = new Label("*");
+	private Label ci_starLab03 = new Label("*");
+	private Label ci_contactInfo = new Label("Contact Information");
+	public static Label ci_nameLabel = new Label("Name");
+	private Label ci_roleLabel = new Label("Role");
+	public static Label ci_emailLabel = new Label("Email");
 	private ArrayList<String> roleList = Resources.roleList();
+	public static SimplePanel ci_infoButton01 = Elements.addInfoButton("CONTACTNAME");
+	public static SimplePanel ci_infoButton02 = Elements.addInfoButton("CONTACTROLE");
+	public static SimplePanel ci_infoButton03 = Elements.addInfoButton("CONTACTEMAIL");
 	
 
 	// Scientific Aims items initialization
@@ -157,11 +260,12 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel52 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel60 = new VerticalPanel();
 	private Label sa_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label sa_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label sa_pathLab = new Label(">");
 	private Label sa_pathLab2 = new Label("Scientific Aims");
-	private Label sa_cloudLabel = new Label("Cloud:");
-	private Label sa_layerLabel = new Label("Boundary-layer:");
-	private Label sa_comments = new Label("Comments:");
+	private Label sa_cloudLabel = new Label("Cloud");
+	private Label sa_layerLabel = new Label("Boundary-layer");
+	private Label sa_comments = new Label("Comments");
 	public static TreeMap<String, String> scientificMap = Resources.scientificMap();
 	public static TextArea sa_comArea = new TextArea();
 	public static TreeMap<String, String> sa_addCatMap = new TreeMap<String, String>();
@@ -173,10 +277,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel sa_dyNamics = Elements.checkBox("Dynamics (Cloud)");
 	private HorizontalPanel sa_radProperties = Elements.checkBox("Radiative properties");
 	private HorizontalPanel sa_convDynamics = Elements.checkBox("Convection dynamics");
-	private HorizontalPanel sa_gazChemistry = Elements.checkBox("Gaz chemistry");
+	private HorizontalPanel sa_gazChemistry = Elements.checkBox("Gas chemistry");
 	private HorizontalPanel sa_oxyDants = Elements.checkBox("Oxydants");
 	private HorizontalPanel sa_orgAnics = Elements.checkBox("Organics");
-	private HorizontalPanel sa_other1 = Elements.checkBox("Other (Gaz chemistry)");
+	private HorizontalPanel sa_other1 = Elements.checkBox("Other (Gas chemistry)");
 	private HorizontalPanel sa_aeroSol = Elements.checkBox("Aerosol");
 	private HorizontalPanel sa_cloudImpacts = Elements.checkBox("Cloud microphysical impacts");
 	private HorizontalPanel sa_radImpacts = Elements.checkBox("Radiative properties/impacts");
@@ -187,6 +291,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel sa_cloud = Elements.checkBox("Cloud");
 	private HorizontalPanel sa_dynAmics = Elements.checkBox("Dynamics (Boundary-layer)");
 	public static ScrollPanel saScroll = new ScrollPanel(verticalPanel60);  
+	public static SimplePanel sa_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel sa_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Geographical Information items initialization
@@ -205,14 +311,15 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel54 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel80 = new VerticalPanel();
 	private Label gi_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label gi_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label gi_pathLab = new Label(">");
 	private Label gi_pathLab2 = new Label("Geographic Information");
-	private Label gi_boundingLabel = new Label("Geographic bounding box:");
-	private Label gi_nsLabel = new Label("North/South latitudes:");
-	private Label gi_weLabel = new Label("West/East longitudes:");
-	private Label gi_mmLabel = new Label("Min/Max altitudes (m):");
-	private Label gi_comLabel = new Label("Comments:");
-	private Label gi_situationLabel = new Label("Geographic situation:");
+	private Label gi_boundingLabel = new Label("Geographic bounding box");
+	private Label gi_nsLabel = new Label("North/South latitudes");
+	private Label gi_weLabel = new Label("West/East longitudes");
+	private Label gi_mmLabel = new Label("Min/Max altitudes (m)");
+	private Label gi_comLabel = new Label("Comments");
+	private Label gi_situationLabel = new Label("Geographic situation");
 	public static TextArea gi_comArea = new TextArea();
 	public static TextBox gi_northText = new TextBox();
 	public static TextBox gi_southText = new TextBox();
@@ -224,9 +331,11 @@ public class Asmm_eufar implements EntryPoint {
 	public static TreeMap<String, String> gi_addCatMap = new TreeMap<String, String>();
 	public static FlexTable gi_addCatTable = new FlexTable();
 	private FlexTable gi_boundTable = new FlexTable();
-	public static PushButton gi_infoButtonSN = Elements.addInfoButton("infoSouthNorth");
-	public static PushButton gi_infoButtonWE = Elements.addInfoButton("infoWestEast");
-	public static PushButton gi_infoButtonMM = Elements.addInfoButton("infoMinMax");
+	public static SimplePanel gi_infoButtonSN = Elements.addInfoButton("infoSouthNorth");
+	public static SimplePanel gi_infoButtonWE = Elements.addInfoButton("infoWestEast");
+	public static SimplePanel gi_infoButtonMM = Elements.addInfoButton("infoMinMax");
+	public static SimplePanel gi_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel gi_infoButton02 = Elements.addInfoButton("COMMENTS");
 	private HorizontalPanel gi_polar = Elements.checkBox("Polar");
 	private HorizontalPanel gi_midLatitudes = Elements.checkBox("Mid-latitudes");
 	private HorizontalPanel gi_subTropical = Elements.checkBox("Sub-tropical");
@@ -252,16 +361,17 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel56 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel81 = new VerticalPanel();
 	private Label af_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label af_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label af_pathLab = new Label(">");
 	private Label af_pathLab2 = new Label("Atmospheric Synoptic Features");
-	private Label af_comLabel = new Label("Comments:");
+	private Label af_comLabel = new Label("Comments");
 	public static TextArea af_comArea = new TextArea();
 	public static TreeMap<String, String> synopticMap = Resources.synopticMap();
 	public static TreeMap<String, String> af_addCatMap = new TreeMap<String, String>();
 	public static FlexTable af_addCatTable = new FlexTable();
 	private HorizontalPanel af_stationary = Elements.checkBox("Stationary");
-	private HorizontalPanel af_antiStationary = Elements.checkBox("Anticyclonic");
-	private HorizontalPanel af_cycloStationary = Elements.checkBox("Cyclonic");
+	private HorizontalPanel af_antiStationary = Elements.checkBox("anticyclonic");
+	private HorizontalPanel af_cycloStationary = Elements.checkBox("cyclonic");
 	private HorizontalPanel af_warmFront = Elements.checkBox("Warm front");
 	private HorizontalPanel af_warmBelt = Elements.checkBox("Warm conveyor belt");
 	private HorizontalPanel af_coldFront = Elements.checkBox("Cold front");
@@ -278,6 +388,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel af_tropicalCyclone = Elements.checkBox("Tropical cyclone");
 	private HorizontalPanel af_organizedConvection = Elements.checkBox("Mesoscale organized convection");
 	public static ScrollPanel afScroll = new ScrollPanel(verticalPanel81);
+	public static SimplePanel af_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel af_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Cloud Types and Forms Sampled During Flight items initialization
@@ -294,9 +406,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel58 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel82 = new VerticalPanel();
 	private Label ct_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label ct_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label ct_pathLab = new Label(">");
 	private Label ct_pathLab2 = new Label("Cloud Types and Forms Sampled During Flight");
-	private Label ct_comLabel = new Label("Comments:");
+	private Label ct_comLabel = new Label("Comments");
 	public static TextArea ct_comArea = new TextArea();
 	public static TreeMap<String, String> cloudMap = Resources.cloudMap();
 	public static TreeMap<String, String> ct_addCatMap = new TreeMap<String, String>();
@@ -316,6 +429,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel ct_freeAbove = Elements.checkBox("Cloud-free above aircraft");
 	private HorizontalPanel ct_freeBelow = Elements.checkBox("Cloud-free below aircraft");
 	public static ScrollPanel ctScroll = new ScrollPanel(verticalPanel82);
+	public static SimplePanel ct_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel ct_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Cloud, Precipitation and Aerosol Particles Sampled items initialization
@@ -332,9 +447,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel60 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel83 = new VerticalPanel();
 	private Label cp_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label cp_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label cp_pathLab = new Label(">");
 	private Label cp_pathLab2 = new Label("Cloud, Precipitation and Aerosol Particles Sampled");
-	private Label cp_comLabel = new Label("Comments:");
+	private Label cp_comLabel = new Label("Comments");
 	public static TextArea cp_comArea = new TextArea();
 	public static TreeMap<String, String> cpapMap = Resources.cpapMap();
 	public static TreeMap<String, String> cp_addCatMap = new TreeMap<String, String>();
@@ -352,6 +468,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel cp_desertDust = Elements.checkBox("Desert/mineral dust");
 	private HorizontalPanel cp_volcanicAsh = Elements.checkBox("Volcanic ash");
 	public static ScrollPanel cpScroll = new ScrollPanel(verticalPanel83);
+	public static SimplePanel cp_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel cp_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Land or Oceans Surfaces Overflown items initialization
@@ -368,9 +486,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel62 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel84 = new VerticalPanel();
 	private Label lo_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label lo_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label lo_pathLab = new Label(">");
 	private Label lo_pathLab2 = new Label("Land or Oceans Surfaces Overflown");
-	private Label lo_comLabel = new Label("Comments:");
+	private Label lo_comLabel = new Label("Comments");
 	public static TextArea lo_comArea = new TextArea();
 	public static TreeMap<String, String> surfacesMap = Resources.surfacesMap();
 	public static TreeMap<String, String> lo_addCatMap = new TreeMap<String, String>();
@@ -388,6 +507,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel lo_forest = Elements.checkBox("Forest");
 	private HorizontalPanel lo_flat = Elements.checkBox("Flat");
 	public static ScrollPanel loScroll = new ScrollPanel(verticalPanel84);
+	public static SimplePanel lo_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel lo_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Altitude Range of Measurement items initialization
@@ -404,9 +525,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel64 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel85 = new VerticalPanel();
 	private Label ar_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label ar_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label ar_pathLab = new Label(">");
 	private Label ar_pathLab2 = new Label("Altitude Range of Measurement");
-	private Label ar_comLabel = new Label("Comments:");
+	private Label ar_comLabel = new Label("Comments");
 	public static TextArea ar_comArea = new TextArea();
 	public static TreeMap<String, String> measurementMap = Resources.measurementMap();
 	public static TreeMap<String, String> ar_addCatMap = new TreeMap<String, String>();
@@ -420,6 +542,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel ar_upperTroposphere = Elements.checkBox("Upper troposphere");
 	private HorizontalPanel ar_lowerstratosphere = Elements.checkBox("Lower stratosphere");
 	public static ScrollPanel arScroll = new ScrollPanel(verticalPanel85);
+	public static SimplePanel ar_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel ar_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Types of Flight Manoeuvre items initialization
@@ -436,9 +560,10 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel66 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel86 = new VerticalPanel();
 	private Label fm_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label fm_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label fm_pathLab = new Label(">");
 	private Label fm_pathLab2 = new Label("Types of Flight Manoeuvre");
-	private Label fm_comLabel = new Label("Comments:");
+	private Label fm_comLabel = new Label("Comments");
 	public static TextArea fm_comArea = new TextArea();
 	public static TreeMap<String, String> manoeuvreMap = Resources.manoeuvreMap();
 	public static TreeMap<String, String> fm_addCatMap = new TreeMap<String, String>();
@@ -453,6 +578,8 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel fm_dropsondeDeployed = Elements.checkBox("Dropsonde deployed");
 	private HorizontalPanel fm_selfCalibration = Elements.checkBox("Self-calibration");
 	public static ScrollPanel fmScroll = new ScrollPanel(verticalPanel86);
+	public static SimplePanel fm_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel fm_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Satellite Coordination items initialization
@@ -469,11 +596,12 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel68 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel87 = new VerticalPanel();
 	private Label sc_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label sc_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label sc_pathLab = new Label(">");
 	private Label sc_pathLab2 = new Label("Satellite Coordination");
-	private Label sc_polarLabel = new Label("Polar:");
-	private Label sc_geosynchLabel = new Label("Geosynch:");
-	private Label sc_comLabel = new Label("Comments:");
+	private Label sc_polarLabel = new Label("Polar");
+	private Label sc_geosynchLabel = new Label("Geosynch");
+	private Label sc_comLabel = new Label("Comments");
 	public static TextArea sc_comArea = new TextArea();
 	public static TreeMap<String, String> satelliteMap = Resources.satelliteMap();
 	public static TreeMap<String, String> sc_addCatMap = new TreeMap<String, String>();
@@ -492,11 +620,13 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel sc_cris = Elements.checkBox("CriS");
 	private HorizontalPanel sc_amsuMhs = Elements.checkBox("AMSU/MHS");
 	public static ScrollPanel scScroll = new ScrollPanel(verticalPanel87);
+	public static SimplePanel sc_infoButton01 = Elements.addInfoButton("CHECKBOXES");
+	public static SimplePanel sc_infoButton02 = Elements.addInfoButton("COMMENTS");
 
 
 	// Supporting Surface-based Observations items initialization
 	private VerticalPanel verticalPanel48 = new VerticalPanel();
-	private VerticalPanel verticalPanel49 = new VerticalPanel();
+	private ScrollPanel verticalPanel49 = new ScrollPanel();
 	private VerticalPanel verticalPanel50 = new VerticalPanel();
 	private VerticalPanel verticalPanel51 = new VerticalPanel();
 	private VerticalPanel verticalPanel52 = new VerticalPanel();
@@ -515,12 +645,13 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel70 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel88 = new VerticalPanel();
 	private Label so_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label so_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label so_pathLab = new Label(">");
 	private Label so_pathLab2 = new Label("Supporting Surface-based Observations");
-	private Label so_groundSitesLabel = new Label("Ground Sites:");
-	private Label so_armSitesLabel = new Label("ARM Sites:");
-	private Label so_researchVesselsLabel = new Label("Research Vessels:");
-	private Label so_mobileSitesLabel = new Label("ARM Mobile Sites:");
+	private Label so_groundSitesLabel = new Label("Ground Sites");
+	private Label so_armSitesLabel = new Label("ARM Sites");
+	private Label so_researchVesselsLabel = new Label("Research Vessels");
+	private Label so_mobileSitesLabel = new Label("ARM Mobile Sites");
 	public static ArrayList<String> so_groundSitesList = new ArrayList<String>();
 	public static  FlexTable so_groundSitesTable = new FlexTable();
 	public static  ArrayList<String> so_researchVesselsList = new ArrayList<String>();
@@ -534,6 +665,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static  TextBox so_researchVesselsBox = new TextBox();
 	public static  TextBox so_mobileSitesBox = new TextBox();
 	public static ScrollPanel soScroll = new ScrollPanel(verticalPanel88);
+	public static SimplePanel so_infoButton01 = Elements.addInfoButton("SURFACEOBSERVATIONS");
 
 
 	// Additional Notes on the Flight items initialization
@@ -542,6 +674,7 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel72 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel89 = new VerticalPanel();
 	private Label nf_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label nf_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label nf_pathLab = new Label(">");
 	private Label nf_pathLab2 = new Label("Additional Notes on the Flight");
 	public static TextArea nf_comArea = new TextArea();
@@ -556,6 +689,7 @@ public class Asmm_eufar implements EntryPoint {
 	private HorizontalPanel horizontalPanel74 = new HorizontalPanel();
 	public static VerticalPanel verticalPanel90 = new VerticalPanel();
 	private Label im_mainLab = new Label("AIRBORNE SCIENCE MISSION METADATA");
+	private Label im_mainLab2 = new Label("AIRBORNE SCIENCE MISSION METADATA");
 	private Label im_pathLab = new Label(">");
 	private Label im_pathLab2 = new Label("Images included in the PDF report");
 	public static ScrollPanel ipScroll = new ScrollPanel(verticalPanel90);
@@ -602,52 +736,258 @@ public class Asmm_eufar implements EntryPoint {
 				PopupMessages.aboutWindow();
 			}
 		};
+		
+		
 		Command aboutStandard = new Command() {
 			public void execute() {
 				PopupMessages.aboutStandard();
 			}
 		};
+		
+		
 		Command newFile = new Command() {
 			public void execute() {
-			PopupMessages.newFile();
+				newFile();
 			}
 		};
+		
+		
 		Command openFile = new Command() {
 			public void execute() {
-			PopupMessages.openFile();
+				openFile();
 			}
 		};
+		
+		
 		Command saveFile = new Command() {
 			public void execute() {
-			PopupMessages.saveFile("");
+				runCheck("");
 			}
 		};
+		
+		
 		Command printFile = new Command() {
 			public void execute() {
 			PopupMessages.printFile();
 			}
 		};
+		
+		
+		Command launchHelpPage = new Command()  {
+			public void execute() {
+				Window.open("http://www.eufar.net/cms/airborne-science-mission-metadata-help/", "_blank", "");
+			}
+		};
+		
+		
 		Command launchN7SPPage = new Command()  {
 			public void execute() {
 				Window.open("http://www.eufar.net/cms/standards-and-protocols/", "_blank", "");
 			}
 		};
+		
+		
 		Command exitFile = new Command()  {
 			public void execute() {
 				Window.open("http://www.eufar.net", "_self", "");
 			}
 		};
+		
+		
 		Command displayChangelog = new Command() {
 			public void execute() {
 				PopupMessages.changelogPanel();
 			}
 		};
+		
+		
+		Command goFlight = new Command() {
+			public void execute() {
+				tabPanel.selectTab(0);
+			}
+		};
+		
+		Command goAims = new Command() {
+			public void execute() {
+				tabPanel.selectTab(1);
+			}
+		};
+		
+		Command goInformation = new Command() {
+			public void execute() {
+				tabPanel.selectTab(2);
+			}
+		};
+		
+		Command goFeatures = new Command() {
+			public void execute() {
+				tabPanel.selectTab(3);
+			}
+		};
+		
+		Command goForms = new Command() {
+			public void execute() {
+				tabPanel.selectTab(4);
+			}
+		};
+		
+		Command goParticles = new Command() {
+			public void execute() {
+				tabPanel.selectTab(5);
+			}
+		};
+		
+		Command goSurfaces = new Command() {
+			public void execute() {
+				tabPanel.selectTab(6);
+			}
+		};
+		
+		Command goMeasurement = new Command() {
+			public void execute() {
+				tabPanel.selectTab(7);
+			}
+		};
+		
+		Command goManoeuvre = new Command() {
+			public void execute() {
+				tabPanel.selectTab(8);
+			}
+		};
+		
+		Command goCoordination = new Command() {
+			public void execute() {
+				tabPanel.selectTab(9);
+			}
+		};
+		
+		Command goObservations = new Command() {
+			public void execute() {
+				tabPanel.selectTab(10);
+			}
+		};
+		
+		Command goNotes = new Command() {
+			public void execute() {
+				tabPanel.selectTab(11);
+			}
+		};
+		
+		Command goPdf = new Command() {
+			public void execute() {
+				tabPanel.selectTab(12);
+			}
+		};
+		
 
+		// Assemble the header
+		horizontalPanel87.add(hdTitleLab);
+		horizontalPanel87.setStyleName("headerHorizontalPanel");
+		horizontalPanel87.getElement().setAttribute("style", "background-position: " + screen_width/6 + "px;");
+		hdTitleLab.setStyleName("headerTextLabel");
+		
+		
+		// Assemble the footer
+		horizontalPanel112.add(horizontalPanel113);
+		horizontalPanel112.add(horizontalPanel114);
+		horizontalPanel112.add(horizontalPanel115);
+		horizontalPanel113.add(leftHtml);
+		horizontalPanel113.add(leftLabel);
+		horizontalPanel114.add(centerHtml);
+		horizontalPanel114.add(centerLabel);
+		horizontalPanel115.add(rightHtml);
+		horizontalPanel115.add(rightLabel);
+		horizontalPanel113.setStyleName("footerLeft");
+		horizontalPanel114.setStyleName("footerCenter");
+		horizontalPanel115.setStyleName("footerRight");
+		horizontalPanel113.getElement().setAttribute("style", "margin-left: " + menu_width + "px !important;");
+		horizontalPanel114.getElement().setAttribute("style", "margin-left: 460px !important;");
+		horizontalPanel115.getElement().setAttribute("style", "margin-left: 490px !important;");
+		leftLabel.setStyleName("footerLeftLabel");
+		rightLabel.setStyleName("footerRightLabel");
+		centerLabel.setStyleName("footerCenterLabel");
+		horizontalPanel113.addMouseOverHandler(new MouseOverHandler() {
+			public void onMouseOver(MouseOverEvent event) {
+				leftLabel.getElement().setAttribute("style", "color: #F9A12A;");
+			    horizontalPanel113.getElement().setAttribute("style", "cursor: pointer; !important; "
+			    		+ "margin-left: " + menu_width + "px !important;");
+			    horizontalPanel113.remove(0);
+			    horizontalPanel113.insert(leftHtml2, 0);
+			}
+		});
+		horizontalPanel113.addMouseOutHandler(new MouseOutHandler() {
+			public void onMouseOut(MouseOutEvent event) {
+				leftLabel.getElement().setAttribute("style", "color: #616265;");
+				horizontalPanel113.remove(0);
+				horizontalPanel113.insert(leftHtml, 0);
+			}
+		});
+		horizontalPanel113.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				navigateTab(-1);
+			}
+		});
+		horizontalPanel114.addMouseOverHandler(new MouseOverHandler() {
+			public void onMouseOver(MouseOverEvent event) {
+				centerLabel.getElement().setAttribute("style", "color: #F9A12A;");
+				horizontalPanel114.getElement().setAttribute("style", "cursor: pointer; margin-left: 460px !important;");
+				horizontalPanel114.remove(0);
+				horizontalPanel114.insert(centerHtml2, 0);
+			}
+		});
+		horizontalPanel114.addMouseOutHandler(new MouseOutHandler() {
+			public void onMouseOut(MouseOutEvent event) {
+				centerLabel.getElement().setAttribute("style", "color: #616265;");
+				horizontalPanel114.remove(0);
+				horizontalPanel114.insert(centerHtml, 0);
+			}
+		});
+		horizontalPanel114.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				tabPanel.selectTab(0);
+			}
+		});
+		horizontalPanel115.addMouseOverHandler(new MouseOverHandler() {
+			public void onMouseOver(MouseOverEvent event) {
+				rightLabel.getElement().setAttribute("style", "color: #F9A12A;");
+				horizontalPanel115.getElement().setAttribute("style", "cursor: pointer; margin-left: 490px !important;");
+				horizontalPanel115.remove(0);
+				horizontalPanel115.insert(rightHtml2, 0);
+			}
+		});
+		horizontalPanel115.addMouseOutHandler(new MouseOutHandler() {
+			public void onMouseOut(MouseOutEvent event) {
+				rightLabel.getElement().setAttribute("style", "color: #616265;");
+				horizontalPanel115.remove(0);
+				horizontalPanel115.insert(rightHtml, 0);
+			}
+		});
+		horizontalPanel115.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				navigateTab(1);
+			}
+		});
+		
 
 		// Menu bar items
 		mainMenu.addItem(new MenuItem(imageASMM,true,asmmMenu));
+		asmmMenu.addItem("Flight and Contact Information", goFlight);
+		asmmMenu.addItem("Scientific Aims", goAims);
+		asmmMenu.addItem("Geographic Information", goInformation);
+		asmmMenu.addItem("Atmospheric Synoptic Features", goFeatures);
+		asmmMenu.addItem("Cloud Types and Forms Sampled During Flight", goForms);
+		asmmMenu.addItem("Cloud, Precipitation and Aerosol Particles Sampled", goParticles);
+		asmmMenu.addItem("Land or Oceans Surfaces Overflown", goSurfaces);
+		asmmMenu.addItem("Altitude Range of Measurement", goMeasurement);
+		asmmMenu.addItem("Types of Flight Manoeuvre", goManoeuvre);
+		asmmMenu.addItem("Satellite Coordination", goCoordination);
+		asmmMenu.addItem("Supporting Surface-based Observations", goObservations);
+		asmmMenu.addItem("Additional Notes on the Flight", goNotes);
+		asmmMenu.addItem("Images included in the PDF report", goPdf);
+		asmmMenu.addSeparator();
 		asmmMenu.addItem("File", fileMenu);
 		asmmMenu.addItem("About", aboutMenu);
+		asmmMenu.addItem("Help", launchHelpPage);
 		aboutMenu.addItem("ASMM Creator",aboutWindow);
 		aboutMenu.addItem("ASMM XML standard",aboutStandard);
 		aboutMenu.addItem("EUFAR N7SP",launchN7SPPage);
@@ -658,19 +998,21 @@ public class Asmm_eufar implements EntryPoint {
 		fileMenu.addItem("Save",saveFile);
 		fileMenu.addItem("Print",printFile);
 		fileMenu.addItem("Exit",exitFile);
+		mainMenu.getElement().setAttribute("style", "padding-left: " + (menu_width - 70) + "px !important;");
 
 
 		// Assemble Flight Information panel
 		horizontalPanel49.add(fi_mainLab);
 		horizontalPanel49.add(fi_pathLab);
 		horizontalPanel49.add(fi_pathLab2);
-		horizontalPanel50.add(new HTML("<hr  style=\"width:750px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel50.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel58.add(fi_mainLab2);
 		verticalPanel58.add(horizontalPanel49);
 		verticalPanel58.add(horizontalPanel50);
 		verticalPanel58.add(verticalPanel59);
 		verticalPanel59.add(fi_flightInfo);
 		verticalPanel59.add(fiGrid);
-		verticalPanel59.add(new HTML("<hr  style=\"width:700px;height:10px;background:#0098d9;border:0px;margin-top:30px;"
+		verticalPanel59.add(new HTML("<hr  style=\"width:1150px;height:10px;background:#0098d9;border:0px;margin-top:30px;"
 				+ "margin-bottom:30px;\" />"));
 		verticalPanel59.add(ci_contactInfo);
 		verticalPanel59.add(ciGrid);
@@ -680,31 +1022,84 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel27.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel30.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel26.add(fi_operatorText);
+		horizontalPanel26.add(fi_operatorImage);
+		horizontalPanel26.add(fi_otherOpsText);
+		horizontalPanel26.add(fi_infoButton06);
 		horizontalPanel27.add(fi_aircraftText);
-		fiGrid.setWidget(0, 0, fi_campaignLabel);
-		fiGrid.setWidget(0, 1, fi_campaignText);
-		fiGrid.setWidget(1, 0, fi_dateLabel);
-		fi_dateText.setFormat(new DateBox.DefaultFormat(DateTimeFormat.getFormat("yyyy-MM-dd")));
-		fi_dateText.setValue(new Date());
-		fiGrid.setWidget(1, 1, fi_dateText);
-		fiGrid.setWidget(2, 0, fi_flightLabel);
-		fiGrid.setWidget(2, 1, fi_flightText);
-		fiGrid.setWidget(3, 0, fi_scientistLabel);
-		fiGrid.setWidget(3, 1, fi_scientistText);
-		fiGrid.setWidget(4, 0, fi_managerLabel);
-		fiGrid.setWidget(4, 1, fi_managerText);
-		fiGrid.setWidget(5, 0, fi_operatorLabel);
-		fiGrid.setWidget(5, 1, horizontalPanel26);
-		fiGrid.setWidget(6, 0, fi_aircraftLabel);
-		fiGrid.setWidget(6, 1, horizontalPanel27);
-		fiGrid.setWidget(7, 0, fi_countryLabel);
+		horizontalPanel27.add(fi_aircraftImage);
+		horizontalPanel27.add(fi_otherAiText);
+		fi_operatorImage.setVisible(false);
+		fi_otherOpsText.setVisible(false);
+		fi_aircraftImage.setVisible(false);
+		fi_otherAiText.setVisible(false);
+		horizontalPanel75.add(fi_campaignLabel);
+		horizontalPanel75.add(fi_starLab01);
+		horizontalPanel76.add(fi_dateLabel);
+		horizontalPanel76.add(fi_starLab02);
+		horizontalPanel77.add(fi_flightLabel);
+		horizontalPanel77.add(fi_starLab03);
+		horizontalPanel78.add(fi_scientistLabel);
+		horizontalPanel78.add(fi_starLab04);
+		horizontalPanel79.add(fi_managerLabel);
+		horizontalPanel79.add(fi_starLab05);
+		horizontalPanel80.add(fi_operatorLabel);
+		horizontalPanel80.add(fi_starLab06);
+		horizontalPanel81.add(fi_aircraftLabel);
+		horizontalPanel81.add(fi_starLab07);
+		horizontalPanel82.add(fi_countryLabel);
+		horizontalPanel82.add(fi_starLab08);
+		horizontalPanel91.add(fi_campaignText);
+		horizontalPanel91.add(fi_infoButton01);
+		horizontalPanel92.add(fi_dateText);
+		horizontalPanel92.add(fi_infoButton02);
+		horizontalPanel93.add(fi_flightText);
+		horizontalPanel93.add(fi_infoButton03);
+		horizontalPanel94.add(fi_scientistText);
+		horizontalPanel94.add(fi_infoButton04);
+		horizontalPanel95.add(fi_managerText);
+		horizontalPanel95.add(fi_infoButton05);
 		horizontalPanel30.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel30.add(geoLocationLst);
 		horizontalPanel30.add(geoFollowImage);
+		horizontalPanel30.add(geoDetailLst);
+		horizontalPanel30.add(fi_infoButton07);
+		fi_dateText.setFormat(new DateBox.DefaultFormat(DateTimeFormat.getFormat("yyyy-MM-dd")));
+		fi_dateText.setValue(new Date());
+		fiGrid.setWidget(0, 0, horizontalPanel75);
+		fiGrid.setWidget(0, 1, horizontalPanel91);
+		fiGrid.setWidget(1, 0, horizontalPanel76);
+		fiGrid.setWidget(1, 1, horizontalPanel92);
+		fiGrid.setWidget(2, 0, horizontalPanel77);
+		fiGrid.setWidget(2, 1, horizontalPanel93);
+		fiGrid.setWidget(3, 0, horizontalPanel78);
+		fiGrid.setWidget(3, 1, horizontalPanel94);
+		fiGrid.setWidget(4, 0, horizontalPanel79);
+		fiGrid.setWidget(4, 1, horizontalPanel95);
+		fiGrid.setWidget(5, 0, horizontalPanel80);
+		fiGrid.setWidget(5, 1, horizontalPanel26);
+		fiGrid.setWidget(6, 0, horizontalPanel81);
+		fiGrid.setWidget(6, 1, horizontalPanel27);
+		fiGrid.setWidget(7, 0, horizontalPanel82);
 		fiGrid.setWidget(7, 1, horizontalPanel30);
-		fiGrid.setWidget(7, 2, geoDetailLst);
+		FlexCellFormatter fi_cellFormatter = fiGrid.getFlexCellFormatter();
+		fi_cellFormatter.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(3, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(4, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(5, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(6, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		fi_cellFormatter.setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		fi_aircraftText.setEnabled(false);
 		geoDetailLst.setEnabled(false);
+		fi_starLab01.setStyleName("fi_starLabel");
+		fi_starLab02.setStyleName("fi_starLabel");
+		fi_starLab03.setStyleName("fi_starLabel");
+		fi_starLab04.setStyleName("fi_starLabel");
+		fi_starLab05.setStyleName("fi_starLabel");
+		fi_starLab06.setStyleName("fi_starLabel");
+		fi_starLab07.setStyleName("fi_starLabel");
+		fi_starLab08.setStyleName("fi_starLabel");
 		fi_operatorImage.setStyleName("fi_image");
 		fi_aircraftImage.setStyleName("fi_image");
 		fi_otherOpsText.setStyleName("fi_textBox");
@@ -719,12 +1114,10 @@ public class Asmm_eufar implements EntryPoint {
 		fi_aircraftText.setStyleName("fi_textList2");
 		fi_operatorText.setStyleName("fi_textList2");
 		fi_operatorText.setName("operatorText");
-		geoLocationLst.setName("localisationText");
-		geoDetailLst.setName("countryText");
 		fi_aircraftText.setName("aircraftText");
 		fiGrid.setStyleName("fi_grid");
 		ciGrid.setStyleName("ci_grid");
-		fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");
+		fi_dateText.setStyleName("fi_dateBox");
 		fi_flightInfo.setStyleName("fi_textLabelTitle");
 		fi_campaignLabel.setStyleName("fi_textLabel");
 		fi_dateLabel.setStyleName("fi_textLabel");
@@ -734,6 +1127,14 @@ public class Asmm_eufar implements EntryPoint {
 		fi_operatorLabel.setStyleName("fi_textLabel");
 		fi_aircraftLabel.setStyleName("fi_textLabel");
 		fi_countryLabel.setStyleName("fi_textLabel");
+		verticalPanel58.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		fiScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		fi_operatorText.addChangeHandler(new ChangeHandler() {
 			@Override
 			public void onChange(ChangeEvent event) {
@@ -747,6 +1148,7 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		});
 		fi_mainLab.setStyleName("fi_mainText");
+		fi_mainLab2.setStyleName("fi_mainText2");
 		fi_pathLab.setStyleName("fi_pathText");
 		fi_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel50.setStyleName("fi_line");
@@ -755,14 +1157,33 @@ public class Asmm_eufar implements EntryPoint {
 
 
 		// Assemble Contact Information panel
+		horizontalPanel83.add(ci_nameLabel);
+		horizontalPanel83.add(ci_starLab01);
+		horizontalPanel84.add(ci_roleLabel);
+		horizontalPanel84.add(ci_starLab02);
+		horizontalPanel85.add(ci_emailLabel);
+		horizontalPanel85.add(ci_starLab03);
+		horizontalPanel96.add(ci_nameText);
+		horizontalPanel96.add(ci_infoButton01);
+		horizontalPanel97.add(ci_roleText);
+		horizontalPanel97.add(ci_infoButton02);
+		horizontalPanel98.add(ci_emailText);
+		horizontalPanel98.add(ci_infoButton03);
 		Utilities.populateListBox(ci_roleText, roleList, 0);
 		ci_roleText.setName("roleText");
-		ciGrid.setWidget(0, 0, ci_nameLabel);
-		ciGrid.setWidget(0, 1, ci_nameText);
-		ciGrid.setWidget(1, 0, ci_roleLabel);
-		ciGrid.setWidget(1, 1, ci_roleText);
-		ciGrid.setWidget(2, 0, ci_emailLabel);
-		ciGrid.setWidget(2, 1, ci_emailText);
+		ciGrid.setWidget(0, 0, horizontalPanel83);
+		ciGrid.setWidget(0, 1, horizontalPanel96);
+		ciGrid.setWidget(1, 0, horizontalPanel84);
+		ciGrid.setWidget(1, 1, horizontalPanel97);
+		ciGrid.setWidget(2, 0, horizontalPanel85);
+		ciGrid.setWidget(2, 1, horizontalPanel98);
+		FlexCellFormatter ci_cellFormatter = ciGrid.getFlexCellFormatter();
+		ci_cellFormatter.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		ci_cellFormatter.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		ci_cellFormatter.setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		ci_starLab01.setStyleName("fi_starLabel");
+		ci_starLab02.setStyleName("fi_starLabel");
+		ci_starLab03.setStyleName("fi_starLabel");
 		ci_nameText.setStyleName("fi_textBox");
 		ci_emailText.setStyleName("fi_textBox");
 		ci_roleText.setStyleName("ci_textList");
@@ -774,10 +1195,11 @@ public class Asmm_eufar implements EntryPoint {
 
 
 		// Assemble Scientific Aims panel.
+		verticalPanel60.add(sa_mainLab2);
 		horizontalPanel51.add(sa_mainLab);
 		horizontalPanel51.add(sa_pathLab);
 		horizontalPanel51.add(sa_pathLab2);
-		horizontalPanel52.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel52.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
 		verticalPanel60.add(horizontalPanel51);
 		verticalPanel60.add(horizontalPanel52);
 		verticalPanel60.add(verticalPanel10);
@@ -815,20 +1237,25 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel08.add(sa_dynAmics);
 		verticalPanel09.add(verticalPanel07);
 		verticalPanel09.add(verticalPanel08);
+		horizontalPanel01.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel01.add(verticalPanel03);
 		horizontalPanel01.add(verticalPanel06);
 		horizontalPanel01.add(verticalPanel09);
+		horizontalPanel01.add(sa_infoButton01);
 		verticalPanel10.add(horizontalPanel01);
 		verticalPanel10.add(new HTML("<br>"));
 		PushButton sa_addCatButton = GuiModification.addCatButton(sa_addCatTable, sa_addCatMap, verticalPanel67);
 		horizontalPanel31.add(sa_addCatButton);
-		horizontalPanel31.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel sa_infoButton = Elements.addInfoButton("newCheckBox");
+		sa_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel31.add(sa_infoButton);
 		verticalPanel67.add(horizontalPanel31);
 		verticalPanel10.add(verticalPanel67);
 		verticalPanel10.add(new HTML("<br>"));
 		verticalPanel10.add(new HTML("<br>"));
 		horizontalPanel02.add(sa_comments);
 		horizontalPanel02.add(sa_comArea);
+		horizontalPanel02.add(sa_infoButton02);
 		verticalPanel10.add(horizontalPanel02);
 		sa_gazChemistry.setStyleName("sa_checkBox3");
 		sa_radIation.setStyleName("sa_checkBox3");
@@ -860,10 +1287,19 @@ public class Asmm_eufar implements EntryPoint {
 		sa_dynAmics.setStyleName("sa_checkBox");
 		sa_comArea.setStyleName("sa_textArea");
 		sa_mainLab.setStyleName("fi_mainText");
+		sa_mainLab2.setStyleName("fi_mainText2");
 		sa_pathLab.setStyleName("fi_pathText");
 		sa_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel52.setStyleName("fi_line");
 		verticalPanel10.setStyleName("sa_verticalPanel2");
+		verticalPanel60.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		saScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel01.getElement().setAttribute("style", "margin-top: 20px !important; margin-left: 20px !important;");
 		verticalPanel02.getElement().setAttribute("style", "margin-top: 0px !important; height: 110px !important; width: 300px !important;");
 		verticalPanel04.getElement().setAttribute("style", "height: 110px !important; width: 300px !important;");
@@ -879,7 +1315,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel53.add(gi_mainLab);
 		horizontalPanel53.add(gi_pathLab);
 		horizontalPanel53.add(gi_pathLab2);
-		horizontalPanel54.add(new HTML("<hr  style=\"width:1150px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel54.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel80.add(gi_mainLab2);
 		verticalPanel80.add(horizontalPanel53);
 		verticalPanel80.add(horizontalPanel54);
 		verticalPanel80.add(verticalPanel11);
@@ -916,14 +1353,19 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel65.add(gi_oceanicIslands);
 		verticalPanel65.add(gi_other);
 		horizontalPanel05.add(verticalPanel65);
+		horizontalPanel05.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel05.add(gi_infoButton01);
 		verticalPanel11.add(horizontalPanel05);
 		horizontalPanel40.add(GuiModification.addCatButton(gi_addCatTable, gi_addCatMap, verticalPanel68));
-		horizontalPanel40.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel gi_infoButton = Elements.addInfoButton("newCheckBox");
+		gi_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel40.add(gi_infoButton);
 		verticalPanel68.add(horizontalPanel40);
 		verticalPanel11.add(verticalPanel68);
 		verticalPanel11.add(new HTML("<br />"));
 		horizontalPanel06.add(gi_comLabel);
 		horizontalPanel06.add(gi_comArea);
+		horizontalPanel06.add(gi_infoButton02);
 		verticalPanel11.add(horizontalPanel06);
 		verticalPanel11.setSpacing(10);
 		gi_boundingLabel.setStyleName("gi_titleText");
@@ -949,10 +1391,19 @@ public class Asmm_eufar implements EntryPoint {
 		gi_mmLabel.setStyleName("gi_textLabel");
 		gi_weLabel.setStyleName("gi_textLabel");
 		gi_mainLab.setStyleName("fi_mainText");
+		gi_mainLab2.setStyleName("fi_mainText2");
 		gi_pathLab.setStyleName("fi_pathText");
 		gi_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel54.setStyleName("fi_line");
 		verticalPanel11.setStyleName("gi_verticalPanel");
+		verticalPanel80.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		giScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		horizontalPanel03.getElement().setAttribute("style", "margin-left: 40px !important;");
 		verticalPanel15.getElement().setAttribute("style", "margin-left: 20px !important;");
 		horizontalPanel05.getElement().setAttribute("style", "margin-left: 40px !important;");
@@ -970,7 +1421,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel55.add(af_mainLab);
 		horizontalPanel55.add(af_pathLab);
 		horizontalPanel55.add(af_pathLab2);
-		horizontalPanel56.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel56.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel81.add(af_mainLab2);
 		verticalPanel81.add(horizontalPanel55);
 		verticalPanel81.add(horizontalPanel56);
 		verticalPanel81.add(verticalPanel20);
@@ -1000,23 +1452,28 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel19.add(af_organizedConvection);
 		verticalPanel19.setSpacing(10);
 		horizontalPanel07.add(verticalPanel19);
+		horizontalPanel07.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel07.add(af_infoButton01);
 		verticalPanel20.add(horizontalPanel07);
 		verticalPanel20.add(new HTML("<br>"));
 		horizontalPanel41.add(GuiModification.addCatButton(af_addCatTable, af_addCatMap, verticalPanel69));
-		horizontalPanel41.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel af_infoButton = Elements.addInfoButton("newCheckBox");
+		af_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel41.add(af_infoButton);
 		verticalPanel69.add(horizontalPanel41);
 		verticalPanel20.add(verticalPanel69);
 		verticalPanel20.add(new HTML("<br>"));
 		horizontalPanel08.add(af_comLabel);
 		horizontalPanel08.add(af_comArea);
+		horizontalPanel08.add(af_infoButton02);
 		verticalPanel20.add(horizontalPanel08);
-		af_antiStationary.setStyleName("sa_checkBox");
-		af_cycloStationary.setStyleName("sa_checkBox");
 		af_comLabel.setStyleName("af_titleText");
 		af_comArea.setStyleName("sa_textArea");
 		af_stationary.setStyleName("af_checkBox");
 		af_antiStationary.setStyleName("af_checkBox");
+		af_antiStationary.getElement().setAttribute("style", "margin-left: 40px !important;");
 		af_cycloStationary.setStyleName("af_checkBox");
+		af_cycloStationary.getElement().setAttribute("style", "margin-left: 40px !important;");
 		af_warmFront.setStyleName("af_checkBox");
 		af_warmBelt.setStyleName("af_checkBox");
 		af_coldFront.setStyleName("af_checkBox");
@@ -1033,10 +1490,19 @@ public class Asmm_eufar implements EntryPoint {
 		af_tropicalCyclone.setStyleName("af_checkBox");
 		af_organizedConvection.setStyleName("af_checkBox");
 		af_mainLab.setStyleName("fi_mainText");
+		af_mainLab2.setStyleName("fi_mainText2");
 		af_pathLab.setStyleName("fi_pathText");
 		af_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel56.setStyleName("fi_line");
 		verticalPanel20.setStyleName("af_verticalPanel");
+		verticalPanel81.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		afScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel17.getElement().setAttribute("style", "margin-left: 50px !important;");
 		verticalPanel18.getElement().setAttribute("style", "margin-left: 50px !important;");
 		verticalPanel19.getElement().setAttribute("style", "margin-left: 50px !important;");
@@ -1047,7 +1513,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel57.add(ct_mainLab);
 		horizontalPanel57.add(ct_pathLab);
 		horizontalPanel57.add(ct_pathLab2);
-		horizontalPanel58.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel58.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel82.add(ct_mainLab2);
 		verticalPanel82.add(horizontalPanel57);
 		verticalPanel82.add(horizontalPanel58);
 		verticalPanel82.add(verticalPanel25);
@@ -1073,15 +1540,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel24.add(ct_freeBelow);
 		verticalPanel24.setSpacing(10);
 		horizontalPanel09.add(verticalPanel24);
+		horizontalPanel09.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel09.add(ct_infoButton01);
 		verticalPanel25.add(horizontalPanel09);
 		verticalPanel25.add(new HTML("<br>"));
 		horizontalPanel42.add(GuiModification.addCatButton(ct_addCatTable, ct_addCatMap, verticalPanel70));
-		horizontalPanel42.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel ct_infoButton = Elements.addInfoButton("newCheckBox");
+		ct_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel42.add(ct_infoButton);
 		verticalPanel70.add(horizontalPanel42);
 		verticalPanel25.add(verticalPanel70);
 		verticalPanel25.add(new HTML("<br>"));
 		horizontalPanel10.add(ct_comLabel);
 		horizontalPanel10.add(ct_comArea);
+		horizontalPanel10.add(ct_infoButton02);
 		verticalPanel25.add(horizontalPanel10);
 		ct_comLabel.setStyleName("ct_titleText");
 		ct_comArea.setStyleName("sa_textArea");
@@ -1100,10 +1572,19 @@ public class Asmm_eufar implements EntryPoint {
 		ct_freeAbove.setStyleName("ct_checkBox");
 		ct_freeBelow.setStyleName("ct_checkBox");
 		ct_mainLab.setStyleName("fi_mainText");
+		ct_mainLab2.setStyleName("fi_mainText2");
 		ct_pathLab.setStyleName("fi_pathText");
 		ct_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel58.setStyleName("fi_line");
 		verticalPanel25.setStyleName("af_verticalPanel");
+		verticalPanel82.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		ctScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel22.getElement().setAttribute("style", "margin-left: 60px !important;");
 		verticalPanel23.getElement().setAttribute("style", "margin-left: 60px !important;");
 		verticalPanel24.getElement().setAttribute("style", "margin-left: 60px !important;");
@@ -1114,7 +1595,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel59.add(cp_mainLab);
 		horizontalPanel59.add(cp_pathLab);
 		horizontalPanel59.add(cp_pathLab2);
-		horizontalPanel60.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel60.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel83.add(cp_mainLab2);
 		verticalPanel83.add(horizontalPanel59);
 		verticalPanel83.add(horizontalPanel60);
 		verticalPanel83.add(verticalPanel30);
@@ -1138,15 +1620,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel29.add(cp_volcanicAsh);
 		verticalPanel29.setSpacing(10);
 		horizontalPanel11.add(verticalPanel29);
+		horizontalPanel11.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel11.add(cp_infoButton01);
 		verticalPanel30.add(horizontalPanel11);
 		verticalPanel30.add(new HTML("<br>"));
 		horizontalPanel43.add(GuiModification.addCatButton(cp_addCatTable, cp_addCatMap, verticalPanel71));
-		horizontalPanel43.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel cp_infoButton = Elements.addInfoButton("newCheckBox");
+		cp_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel43.add(cp_infoButton);
 		verticalPanel71.add(horizontalPanel43);
 		verticalPanel30.add(verticalPanel71);
 		verticalPanel30.add(new HTML("<br>"));
 		horizontalPanel12.add(cp_comLabel);
 		horizontalPanel12.add(cp_comArea);
+		horizontalPanel12.add(cp_infoButton02);
 		verticalPanel30.add(horizontalPanel12);
 		cp_comLabel.setStyleName("cp_titleText");
 		cp_comArea.setStyleName("sa_textArea");
@@ -1163,10 +1650,19 @@ public class Asmm_eufar implements EntryPoint {
 		cp_desertDust.setStyleName("ct_checkBox");
 		cp_volcanicAsh.setStyleName("ct_checkBox");
 		cp_mainLab.setStyleName("fi_mainText");
+		cp_mainLab2.setStyleName("fi_mainText2");
 		cp_pathLab.setStyleName("fi_pathText");
 		cp_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel60.setStyleName("fi_line");
 		verticalPanel30.setStyleName("af_verticalPanel");
+		verticalPanel83.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		cpScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel27.getElement().setAttribute("style", "margin-left: 115px !important;");
 		verticalPanel28.getElement().setAttribute("style", "margin-left: 115px !important;");
 		verticalPanel29.getElement().setAttribute("style", "margin-left: 115px !important;");
@@ -1177,7 +1673,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel61.add(lo_mainLab);
 		horizontalPanel61.add(lo_pathLab);
 		horizontalPanel61.add(lo_pathLab2);
-		horizontalPanel62.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel62.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel84.add(lo_mainLab2);
 		verticalPanel84.add(horizontalPanel61);
 		verticalPanel84.add(horizontalPanel62);
 		verticalPanel84.add(verticalPanel35);
@@ -1201,15 +1698,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel34.add(lo_flat);
 		verticalPanel34.setSpacing(10);
 		horizontalPanel13.add(verticalPanel34);
+		horizontalPanel13.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel13.add(lo_infoButton01);
 		verticalPanel35.add(horizontalPanel13);
 		verticalPanel35.add(new HTML("<br>"));
 		horizontalPanel44.add(GuiModification.addCatButton(lo_addCatTable, lo_addCatMap, verticalPanel72));
-		horizontalPanel44.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel lo_infoButton = Elements.addInfoButton("newCheckBox");
+		lo_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel44.add(lo_infoButton);
 		verticalPanel72.add(horizontalPanel44);
 		verticalPanel35.add(verticalPanel72);
 		verticalPanel35.add(new HTML("<br>"));
 		horizontalPanel14.add(lo_comLabel);
 		horizontalPanel14.add(lo_comArea);
+		horizontalPanel14.add(lo_infoButton02);
 		verticalPanel35.add(horizontalPanel14);
 		lo_comLabel.setStyleName("lo_titleText");
 		lo_comArea.setStyleName("sa_textArea");
@@ -1226,10 +1728,19 @@ public class Asmm_eufar implements EntryPoint {
 		lo_hilly.setStyleName("lo_checkBox");
 		lo_flat.setStyleName("lo_checkBox");
 		lo_mainLab.setStyleName("fi_mainText");
+		lo_mainLab2.setStyleName("fi_mainText2");
 		lo_pathLab.setStyleName("fi_pathText");
 		lo_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel62.setStyleName("fi_line");
 		verticalPanel35.setStyleName("af_verticalPanel");
+		verticalPanel84.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		loScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel32.getElement().setAttribute("style", "margin-left:190px !important;");
 		verticalPanel33.getElement().setAttribute("style", "margin-left:190px !important;");
 		verticalPanel34.getElement().setAttribute("style", "margin-left:190px !important;");
@@ -1240,7 +1751,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel63.add(ar_mainLab);
 		horizontalPanel63.add(ar_pathLab);
 		horizontalPanel63.add(ar_pathLab2);
-		horizontalPanel64.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel64.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel85.add(ar_mainLab2);
 		verticalPanel85.add(horizontalPanel63);
 		verticalPanel85.add(horizontalPanel64);
 		verticalPanel85.add(verticalPanel38);
@@ -1259,15 +1771,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel79.add(ar_lowerstratosphere);
 		verticalPanel79.setSpacing(10);
 		horizontalPanel15.add(verticalPanel79);
+		horizontalPanel15.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel15.add(ar_infoButton01);
 		verticalPanel38.add(horizontalPanel15);
 		verticalPanel38.add(new HTML("<br>"));
 		horizontalPanel45.add(GuiModification.addCatButton(ar_addCatTable, ar_addCatMap, verticalPanel73));
-		horizontalPanel45.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel ar_infoButton = Elements.addInfoButton("newCheckBox");
+		ar_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel45.add(ar_infoButton);
 		verticalPanel73.add(horizontalPanel45);
 		verticalPanel38.add(verticalPanel73);
 		verticalPanel38.add(new HTML("<br>"));
 		horizontalPanel16.add(ar_comLabel);
 		horizontalPanel16.add(ar_comArea);
+		horizontalPanel16.add(ar_infoButton02);
 		verticalPanel38.add(horizontalPanel16);
 		ar_inCloud.setStyleName("sa_checkBox");
 		ar_subCloud.setStyleName("sa_checkBox");
@@ -1280,10 +1797,19 @@ public class Asmm_eufar implements EntryPoint {
 		ar_lowerTroposphere.setStyleName("ar_checkBox");
 		ar_lowerstratosphere.setStyleName("ar_checkBox");
 		ar_mainLab.setStyleName("fi_mainText");
+		ar_mainLab2.setStyleName("fi_mainText2");
 		ar_pathLab.setStyleName("fi_pathText");
 		ar_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel64.setStyleName("fi_line");
 		verticalPanel38.setStyleName("af_verticalPanel");
+		verticalPanel85.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		arScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel37.getElement().setAttribute("style", "margin-left:200px !important;");
 		verticalPanel79.getElement().setAttribute("style", "margin-left:200px !important;");
 		rootLogger.log(Level.INFO, "Altitude Range of Measurement panel initialized");
@@ -1293,7 +1819,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel65.add(fm_mainLab);
 		horizontalPanel65.add(fm_pathLab);
 		horizontalPanel65.add(fm_pathLab2);
-		horizontalPanel66.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel66.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel86.add(fm_mainLab2);
 		verticalPanel86.add(horizontalPanel65);
 		verticalPanel86.add(horizontalPanel66);
 		verticalPanel86.add(verticalPanel41);
@@ -1314,14 +1841,19 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel78.add(fm_selfCalibration);
 		verticalPanel78.setSpacing(10);
 		horizontalPanel17.add(verticalPanel78);
+		horizontalPanel17.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel17.add(fm_infoButton01);
 		verticalPanel41.add(horizontalPanel17);
 		horizontalPanel46.add(GuiModification.addCatButton(fm_addCatTable, fm_addCatMap, verticalPanel74));
-		horizontalPanel46.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel fm_infoButton = Elements.addInfoButton("newCheckBox");
+		fm_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel46.add(fm_infoButton);
 		verticalPanel74.add(horizontalPanel46);
 		verticalPanel41.add(verticalPanel74);
 		verticalPanel41.add(new HTML("<br>"));
 		horizontalPanel18.add(fm_comLabel);
 		horizontalPanel18.add(fm_comArea);
+		horizontalPanel18.add(fm_infoButton02);
 		verticalPanel41.add(horizontalPanel18);
 		fm_separated.setStyleName("sa_checkBox");
 		fm_stacked.setStyleName("sa_checkBox");
@@ -1335,10 +1867,19 @@ public class Asmm_eufar implements EntryPoint {
 		fm_dropsondeDeployed.setStyleName("fm_checkBox");
 		fm_selfCalibration.setStyleName("fm_checkBox");
 		fm_mainLab.setStyleName("fi_mainText");
+		fm_mainLab2.setStyleName("fi_mainText2");
 		fm_pathLab.setStyleName("fi_pathText");
 		fm_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel66.setStyleName("fi_line");
 		verticalPanel41.setStyleName("af_verticalPanel");
+		verticalPanel86.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		fmScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel40.getElement().setAttribute("style", "margin-left:105px !important;");
 		verticalPanel77.getElement().setAttribute("style", "margin-left:105px !important;");
 		verticalPanel78.getElement().setAttribute("style", "margin-left:105px !important;");
@@ -1349,7 +1890,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel67.add(sc_mainLab);
 		horizontalPanel67.add(sc_pathLab);
 		horizontalPanel67.add(sc_pathLab2);
-		horizontalPanel68.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel68.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel87.add(sc_mainLab2);
 		verticalPanel87.add(horizontalPanel67);
 		verticalPanel87.add(horizontalPanel68);
 		verticalPanel87.add(verticalPanel47);
@@ -1376,15 +1918,20 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel45.add(sc_modis);
 		verticalPanel45.setSpacing(10);
 		horizontalPanel19.add(verticalPanel45);
+		horizontalPanel19.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel19.add(sc_infoButton01);
 		verticalPanel47.add(horizontalPanel19);
 		verticalPanel47.add(new HTML("<br>"));
 		horizontalPanel47.add(GuiModification.addCatButton(sc_addCatTable, sc_addCatMap, verticalPanel75));
-		horizontalPanel47.add(Elements.addInfoButton("newCheckBox"));
+		SimplePanel sc_infoButton = Elements.addInfoButton("newCheckBox");
+		sc_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
+		horizontalPanel47.add(sc_infoButton);
 		verticalPanel75.add(horizontalPanel47);
 		verticalPanel47.add(verticalPanel75);
 		verticalPanel47.add(new HTML("<br>"));
 		horizontalPanel20.add(sc_comLabel);
 		horizontalPanel20.add(sc_comArea);
+		horizontalPanel20.add(sc_infoButton02);
 		verticalPanel47.add(horizontalPanel20);
 		sc_other2.setStyleName("sa_checkBox");
 		verticalPanel43.setStyleName("sa_verticalPanel");
@@ -1406,10 +1953,19 @@ public class Asmm_eufar implements EntryPoint {
 		sc_iasi.setStyleName("sc_checkBox");
 		sc_modis.setStyleName("sc_checkBox");
 		sc_mainLab.setStyleName("fi_mainText");
+		sc_mainLab2.setStyleName("fi_mainText2");
 		sc_pathLab.setStyleName("fi_pathText");
 		sc_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel68.setStyleName("fi_line");
 		verticalPanel47.setStyleName("af_verticalPanel");
+		verticalPanel87.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		scScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel42.getElement().setAttribute("style", "width: 200px !important;");
 		verticalPanel43.getElement().setAttribute("style", "width: 220px !important; margin-left: 120px !important;");
 		verticalPanel44.getElement().setAttribute("style", "margin-left:120px !important; margin-top: 20px !important;");
@@ -1421,7 +1977,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel69.add(so_mainLab);
 		horizontalPanel69.add(so_pathLab);
 		horizontalPanel69.add(so_pathLab2);
-		horizontalPanel70.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel70.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel88.add(so_mainLab2);
 		verticalPanel88.add(horizontalPanel69);
 		verticalPanel88.add(horizontalPanel70);
 		verticalPanel88.add(verticalPanel61);
@@ -1429,6 +1986,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel21.add(so_groundSitesLabel);
 		horizontalPanel21.add(so_groundSitesBox);
 		horizontalPanel21.add(Utilities.addListButton(so_groundSitesTable, so_groundSitesBox, so_groundSitesList));
+		verticalPanel48.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel48.add(horizontalPanel21);
 		verticalPanel49.add(so_groundSitesTable);
 		verticalPanel48.add(verticalPanel49);
@@ -1438,6 +1996,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel22.add(so_researchVesselsLabel);
 		horizontalPanel22.add(so_researchVesselsBox);
 		horizontalPanel22.add(Utilities.addListButton(so_researchVesselsTable, so_researchVesselsBox, so_researchVesselsList));
+		verticalPanel51.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel51.add(horizontalPanel22);
 		verticalPanel52.add(so_researchVesselsTable);
 		verticalPanel51.add(verticalPanel52);
@@ -1447,6 +2006,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel23.add(so_armSitesLabel);
 		horizontalPanel23.add(so_armSitesBox);
 		horizontalPanel23.add(Utilities.addListButton(so_armSitesTable, so_armSitesBox, so_armSitesList));
+		verticalPanel53.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel53.add(horizontalPanel23);
 		verticalPanel54.add(so_armSitesTable);
 		verticalPanel53.add(verticalPanel54);
@@ -1456,6 +2016,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel24.add(so_mobileSitesLabel);
 		horizontalPanel24.add(so_mobileSitesBox);
 		horizontalPanel24.add(Utilities.addListButton(so_mobileSitesTable, so_mobileSitesBox, so_mobileSitesList));
+		verticalPanel56.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel56.add(horizontalPanel24);
 		verticalPanel57.add(so_mobileSitesTable);
 		verticalPanel56.add(verticalPanel57);
@@ -1463,9 +2024,12 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel55.add(verticalPanel56);
 		horizontalPanel25.add(verticalPanel50);
 		horizontalPanel25.add(verticalPanel55);
+		horizontalPanel25.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
+		horizontalPanel25.add(so_infoButton01);
+		so_infoButton01.getElement().setAttribute("style", "margin-left: 70px !important;");
 		verticalPanel61.add(horizontalPanel25);
 		verticalPanel51.getElement().setAttribute("style", "margin-top:30px !important;");
-		verticalPanel50.getElement().setAttribute("style", "margin-left:80px !important;");
+		verticalPanel50.getElement().setAttribute("style", "margin-left:150px !important;");
 		so_researchVesselsTable.setStyleName("flexTable");
 		so_groundSitesBox.setStyleName("so_textBox");
 		verticalPanel49.setStyleName("so_verticalPanel");
@@ -1483,10 +2047,19 @@ public class Asmm_eufar implements EntryPoint {
 		so_groundSitesLabel.setStyleName("so_textLabel");
 		so_researchVesselsLabel.setStyleName("so_textLabel");
 		so_mainLab.setStyleName("fi_mainText");
+		so_mainLab2.setStyleName("fi_mainText2");
 		so_pathLab.setStyleName("fi_pathText");
 		so_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel70.setStyleName("fi_line");
 		verticalPanel61.setStyleName("af_verticalPanel");
+		verticalPanel88.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		soScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		verticalPanel48.getElement().setAttribute("style", "margin-top:10px !important;");
 		verticalPanel53.getElement().setAttribute("style", "margin-top:10px !important;");
 		verticalPanel55.getElement().setAttribute("style", "margin-left:160px !important;");
@@ -1498,17 +2071,27 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel71.add(nf_mainLab);
 		horizontalPanel71.add(nf_pathLab);
 		horizontalPanel71.add(nf_pathLab2);
-		horizontalPanel72.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel72.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel89.add(nf_mainLab2);
 		verticalPanel89.add(horizontalPanel71);
 		verticalPanel89.add(horizontalPanel72);
 		verticalPanel89.add(verticalPanel66);
 		verticalPanel66.add(nf_comArea);
 		nf_comArea.setStyleName("sa_textArea");
 		nf_mainLab.setStyleName("fi_mainText");
+		nf_mainLab2.setStyleName("fi_mainText2");
 		nf_pathLab.setStyleName("fi_pathText");
 		nf_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel72.setStyleName("fi_line");
 		verticalPanel66.setStyleName("af_verticalPanel");
+		verticalPanel89.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		nfScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		nf_comArea.getElement().setAttribute("style", "margin-top: 20px; width: 1016px;");
 		rootLogger.log(Level.INFO, "Additional Notes on the Flight panel initialized...");
 		
@@ -1517,7 +2100,8 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel73.add(im_mainLab);
 		horizontalPanel73.add(im_pathLab);
 		horizontalPanel73.add(im_pathLab2);
-		horizontalPanel74.add(new HTML("<hr  style=\"width:1100px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		horizontalPanel74.add(new HTML("<hr  style=\"width:1200px;height:10px;background:#c0c0c0;border:0px;\" />"));
+		verticalPanel90.add(im_mainLab2);
 		verticalPanel90.add(horizontalPanel73);
 		verticalPanel90.add(horizontalPanel74);
 		verticalPanel90.add(verticalPanel76);
@@ -1554,10 +2138,19 @@ public class Asmm_eufar implements EntryPoint {
 				+ "170px !important; margin-top: 10px !important; color: #4f4f4f !important;");
 		imageTab.getElement().setAttribute("style", "margin-top: 10px !important; margin-left: 20px! important");
 		im_mainLab.setStyleName("fi_mainText");
+		im_mainLab2.setStyleName("fi_mainText2");
 		im_pathLab.setStyleName("fi_pathText");
 		im_pathLab2.setStyleName("fi_pathText2");
 		horizontalPanel74.setStyleName("fi_line");
 		verticalPanel76.setStyleName("af_verticalPanel");
+		verticalPanel90.getElement().setAttribute("style", 
+				"margin-top: " + (new_clouds_heading_height - 31) + "px !important;");
+		ipScroll.getElement().setAttribute("style", 
+				"background-image: url(icons/eufar_heading_clouds.jpg) !important; "
+				+ "background-repeat: no-repeat !important;" 
+				+ "background-size: " + screen_width + "px " + new_clouds_heading_height + "px !important;"
+				+ "background-position: -" + menu_width + "px 0px !important;"
+				+ "overflow: auto !important;");
 		rootLogger.log(Level.INFO, "Image Uploading panel initialized");
 		
 		
@@ -1575,17 +2168,17 @@ public class Asmm_eufar implements EntryPoint {
 		tabPanel.add(Asmm_eufar.soScroll,"Supporting Surface-based Observations");
 		tabPanel.add(Asmm_eufar.nfScroll,"Additional Notes on the Flight");
 		tabPanel.add(Asmm_eufar.ipScroll,"Images included in the PDF report");
-		float ratio = 1920/77;
-		int screen_width = Window.getClientWidth();
-		float band_height = (float) screen_width/ratio;
-		float ratio2 = 1920/99;
-		float band_height2 = (float) screen_width/ratio2;
-		subDockPanel.addNorth(new HTML("<img src='icons/eufar_heading_1.jpg' alt='EUFAR Metadata Creator' height='" + 
-				Float.toString(band_height+1) + "px' width='" + Integer.toString(screen_width) + "px'>"), band_height);
-		subDockPanel.addNorth(mainMenu, 40);
-		subDockPanel.addNorth(new HTML("<img src='icons/eufar_heading_2.jpg' alt='EUFAR Metadata Creator' height='" + 
-				Float.toString(band_height2+1) + "px' width='" + Integer.toString(screen_width) + "px'>"), band_height2);
+		verticalPanel101.add(mainMenu);
+		verticalPanel101.add(horizontalPanel90);
+		horizontalPanel90.getElement().setAttribute("style", "height: " + (new_clouds_heading_height) + "px;" +
+				  "background-image: url(icons/eufar_heading_clouds.jpg); background-repeat: no-repeat;" + 
+				  "background-size: " + screen_width + "px " + new_clouds_heading_height + "px; background-position: "+ 
+				  "left top; width: " + menu_width + "px;");
+		subDockPanel.addNorth(horizontalPanel87, 80);
+		subDockPanel.addSouth(horizontalPanel112, 40);
+		subDockPanel.addWest(verticalPanel101, menu_width);
 		subDockPanel.add(tabPanel);
+		subDockPanel.getElement().setAttribute("style", "background: rgb(238,238,238) !important;");
 		RootLayoutPanel rp=RootLayoutPanel.get();
 		rp.clear();
 		rp.add(Asmm_eufar.subDockPanel);
@@ -1668,5 +2261,312 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		}
 		return e;
+	}
+	
+	
+	// new panel with click and mouse over events
+	class HorizontalPanelOver extends HorizontalPanel {
+		public HorizontalPanelOver() {
+			super();
+		}
+		public HandlerRegistration addMouseOverHandler(MouseOverHandler handlerOver) {
+			return addDomHandler(handlerOver, MouseOverEvent.getType());
+		}
+		public HandlerRegistration addMouseOutHandler(MouseOutHandler handlerOut) {
+			return addDomHandler(handlerOut, MouseOutEvent.getType());
+		}
+		public HandlerRegistration addClickHandler(ClickHandler handler) {
+			return addDomHandler(handler, ClickEvent.getType());
+		}
+	}
+	
+	
+	// functions to navigate between tabs
+	private void navigateTab(final int direction) {
+		int selected_tab = tabPanel.getSelectedIndex();
+		int new_tab = selected_tab + direction;
+		if (new_tab < 0) {
+			new_tab = 12;
+		} else if (new_tab > 12) {
+			new_tab = 0;
+		}
+		tabPanel.selectTab(new_tab);
+	}
+	
+	
+	// check if all fields have been filled in before saving it
+	private void runCheck(final String string) {
+		rootLogger.log(Level.INFO, "Check of all fields in progress...");
+		int notCompleted = 0;
+		int widgetIndex = -1;
+		Utilities.runCheckDefault();
+		List<DateBox> allDateBox = $("*", subDockPanel).widgets(DateBox.class);
+		for (int i = 0; i < allDateBox.size(); i++) {
+			if (!runCorrect(allDateBox.get(i))) {
+				notCompleted++;
+			}
+		}
+		Widget parent;
+		for (Map.Entry<TextBoxBase, Label> entry : requiredField.entrySet()) {
+			Label label = entry.getValue();
+			TextBoxBase textBox = entry.getKey();
+			parent = textBox.getParent();
+			try {
+				while (!(parent instanceof ScrollPanel)) {
+					parent = parent.getParent();
+				}
+				if (textBox.getText() == "") {
+					if (label == null) {
+						textBox.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+						widgetIndex = tabPanel.getWidgetIndex(parent);
+						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
+					} else if (label.getText() == "Spatial resolution:") {} 
+					else {
+						notCompleted++;
+						textBox.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+						widgetIndex = tabPanel.getWidgetIndex(parent);
+						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
+					}
+				} else {
+					if (!runCorrect(textBox)) {
+						notCompleted++;
+						widgetIndex = tabPanel.getWidgetIndex(parent);
+						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #241CED !important;");
+					}
+				}
+			} catch (Exception ex) {
+				rootLogger.log(Level.WARNING, "the widget has no parent: " + ex.getMessage());
+			}
+		}
+		
+		if (fi_operatorText.getSelectedItemText() == "Make a choice...") {
+			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+			fi_operatorText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+		} else if (fi_operatorText.getSelectedItemText() == "Other...") {
+			if (fi_otherOpsText.getText() == "") {
+				fi_otherOpsText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+			}
+			if (fi_otherAiText.getText() == "") {
+				fi_otherAiText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+			}
+		}
+		if (fi_aircraftText.getSelectedItemText() == "Make a choice...") {
+			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+			fi_aircraftText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+		}
+		
+		if (geoLocationLst.getSelectedItemText() == "Make a choice...") {
+			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+			geoLocationLst.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+		}
+		if (geoDetailLst.getSelectedItemText() == "Make a choice...") {
+			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+			geoDetailLst.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+		}
+		
+		if (ci_roleText.getSelectedItemText() == "Make a choice...") {
+			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+			ci_roleText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
+		}
+		
+		
+		rootLogger.log(Level.INFO, "Check of all fields finished.");
+		if (notCompleted > 0) {
+			PopupMessages.notcompletePanel(string);
+		} else {
+			PopupMessages.saveFile(string);
+		}
+	}
+	
+	
+	// check if all TextBoxes have been correctly filled in before saving it
+	private boolean runCorrect(final TextBoxBase textBox) {
+		rootLogger.log(Level.INFO, "Check of text in all fields in progress...");
+		boolean result = true;
+		for (Map.Entry<TextBoxBase, String> entry : correctField.entrySet()) {
+			String string = entry.getValue();
+			TextBoxBase textBoxE = entry.getKey();
+			if (textBoxE == textBox) {
+				switch (string) {
+				case "number":
+					try { 
+						Double.parseDouble(textBox.getText());
+					} 
+					catch (NumberFormatException e) {
+						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+						result = false;
+					}
+					break;
+				case "string":
+					try {
+						Double.parseDouble(textBox.getText());
+						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+						result = false;
+					} catch (NumberFormatException e) {}
+					break;
+				case "email":
+					boolean isEmail = false;
+					for (char ch: textBox.getText().toCharArray()) {
+						if (ch == '@') {
+							isEmail = true;
+						}
+					}
+					if (!isEmail) {
+						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+						result = false;
+					}
+					break;
+				}
+			}
+		}
+		rootLogger.log(Level.INFO, "Check of text in all fields finished.");
+		return result;
+	}
+		
+		
+	// check if all DateBoxes have been correctly set before saving it
+	private boolean runCorrect(final DateBox dateBox) {
+		rootLogger.log(Level.INFO, "Check of a datebox in progress...");
+		boolean result = true;		
+		Date actualDate = new Date();
+		Date boxDate = dateBox.getValue();
+		Widget parent;
+		int widgetIndex = -1;
+		if (boxDate.after(actualDate)) {
+			result = false;
+			dateBox.getElement().setAttribute("style","border-color: #241CED !important;");
+			parent = dateBox.getParent();
+			while (!(parent instanceof ScrollPanel)) {
+				parent = parent.getParent();
+			}
+			widgetIndex = tabPanel.getWidgetIndex(parent);
+			tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #241CED !important;");
+		}
+		rootLogger.log(Level.INFO, "Check of a datebox finished.");
+		return result;
+	}
+	
+	
+	// create a new file by cleaning all widgets
+	private void newFile() {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Cleaning function invoked... ");
+		if (Asmm_eufar.isModified) {
+			final DialogBox infoDialog = new DialogBox();
+			final VerticalPanel verticalPanel01 = new VerticalPanel();
+			final VerticalPanel verticalPanel02 = new VerticalPanel();
+			final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
+			final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
+			final Label label = new Label("The actual document has been modified. Changes will be lost if the document is not saved.");
+			final Label label2 = new Label("Do you want to save your changes?");
+			final Button saveButton = new Button("Save");
+			final Button cancelButton = new Button("Cancel");
+			final Button createButton = new Button("Clear without saving");	
+			saveButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+					runCheck("clear");;
+				}
+			});
+			cancelButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+				}
+			});
+			createButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+					Utilities.clearFields();
+				}
+			});
+			infoDialog.setGlassEnabled(true);
+			horizontalPanel01.add(Resources.popupImage("warning"));
+			verticalPanel02.add(label);
+			verticalPanel02.add(label2);
+			horizontalPanel01.add(verticalPanel02);
+			verticalPanel01.add(horizontalPanel01);
+			horizontalPanel02.add(saveButton);
+			horizontalPanel02.add(cancelButton);
+			horizontalPanel02.add(createButton);
+			verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+			verticalPanel01.add(horizontalPanel02);
+			infoDialog.add(verticalPanel01);
+			infoDialog.setStyleName("newFilePanel");
+			label.setStyleName("newFileText");
+			label2.setStyleName("newFileText2");
+			saveButton.addStyleName("newFileButton");
+			cancelButton.addStyleName("newFileButton2");
+			createButton.addStyleName("newFileButton3");
+			infoDialog.setSize("350px","50px");
+			infoDialog.setModal(true);
+			infoDialog.center();
+			infoDialog.show();
+		} else {
+			Utilities.clearFields();
+		}
+	}
+	
+	
+	// open an existing xml file - 1
+	private void openFile() {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Opening function invoked...");
+		if (Asmm_eufar.isModified) {
+			final DialogBox infoDialog = new DialogBox();
+			final VerticalPanel verticalPanel01 = new VerticalPanel();
+			final VerticalPanel verticalPanel02 = new VerticalPanel();
+			final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
+			final HorizontalPanel horizontalPanel02 = new HorizontalPanel();
+			final Label label = new Label("The actual document has been modified. Changes will be lost if the document is not saved.");
+			final Label label2 = new Label("Do you want to save your changes?");
+			final Button saveButton = new Button("Save");
+			final Button cancelButton = new Button("Cancel");
+			final Button openButton = new Button("Open without saving");
+			saveButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+					runCheck("open");
+				}
+			});
+			cancelButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+				}
+			});
+			openButton.addClickHandler(new ClickHandler() {			
+				@Override
+				public void onClick(ClickEvent event) {
+					infoDialog.hide();
+					PopupMessages.openAction();
+				}
+			});
+			infoDialog.setGlassEnabled(true);
+			horizontalPanel01.add(Resources.popupImage("warning"));
+			verticalPanel02.add(label);
+			verticalPanel02.add(label2);
+			horizontalPanel01.add(verticalPanel02);
+			verticalPanel01.add(horizontalPanel01);
+			horizontalPanel02.add(saveButton);
+			horizontalPanel02.add(cancelButton);
+			horizontalPanel02.add(openButton);
+			verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+			verticalPanel01.add(horizontalPanel02);
+			infoDialog.add(verticalPanel01);
+			infoDialog.setStyleName("newFilePanel");
+			label.setStyleName("newFileText");
+			label2.setStyleName("newFileText2");
+			saveButton.addStyleName("newFileButton");
+			cancelButton.addStyleName("newFileButton2");
+			openButton.addStyleName("newFileButton3");
+			infoDialog.setSize("350px","50px");
+			infoDialog.setModal(true);
+			infoDialog.center();
+			infoDialog.show();
+		} else {
+			PopupMessages.openAction();
+		}
 	}
 }

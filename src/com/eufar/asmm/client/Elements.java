@@ -5,8 +5,9 @@ import com.google.gwt.event.dom.client.ClickHandler;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.google.gwt.user.client.ui.HorizontalPanel;
+import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.InlineLabel;
-import com.google.gwt.user.client.ui.PushButton;
+import com.google.gwt.user.client.ui.SimplePanel;
 
 public class Elements {
 	
@@ -18,7 +19,7 @@ public class Elements {
 		final CheckBox box = new CheckBox();
 		box.setName(string);
 		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
-		inlineLabel.getElement().setAttribute("style","font-family: MyFont !important; font-size: 14px !important;");
+		inlineLabel.getElement().setAttribute("style","font-family: MyFontBold !important; font-size: 14px !important;");
 		horizontalPanel.add(box);
 		horizontalPanel.add(inlineLabel);
 		return horizontalPanel;
@@ -26,11 +27,12 @@ public class Elements {
 	
 	
 	// create all the Info buttons in the different tabs
-	public static PushButton addInfoButton(final String context) {
-		final PushButton infoButton = new PushButton(Resources.smallImage("info"));
+	public static SimplePanel addInfoButton(final String context) {
+		final Image image = new Image("icons/info_icon.png");
+		final SimplePanel infoButton = new SimplePanel(image);
 		infoButton.setPixelSize(25, 25);
 		infoButton.setStyleName("infoButton");
-		infoButton.addClickHandler(new ClickHandler() {
+		image.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				PopupMessages.infoPanel(context, infoButton);
 			}
