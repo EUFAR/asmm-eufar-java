@@ -1305,6 +1305,74 @@
 }
 
 
+.addCheckboxPanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.addCheckboxText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+}
+
+
+.addCheckboxButton1 {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 10px !important;
+}
+
+
+.addCheckboxButton2 {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 100px !important;
+}
+
+
+.addCheckboxBox {
+  font-family: MyFontItalic;
+  font-size: 14px;
+  color: #4f4f4f;
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background: white;
+  width: 220px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+}
+
+
+.addCheckboxBox:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.zoomImagePanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.zoomImageButton {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-top: 10px !important;
+}
+
+
 .geoTextList {
   width: 200px;
   height: 25px;

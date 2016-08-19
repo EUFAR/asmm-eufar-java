@@ -87,10 +87,8 @@ public class GuiModification {
 				final TextBox textBox = new TextBox();
 				final Button submitButton = new Button("Submit");
 				checkboxDialog.setGlassEnabled(true);
-				label01.setStyleName("addCatPopupText");
 				verticalPanel01.add(label01);
 				verticalPanel01.add(textBox);
-				textBox.setStyleName("myAddBox");
 				textBox.addKeyDownHandler(new KeyDownHandler() {
 					public void onKeyDown(KeyDownEvent event) {
 						if (event.getNativeKeyCode() == KeyCodes.KEY_ENTER) {
@@ -184,20 +182,18 @@ public class GuiModification {
 						checkboxDialog.hide();
 					}
 				});
-				
 				horizontalPanel01.add(submitButton);
 				horizontalPanel01.add(cancelButton);
 				verticalPanel01.add(horizontalPanel01);
 				checkboxDialog.add(verticalPanel01);
-				submitButton.getElement().setAttribute("style", "margin-left:40px !important; font-family: MyFontBold !important; "
-						+ "color: #4f4f4f !important;");
-				cancelButton.getElement().setAttribute("style", "margin-left:65px !important; font-family: MyFontBold !important; "
-						+ "color: #4f4f4f !important;");
-				horizontalPanel01.getElement().setAttribute("style", "margin-top:40px !important;");
-				checkboxDialog.setSize( "280px", "170px" );
+				textBox.setStyleName("addCheckboxBox");
+				label01.setStyleName("addCheckboxText");
+				checkboxDialog.setStyleName("addCheckboxPanel");
+				submitButton.addStyleName("addCheckboxButton1");
+				cancelButton.addStyleName("addCheckboxButton2");
+				checkboxDialog.setSize("250px","50px");
 				checkboxDialog.setModal(true);
 				checkboxDialog.center();
-				checkboxDialog.setStyleName("myUploadBox");
 				checkboxDialog.show();
 				textBox.setFocus(true);
 			}

@@ -601,8 +601,8 @@ public class PopupMessages {
 							verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 							verticalPanel.add(image);
 							verticalPanel.add(okButton);
-							myOpenDialog.setStyleName("myUploadBox");
-							okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; font-size: 14px !important;");
+							myOpenDialog.setStyleName("zoomImagePanel");
+							okButton.addStyleName("zoomImageButton");
 							myOpenDialog.setGlassEnabled(true);
 							myOpenDialog.setModal(true);
 							myOpenDialog.center();
@@ -614,6 +614,8 @@ public class PopupMessages {
 					delButton.setStyleName("infoButton");
 					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
+					Asmm_eufar.imageLab.setVisible(true);
+					Asmm_eufar.captionLab.setVisible(true);
 					Asmm_eufar.imageTab.insertRow(row);
 					Asmm_eufar.imageTab.setWidget(row, 0, image);
 					Asmm_eufar.imageTab.setWidget(row, 1, label);
@@ -627,6 +629,11 @@ public class PopupMessages {
 							Asmm_eufar.imagePath.remove(removedIndex);
 							Asmm_eufar.imageTab.removeRow(removedIndex);
 							Asmm_eufar.rootLogger.log(Level.INFO, "Image removed, index: " + Integer.toString(removedIndex));
+							final int row = Asmm_eufar.imageTab.getRowCount();
+							if (row == 0) {
+								Asmm_eufar.imageLab.setVisible(false);
+								Asmm_eufar.captionLab.setVisible(false);
+							}
 						}
 					});
 				}
@@ -742,8 +749,8 @@ public class PopupMessages {
 							verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
 							verticalPanel.add(image);
 							verticalPanel.add(okButton);
-							myOpenDialog.setStyleName("myUploadBox");
-							okButton.getElement().setAttribute("style", "font-family: MyFontBold !important; font-size: 14px !important;");
+							myOpenDialog.setStyleName("zoomImagePanel");
+							okButton.addStyleName("zoomImageButton");
 							myOpenDialog.setGlassEnabled(true);
 							myOpenDialog.setModal(true);
 							myOpenDialog.center();
@@ -756,6 +763,8 @@ public class PopupMessages {
 					delButton.setStyleName("infoButton");
 					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
+					Asmm_eufar.imageLab.setVisible(true);
+					Asmm_eufar.captionLab.setVisible(true);
 					Asmm_eufar.imageTab.insertRow(row);
 					Asmm_eufar.imageTab.setWidget(row, 0, image);
 					Asmm_eufar.imageTab.setWidget(row, 1, label);
@@ -769,6 +778,11 @@ public class PopupMessages {
 							Asmm_eufar.imagePath.remove(removedIndex);
 							Asmm_eufar.imageTab.removeRow(removedIndex);
 							Asmm_eufar.rootLogger.log(Level.INFO, "Image removed, index: " + Integer.toString(removedIndex));
+							final int row = Asmm_eufar.imageTab.getRowCount();
+							if (row == 0) {
+								Asmm_eufar.imageLab.setVisible(false);
+								Asmm_eufar.captionLab.setVisible(false);
+							}
 						}
 					});
 				}
@@ -968,6 +982,9 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
+				+ "<b><u>August 19 2016, Release version 1.2.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>the "
+				+ "panel to enter new checkbox didn't have a css style.</li><li>the panel to display an image didn't have css style.</li>"
+				+ "<li>in the 'PDF report' section, two labels should be visible unless image(s) have been uploaded.</li></ul></li></ul><br>"
 				+ "<b><u>August 11 2016, Release version 1.2.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>if an"
 				+ " xml file is open and no aircraft is in the xml file, the dedicated combobox are set on 'Other'. It has been fixed.</li>"
 				+ "<li>the xml saving function didn't save well aircraft information.</li></ul></li></ul><br>"
@@ -1205,7 +1222,7 @@ public class PopupMessages {
 				+ "<b><u>September 29 2014, Release version 0.9.3b1</u></b><br><ul style='list-style-type:none'><li>ADDED:<ul><li>a button to "
 				+ "exit the application have been placed near the button 'Generate XML' [mainwindow.py].</li></ul></li></ul><br>"
 				+ "<b><u>September 15 2014, Release version 0.9.2</u></b><br>Different kind of tests have been run in order to isolate all bugs "
-				+ "and all necessary modifications to improve/correct to the software.<br><br>"
+				+ "and all necessary modifications to improve/correct the software.<br><br>"
 				+ "<b><u>September 1 2014, Release version 0.9.2</u></b><br>This project - Airborne Science Mission Metadata (ASMM) - was "
 				+ "motivated by the need to create a standard set of mission reports, aiding in classification and searches of data sets based "
 				+ "on flight phenomena, mission parameters or other criteria. To meet this goal, an XML format has been developed to store the "

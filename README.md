@@ -2,7 +2,7 @@
 
 Information 
 
-A detailed changelog can be found in the Documentation directory. Current version: 1.2.1
+A detailed changelog can be found in the Documentation directory. Current version: 1.2.2
 This is an Online version of the following software: https://github.com/eufarn7sp/asmm-eufar. It has been coded with Java and Google Web Toolkit.
 
 Overview

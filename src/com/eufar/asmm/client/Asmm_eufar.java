@@ -75,7 +75,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.1 (2016-08-11)");
+	public static String asmmVersion = new String("1.2.2 (2016-08-19)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.6.0");
 	public static String javaVersion = new String("1.7.0.79");
@@ -701,8 +701,8 @@ public class Asmm_eufar implements EntryPoint {
 	private Label informationLab = new Label("Use the following buttons to add images (JPG, PNG, BMP) to the PDF file. The number of images "
 			+ "is limited to 10, and the size of each image cannot exceed 5 MB. All images will be included in the PDF report but not in the "
 			+ "XML file.");
-	final Label imageLab = new Label("Image");
-	final Label captionLab= new Label("Caption");
+	public static Label imageLab = new Label("Image");
+	public static Label captionLab= new Label("Caption");
 	
 
 	public void onModuleLoad() {
@@ -2134,8 +2134,10 @@ public class Asmm_eufar implements EntryPoint {
 		informationLab.setStyleName("im_textLabel");
 		imageLab.getElement().setAttribute("style", "text-decoration: underline !important; font-weight: bold !important; margin-left: "
 				+ "100px !important; margin-top: 10px !important; color: #4f4f4f !important;");
+		imageLab.setVisible(false);
 		captionLab.getElement().setAttribute("style", "text-decoration: underline !important; font-weight: bold !important; margin-left: "
 				+ "170px !important; margin-top: 10px !important; color: #4f4f4f !important;");
+		captionLab.setVisible(false);
 		imageTab.getElement().setAttribute("style", "margin-top: 10px !important; margin-left: 20px! important");
 		im_mainLab.setStyleName("fi_mainText");
 		im_mainLab2.setStyleName("fi_mainText2");
