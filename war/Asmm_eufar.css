@@ -595,6 +595,26 @@
 }
 
 
+.im_imageTextLabel {
+  text-decoration: underline;
+  font-family: MyFontBold;
+  font-size: 14px;
+  margin-left: 100px;
+  margin-top: 10px;
+  color: #4f4f4f;
+}
+
+
+.im_captionTextLabel {
+  text-decoration: underline;
+  font-family: MyFontBold;
+  font-size: 14px;
+  margin-left: 170px;
+  margin-top: 10px;
+  color: #4f4f4f;
+}
+
+
 .flexTable {
   height: 10px;
   width: 335px;

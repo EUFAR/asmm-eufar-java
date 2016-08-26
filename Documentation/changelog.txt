@@ -11,12 +11,20 @@ ONLINE VERSION TESTED ON:
     - Opera 30 (succeeded)
 
 
+August 26 2016, Release version 1.2.3 [ONLINE]
+==============================================
+  The Jasper Report plugin has been updated. The Jasper Report template to generate PDF report has been updated.
+  
+  FIXED:
+    - in the "PDF report" section, two labels weren't set on "not visible" if the document is cleared or another document is opened.
+
+
 August 19 2016, Release version 1.2.2 [ONLINE]
 ==============================================
   FIXED:
     - the panel to enter new checkbox didn't have a css style.
     - the panel to display an image didn't have css style.
-    - in the "PDF report" section, two labels should be visible unless image(s) have been uploaded.
+    - in the "PDF report" section, two labels shouldn't be visible unless image(s) have been uploaded.
 
 
 August 11 2016, Release version 1.2.1 [ONLINE]

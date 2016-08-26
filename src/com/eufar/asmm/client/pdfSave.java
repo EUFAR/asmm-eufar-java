@@ -2,11 +2,13 @@ package com.eufar.asmm.client;
 
 import static com.google.gwt.query.client.GQuery.$;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
@@ -19,13 +21,19 @@ public class pdfSave {
 	// preparation of the printing
 	public static void createPrint(final VerticalPanel verticalPanel) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Preparation of all data for the report in progress...");
+		final HashMap<TextBoxBase, String> textboxName = Resources.textboxName();
+		final HashMap<HorizontalPanel, String> checkboxName = Resources.checkboxName();
+		final HashMap<ListBox, String> listboxName = Resources.listboxName();
+		final HashMap<DateBox, String> dateboxName = Resources.dateboxName();
 		try {
 			List<TextBoxBase> allTextBox = $("*", Asmm_eufar.subDockPanel).widgets(TextBoxBase.class);
 			for (int i = 0; i < allTextBox.size(); i++) {
 				TextBox textBox = new TextBox();
 				textBox.setText(allTextBox.get(i).getText());
-				textBox.setName(Asmm_eufar.textboxName.get(i).toString());
-				verticalPanel.add(textBox);
+				textBox.setName(textboxName.get(allTextBox.get(i)));
+				if (textBox.getName() != "null") {
+					verticalPanel.add(textBox);
+				}
 			}
 		} catch (Exception ex) {
 			Asmm_eufar.rootLogger.log(Level.SEVERE, "A problem occured: ", ex);
@@ -36,10 +44,16 @@ public class pdfSave {
 				TextBox textBox = new TextBox();
 				if (allListBox.get(i).getSelectedItemText() == "Make a choice...") {
 					textBox.setText("");
+				} else if (allListBox.get(i).getSelectedItemText() == "Other...") {
+					if (listboxName.get(allListBox.get(i)) == "operatorText") {
+						textBox.setText(Asmm_eufar.fi_otherOpsText.getText());
+					} else if (listboxName.get(allListBox.get(i)) == "aircraftText") {
+						textBox.setText(Asmm_eufar.fi_otherAiText.getText());
+					}
 				} else {
 					textBox.setText(allListBox.get(i).getSelectedItemText());
 				}
-				textBox.setName(Asmm_eufar.listboxName.get(i).toString());
+				textBox.setName(listboxName.get(allListBox.get(i)));
 				verticalPanel.add(textBox);
 			}
 		} catch (Exception ex) {
@@ -50,7 +64,7 @@ public class pdfSave {
 			for (int i = 0; i < allDateBox.size(); i++) {
 				TextBox textBox = new TextBox();
 				textBox.setText(DateTimeFormat.getFormat("yyyy-MM-dd").format(allDateBox.get(i).getValue()));
-				textBox.setName(Asmm_eufar.dateboxName.get(i).toString());
+				textBox.setName(dateboxName.get(allDateBox.get(i)));
 				verticalPanel.add(textBox);
 			}
 		} catch (Exception ex) {
@@ -58,7 +72,6 @@ public class pdfSave {
 		}
 		try {
 			List<CheckBox> allCheckBox = $("*", Asmm_eufar.subDockPanel).widgets(CheckBox.class);
-			int j = 0;
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				TextBox textBox = new TextBox();
 				if (allCheckBox.get(i).getName().contains("UD")) {
@@ -74,8 +87,7 @@ public class pdfSave {
 					} else {
 						textBox.setText("icons/checkbox_unchecked.png");
 					}
-					textBox.setName(Asmm_eufar.checkboxName.get(j).toString());
-					j++;
+					textBox.setName(checkboxName.get(allCheckBox.get(i).getParent()));
 					verticalPanel.add(textBox);
 				}
 			}

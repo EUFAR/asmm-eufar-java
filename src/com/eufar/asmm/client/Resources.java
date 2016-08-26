@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.TreeMap;
 
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
+import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.datepicker.client.DateBox;
@@ -227,6 +229,7 @@ public class Resources {
     	return list;
 	}
 	
+	
 	public static ArrayList<String> aircraftList() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("BT-67 POLAR 5");
@@ -251,174 +254,169 @@ public class Resources {
     }
 	
 	
-	public static ArrayList<String> textboxName() {
-		ArrayList<String> list = new ArrayList<String>();
-	    list.add("flightNumber");
-	    list.add("flightCampaign");
-	    list.add("flightScientist");
-	    list.add("flightManager");
-	    list.add("contactName");
-	    list.add("contactEmail");
-	    list.add("scientificComments");
-	    list.add("northBound");
-	    list.add("southBound");
-	    list.add("minAltitude");
-	    list.add("maxAltitude");
-	    list.add("westBound");
-	    list.add("eastBound");
-	    list.add("geographicComments");
-	    list.add("atmosphericComments");
-	    list.add("typesComments");
-	    list.add("particlesComments");
-	    list.add("surfacesComments");
-	    list.add("measurementComments");
-	    list.add("manoeuvreComments");
-	    list.add("satelliteComments");
-	    list.add("groundsite1");
-	    list.add("groundsite2");
-	    list.add("groundsite3");
-	    list.add("groundsite4");
-	    list.add("additionalNotes");
-    	return list;
-    }
-    
+	public static HashMap<TextBoxBase, String> textboxName() {
+		HashMap<TextBoxBase, String> map = new HashMap<TextBoxBase, String>();
+		map.put(Asmm_eufar.fi_campaignText, "flightCampaign");
+		map.put(Asmm_eufar.fi_flightText, "flightNumber");
+	    map.put(Asmm_eufar.fi_scientistText, "flightScientist");
+	    map.put(Asmm_eufar.fi_managerText, "flightManager");
+	    map.put(Asmm_eufar.ci_nameText, "contactName");
+	    map.put(Asmm_eufar.ci_emailText, "contactEmail");
+	    map.put(Asmm_eufar.sa_comArea, "scientificComments");
+	    map.put(Asmm_eufar.gi_northText, "northBound");
+	    map.put(Asmm_eufar.gi_southText, "southBound");
+	    map.put(Asmm_eufar.gi_minText, "minAltitude");
+	    map.put(Asmm_eufar.gi_maxText, "maxAltitude");
+	    map.put(Asmm_eufar.gi_westText, "westBound");
+	    map.put(Asmm_eufar.gi_eastText, "eastBound");
+	    map.put(Asmm_eufar.gi_comArea, "geographicComments");
+	    map.put(Asmm_eufar.af_comArea, "atmosphericComments");
+	    map.put(Asmm_eufar.ct_comArea, "typesComments");
+	    map.put(Asmm_eufar.cp_comArea, "particlesComments");
+	    map.put(Asmm_eufar.lo_comArea, "surfacesComments");
+	    map.put(Asmm_eufar.ar_comArea, "measurementComments");
+	    map.put(Asmm_eufar.fm_comArea, "manoeuvreComments");
+	    map.put(Asmm_eufar.sc_comArea, "satelliteComments");
+	    map.put(Asmm_eufar.nf_comArea, "additionalNotes");
+		return map;
+	}
 	
-	public static ArrayList<String> checkboxName() {
-		ArrayList<String> list = new ArrayList<String>();
-	    list.add("sa_satCalval");
-		list.add("sa_antPollution");
-		list.add("sa_mesoImpacts");
-		list.add("sa_microPhysics");
-		list.add("sa_dyNamics");
-		list.add("sa_radProperties");
-		list.add("sa_convDynamics");
-		list.add("sa_gazChemistry");
-		list.add("sa_oxyDants");
-		list.add("sa_orgAnics");
-		list.add("sa_other1");
-		list.add("sa_aeroSol");
-		list.add("sa_cloudImpacts");
-		list.add("sa_radImpacts");
-		list.add("sa_radIation");
-		list.add("sa_atmSpectroscopy");
-		list.add("sa_surfProperties");
-		list.add("sa_other2");
-		list.add("sa_cloud");
-		list.add("sa_dynAmics");
-		list.add("gi_polar");
-		list.add("gi_midLatitudes");
-		list.add("gi_subTropical");
-		list.add("gi_tropical");
-		list.add("gi_maritime");
-		list.add("gi_continental");
-		list.add("gi_oceanicIslands");
-		list.add("gi_other");
-		list.add("af_stationary");
-		list.add("af_antiStationary");
-		list.add("af_cycloStationary");
-		list.add("af_warmFront");
-		list.add("af_warmBelt");
-		list.add("af_coldFront");
-		list.add("af_occludedFront");
-		list.add("af_warmSector");
-		list.add("af_airMass");
-		list.add("af_airOutbreack");
-		list.add("af_orographicInfluence");
-		list.add("af_seabreezeFront");
-		list.add("af_foldIntrusion");
-		list.add("af_convergenceLine");
-		list.add("af_easterlyWave");
-		list.add("af_equatorialWave");
-		list.add("af_tropicalCyclone");
-		list.add("af_organizedConvection");
-		list.add("ct_waterClouds");
-		list.add("ct_mixedphasedClouds");
-		list.add("ct_iceClouds");
-		list.add("ct_cirrus");
-		list.add("ct_contrails");
-		list.add("ct_stratocumulus");
-		list.add("ct_shallowCumulus");
-		list.add("ct_cumulusCongestus");
-		list.add("ct_cumulTower");
-		list.add("ct_altoStracumul");
-		list.add("ct_waveClouds");
-		list.add("ct_statiformClouds");
-		list.add("ct_freeAbove");
-		list.add("ct_freeBelow");
-		list.add("cp_rain");
-		list.add("cp_drizzle");
-		list.add("cp_dropletsLiquid");
-		list.add("cp_pristineCrystals");
-		list.add("cp_snowAggregates");
-		list.add("cp_graupelHail");
-		list.add("cp_saltAerosol");
-		list.add("cp_continentalAerosol");
-		list.add("cp_urbanPlume");
-		list.add("cp_biomassBurning");
-		list.add("cp_desertDust");
-		list.add("cp_volcanicAsh");
-		list.add("lo_ocean");
-		list.add("lo_semiArid");
-		list.add("lo_seaIce");
-		list.add("lo_desert");
-		list.add("lo_snow");
-		list.add("lo_urban");
-		list.add("lo_lakeIce");
-		list.add("lo_mountainous");
-		list.add("lo_vegetation");
-		list.add("lo_hilly");
-		list.add("lo_forest");
-		list.add("lo_flat");
-		list.add("ar_boundaryLayer");
-		list.add("ar_nearSurface");
-		list.add("ar_subCloud");
-		list.add("ar_inCloud");
-		list.add("ar_lowerTroposphere");
-		list.add("ar_midTroposphere");
-		list.add("ar_upperTroposphere");
-		list.add("ar_lowerstratosphere");
-		list.add("fm_levelRuns");
-		list.add("fm_stacked");
-		list.add("fm_separated");
-		list.add("fm_racetracks");
-		list.add("fm_orbits");
-		list.add("fm_lagrangianDescents");
-		list.add("fm_ascDescents");
-		list.add("fm_dropsondeDeployed");
-		list.add("fm_selfCalibration");
-		list.add("sc_metop");
-		list.add("sc_npoess");
-		list.add("sc_atrain");
-		list.add("sc_other");
-		list.add("sc_msg");
-		list.add("sc_other2");
-		list.add("sc_modis");
-		list.add("sc_cloudsat");
-		list.add("sc_caliop");
-		list.add("sc_iasi");
-		list.add("sc_airs");
-		list.add("sc_cris");
-		list.add("sc_amsuMhs");
-		return list;
+
+	public static HashMap<HorizontalPanel, String> checkboxName() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+	    map.put(Asmm_eufar.sa_satCalval,"sa_satCalval");
+		map.put(Asmm_eufar.sa_antPollution,"sa_antPollution");
+		map.put(Asmm_eufar.sa_mesoImpacts,"sa_mesoImpacts");
+		map.put(Asmm_eufar.sa_microPhysics,"sa_microPhysics");
+		map.put(Asmm_eufar.sa_dyNamics,"sa_dyNamics");
+		map.put(Asmm_eufar.sa_radProperties,"sa_radProperties");
+		map.put(Asmm_eufar.sa_convDynamics,"sa_convDynamics");
+		map.put(Asmm_eufar.sa_gazChemistry,"sa_gazChemistry");
+		map.put(Asmm_eufar.sa_oxyDants,"sa_oxyDants");
+		map.put(Asmm_eufar.sa_orgAnics,"sa_orgAnics");
+		map.put(Asmm_eufar.sa_other1,"sa_other1");
+		map.put(Asmm_eufar.sa_aeroSol,"sa_aeroSol");
+		map.put(Asmm_eufar.sa_cloudImpacts,"sa_cloudImpacts");
+		map.put(Asmm_eufar.sa_radImpacts,"sa_radImpacts");
+		map.put(Asmm_eufar.sa_radIation,"sa_radIation");
+		map.put(Asmm_eufar.sa_atmSpectroscopy,"sa_atmSpectroscopy");
+		map.put(Asmm_eufar.sa_surfProperties,"sa_surfProperties");
+		map.put(Asmm_eufar.sa_other2,"sa_other2");
+		map.put(Asmm_eufar.sa_cloud,"sa_cloud");
+		map.put(Asmm_eufar.sa_dynAmics,"sa_dynAmics");
+		map.put(Asmm_eufar.gi_polar,"gi_polar");
+		map.put(Asmm_eufar.gi_midLatitudes,"gi_midLatitudes");
+		map.put(Asmm_eufar.gi_subTropical,"gi_subTropical");
+		map.put(Asmm_eufar.gi_tropical,"gi_tropical");
+		map.put(Asmm_eufar.gi_maritime,"gi_maritime");
+		map.put(Asmm_eufar.gi_continental,"gi_continental");
+		map.put(Asmm_eufar.gi_oceanicIslands,"gi_oceanicIslands");
+		map.put(Asmm_eufar.gi_other,"gi_other");
+		map.put(Asmm_eufar.af_stationary,"af_stationary");
+		map.put(Asmm_eufar.af_antiStationary,"af_antiStationary");
+		map.put(Asmm_eufar.af_cycloStationary,"af_cycloStationary");
+		map.put(Asmm_eufar.af_warmFront,"af_warmFront");
+		map.put(Asmm_eufar.af_warmBelt,"af_warmBelt");
+		map.put(Asmm_eufar.af_coldFront,"af_coldFront");
+		map.put(Asmm_eufar.af_occludedFront,"af_occludedFront");
+		map.put(Asmm_eufar.af_warmSector,"af_warmSector");
+		map.put(Asmm_eufar.af_airMass,"af_airMass");
+		map.put(Asmm_eufar.af_airOutbreack,"af_airOutbreack");
+		map.put(Asmm_eufar.af_orographicInfluence,"af_orographicInfluence");
+		map.put(Asmm_eufar.af_seabreezeFront,"af_seabreezeFront");
+		map.put(Asmm_eufar.af_foldIntrusion,"af_foldIntrusion");
+		map.put(Asmm_eufar.af_convergenceLine,"af_convergenceLine");
+		map.put(Asmm_eufar.af_easterlyWave,"af_easterlyWave");
+		map.put(Asmm_eufar.af_equatorialWave,"af_equatorialWave");
+		map.put(Asmm_eufar.af_tropicalCyclone,"af_tropicalCyclone");
+		map.put(Asmm_eufar.af_organizedConvection,"af_organizedConvection");
+		map.put(Asmm_eufar.ct_waterClouds,"ct_waterClouds");
+		map.put(Asmm_eufar.ct_mixedphasedClouds,"ct_mixedphasedClouds");
+		map.put(Asmm_eufar.ct_iceClouds,"ct_iceClouds");
+		map.put(Asmm_eufar.ct_cirrus,"ct_cirrus");
+		map.put(Asmm_eufar.ct_contrails,"ct_contrails");
+		map.put(Asmm_eufar.ct_stratocumulus,"ct_stratocumulus");
+		map.put(Asmm_eufar.ct_shallowCumulus,"ct_shallowCumulus");
+		map.put(Asmm_eufar.ct_cumulusCongestus,"ct_cumulusCongestus");
+		map.put(Asmm_eufar.ct_cumulTower,"ct_cumulTower");
+		map.put(Asmm_eufar.ct_altoStracumul,"ct_altoStracumul");
+		map.put(Asmm_eufar.ct_waveClouds,"ct_waveClouds");
+		map.put(Asmm_eufar.ct_statiformClouds,"ct_statiformClouds");
+		map.put(Asmm_eufar.ct_freeAbove,"ct_freeAbove");
+		map.put(Asmm_eufar.ct_freeBelow,"ct_freeBelow");
+		map.put(Asmm_eufar.cp_rain,"cp_rain");
+		map.put(Asmm_eufar.cp_drizzle,"cp_drizzle");
+		map.put(Asmm_eufar.cp_dropletsLiquid,"cp_dropletsLiquid");
+		map.put(Asmm_eufar.cp_pristineCrystals,"cp_pristineCrystals");
+		map.put(Asmm_eufar.cp_snowAggregates,"cp_snowAggregates");
+		map.put(Asmm_eufar.cp_graupelHail,"cp_graupelHail");
+		map.put(Asmm_eufar.cp_saltAerosol,"cp_saltAerosol");
+		map.put(Asmm_eufar.cp_continentalAerosol,"cp_continentalAerosol");
+		map.put(Asmm_eufar.cp_urbanPlume,"cp_urbanPlume");
+		map.put(Asmm_eufar.cp_biomassBurning,"cp_biomassBurning");
+		map.put(Asmm_eufar.cp_desertDust,"cp_desertDust");
+		map.put(Asmm_eufar.cp_volcanicAsh,"cp_volcanicAsh");
+		map.put(Asmm_eufar.lo_ocean,"lo_ocean");
+		map.put(Asmm_eufar.lo_semiArid,"lo_semiArid");
+		map.put(Asmm_eufar.lo_seaIce,"lo_seaIce");
+		map.put(Asmm_eufar.lo_desert,"lo_desert");
+		map.put(Asmm_eufar.lo_snow,"lo_snow");
+		map.put(Asmm_eufar.lo_urban,"lo_urban");
+		map.put(Asmm_eufar.lo_lakeIce,"lo_lakeIce");
+		map.put(Asmm_eufar.lo_mountainous,"lo_mountainous");
+		map.put(Asmm_eufar.lo_vegetation,"lo_vegetation");
+		map.put(Asmm_eufar.lo_hilly,"lo_hilly");
+		map.put(Asmm_eufar.lo_forest,"lo_forest");
+		map.put(Asmm_eufar.lo_flat,"lo_flat");
+		map.put(Asmm_eufar.ar_boundaryLayer,"ar_boundaryLayer");
+		map.put(Asmm_eufar.ar_nearSurface,"ar_nearSurface");
+		map.put(Asmm_eufar.ar_subCloud,"ar_subCloud");
+		map.put(Asmm_eufar.ar_inCloud,"ar_inCloud");
+		map.put(Asmm_eufar.ar_lowerTroposphere,"ar_lowerTroposphere");
+		map.put(Asmm_eufar.ar_midTroposphere,"ar_midTroposphere");
+		map.put(Asmm_eufar.ar_upperTroposphere,"ar_upperTroposphere");
+		map.put(Asmm_eufar.ar_lowerstratosphere,"ar_lowerstratosphere");
+		map.put(Asmm_eufar.fm_levelRuns,"fm_levelRuns");
+		map.put(Asmm_eufar.fm_stacked,"fm_stacked");
+		map.put(Asmm_eufar.fm_separated,"fm_separated");
+		map.put(Asmm_eufar.fm_racetracks,"fm_racetracks");
+		map.put(Asmm_eufar.fm_orbits,"fm_orbits");
+		map.put(Asmm_eufar.fm_lagrangianDescents,"fm_lagrangianDescents");
+		map.put(Asmm_eufar.fm_ascDescents,"fm_ascDescents");
+		map.put(Asmm_eufar.fm_dropsondeDeployed,"fm_dropsondeDeployed");
+		map.put(Asmm_eufar.fm_selfCalibration,"fm_selfCalibration");
+		map.put(Asmm_eufar.sc_metop,"sc_metop");
+		map.put(Asmm_eufar.sc_npoess,"sc_npoess");
+		map.put(Asmm_eufar.sc_atrain,"sc_atrain");
+		map.put(Asmm_eufar.sc_other,"sc_other");
+		map.put(Asmm_eufar.sc_msg,"sc_msg");
+		map.put(Asmm_eufar.sc_other2,"sc_other2");
+		map.put(Asmm_eufar.sc_modis,"sc_modis");
+		map.put(Asmm_eufar.sc_cloudsat,"sc_cloudsat");
+		map.put(Asmm_eufar.sc_caliop,"sc_caliop");
+		map.put(Asmm_eufar.sc_iasi,"sc_iasi");
+		map.put(Asmm_eufar.sc_airs,"sc_airs");
+		map.put(Asmm_eufar.sc_cris,"sc_cris");
+		map.put(Asmm_eufar.sc_amsuMhs,"sc_amsuMhs");
+		return map;
+	}
+
+	
+	public static HashMap<ListBox, String> listboxName() {
+		HashMap<ListBox, String> map = new HashMap<ListBox, String>();
+		map.put(Asmm_eufar.fi_operatorText,"operatorText");
+		map.put(Asmm_eufar.fi_aircraftText,"aircraftText");
+		map.put(Asmm_eufar.geoLocationLst,"localisationText");
+		map.put(Asmm_eufar.geoDetailLst,"countryText");
+		map.put(Asmm_eufar.ci_roleText,"roleText");
+		return map;
 	}
 	
 	
-	public static ArrayList<String> listboxName() {
-		ArrayList<String> list = new ArrayList<String>();
-	
-		list.add("operatorText");
-		list.add("aircraftText");
-		list.add("localisationText");
-		list.add("countryText");
-		list.add("roleText");
-		return list;
-	}
-	
-	
-	public static ArrayList<String> dateboxName() {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("date");
-		return list;
+	public static HashMap<DateBox, String> dateboxName() {
+		HashMap<DateBox, String> map = new HashMap<DateBox, String>();
+		map.put(Asmm_eufar.fi_dateText,"date");
+		return map;
 	}
 	
 	

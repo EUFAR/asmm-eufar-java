@@ -424,7 +424,7 @@ public class PopupMessages {
 					verticalPanel01.add(filebox);
 					pdfSave.createPrint(verticalPanel01);
 					Asmm_eufar.myPDFName = fileName.getText();
-					if (!Asmm_eufar.myPDFName.toLowerCase().endsWith(".pdf")) {
+					if (!fileName.getText().toLowerCase().endsWith(".pdf")) {
 						Asmm_eufar.myPDFName = Asmm_eufar.myPDFName + ".pdf";
 					}
 					filebox.setText(Asmm_eufar.myPDFName);
@@ -443,7 +443,7 @@ public class PopupMessages {
 						verticalPanel01.add(filebox);
 						pdfSave.createPrint(verticalPanel01);
 						Asmm_eufar.myPDFName = fileName.getText();
-						if (!Asmm_eufar.myPDFName.toLowerCase().endsWith(".pdf")) {
+						if (!fileName.getText().toLowerCase().endsWith(".pdf")) {
 							Asmm_eufar.myPDFName = Asmm_eufar.myPDFName + ".pdf";
 						}
 						filebox.setText(Asmm_eufar.myPDFName);
@@ -459,10 +459,7 @@ public class PopupMessages {
 		horizontalPanel02.add(verticalPanel02);
 		verticalPanel02.add(label);
 		verticalPanel02.add(fileName);
-		Asmm_eufar.myPDFName = fileName.getText();
-		if (!Asmm_eufar.myPDFName.toLowerCase().endsWith(".pdf")) {
-			Asmm_eufar.myPDFName = Asmm_eufar.myPDFName + ".pdf";
-		}
+		fileName.setText(Asmm_eufar.myPDFName);
 		myForm.setAction(Asmm_eufar.asmmPath + "/print");
 		myForm.setMethod(FormPanel.METHOD_POST);
 		myForm.add(verticalPanel01);
@@ -982,9 +979,13 @@ public class PopupMessages {
 				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
 				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
 				
+				+ "<b><u>August 26 2016, Release version 1.2.3 [ONLINE]</u></b><br>The Jasper Report plugin has been updated. The Jasper "
+				+ "Report template to generate PDF report has been updated.<ul style='list-style-type:none'><li>FIXED:<ul><li>in the 'PDF "
+				+ "report' section, two labels weren't set on 'not visible' if the document is cleared or another document is opened.</li>"
+				+ "</ul></li></ul><br>"
 				+ "<b><u>August 19 2016, Release version 1.2.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>the "
 				+ "panel to enter new checkbox didn't have a css style.</li><li>the panel to display an image didn't have css style.</li>"
-				+ "<li>in the 'PDF report' section, two labels should be visible unless image(s) have been uploaded.</li></ul></li></ul><br>"
+				+ "<li>in the 'PDF report' section, two labels shouldn't be visible unless image(s) have been uploaded.</li></ul></li></ul><br>"
 				+ "<b><u>August 11 2016, Release version 1.2.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>if an"
 				+ " xml file is open and no aircraft is in the xml file, the dedicated combobox are set on 'Other'. It has been fixed.</li>"
 				+ "<li>the xml saving function didn't save well aircraft information.</li></ul></li></ul><br>"

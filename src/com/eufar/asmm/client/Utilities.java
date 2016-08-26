@@ -235,17 +235,17 @@ public class Utilities {
 		Asmm_eufar.fi_operatorText.setSelectedIndex(0);
 		Asmm_eufar.fi_aircraftText.clear();
 		Asmm_eufar.fi_aircraftText.setEnabled(false);
-		if (Asmm_eufar.horizontalPanel26.getWidgetCount() > 1) {
-			Asmm_eufar.horizontalPanel26.remove(1);
-			Asmm_eufar.horizontalPanel27.remove(1);
-			Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherOpsText);
-			Asmm_eufar.fiGrid.remove(Asmm_eufar.fi_otherAiText);
-		}
+		Asmm_eufar.fi_otherOpsText.setVisible(false);
+		Asmm_eufar.fi_otherAiText.setVisible(false);
+		Asmm_eufar.fi_operatorImage.setVisible(false);
+		Asmm_eufar.fi_aircraftImage.setVisible(false);
 		Asmm_eufar.geoLocationLst.setSelectedIndex(0);
 		Utilities.geoLocationSet(0);
 		Asmm_eufar.imageTab.removeAllRows();
 		Asmm_eufar.imageCaption.clear();
 		Asmm_eufar.imagePath.clear();
+		Asmm_eufar.imageLab.setVisible(false);
+		Asmm_eufar.captionLab.setVisible(false);
 		Utilities.docNotModorSaved();
 		Asmm_eufar.rootLogger.log(Level.INFO, "Cleaning all fields finished.");
 	}
@@ -365,6 +365,7 @@ public class Utilities {
 	public static void runCheckDefault() {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Default display before check in progress...");
 		boolean otherOpsState = Asmm_eufar.fi_otherOpsText.isVisible();
+		boolean imageTextState = Asmm_eufar.imageLab.isVisible();
 		List<Label> allLabel = $("*", Asmm_eufar.subDockPanel).widgets(Label.class);
 		List<TextBoxBase> allBox = $("*", Asmm_eufar.subDockPanel).widgets(TextBoxBase.class);
 		List<DateBox> allDateBox = $("*", Asmm_eufar.subDockPanel).widgets(DateBox.class);
@@ -391,6 +392,12 @@ public class Utilities {
 		}
 		Asmm_eufar.fi_otherOpsText.setVisible(otherOpsState);
 		Asmm_eufar.fi_otherAiText.setVisible(otherOpsState);
+		
+		Asmm_eufar.fi_operatorImage.setVisible(otherOpsState);
+		Asmm_eufar.fi_aircraftImage.setVisible(otherOpsState);
+		
+		Asmm_eufar.imageLab.setVisible(imageTextState);
+		Asmm_eufar.captionLab.setVisible(imageTextState);
 		Asmm_eufar.fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");
 		for (int i = 0; i < 9; i++) {
 			Asmm_eufar.tabPanel.getTabWidget(i).getElement().setAttribute("style","color: white !important;");

@@ -1,5 +1,6 @@
 package com.eufar.asmm.client;
 
+import java.util.HashMap;
 import java.util.TreeMap;
 import java.util.logging.Level;
 
@@ -79,6 +80,7 @@ public class GuiModification {
 					PopupMessages.noCheckboxPanel();
 					return;
 				}
+				final HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
 				final DialogBox checkboxDialog = new DialogBox();
 				final VerticalPanel verticalPanel01 = new VerticalPanel();
 				final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
@@ -115,7 +117,7 @@ public class GuiModification {
 							} else {
 								cell = flexTable.getCellCount(row-1);
 							}
-							String parent = Asmm_eufar.parentMap.get(verticalPanel);
+							String parent = parentMap.get(verticalPanel);
 							treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 							Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 							final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
@@ -159,7 +161,7 @@ public class GuiModification {
 						} else {
 							cell = flexTable.getCellCount(row-1);
 						}
-						String parent = Asmm_eufar.parentMap.get(verticalPanel);
+						String parent = parentMap.get(verticalPanel);
 						treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 						Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 						final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
@@ -205,6 +207,7 @@ public class GuiModification {
 	// see above, but dedicated to the read function
 	public static void addCat(final FlexTable flexTable, final TreeMap<String, String> treeMap, final VerticalPanel verticalPanel, final String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "New checkbox invoked (xmlfile)...");
+		final HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
 		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
 		final Label userLabel = new Label("User-defined:");
 		final HorizontalPanel checkBox = Elements.checkBox(string);
@@ -224,7 +227,7 @@ public class GuiModification {
 		} else {
 			cell = flexTable.getCellCount(row-1);
 		}
-		String parent = Asmm_eufar.parentMap.get(verticalPanel);
+		String parent = parentMap.get(verticalPanel);
 		treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string, string);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + string + " / " + string);
 		((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
