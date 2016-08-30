@@ -34,21 +34,21 @@ public class Resources {
 		TreeMap<String, String> map = new TreeMap<String, String>();
 		map.put("Satellite Cal/Val", "Satellite Cal/Val");
 		map.put("Anthropogenic pollution", "Anthropogenic pollution");
-		map.put("Mesoscale atmospheric impacts", "esoscale atmospheric impacts");
-		map.put("Microphysics", "Microphysics");
+		map.put("Mesoscale atmospheric impacts", "Mesoscale atmospheric impacts");
+		map.put("Microphysics", "Microphysics (Cloud)");
 		map.put("Dynamics (Cloud)", "Dynamics (Cloud)");
-		map.put("Radiative properties", "Radiative properties");
-		map.put("Convection dynamics", "Convection dynamics");
+		map.put("Radiative properties", "Radiative properties (Cloud)");
+		map.put("Convection dynamics", "Convection dynamics (Cloud)");
 		map.put("Gas chemistry", "Gas chemistry");
-		map.put("Oxydants", "Oxydants");
-		map.put("Organics", "Organics");
+		map.put("Oxydants", "Oxydants (Gas chemistry)");
+		map.put("Organics", "Organics (Gas chemistry)");
 		map.put("Other (Gas chemistry)", "Other (Gas chemistry)");
 		map.put("Aerosol", "Aerosol");
-		map.put("Cloud microphysical impacts", "Cloud microphysical impacts");
-		map.put("Radiative properties/impacts", "Radiative properties/impacts");
+		map.put("Cloud microphysical impacts", "Cloud microphysical impacts (Aerosol)");
+		map.put("Radiative properties/impacts", "Radiative properties/impacts (Aerosol)");
 		map.put("Radiation","Radiation");
-		map.put("Atmospheric spectroscopy", "Atmospheric spectroscopy");
-		map.put("Surface properties/retrievals", "Surface properties/retrievals");
+		map.put("Atmospheric spectroscopy", "Atmospheric spectroscopy (Radiation)");
+		map.put("Surface properties/retrievals", "Surface properties/retrievals (Radiation)");
 		map.put("Other (Radiation)", "Other (Radiation)");
 		map.put("Cloud", "Cloud (Boundary-layer)");
 		map.put("Dynamics (Boundary-layer)", "Dynamics (Boundary-layer)");
@@ -65,7 +65,7 @@ public class Resources {
 		map.put("Maritime","Maritime");
 		map.put("Continental","Continental");
 		map.put("Oceanic islands","Oceanic islands");
-		map.put("Other","Other");
+		map.put("Other","Other (Geographical region)");
 		return map;
 	}
 	
@@ -118,7 +118,7 @@ public class Resources {
 		TreeMap<String, String> map = new TreeMap<String, String>();
 		map.put("Rain","Rain");
 		map.put("Drizzle","Drizzle");
-		map.put("Droplets (liquid)","Droplets (liquid)");
+		map.put("Droplets (liquid)","Droplets (Liquid)");
 		map.put("Pristine ice crystals","Pristine ice crystals");
 		map.put("Snow/aggregates","Snow/aggregates");
 		map.put("Graupel/hail","Graupel/hail");
@@ -153,9 +153,9 @@ public class Resources {
 	public static TreeMap<String, String> measurementMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
 		map.put("Boundary-layer","Boundary-layer");
-		map.put("near-surface","Boundary-layer near-surface");
-		map.put("sub-cloud","Boundary-layer sub-cloud");
-		map.put("in-cloud","Boundary-layer in-cloud");
+		map.put("near-surface","Near-surface (Boundary-layer)");
+		map.put("sub-cloud","Sub-cloud (Boundary-layer)");
+		map.put("in-cloud","In-cloud (Boundary-layer)");
 		map.put("Lower troposphere","Lower troposphere");
 		map.put("Mid troposphere","Mid troposphere");
 		map.put("Upper troposphere","Upper troposphere");
@@ -167,8 +167,8 @@ public class Resources {
 	public static TreeMap<String, String> manoeuvreMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
 		map.put("Straight/level runs","Straight/level runs");
-		map.put("stacked","Straight/level runs stacked");
-		map.put("separated","Straight/level runs separated");
+		map.put("stacked","Stacked (Straight/level runs)");
+		map.put("separated","Separated (Straight/level runs)");
 		map.put("Racetracks","Racetracks");
 		map.put("Orbits","Orbits");
 		map.put("Lagrangian descents","Lagrangian descents");
@@ -181,11 +181,11 @@ public class Resources {
 	
 	public static TreeMap<String, String> satelliteMap() {
 		TreeMap<String, String> map = new TreeMap<String, String>();
-		map.put("METOP","METOP");
-		map.put("NPOESS","NPOESS");
-		map.put("A-train","A-train");
+		map.put("METOP","METOP (Polar)");
+		map.put("NPOESS","NPOESS (Polar)");
+		map.put("A-train","A-train (Polar)");
 		map.put("Other (Polar)","Other (Polar)");
-		map.put("MSG","MSG");
+		map.put("MSG","MSG (Geosynch)");
 		map.put("Other (Geosynch)","Other (Geosynch)");
 		map.put("MODIS","MODIS");
 		map.put("Cloudsat","Cloudsat");
