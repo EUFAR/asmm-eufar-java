@@ -392,10 +392,8 @@ public class Utilities {
 		}
 		Asmm_eufar.fi_otherOpsText.setVisible(otherOpsState);
 		Asmm_eufar.fi_otherAiText.setVisible(otherOpsState);
-		
 		Asmm_eufar.fi_operatorImage.setVisible(otherOpsState);
 		Asmm_eufar.fi_aircraftImage.setVisible(otherOpsState);
-		
 		Asmm_eufar.imageLab.setVisible(imageTextState);
 		Asmm_eufar.captionLab.setVisible(imageTextState);
 		Asmm_eufar.fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");

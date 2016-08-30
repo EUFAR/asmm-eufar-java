@@ -75,7 +75,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.3 (2016-08-26)");
+	public static String asmmVersion = new String("1.2.4 (2016-08-30)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.6.0");
 	public static String javaVersion = new String("1.7.0.79");
@@ -1981,7 +1981,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel21.add(so_groundSitesLabel);
 		horizontalPanel21.add(so_groundSitesBox);
 		horizontalPanel21.add(Utilities.addListButton(so_groundSitesTable, so_groundSitesBox, so_groundSitesList));
-		verticalPanel48.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		//verticalPanel48.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel48.add(horizontalPanel21);
 		verticalPanel49.add(so_groundSitesTable);
 		verticalPanel48.add(verticalPanel49);
@@ -1991,7 +1991,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel22.add(so_researchVesselsLabel);
 		horizontalPanel22.add(so_researchVesselsBox);
 		horizontalPanel22.add(Utilities.addListButton(so_researchVesselsTable, so_researchVesselsBox, so_researchVesselsList));
-		verticalPanel51.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		//verticalPanel51.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel51.add(horizontalPanel22);
 		verticalPanel52.add(so_researchVesselsTable);
 		verticalPanel51.add(verticalPanel52);
@@ -2001,7 +2001,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel23.add(so_armSitesLabel);
 		horizontalPanel23.add(so_armSitesBox);
 		horizontalPanel23.add(Utilities.addListButton(so_armSitesTable, so_armSitesBox, so_armSitesList));
-		verticalPanel53.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		//verticalPanel53.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel53.add(horizontalPanel23);
 		verticalPanel54.add(so_armSitesTable);
 		verticalPanel53.add(verticalPanel54);
@@ -2011,7 +2011,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel24.add(so_mobileSitesLabel);
 		horizontalPanel24.add(so_mobileSitesBox);
 		horizontalPanel24.add(Utilities.addListButton(so_mobileSitesTable, so_mobileSitesBox, so_mobileSitesList));
-		verticalPanel56.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
+		//verticalPanel56.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel56.add(horizontalPanel24);
 		verticalPanel57.add(so_mobileSitesTable);
 		verticalPanel56.add(verticalPanel57);
@@ -2059,6 +2059,10 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel53.getElement().setAttribute("style", "margin-top:10px !important;");
 		verticalPanel55.getElement().setAttribute("style", "margin-left:160px !important;");
 		verticalPanel56.getElement().setAttribute("style", "margin-top:30px !important;");
+		horizontalPanel21.getElement().setAttribute("style", "margin-left:63px !important;");
+		horizontalPanel22.getElement().setAttribute("style", "margin-left:40px !important;");
+		horizontalPanel23.getElement().setAttribute("style", "margin-left:80px !important;");
+		horizontalPanel24.getElement().setAttribute("style", "margin-left:36px !important;");
 		rootLogger.log(Level.INFO, "Supporting Surface-based Observations panel initialized");
 		
 

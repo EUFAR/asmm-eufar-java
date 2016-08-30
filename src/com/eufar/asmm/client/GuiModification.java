@@ -230,6 +230,7 @@ public class GuiModification {
 		String parent = parentMap.get(verticalPanel);
 		treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string, string);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + string + " / " + string);
+		checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
 		((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
 		((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 			@Override
