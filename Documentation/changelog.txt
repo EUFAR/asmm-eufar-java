@@ -4,11 +4,26 @@ CHANGELOG
 
 ONLINE VERSION TESTED ON:
 ========================
-    - Firefox 31.5.3, 38.0.1, 39, 40 (succeeded)
-    - Chrome 44 (succeeded)
+    - Firefox 38+
+    - Chrome 44+
     - Internet Explorer 11 (failed on one computer and succeeded on others)
-    - Safari 5.1.7, 8.0.5 (succeeded)
-    - Opera 30 (succeeded)
+    - Safari 5+
+    - Opera 30+
+    - Vivaldi 1.40+
+
+
+October 18 2016, Release version 1.2.5 [ONLINE]
+===============================================
+  MODIFIED:
+    - almost all icons have been move to a Resources file for better performance.
+    - almost all icons have been converted to svg format for better rendering with high and low resolution screens.
+    - few graphical elements have been modified.
+    - the checking function has been modified for better performance.   
+    - names have been added to a lot of graphical elements to be compatible with the modified checking function.
+    
+  FIXED:
+    - an issue with css for few panels has been fixed.
+    - state of checkboxes wasn't well saved. It has been fixed.
 
 
 August 30 2016, Release version 1.2.4 [ONLINE]

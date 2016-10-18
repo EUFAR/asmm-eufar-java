@@ -40,7 +40,8 @@ public class PopupMessages {
 		final HorizontalPanel horizontalPanel = new HorizontalPanel();
 		final HTML label = new HTML(logText());
 		final Button okButton = new Button("Ok");
-		final Image image = Resources.popupImage("changelog");
+		final Image image = new Image(Asmm_eufar.resources.changelogPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		okButton.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -76,6 +77,8 @@ public class PopupMessages {
 				+ "a proper use of the following functions: save or open a document, print a report, upload images.<br><br>We strongly recommend "
 				+ "that you use a different browser to ensure the proper functioning of ASMM.");
 		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		button.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -83,7 +86,7 @@ public class PopupMessages {
 			}
 		});
 		aboutDialog.setGlassEnabled(true);
-		horizontalPanel01.add(Resources.popupImage("warning"));
+		horizontalPanel01.add(image);
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
 		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -115,12 +118,14 @@ public class PopupMessages {
 				+ "latest offline version and source code of the ASMM Creator can be found at <a href=https://github.com/eufarn7sp/asmm-eufar-"
 				+ "java><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/eufarn7sp/asmm-eufar-java</a>.");
 		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.aboutPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		button.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {aboutDialog.hide();}
 		});
 		aboutDialog.setGlassEnabled(true);
-		horizontalPanel01.add(Resources.popupImage("about"));
+		horizontalPanel01.add(image);
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
 		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -149,12 +154,14 @@ public class PopupMessages {
 				+ "-eufar/blob/master/Documentation/ASMM%20-%20XML%20Implementation%20Rules.pdf><span style=\" text-decoration: underline; color"
 				+ ":#0000ff;\">ASMM - XML Implementation Rules.pdf</a>");
 		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.xmlPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		button.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {aboutDialog.hide();}
 		});
 		aboutDialog.setGlassEnabled(true);
-		horizontalPanel01.add(Resources.popupImage("xml"));
+		horizontalPanel01.add(image);
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
 		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -177,6 +184,8 @@ public class PopupMessages {
 		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
 		final Label label = addInfoText(context);
 		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.infoPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		button.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -184,7 +193,7 @@ public class PopupMessages {
 			}
 		});
 		infoDialog.setGlassEnabled(true);
-		horizontalPanel01.add(Resources.popupImage("info"));
+		horizontalPanel01.add(image);
 		horizontalPanel01.add(label);
 		verticalPanel01.add(horizontalPanel01);
 		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
@@ -212,6 +221,8 @@ public class PopupMessages {
 		final Label label = new Label("Please select a file.");
 		final Button submitButton = new Button("Open");
 		final Button cancelButton = new Button("Cancel/Close");
+		final Image image = new Image(Asmm_eufar.resources.openPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		submitButton.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -220,6 +231,11 @@ public class PopupMessages {
 					return;
 				} else {
 					Asmm_eufar.myFileName = myFileUpload.getFilename();
+					if (Asmm_eufar.myFileName.contains("C:\\fakepath\\")) {
+						Asmm_eufar.myFileName = Asmm_eufar.myFileName.substring(12);
+					} else if (Asmm_eufar.myFileName.contains("C:\\fake_path\\")) {
+						Asmm_eufar.myFileName = Asmm_eufar.myFileName.substring(13);
+					}
 					myUploadForm.submit();
 					Utilities.clearFields();
 				}
@@ -235,7 +251,7 @@ public class PopupMessages {
 		myOpenDialog.setGlassEnabled(true);
 		myOpenDialog.add(verticalPanel02);
 		verticalPanel02.add(horizontalPanel01);
-		horizontalPanel01.add(Resources.popupImage("open"));
+		horizontalPanel01.add(image);
 		horizontalPanel01.add(verticalPanel01);
 		verticalPanel01.add(label);
 		myFileUpload.setName("uploadFormElement");
@@ -301,6 +317,8 @@ public class PopupMessages {
 		final FormPanel myForm = new FormPanel();
 		final Button cancelButton = new Button("Cancel/Close");
 		final Button submitButton = new Button("Save");
+		final Image image = new Image(Asmm_eufar.resources.savePopup().getSafeUri());
+		image.setSize("68px", "68px");
 		cancelButton.addClickHandler(new ClickHandler () {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -356,7 +374,7 @@ public class PopupMessages {
 		});
 		mySaveDialog.setGlassEnabled(true);
 		verticalPanel03.add(horizontalPanel02);
-		horizontalPanel02.add(Resources.popupImage("save"));
+		horizontalPanel02.add(image);
 		horizontalPanel02.add(verticalPanel02);
 		xmlTree.setText(xmlSave.createXml());
 		xmlTree.setName("xmltree");
@@ -407,6 +425,8 @@ public class PopupMessages {
 		final FormPanel myForm = new FormPanel();
 		final Button cancelButton = new Button("Cancel/Close");
 		final Button submitButton = new Button("Print");
+		final Image image = new Image(Asmm_eufar.resources.printPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		cancelButton.addClickHandler(new ClickHandler () {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -455,7 +475,7 @@ public class PopupMessages {
 		filebox.setName("filename");
 		mySaveDialog.setGlassEnabled(true);
 		verticalPanel03.add(horizontalPanel02);
-		horizontalPanel02.add(Resources.popupImage("print"));
+		horizontalPanel02.add(image);
 		horizontalPanel02.add(verticalPanel02);
 		verticalPanel02.add(label);
 		verticalPanel02.add(fileName);
@@ -498,6 +518,8 @@ public class PopupMessages {
 			final TextBox legendeBox = new TextBox();
 			final Button submitButton = new Button("Upload");
 			final Button cancelButton = new Button("Cancel/Close");
+			final Image image = new Image(Asmm_eufar.resources.imagePopup().getSafeUri());
+			image.setSize("68px", "68px");
 			submitButton.addClickHandler(new ClickHandler() {			
 				@Override
 				public void onClick(ClickEvent event) {
@@ -517,7 +539,7 @@ public class PopupMessages {
 			myOpenDialog.setGlassEnabled(true);
 			myOpenDialog.add(verticalPanel02);
 			verticalPanel02.add(horizontalPanel01);
-			horizontalPanel01.add(Resources.popupImage("open_image"));
+			horizontalPanel01.add(image);
 			horizontalPanel01.add(verticalPanel01);
 			verticalPanel01.add(label);
 			myFileUpload.setName("uploadFormElement");
@@ -544,7 +566,9 @@ public class PopupMessages {
 					final String captionText = new String(legendeBox.getText());
 					final int row = Asmm_eufar.imageTab.getRowCount();
 					final Image image = new Image("tmp/" + ret);
-					final Image delImage = new Image("icons/del_icon.png");
+					final Image delImage = new Image(Asmm_eufar.resources.delete().getSafeUri());
+					image.setSize("21px","21px");
+					image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 					final SimplePanel delButton = new SimplePanel(delImage);
 					final Label label = new Label(captionText);	
 					Asmm_eufar.imagePath.add("tmp/" + ret);
@@ -607,7 +631,6 @@ public class PopupMessages {
 						}
 					});
 					Asmm_eufar.imageCaption.add(captionText);
-					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
 					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
@@ -674,6 +697,8 @@ public class PopupMessages {
 			final TextBox textBox = new TextBox();
 			final Button submitButton = new Button("Upload");
 			final Button cancelButton = new Button("Cancel/Close");
+			final Image image = new Image(Asmm_eufar.resources.imagePopup().getSafeUri());
+			image.setSize("68px", "68px");
 			cancelButton.addClickHandler(new ClickHandler() {			
 				@Override
 				public void onClick(ClickEvent event) {
@@ -693,7 +718,9 @@ public class PopupMessages {
 					myOpenDialog.hide();
 					int row = Asmm_eufar.imageTab.getRowCount();
 					final Image image = new Image(string);
-					final Image delImage = new Image("icons/del_icon.png");
+					final Image delImage = new Image(Asmm_eufar.resources.delete().getSafeUri());
+					image.setSize("21px","21px");
+					image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 					final SimplePanel delButton = new SimplePanel(delImage);
 					final Label label = new Label(captionText);
 					image.addLoadHandler(new LoadHandler() {
@@ -756,7 +783,6 @@ public class PopupMessages {
 						}
 					});
 					Asmm_eufar.imageCaption.add(captionText);
-					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
 					label.setStyleName("im_captionLabel");
 					image.setStyleName("uploadImage");
@@ -787,7 +813,7 @@ public class PopupMessages {
 			myOpenDialog.setGlassEnabled(true);
 			myOpenDialog.add(verticalPanel02);
 			verticalPanel02.add(horizontalPanel01);
-			horizontalPanel01.add(Resources.popupImage("open_image"));
+			horizontalPanel01.add(image);
 			horizontalPanel01.add(verticalPanel01);
 			verticalPanel01.add(label);
 			verticalPanel01.add(label2);
@@ -819,10 +845,12 @@ public class PopupMessages {
 	// panel to warn user that he can't add more than 12 checkboxes
 	public static void noCheckboxPanel() {
 		final DialogBox infoDialog = new DialogBox();
-		final VerticalPanel verticalPanel01 = new VerticalPanel();
-		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
-		final Label label02 = new Label("You cannot create more than 12 checkboxes per section in ASMM Creator Online.");
+		final VerticalPanel verticalPanel = new VerticalPanel();
+		final HorizontalPanel horizontalPanel = new HorizontalPanel();
+		final Label label = new Label("You cannot create more than 12 checkboxes per section in ASMM Creator Online.");
 		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		button.addClickHandler(new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -830,18 +858,19 @@ public class PopupMessages {
 			}
 		});
 		infoDialog.setGlassEnabled(true);
-		horizontalPanel01.add(Resources.popupImage("warning"));
-		horizontalPanel01.add(label02);
-		verticalPanel01.add(horizontalPanel01);
-		verticalPanel01.add(button);
-		infoDialog.add(verticalPanel01);
-		button.getElement().setAttribute("style", "margin-left: 120px !important; font-family: MyFontBold !important; margin-top: "
-				+ "20px !important; font-size: 14px !important;");
-		verticalPanel01.getElement().setAttribute("style", "margin: 10px;");
-		infoDialog.setSize( "300px", "100px" );
+		horizontalPanel.add(image);
+		horizontalPanel.add(label);
+		verticalPanel.add(horizontalPanel);
+		verticalPanel.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel.add(button);
+		infoDialog.add(verticalPanel);
+		infoDialog.setStyleName("noCheckboxPanel");
+		button.addStyleName("noCheckboxButton");
+		label.setStyleName("noCheckboxText");
+		infoDialog.setSize("300px","100px");
 		infoDialog.setModal(true);
 		infoDialog.center();
-		infoDialog.setStyleName("myUploadBox");
+		
 		infoDialog.show();
 	}
 	
@@ -938,7 +967,8 @@ public class PopupMessages {
 			+ "indicated in <span style=\" font-weight:600; color:#c80000;\">red</span>, and in <span style=\" font-weight:600; "
 			+ "color:#0000c8;\">blue</span> for those incorrectly filled in. <span style=\" font-weight:600;\">Do not use an "
 			+ "incomplete/incorrect xml file for storage and/or sql queries.</span>");
-		final Image image = new Image("icons/warning_popup_icon.png");
+		final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+		image.setSize("68px", "68px");
 		final Button buttonOk = new Button("Save", new ClickHandler() {			
 			@Override
 			public void onClick(ClickEvent event) {
@@ -975,10 +1005,16 @@ public class PopupMessages {
 	private static String logText() {
 		String string = new String(""
 				+ "<b><u>CHANGELOG</u></b><br><br>"
-				+ "<u>TESTED ON:</u><ul><li>Firefox 31.5.3, 38.0.1, 39, 40, 45.0.1 (succeeded)</li><li>Chrome 44 "
-				+ "(succeeded)</li><li>Internet Explorer 11 (failed on one computer and succeeded on others)</li><li>Safari 5.1.7, 8.0.5 "
-				+ "(succeeded)</li><li>Opera 30 (succeeded)</li></ul><br>"
+				+ "<u>TESTED ON:</u><ul><li>Firefox 38+</li><li>Chrome 44+</li><li>Internet Explorer 11 (failed on one computer and succeeded "
+				+ "on others)</li><li>Safari 5+</li><li>Opera 30+</li><li>Vivaldi 1.4+</li></ul><br>"
 				
+				+ "<b><u>October 18 2016, Release version 1.2.5 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>MODIFIED:<ul><li>almost "
+				+ "all icons have been move to a Resources file for better performance.</li><li>almost all icons have been converted to svg"
+				+ " format for better rendering with high and low resolution screens.</li><li>few graphical elements have been modified.</li>"
+				+ "<li>the checking function has been modified for better performance.</li><li>names have been added to a lot of graphical "
+				+ "elements to be compatible with the modified checking function.</li></ul></li></ul><ul style='list-style-type:none'><li>"
+				+ "FIXED:<ul><li>an issue with css for few panels has been fixed.</li><li>state of checkboxes wasn't well saved. It has been"
+				+ " fixed.</li></ul></li></ul><br>"
 				+ "<b><u>August 30 2016, Release version 1.2.4 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>few "
 				+ "spelling errors in the code of checkboxes have been corrected.</li><li>few issues with css when a file is opened have "
 				+ "been fixed.</li></ul></li></ul><ul style='list-style-type:none'><li>MODIFIED:<ul><li>the text of few checkboxes has been "
@@ -1238,4 +1274,3 @@ public class PopupMessages {
 		return string;
 	}
 }
-

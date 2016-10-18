@@ -4,6 +4,7 @@ import static com.google.gwt.query.client.GQuery.$;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.TreeMap;
 import java.util.Map.Entry;
@@ -18,10 +19,10 @@ import com.google.gwt.user.client.Window;
 import com.google.gwt.user.client.ui.CheckBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Image;
 import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
 import com.google.gwt.user.client.ui.TextArea;
@@ -89,19 +90,15 @@ public class Utilities {
 
 
 	// find the correct check box in a panel, and tick or untick it, from an entry in an xml file
-	public static void checkBox(ScrollPanel scrollPanel, TreeMap<String, String> treeMap, String string) {
+	public static void checkBox(ScrollPanel scrollPanel, HashMap<HorizontalPanel, String> hashMap, String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Link between checkbox and treeMap invoked...");
-		List<CheckBox> allCheckBox = $("*", scrollPanel).widgets(CheckBox.class);
-		String key = new String();
-		for (Entry<String, String> entry : treeMap.entrySet()) {
+		//List<CheckBox> allCheckBox = $("*", scrollPanel).widgets(CheckBox.class);
+		HorizontalPanel key = new HorizontalPanel();
+		for (Entry<HorizontalPanel, String> entry : hashMap.entrySet()) {
 			if (entry.getValue().equals(string)) {
-				key = entry.getKey(); 
+				key = entry.getKey();
+				((CheckBox) key.getWidget(0)).setValue(true);
 				break;
-			}
-		}
-		for (int i = 0; i < allCheckBox.size(); i = i + 2) {
-			if (allCheckBox.get(i).getName() == key) {
-				allCheckBox.get(i).setValue(true);
 			}
 		}
 	}
@@ -253,9 +250,10 @@ public class Utilities {
 	
 	// add element to a list and a widget
 	public static SimplePanel addListButton(final FlexTable flexTable, final TextBox widget, final ArrayList<String> itemList) {
-		final Image image = new Image("icons/plus_icon.png");
+		final Image image = new Image(Asmm_eufar.resources.plus().getSafeUri());
+		image.setSize("21px","21px");
+		image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 		final SimplePanel addButton = new SimplePanel(image);
-		addButton.setPixelSize(25, 25);
 		addButton.setStyleName("infoButton");
 		widget.addKeyDownHandler(new KeyDownHandler() {
 			public void onKeyDown(KeyDownEvent event) {
@@ -268,12 +266,13 @@ public class Utilities {
 					Utilities.docIsModified();
 					final String widgetText = widget.getText();
 					final int row = flexTable.getRowCount();
-					final Image image = new Image("icons/del_icon.png");
+					final Image image = new Image(Asmm_eufar.resources.delete().getSafeUri());
+					image.setSize("21px","21px");
+					image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 					final SimplePanel delButton = new SimplePanel(image);
 					final Label label = new Label(widgetText);
 					itemList.add(widgetText);
 					widget.setText("");
-					delButton.setPixelSize(25, 25);
 					delButton.setStyleName("infoButton");
 					label.setStyleName("so_tableTextLabel");
 					flexTable.insertRow(row);
@@ -304,12 +303,13 @@ public class Utilities {
 				Utilities.docIsModified();
 				final String widgetText = widget.getText();
 				final int row = flexTable.getRowCount();
-				final Image image = new Image("icons/del_icon.png");
+				final Image image = new Image(Asmm_eufar.resources.delete().getSafeUri());
+				image.setSize("21px","21px");
+				image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 				final SimplePanel delButton = new SimplePanel(image);
 				final Label label = new Label(widgetText);
 				itemList.add(widgetText);
 				widget.setText("");
-				delButton.setPixelSize(25, 25);
 				delButton.setStyleName("infoButton");
 				label.setStyleName("so_tableTextLabel");
 				flexTable.insertRow(row);
@@ -337,17 +337,19 @@ public class Utilities {
 	public static void addList(final FlexTable flexTable, final String string, final ArrayList<String> itemList) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Item proposed to list (xmlfile): " + string);
 		final int row = flexTable.getRowCount();
-		final PushButton delButton = new PushButton(Resources.smallImage("del"));
+		final Image image = new Image(Asmm_eufar.resources.delete().getSafeUri());
+		image.setSize("21px","21px");
+		image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
+		final SimplePanel delButton = new SimplePanel(image);
 		final Label label = new Label(string);
 		itemList.add(string);
-		delButton.setPixelSize(25, 25);
 		delButton.setStyleName("infoButton");
 		label.setStyleName("so_tableTextLabel");
 		flexTable.insertRow(row);
 		flexTable.setWidget(row, 0, label);
 		flexTable.setWidget(row, 1, delButton);
 		flexTable.getFlexCellFormatter().setHorizontalAlignment(row, 1, HasHorizontalAlignment.ALIGN_RIGHT);
-		delButton.addClickHandler(new ClickHandler() {
+		image.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Asmm_eufar.rootLogger.log(Level.INFO, "Item will be removed from list: " + string);
 				Utilities.docIsModified();

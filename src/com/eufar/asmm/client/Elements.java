@@ -13,11 +13,11 @@ public class Elements {
 	
 	
 	// checkbox hack to align vertically text
-	public static HorizontalPanel checkBox(final String string) {
+	public static HorizontalPanel checkBox(final String string, final String name) {
 		final HorizontalPanel horizontalPanel = new HorizontalPanel();
 		final InlineLabel inlineLabel = new InlineLabel(string);
 		final CheckBox box = new CheckBox();
-		box.setName(string);
+		box.setName(name);
 		horizontalPanel.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		inlineLabel.setStyleName("checkboxText");
 		horizontalPanel.add(box);
@@ -28,9 +28,10 @@ public class Elements {
 	
 	// create all the Info buttons in the different tabs
 	public static SimplePanel addInfoButton(final String context) {
-		final Image image = new Image("icons/info_icon.png");
+		final Image image = new Image(Asmm_eufar.resources.info().getSafeUri());
+		image.setSize("21px","21px");
+		image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 		final SimplePanel infoButton = new SimplePanel(image);
-		infoButton.setPixelSize(25, 25);
 		infoButton.setStyleName("infoButton");
 		image.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {

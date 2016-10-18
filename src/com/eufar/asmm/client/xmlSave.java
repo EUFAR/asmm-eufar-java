@@ -2,11 +2,13 @@ package com.eufar.asmm.client;
 
 import static com.google.gwt.query.client.GQuery.$;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.ui.CheckBox;
+import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.xml.client.Document;
 import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.XMLParser;
@@ -130,9 +132,10 @@ public class xmlSave {
 			///////////////////////
 			Element scientificAims = doc.createElement("asmm:ScientificAims");
 			List<CheckBox> allCheckBox = $("*", Asmm_eufar.saScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> scientificMap = Materials.scientificMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.scientificMap.get(allCheckBox.get(i).getName());
+					String stringCode = scientificMap.get(allCheckBox.get(i).getParent());
 					Element saCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.sa_addCatMap.get(allCheckBox.get(i).getName());
@@ -175,9 +178,10 @@ public class xmlSave {
 			boundingBox.appendChild(maxBound);
 			geographicalInformation.appendChild(boundingBox);
 			allCheckBox = $("*", Asmm_eufar.giScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> geographicMap = Materials.geographicMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.geographicMap.get(allCheckBox.get(i).getName());
+					String stringCode = geographicMap.get(allCheckBox.get(i).getParent());
 					Element giCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.gi_addCatMap.get(allCheckBox.get(i).getName());
@@ -200,9 +204,10 @@ public class xmlSave {
 			/////////////////////////////////////
 			Element atmosphericFeatures = doc.createElement("asmm:AtmosFeatures");
 			allCheckBox = $("*", Asmm_eufar.afScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> synopticMap = Materials.synopticMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.synopticMap.get(allCheckBox.get(i).getName());
+					String stringCode = synopticMap.get(allCheckBox.get(i).getParent());
 					Element afCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.af_addCatMap.get(allCheckBox.get(i).getName());
@@ -225,9 +230,10 @@ public class xmlSave {
 			///////////////////////////////////////////////////
 			Element cloudTypes = doc.createElement("asmm:CloudTypes");
 			allCheckBox = $("*", Asmm_eufar.ctScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> cloudMap = Materials.cloudMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.cloudMap.get(allCheckBox.get(i).getName());
+					String stringCode = cloudMap.get(allCheckBox.get(i).getParent());
 					Element ctCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.ct_addCatMap.get(allCheckBox.get(i).getName());
@@ -250,9 +256,10 @@ public class xmlSave {
 			//////////////////////////////////////////////////////////
 			Element cpapTypes = doc.createElement("asmm:ParticlesSampled");
 			allCheckBox = $("*", Asmm_eufar.cpScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> cpapMap = Materials.cpapMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.cpapMap.get(allCheckBox.get(i).getName());
+					String stringCode = cpapMap.get(allCheckBox.get(i).getParent());
 					Element cpCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.cp_addCatMap.get(allCheckBox.get(i).getName());
@@ -275,9 +282,10 @@ public class xmlSave {
 			/////////////////////////////////////////
 			Element surfacesOverflown = doc.createElement("asmm:SurfacesOverflown");
 			allCheckBox = $("*", Asmm_eufar.loScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> surfacesMap = Materials.surfacesMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.surfacesMap.get(allCheckBox.get(i).getName());
+					String stringCode = surfacesMap.get(allCheckBox.get(i).getParent());
 					Element soCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.lo_addCatMap.get(allCheckBox.get(i).getName());
@@ -300,9 +308,10 @@ public class xmlSave {
 			/////////////////////////////////////
 			Element rangeMeasurement = doc.createElement("asmm:AltitudeRanges");
 			allCheckBox = $("*", Asmm_eufar.arScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> measurementMap = Materials.measurementMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.measurementMap.get(allCheckBox.get(i).getName());
+					String stringCode = measurementMap.get(allCheckBox.get(i).getParent());
 					Element arCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.ar_addCatMap.get(allCheckBox.get(i).getName());
@@ -325,9 +334,10 @@ public class xmlSave {
 			/////////////////////////////////
 			Element flightManoeuvre = doc.createElement("asmm:FlightTypes");
 			allCheckBox = $("*", Asmm_eufar.fmScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> manoeuvreMap = Materials.manoeuvreMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.manoeuvreMap.get(allCheckBox.get(i).getName());
+					String stringCode = manoeuvreMap.get(allCheckBox.get(i).getParent());
 					Element fmCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.fm_addCatMap.get(allCheckBox.get(i).getName());
@@ -350,9 +360,10 @@ public class xmlSave {
 			//////////////////////////////
 			Element satelliteCoordination = doc.createElement("asmm:SatelliteCoordination");
 			allCheckBox = $("*", Asmm_eufar.scScroll).widgets(CheckBox.class);
+			HashMap<HorizontalPanel, String> satelliteMap = Materials.satelliteMap();
 			for (int i = 0; i < allCheckBox.size(); i = i + 2) {
 				if (allCheckBox.get(i).getValue()) {
-					String stringCode = Asmm_eufar.satelliteMap.get(allCheckBox.get(i).getName());
+					String stringCode = satelliteMap.get(allCheckBox.get(i).getParent());
 					Element scCode;
 					if (stringCode == null) {
 						stringCode = Asmm_eufar.sc_addCatMap.get(allCheckBox.get(i).getName());

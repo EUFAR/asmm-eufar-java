@@ -170,8 +170,10 @@
 
 
 .fi_image {
-  margin-left: 25px;
+  margin-left: 20px;
   margin-top: 2px;
+  height: 15px;
+  width: 20px;
 }
 
 
@@ -613,6 +615,61 @@
   margin-top: 10px;
   color: #4f4f4f;
 }
+
+
+.im_imageButton {
+  width: 110px;
+  font-family: MyFont;
+  font-size: 14px;
+  border: 1px solid #F9A12B;
+  color: #F9A12B;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 12px;
+  -moz-user-select: none;
+  margin-left: 20px;
+}
+
+
+.im_imageButton:hover {
+  color: #0098D9;
+  border-color: #0098D9;
+  cursor: default;
+}
+
+
+.im_imageButton:active {
+  transform: translateX(1px) translateY(1px);
+}
+
+
+.im_urlButton {
+  width: 140px;
+  font-family: MyFont;
+  font-size: 14px;
+  border: 1px solid #F9A12B;
+  color: #F9A12B;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 12px;
+  -moz-user-select: none;
+  margin-left: 20px;
+}
+
+
+.im_urlButton:hover {
+  color: #0098D9;
+  border-color: #0098D9;
+  cursor: default;
+}
+
+
+.im_urlButton:active {
+  transform: translateX(1px) translateY(1px);
+}
+
 
 
 .flexTable {
@@ -1546,4 +1603,66 @@
   font-family: MyFontBold;
   font-size: 14px;
   color: #4f4f4f;
+}
+
+
+::-moz-focus-inner {
+  border: 0;
+}
+
+
+:focus {
+  outline:none;
+}
+
+
+.noCheckboxPanel {
+  background: rgb(238,238,238);
+  padding: 10px 10px 10px 10px;
+  cursor: default;
+  border: 1px solid black;
+}
+
+
+.noCheckboxText {
+  font-family: MyFont;
+  font-size: 14px;
+  color: #4f4f4f;
+  text-align: justify;
+  margin-left: 10px;
+}
+
+
+.noCheckboxButton {
+  font-family: MyFontBold !important;
+  font-size: 14px !important;
+  color: #4f4f4f !important;
+  margin-left: 10px !important;
+}
+
+
+.addCheckboxPushbutton {
+  font-family: MyFont;
+  font-size: 14px;
+  border: 1px solid #F9A12B;
+  color: #F9A12B;
+  background-color: white;
+  text-align: center;
+  vertical-align: middle;
+  padding: 3px 12px;
+  margin-left: 500px;
+  margin-bottom: 10px;
+  -moz-user-select: none;
+}
+
+
+.addCheckboxPushbutton:hover {
+  color: #0098D9;
+  border-color: #0098D9;
+  cursor: default;
+}
+
+
+.addCheckboxPushbutton:active {
+  transform: translateX(1px) translateY(1px);
 }

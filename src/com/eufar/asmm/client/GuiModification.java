@@ -15,7 +15,6 @@ import com.google.gwt.user.client.ui.DialogBox;
 import com.google.gwt.user.client.ui.FlexTable;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.Label;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -66,12 +65,9 @@ public class GuiModification {
 	
 	
 	// create new checkboxes and an information popup
-	public static PushButton addCatButton(final FlexTable flexTable, final TreeMap<String, String> treeMap, final VerticalPanel verticalPanel) {
-		final PushButton addButton = new PushButton("Add a new CheckBox");
-		addButton.setTabIndex(-1);
-		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 440px !important; "
-				+ "font-family: MyFontBold !important; font-size: 14px; text-align: center !important; padding-top: 5px !important; "
-				+ "color: #4f4f4f;");
+	public static Label addCatButton(final FlexTable flexTable, final TreeMap<String, String> treeMap, final VerticalPanel verticalPanel) {
+		final Label addButton = new Label("Add a new CheckBox");
+		addButton.setStyleName("addCheckboxPushbutton");
 		addButton.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				Asmm_eufar.rootLogger.log(Level.INFO, "New checkbox invoked...");
@@ -80,7 +76,7 @@ public class GuiModification {
 					PopupMessages.noCheckboxPanel();
 					return;
 				}
-				final HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
+				final HashMap<VerticalPanel, String> parentMap = Materials.parentMap();
 				final DialogBox checkboxDialog = new DialogBox();
 				final VerticalPanel verticalPanel01 = new VerticalPanel();
 				final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
@@ -120,9 +116,9 @@ public class GuiModification {
 							String parent = parentMap.get(verticalPanel);
 							treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 							Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
-							final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
+							final HorizontalPanel checkBox = Elements.checkBox(textBox.getText(),parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 							checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-							((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
+							//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 							((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 								@Override
 								public void onClick(ClickEvent event) {
@@ -130,6 +126,10 @@ public class GuiModification {
 								}
 							});
 							horizontalPanel02.add(checkBox);
+							
+							Asmm_eufar.newCheckboxLst.add(checkBox);
+							//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
+							
 							flexTable.setWidget(row - 1, cell, horizontalPanel02);
 							checkboxDialog.hide();
 							Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
@@ -164,9 +164,9 @@ public class GuiModification {
 						String parent = parentMap.get(verticalPanel);
 						treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue(),textBox.getValue());
 						Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
-						final HorizontalPanel checkBox = Elements.checkBox(textBox.getText());
+						final HorizontalPanel checkBox = Elements.checkBox(textBox.getText(), parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 						checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-						((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
+						//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 						((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 							@Override
 							public void onClick(ClickEvent event) {
@@ -174,6 +174,10 @@ public class GuiModification {
 							}
 						});
 						horizontalPanel02.add(checkBox);
+						
+						Asmm_eufar.newCheckboxLst.add(checkBox);
+						//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
+						
 						flexTable.setWidget(row - 1, cell, horizontalPanel02);
 						checkboxDialog.hide();
 						Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
@@ -207,10 +211,9 @@ public class GuiModification {
 	// see above, but dedicated to the read function
 	public static void addCat(final FlexTable flexTable, final TreeMap<String, String> treeMap, final VerticalPanel verticalPanel, final String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "New checkbox invoked (xmlfile)...");
-		final HashMap<VerticalPanel, String> parentMap = Resources.parentMap();
+		final HashMap<VerticalPanel, String> parentMap = Materials.parentMap();
 		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
 		final Label userLabel = new Label("User-defined:");
-		final HorizontalPanel checkBox = Elements.checkBox(string);
 		if (flexTable.getRowCount() == 0) {
 			verticalPanel.add(flexTable);
 			flexTable.getElement().setAttribute("style", "margin-left: 40px !important;");
@@ -228,10 +231,11 @@ public class GuiModification {
 			cell = flexTable.getCellCount(row-1);
 		}
 		String parent = parentMap.get(verticalPanel);
+		final HorizontalPanel checkBox = Elements.checkBox(string,parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
 		treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string, string);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + string + " / " + string);
 		checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-		((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
+		//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
 		((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -241,6 +245,10 @@ public class GuiModification {
 		
 		((CheckBox) checkBox.getWidget(0)).setValue(true);
 		horizontalPanel01.add(checkBox);
+		
+		Asmm_eufar.newCheckboxLst.add(checkBox);
+		//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
+		
 		flexTable.setWidget(row - 1, cell, horizontalPanel01);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
 	}

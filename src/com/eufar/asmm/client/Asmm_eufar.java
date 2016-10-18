@@ -2,15 +2,15 @@ package com.eufar.asmm.client;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import static com.google.gwt.query.client.GQuery.$;
 
+import com.eufar.asmm.client.ScrollableTabLayoutPanel;
+import com.eufar.asmm.client.Materials.Resources;
 import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
@@ -47,7 +47,6 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
-import com.google.gwt.user.client.ui.PushButton;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
@@ -75,27 +74,30 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.4 (2016-08-30)");
+	public static String asmmVersion = new String("1.2.5 (2016-10-18)");
 	public static String gwtVersion = new String("2.7.0");
-	public static String eclipseVersion = new String("4.6.0");
-	public static String javaVersion = new String("1.7.0.79");
-	public static String jasperVersion = new String("6.3");
+	public static String eclipseVersion = new String("4.6.1");
+	public static String javaVersion = new String("1.8");
+	public static String jasperVersion = new String("6.3.1");
 	public static String xmlVersion = new String("v1.0a");
 	public static String titleString = new String("ASMM Creator");
 	public static Boolean isModified = new Boolean(false);
-	public static Boolean tabLayout = new Boolean(false);
-	private HashMap<TextBoxBase, Label> requiredField = Resources.requiredField();
-	private HashMap<TextBoxBase, String> correctField = Resources.correctField();
+	private ArrayList<TextBoxBase> requiredField = Materials.requiredTextboxLst();
+	private ArrayList<ListBox> requiredListbox = Materials.requiredListboxLst();
+	private ArrayList<String> correctField = Materials.correctTextboxLst();
 	public static String asmmPath = new String("");
 	private VerticalPanel verticalPanel101 = new VerticalPanel();
 	private HorizontalPanel horizontalPanel90 = new HorizontalPanel();
-	private String imageASMM = "<img src='icons/menu_icon.png' height='16' width='20'/>";
+	private String imageASMM = "<i class='fa fa-bars' aria-hidden='true' style='color: white; font-size: 1.7em;'></i>";
 	private int clouds_heading_width = 3840;
 	private int clouds_heading_height = 322;
 	private int screen_width = Utilities.getScreenWidth();
 	private int menu_width = screen_width / 10;
 	private float ratio = (float) clouds_heading_height / clouds_heading_width;
 	private float new_clouds_heading_height = screen_width * ratio;
+	public static Resources resources = GWT.create(Materials.Resources.class);
+	public static ArrayList<HorizontalPanel> newCheckboxLst = new ArrayList<HorizontalPanel>();
+	public static ArrayList<String> newCheckboxNameLst = new ArrayList<String>();
 	
 	
 	// Header items
@@ -188,21 +190,21 @@ public class Asmm_eufar implements EntryPoint {
 	private Label fi_aircraftLabel = new Label("Platform/Aircraft");
 	private Label fi_operatorLabel = new Label("Operator");
 	private Label fi_countryLabel = new Label("Location");
-	public static Image fi_operatorImage = Resources.smallImage("fwdarrow");
-	public static Image fi_aircraftImage = Resources.smallImage("fwdarrow");
-	private Image geoFollowImage = Resources.smallImage("fwdarrow");
+	public static Image fi_operatorImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
+	public static Image fi_aircraftImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
+	private Image geoFollowImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
 	public static ListBox fi_operatorText = new ListBox();
 	public static ListBox fi_aircraftText = new ListBox();
 	public static ListBox geoLocationLst = new ListBox();
 	public static ListBox geoDetailLst = new ListBox();
-	public static ArrayList<String> countryList = Resources.countryList();
-	public static ArrayList<String> continentList = Resources.continentList();
-	public static ArrayList<String> oceanList = Resources.oceanList();
-	public static ArrayList<String> regionList = Resources.regionList();
-	public static ArrayList<String> locationList = Resources.locationList();
-	public static ArrayList<String> operatorList = Resources.operatorList();
-	public static ArrayList<String> aircraftList = Resources.aircraftList();
-	public static String[][] operatorsAircraft = Resources.operatorsAircraft();
+	public static ArrayList<String> countryList = Materials.countryList();
+	public static ArrayList<String> continentList = Materials.continentList();
+	public static ArrayList<String> oceanList = Materials.oceanList();
+	public static ArrayList<String> regionList = Materials.regionList();
+	public static ArrayList<String> locationList = Materials.locationList();
+	public static ArrayList<String> operatorList = Materials.operatorList();
+	public static ArrayList<String> aircraftList = Materials.aircraftList();
+	public static String[][] operatorsAircraft = Materials.operatorsAircraft();
 	public static SimplePanel fi_infoButton01 = Elements.addInfoButton("PROJECTACRONYM");
 	public static SimplePanel fi_infoButton02 = Elements.addInfoButton("DATE");
 	public static SimplePanel fi_infoButton03 = Elements.addInfoButton("FLIGHTIDENTIFIER");
@@ -230,7 +232,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static Label ci_nameLabel = new Label("Name");
 	private Label ci_roleLabel = new Label("Role");
 	public static Label ci_emailLabel = new Label("Email");
-	private ArrayList<String> roleList = Resources.roleList();
+	private ArrayList<String> roleList = Materials.roleList();
 	public static SimplePanel ci_infoButton01 = Elements.addInfoButton("CONTACTNAME");
 	public static SimplePanel ci_infoButton02 = Elements.addInfoButton("CONTACTROLE");
 	public static SimplePanel ci_infoButton03 = Elements.addInfoButton("CONTACTEMAIL");
@@ -261,30 +263,29 @@ public class Asmm_eufar implements EntryPoint {
 	private Label sa_cloudLabel = new Label("Cloud");
 	private Label sa_layerLabel = new Label("Boundary-layer");
 	private Label sa_comments = new Label("Comments");
-	public static TreeMap<String, String> scientificMap = Resources.scientificMap();
 	public static TextArea sa_comArea = new TextArea();
 	public static TreeMap<String, String> sa_addCatMap = new TreeMap<String, String>();
 	public static FlexTable sa_addCatTable = new FlexTable();
-	public static HorizontalPanel sa_satCalval = Elements.checkBox("Satellite Cal/Val");
-	public static HorizontalPanel sa_antPollution = Elements.checkBox("Anthropogenic pollution");
-	public static HorizontalPanel sa_mesoImpacts = Elements.checkBox("Mesoscale atmospheric impacts");
-	public static HorizontalPanel sa_microPhysics = Elements.checkBox("Microphysics");
-	public static HorizontalPanel sa_dyNamics = Elements.checkBox("Dynamics (Cloud)");
-	public static HorizontalPanel sa_radProperties = Elements.checkBox("Radiative properties");
-	public static HorizontalPanel sa_convDynamics = Elements.checkBox("Convection dynamics");
-	public static HorizontalPanel sa_gazChemistry = Elements.checkBox("Gas chemistry");
-	public static HorizontalPanel sa_oxyDants = Elements.checkBox("Oxydants");
-	public static HorizontalPanel sa_orgAnics = Elements.checkBox("Organics");
-	public static HorizontalPanel sa_other1 = Elements.checkBox("Other (Gas chemistry)");
-	public static HorizontalPanel sa_aeroSol = Elements.checkBox("Aerosol");
-	public static HorizontalPanel sa_cloudImpacts = Elements.checkBox("Cloud microphysical impacts");
-	public static HorizontalPanel sa_radImpacts = Elements.checkBox("Radiative properties/impacts");
-	public static HorizontalPanel sa_radIation = Elements.checkBox("Radiation");
-	public static HorizontalPanel sa_atmSpectroscopy = Elements.checkBox("Atmospheric spectroscopy");
-	public static HorizontalPanel sa_surfProperties = Elements.checkBox("Surface properties/retrievals");
-	public static HorizontalPanel sa_other2 = Elements.checkBox("Other (Radiation)");
-	public static HorizontalPanel sa_cloud = Elements.checkBox("Cloud");
-	public static HorizontalPanel sa_dynAmics = Elements.checkBox("Dynamics (Boundary-layer)");
+	public static HorizontalPanel sa_satCalval = Elements.checkBox("Satellite Cal/Val","sa_satCalval");
+	public static HorizontalPanel sa_antPollution = Elements.checkBox("Anthropogenic pollution","sa_antPollution");
+	public static HorizontalPanel sa_mesoImpacts = Elements.checkBox("Mesoscale atmospheric impacts","sa_mesoImpacts");
+	public static HorizontalPanel sa_microPhysics = Elements.checkBox("Microphysics","sa_microPhysics");
+	public static HorizontalPanel sa_dyNamics = Elements.checkBox("Dynamics (Cloud)","sa_dyNamics");
+	public static HorizontalPanel sa_radProperties = Elements.checkBox("Radiative properties","sa_radProperties");
+	public static HorizontalPanel sa_convDynamics = Elements.checkBox("Convection dynamics","sa_convDynamics");
+	public static HorizontalPanel sa_gazChemistry = Elements.checkBox("Gas chemistry","sa_gazChemistry");
+	public static HorizontalPanel sa_oxyDants = Elements.checkBox("Oxydants","sa_oxyDants");
+	public static HorizontalPanel sa_orgAnics = Elements.checkBox("Organics","sa_orgAnics");
+	public static HorizontalPanel sa_other1 = Elements.checkBox("Other (Gas chemistry)","sa_other1");
+	public static HorizontalPanel sa_aeroSol = Elements.checkBox("Aerosol","sa_aeroSol");
+	public static HorizontalPanel sa_cloudImpacts = Elements.checkBox("Cloud microphysical impacts","sa_cloudImpacts");
+	public static HorizontalPanel sa_radImpacts = Elements.checkBox("Radiative properties/impacts","sa_radImpacts");
+	public static HorizontalPanel sa_radIation = Elements.checkBox("Radiation","sa_radIation");
+	public static HorizontalPanel sa_atmSpectroscopy = Elements.checkBox("Atmospheric spectroscopy","sa_atmSpectroscopy");
+	public static HorizontalPanel sa_surfProperties = Elements.checkBox("Surface properties/retrievals","sa_surfProperties");
+	public static HorizontalPanel sa_other2 = Elements.checkBox("Other (Radiation)","sa_other2");
+	public static HorizontalPanel sa_cloud = Elements.checkBox("Cloud","sa_cloud");
+	public static HorizontalPanel sa_dynAmics = Elements.checkBox("Dynamics (Boundary-layer)","sa_dynAmics");
 	public static ScrollPanel saScroll = new ScrollPanel(verticalPanel60);  
 	public static SimplePanel sa_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel sa_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -322,7 +323,6 @@ public class Asmm_eufar implements EntryPoint {
 	public static TextBox gi_eastText = new TextBox();
 	public static TextBox gi_minText = new TextBox();
 	public static TextBox gi_maxText = new TextBox();
-	public static TreeMap<String, String> geographicMap = Resources.geographicMap();
 	public static TreeMap<String, String> gi_addCatMap = new TreeMap<String, String>();
 	public static FlexTable gi_addCatTable = new FlexTable();
 	private FlexTable gi_boundTable = new FlexTable();
@@ -331,14 +331,14 @@ public class Asmm_eufar implements EntryPoint {
 	public static SimplePanel gi_infoButtonMM = Elements.addInfoButton("infoMinMax");
 	public static SimplePanel gi_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel gi_infoButton02 = Elements.addInfoButton("COMMENTS");
-	public static HorizontalPanel gi_polar = Elements.checkBox("Polar");
-	public static HorizontalPanel gi_midLatitudes = Elements.checkBox("Mid-latitudes");
-	public static HorizontalPanel gi_subTropical = Elements.checkBox("Sub-tropical");
-	public static HorizontalPanel gi_tropical = Elements.checkBox("Tropical");
-	public static HorizontalPanel gi_maritime = Elements.checkBox("Maritime");
-	public static HorizontalPanel gi_continental = Elements.checkBox("Continental");
-	public static HorizontalPanel gi_oceanicIslands = Elements.checkBox("Oceanic islands");
-	public static HorizontalPanel gi_other = Elements.checkBox("Other");
+	public static HorizontalPanel gi_polar = Elements.checkBox("Polar","gi_polar");
+	public static HorizontalPanel gi_midLatitudes = Elements.checkBox("Mid-latitudes","gi_midLatitudes");
+	public static HorizontalPanel gi_subTropical = Elements.checkBox("Sub-tropical","gi_subTropical");
+	public static HorizontalPanel gi_tropical = Elements.checkBox("Tropical","gi_tropical");
+	public static HorizontalPanel gi_maritime = Elements.checkBox("Maritime","gi_maritime");
+	public static HorizontalPanel gi_continental = Elements.checkBox("Continental","gi_continental");
+	public static HorizontalPanel gi_oceanicIslands = Elements.checkBox("Oceanic islands","gi_oceanicIslands");
+	public static HorizontalPanel gi_other = Elements.checkBox("Other","gi_other");
 	public static ScrollPanel giScroll = new ScrollPanel(verticalPanel80);
 
 
@@ -361,27 +361,26 @@ public class Asmm_eufar implements EntryPoint {
 	private Label af_pathLab2 = new Label("Atmospheric Synoptic Features");
 	private Label af_comLabel = new Label("Comments");
 	public static TextArea af_comArea = new TextArea();
-	public static TreeMap<String, String> synopticMap = Resources.synopticMap();
 	public static TreeMap<String, String> af_addCatMap = new TreeMap<String, String>();
 	public static FlexTable af_addCatTable = new FlexTable();
-	public static HorizontalPanel af_stationary = Elements.checkBox("Stationary");
-	public static HorizontalPanel af_antiStationary = Elements.checkBox("anticyclonic");
-	public static HorizontalPanel af_cycloStationary = Elements.checkBox("cyclonic");
-	public static HorizontalPanel af_warmFront = Elements.checkBox("Warm front");
-	public static HorizontalPanel af_warmBelt = Elements.checkBox("Warm conveyor belt");
-	public static HorizontalPanel af_coldFront = Elements.checkBox("Cold front");
-	public static HorizontalPanel af_occludedFront = Elements.checkBox("Occluded front");
-	public static HorizontalPanel af_warmSector = Elements.checkBox("Warm sector");
-	public static HorizontalPanel af_airMass = Elements.checkBox("Post-cold-frontal air-mass");
-	public static HorizontalPanel af_airOutbreack = Elements.checkBox("Arctic cold-air outbreak");
-	public static HorizontalPanel af_orographicInfluence = Elements.checkBox("Orographic influence");
-	public static HorizontalPanel af_seabreezeFront = Elements.checkBox("Sea-breeze front");
-	public static HorizontalPanel af_foldIntrusion = Elements.checkBox("Stratospheric fold/intrusion");
-	public static HorizontalPanel af_convergenceLine = Elements.checkBox("Extended convergence line");
-	public static HorizontalPanel af_easterlyWave = Elements.checkBox("Easterly wave");
-	public static HorizontalPanel af_equatorialWave = Elements.checkBox("Equatorial wave");
-	public static HorizontalPanel af_tropicalCyclone = Elements.checkBox("Tropical cyclone");
-	public static HorizontalPanel af_organizedConvection = Elements.checkBox("Mesoscale organized convection");
+	public static HorizontalPanel af_stationary = Elements.checkBox("Stationary","af_stationary");
+	public static HorizontalPanel af_antiStationary = Elements.checkBox("anticyclonic","af_antiStationary");
+	public static HorizontalPanel af_cycloStationary = Elements.checkBox("cyclonic","af_cycloStationary");
+	public static HorizontalPanel af_warmFront = Elements.checkBox("Warm front","af_warmFront");
+	public static HorizontalPanel af_warmBelt = Elements.checkBox("Warm conveyor belt","af_warmBelt");
+	public static HorizontalPanel af_coldFront = Elements.checkBox("Cold front","af_coldFront");
+	public static HorizontalPanel af_occludedFront = Elements.checkBox("Occluded front","af_occludedFront");
+	public static HorizontalPanel af_warmSector = Elements.checkBox("Warm sector","af_warmSector");
+	public static HorizontalPanel af_airMass = Elements.checkBox("Post-cold-frontal air-mass","af_airMass");
+	public static HorizontalPanel af_airOutbreack = Elements.checkBox("Arctic cold-air outbreak","af_airOutbreack");
+	public static HorizontalPanel af_orographicInfluence = Elements.checkBox("Orographic influence","af_orographicInfluence");
+	public static HorizontalPanel af_seabreezeFront = Elements.checkBox("Sea-breeze front","af_seabreezeFront");
+	public static HorizontalPanel af_foldIntrusion = Elements.checkBox("Stratospheric fold/intrusion","af_foldIntrusion");
+	public static HorizontalPanel af_convergenceLine = Elements.checkBox("Extended convergence line","af_convergenceLine");
+	public static HorizontalPanel af_easterlyWave = Elements.checkBox("Easterly wave","af_easterlyWave");
+	public static HorizontalPanel af_equatorialWave = Elements.checkBox("Equatorial wave","af_equatorialWave");
+	public static HorizontalPanel af_tropicalCyclone = Elements.checkBox("Tropical cyclone","af_tropicalCyclone");
+	public static HorizontalPanel af_organizedConvection = Elements.checkBox("Mesoscale organized convection","af_organizedConvection");
 	public static ScrollPanel afScroll = new ScrollPanel(verticalPanel81);
 	public static SimplePanel af_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel af_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -406,27 +405,26 @@ public class Asmm_eufar implements EntryPoint {
 	private Label ct_pathLab2 = new Label("Cloud Types and Forms Sampled During Flight");
 	private Label ct_comLabel = new Label("Comments");
 	public static TextArea ct_comArea = new TextArea();
-	public static TreeMap<String, String> cloudMap = Resources.cloudMap();
 	public static TreeMap<String, String> ct_addCatMap = new TreeMap<String, String>();
 	public static FlexTable ct_addCatTable = new FlexTable();
-	public static HorizontalPanel ct_waterClouds = Elements.checkBox("Water clouds");
-	public static HorizontalPanel ct_mixedphasedClouds = Elements.checkBox("Mixed-phase clouds");
-	public static HorizontalPanel ct_iceClouds = Elements.checkBox("Ice clouds");
-	public static HorizontalPanel ct_cirrus = Elements.checkBox("Cirrus");
-	public static HorizontalPanel ct_contrails = Elements.checkBox("Contrails");
-	public static HorizontalPanel ct_stratocumulus = Elements.checkBox("Stratocumulus");
-	public static HorizontalPanel ct_shallowCumulus = Elements.checkBox("Shallow cumulus");
-	public static HorizontalPanel ct_cumulusCongestus = Elements.checkBox("Cumulus congestus");
-	public static HorizontalPanel ct_cumulTower = Elements.checkBox("Cumulonimbus/towering cumulus");
-	public static HorizontalPanel ct_altoStracumul = Elements.checkBox("Altostratus/altocumulus");
-	public static HorizontalPanel ct_waveClouds = Elements.checkBox("Wave clouds");
-	public static HorizontalPanel ct_statiformClouds = Elements.checkBox("Deep frontal statiform clouds");
-	public static HorizontalPanel ct_freeAbove = Elements.checkBox("Cloud-free above aircraft");
-	public static HorizontalPanel ct_freeBelow = Elements.checkBox("Cloud-free below aircraft");
+	public static HorizontalPanel ct_waterClouds = Elements.checkBox("Water clouds","ct_waterClouds");
+	public static HorizontalPanel ct_mixedphasedClouds = Elements.checkBox("Mixed-phase clouds","ct_mixedphasedClouds");
+	public static HorizontalPanel ct_iceClouds = Elements.checkBox("Ice clouds","ct_iceClouds");
+	public static HorizontalPanel ct_cirrus = Elements.checkBox("Cirrus","ct_cirrus");
+	public static HorizontalPanel ct_contrails = Elements.checkBox("Contrails","ct_contrails");
+	public static HorizontalPanel ct_stratocumulus = Elements.checkBox("Stratocumulus","ct_stratocumulus");
+	public static HorizontalPanel ct_shallowCumulus = Elements.checkBox("Shallow cumulus","ct_shallowCumulus");
+	public static HorizontalPanel ct_cumulusCongestus = Elements.checkBox("Cumulus congestus","ct_cumulusCongestus");
+	public static HorizontalPanel ct_cumulTower = Elements.checkBox("Cumulonimbus/towering cumulus","ct_cumulTower");
+	public static HorizontalPanel ct_altoStracumul = Elements.checkBox("Altostratus/altocumulus","ct_altoStracumul");
+	public static HorizontalPanel ct_waveClouds = Elements.checkBox("Wave clouds","ct_waveClouds");
+	public static HorizontalPanel ct_statiformClouds = Elements.checkBox("Deep frontal statiform clouds","ct_statiformClouds");
+	public static HorizontalPanel ct_freeAbove = Elements.checkBox("Cloud-free above aircraft","ct_freeAbove");
+	public static HorizontalPanel ct_freeBelow = Elements.checkBox("Cloud-free below aircraft","ct_freeBelow");
 	public static ScrollPanel ctScroll = new ScrollPanel(verticalPanel82);
 	public static SimplePanel ct_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel ct_infoButton02 = Elements.addInfoButton("COMMENTS");
-
+	
 
 	// Cloud, Precipitation and Aerosol Particles Sampled items initialization
 	private VerticalPanel verticalPanel26 = new VerticalPanel();
@@ -447,21 +445,20 @@ public class Asmm_eufar implements EntryPoint {
 	private Label cp_pathLab2 = new Label("Cloud, Precipitation and Aerosol Particles Sampled");
 	private Label cp_comLabel = new Label("Comments");
 	public static TextArea cp_comArea = new TextArea();
-	public static TreeMap<String, String> cpapMap = Resources.cpapMap();
 	public static TreeMap<String, String> cp_addCatMap = new TreeMap<String, String>();
 	public static FlexTable cp_addCatTable = new FlexTable();
-	public static HorizontalPanel cp_rain = Elements.checkBox("Rain");
-	public static HorizontalPanel cp_drizzle = Elements.checkBox("Drizzle");
-	public static HorizontalPanel cp_dropletsLiquid = Elements.checkBox("Droplets (liquid)");
-	public static HorizontalPanel cp_pristineCrystals = Elements.checkBox("Pristine ice crystals");
-	public static HorizontalPanel cp_snowAggregates = Elements.checkBox("Snow/aggregates");
-	public static HorizontalPanel cp_graupelHail = Elements.checkBox("Graupel/hail");
-	public static HorizontalPanel cp_saltAerosol = Elements.checkBox("Sea-salt aerosol");
-	public static HorizontalPanel cp_continentalAerosol = Elements.checkBox("Continental aerosol");
-	public static HorizontalPanel cp_urbanPlume = Elements.checkBox("Urban plume");
-	public static HorizontalPanel cp_biomassBurning = Elements.checkBox("Biomass burning");
-	public static HorizontalPanel cp_desertDust = Elements.checkBox("Desert/mineral dust");
-	public static HorizontalPanel cp_volcanicAsh = Elements.checkBox("Volcanic ash");
+	public static HorizontalPanel cp_rain = Elements.checkBox("Rain","cp_rain");
+	public static HorizontalPanel cp_drizzle = Elements.checkBox("Drizzle","cp_drizzle");
+	public static HorizontalPanel cp_dropletsLiquid = Elements.checkBox("Droplets (liquid)","cp_dropletsLiquid");
+	public static HorizontalPanel cp_pristineCrystals = Elements.checkBox("Pristine ice crystals","cp_pristineCrystals");
+	public static HorizontalPanel cp_snowAggregates = Elements.checkBox("Snow/aggregates","cp_snowAggregates");
+	public static HorizontalPanel cp_graupelHail = Elements.checkBox("Graupel/hail","cp_graupelHail");
+	public static HorizontalPanel cp_saltAerosol = Elements.checkBox("Sea-salt aerosol","cp_saltAerosol");
+	public static HorizontalPanel cp_continentalAerosol = Elements.checkBox("Continental aerosol","cp_continentalAerosol");
+	public static HorizontalPanel cp_urbanPlume = Elements.checkBox("Urban plume","cp_urbanPlume");
+	public static HorizontalPanel cp_biomassBurning = Elements.checkBox("Biomass burning","cp_biomassBurning");
+	public static HorizontalPanel cp_desertDust = Elements.checkBox("Desert/mineral dust","cp_desertDust");
+	public static HorizontalPanel cp_volcanicAsh = Elements.checkBox("Volcanic ash","cp_volcanicAsh");
 	public static ScrollPanel cpScroll = new ScrollPanel(verticalPanel83);
 	public static SimplePanel cp_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel cp_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -486,21 +483,20 @@ public class Asmm_eufar implements EntryPoint {
 	private Label lo_pathLab2 = new Label("Land or Oceans Surfaces Overflown");
 	private Label lo_comLabel = new Label("Comments");
 	public static TextArea lo_comArea = new TextArea();
-	public static TreeMap<String, String> surfacesMap = Resources.surfacesMap();
 	public static TreeMap<String, String> lo_addCatMap = new TreeMap<String, String>();
 	public static FlexTable lo_addCatTable = new FlexTable();
-	public static HorizontalPanel lo_ocean = Elements.checkBox("Ocean");
-	public static HorizontalPanel lo_semiArid = Elements.checkBox("Semi-arid");
-	public static HorizontalPanel lo_seaIce = Elements.checkBox("Sea-ice");
-	public static HorizontalPanel lo_desert = Elements.checkBox("Desert");
-	public static HorizontalPanel lo_snow = Elements.checkBox("Snow");
-	public static HorizontalPanel lo_urban = Elements.checkBox("Urban");
-	public static HorizontalPanel lo_lakeIce = Elements.checkBox("Lake-ice");
-	public static HorizontalPanel lo_mountainous = Elements.checkBox("Mountainous");
-	public static HorizontalPanel lo_vegetation = Elements.checkBox("Vegetation");
-	public static HorizontalPanel lo_hilly = Elements.checkBox("Hilly");
-	public static HorizontalPanel lo_forest = Elements.checkBox("Forest");
-	public static HorizontalPanel lo_flat = Elements.checkBox("Flat");
+	public static HorizontalPanel lo_ocean = Elements.checkBox("Ocean","lo_ocean");
+	public static HorizontalPanel lo_semiArid = Elements.checkBox("Semi-arid","lo_semiArid");
+	public static HorizontalPanel lo_seaIce = Elements.checkBox("Sea-ice","lo_seaIce");
+	public static HorizontalPanel lo_desert = Elements.checkBox("Desert","lo_desert");
+	public static HorizontalPanel lo_snow = Elements.checkBox("Snow","lo_snow");
+	public static HorizontalPanel lo_urban = Elements.checkBox("Urban","lo_urban");
+	public static HorizontalPanel lo_lakeIce = Elements.checkBox("Lake-ice","lo_lakeIce");
+	public static HorizontalPanel lo_mountainous = Elements.checkBox("Mountainous","lo_mountainous");
+	public static HorizontalPanel lo_vegetation = Elements.checkBox("Vegetation","lo_vegetation");
+	public static HorizontalPanel lo_hilly = Elements.checkBox("Hilly","lo_hilly");
+	public static HorizontalPanel lo_forest = Elements.checkBox("Forest","lo_forest");
+	public static HorizontalPanel lo_flat = Elements.checkBox("Flat","lo_flat");
 	public static ScrollPanel loScroll = new ScrollPanel(verticalPanel84);
 	public static SimplePanel lo_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel lo_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -525,17 +521,16 @@ public class Asmm_eufar implements EntryPoint {
 	private Label ar_pathLab2 = new Label("Altitude Range of Measurement");
 	private Label ar_comLabel = new Label("Comments");
 	public static TextArea ar_comArea = new TextArea();
-	public static TreeMap<String, String> measurementMap = Resources.measurementMap();
 	public static TreeMap<String, String> ar_addCatMap = new TreeMap<String, String>();
 	public static FlexTable ar_addCatTable = new FlexTable();
-	public static HorizontalPanel ar_boundaryLayer = Elements.checkBox("Boundary-layer");
-	public static HorizontalPanel ar_nearSurface = Elements.checkBox("near-surface");
-	public static HorizontalPanel ar_subCloud = Elements.checkBox("sub-cloud");
-	public static HorizontalPanel ar_inCloud = Elements.checkBox("in-cloud");
-	public static HorizontalPanel ar_lowerTroposphere = Elements.checkBox("Lower troposphere");
-	public static HorizontalPanel ar_midTroposphere = Elements.checkBox("Mid troposphere");
-	public static HorizontalPanel ar_upperTroposphere = Elements.checkBox("Upper troposphere");
-	public static HorizontalPanel ar_lowerstratosphere = Elements.checkBox("Lower stratosphere");
+	public static HorizontalPanel ar_boundaryLayer = Elements.checkBox("Boundary-layer","ar_boundaryLayer");
+	public static HorizontalPanel ar_nearSurface = Elements.checkBox("near-surface","ar_nearSurface");
+	public static HorizontalPanel ar_subCloud = Elements.checkBox("sub-cloud","ar_subCloud");
+	public static HorizontalPanel ar_inCloud = Elements.checkBox("in-cloud","ar_inCloud");
+	public static HorizontalPanel ar_lowerTroposphere = Elements.checkBox("Lower troposphere","ar_lowerTroposphere");
+	public static HorizontalPanel ar_midTroposphere = Elements.checkBox("Mid troposphere","ar_midTroposphere");
+	public static HorizontalPanel ar_upperTroposphere = Elements.checkBox("Upper troposphere","ar_upperTroposphere");
+	public static HorizontalPanel ar_lowerstratosphere = Elements.checkBox("Lower stratosphere","ar_lowerstratosphere");
 	public static ScrollPanel arScroll = new ScrollPanel(verticalPanel85);
 	public static SimplePanel ar_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel ar_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -560,18 +555,17 @@ public class Asmm_eufar implements EntryPoint {
 	private Label fm_pathLab2 = new Label("Types of Flight Manoeuvre");
 	private Label fm_comLabel = new Label("Comments");
 	public static TextArea fm_comArea = new TextArea();
-	public static TreeMap<String, String> manoeuvreMap = Resources.manoeuvreMap();
 	public static TreeMap<String, String> fm_addCatMap = new TreeMap<String, String>();
 	public static FlexTable fm_addCatTable = new FlexTable();
-	public static HorizontalPanel fm_levelRuns = Elements.checkBox("Straight/level runs");
-	public static HorizontalPanel fm_stacked = Elements.checkBox("stacked");
-	public static HorizontalPanel fm_separated = Elements.checkBox("separated");
-	public static HorizontalPanel fm_racetracks = Elements.checkBox("Racetracks");
-	public static HorizontalPanel fm_orbits = Elements.checkBox("Orbits");
-	public static HorizontalPanel fm_lagrangianDescents = Elements.checkBox("Lagrangian descents");
-	public static HorizontalPanel fm_ascDescents = Elements.checkBox("Deep profile ascents/descents");
-	public static HorizontalPanel fm_dropsondeDeployed = Elements.checkBox("Dropsonde deployed");
-	public static HorizontalPanel fm_selfCalibration = Elements.checkBox("Self-calibration");
+	public static HorizontalPanel fm_levelRuns = Elements.checkBox("Straight/level runs","fm_levelRuns");
+	public static HorizontalPanel fm_stacked = Elements.checkBox("stacked","fm_stacked");
+	public static HorizontalPanel fm_separated = Elements.checkBox("separated","fm_separated");
+	public static HorizontalPanel fm_racetracks = Elements.checkBox("Racetracks","fm_racetracks");
+	public static HorizontalPanel fm_orbits = Elements.checkBox("Orbits","fm_orbits");
+	public static HorizontalPanel fm_lagrangianDescents = Elements.checkBox("Lagrangian descents","fm_lagrangianDescents");
+	public static HorizontalPanel fm_ascDescents = Elements.checkBox("Deep profile ascents/descents","fm_ascDescents");
+	public static HorizontalPanel fm_dropsondeDeployed = Elements.checkBox("Dropsonde deployed","fm_dropsondeDeployed");
+	public static HorizontalPanel fm_selfCalibration = Elements.checkBox("Self-calibration","fm_selfCalibration");
 	public static ScrollPanel fmScroll = new ScrollPanel(verticalPanel86);
 	public static SimplePanel fm_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel fm_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -598,22 +592,21 @@ public class Asmm_eufar implements EntryPoint {
 	private Label sc_geosynchLabel = new Label("Geosynch");
 	private Label sc_comLabel = new Label("Comments");
 	public static TextArea sc_comArea = new TextArea();
-	public static TreeMap<String, String> satelliteMap = Resources.satelliteMap();
 	public static TreeMap<String, String> sc_addCatMap = new TreeMap<String, String>();
 	public static FlexTable sc_addCatTable = new FlexTable();
-	public static HorizontalPanel sc_metop = Elements.checkBox("METOP");
-	public static HorizontalPanel sc_npoess = Elements.checkBox("NPOESS");
-	public static HorizontalPanel sc_atrain = Elements.checkBox("A-train");
-	public static HorizontalPanel sc_other = Elements.checkBox("Other (Polar)");
-	public static HorizontalPanel sc_msg = Elements.checkBox("MSG");
-	public static HorizontalPanel sc_other2 = Elements.checkBox("Other (Geosynch)");
-	public static HorizontalPanel sc_modis = Elements.checkBox("MODIS");
-	public static HorizontalPanel sc_cloudsat = Elements.checkBox("Cloudsat");
-	public static HorizontalPanel sc_caliop = Elements.checkBox("CALIOP");
-	public static HorizontalPanel sc_iasi = Elements.checkBox("IASI");
-	public static HorizontalPanel sc_airs = Elements.checkBox("AIRS");
-	public static HorizontalPanel sc_cris = Elements.checkBox("CriS");
-	public static HorizontalPanel sc_amsuMhs = Elements.checkBox("AMSU/MHS");
+	public static HorizontalPanel sc_metop = Elements.checkBox("METOP","sc_metop");
+	public static HorizontalPanel sc_npoess = Elements.checkBox("NPOESS","sc_npoess");
+	public static HorizontalPanel sc_atrain = Elements.checkBox("A-train","sc_atrain");
+	public static HorizontalPanel sc_other = Elements.checkBox("Other (Polar)","sc_other");
+	public static HorizontalPanel sc_msg = Elements.checkBox("MSG","sc_msg");
+	public static HorizontalPanel sc_other2 = Elements.checkBox("Other (Geosynch)","sc_other2");
+	public static HorizontalPanel sc_modis = Elements.checkBox("MODIS","sc_modis");
+	public static HorizontalPanel sc_cloudsat = Elements.checkBox("Cloudsat","sc_cloudsat");
+	public static HorizontalPanel sc_caliop = Elements.checkBox("CALIOP","sc_caliop");
+	public static HorizontalPanel sc_iasi = Elements.checkBox("IASI","sc_iasi");
+	public static HorizontalPanel sc_airs = Elements.checkBox("AIRS","sc_airs");
+	public static HorizontalPanel sc_cris = Elements.checkBox("CriS","sc_cris");
+	public static HorizontalPanel sc_amsuMhs = Elements.checkBox("AMSU/MHS","sc_amsuMhs");
 	public static ScrollPanel scScroll = new ScrollPanel(verticalPanel87);
 	public static SimplePanel sc_infoButton01 = Elements.addInfoButton("CHECKBOXES");
 	public static SimplePanel sc_infoButton02 = Elements.addInfoButton("COMMENTS");
@@ -688,8 +681,8 @@ public class Asmm_eufar implements EntryPoint {
 	private Label im_pathLab = new Label(">");
 	private Label im_pathLab2 = new Label("Images included in the PDF report");
 	public static ScrollPanel ipScroll = new ScrollPanel(verticalPanel90);
-	private PushButton addButton = new PushButton("Add a new Image");
-	private PushButton urlButton = new PushButton("Add a new Image (URL)");
+	private Label addButton = new Label("Add a new Image");
+	private Label urlButton = new Label("Add a new Image (URL)");
 	public static FlexTable imageTab = new FlexTable();
 	public static ArrayList<String> imageCaption = new ArrayList<String>();
 	public static ArrayList<String> imagePath = new ArrayList<String>();
@@ -700,6 +693,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static Label captionLab= new Label("Caption");
 	
 
+	// On module load
 	public void onModuleLoad() {
 		GWT.setUncaughtExceptionHandler(new GWT.UncaughtExceptionHandler() {
 			public void onUncaughtException(Throwable e) {
@@ -994,7 +988,7 @@ public class Asmm_eufar implements EntryPoint {
 		fileMenu.addItem("Print",printFile);
 		fileMenu.addItem("Exit",exitFile);
 		mainMenu.getElement().setAttribute("style", "padding-left: " + (menu_width - 70) + "px !important;");
-
+		
 
 		// Assemble Flight Information panel
 		horizontalPanel49.add(fi_mainLab);
@@ -1087,6 +1081,14 @@ public class Asmm_eufar implements EntryPoint {
 		fi_cellFormatter.setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		fi_aircraftText.setEnabled(false);
 		geoDetailLst.setEnabled(false);
+		fi_campaignText.setName("flightCampaign");
+		fi_dateText.getTextBox().setName("date");
+		fi_flightText.setName("flightNumber");
+		fi_scientistText.setName("flightScientist");
+		fi_managerText.setName("flightManager");
+		fi_operatorText.setName("operatorText");
+		fi_aircraftText.setName("aircraftText");
+		geoDetailLst.setName("countryText");
 		fi_starLab01.setStyleName("fi_starLabel");
 		fi_starLab02.setStyleName("fi_starLabel");
 		fi_starLab03.setStyleName("fi_starLabel");
@@ -1176,6 +1178,11 @@ public class Asmm_eufar implements EntryPoint {
 		ci_cellFormatter.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		ci_cellFormatter.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		ci_cellFormatter.setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT);
+		
+		ci_nameText.setName("contactName");
+		ci_emailText.setName("contactEmail");
+		ci_roleText.setName("roleText");
+		
 		ci_starLab01.setStyleName("fi_starLabel");
 		ci_starLab02.setStyleName("fi_starLabel");
 		ci_starLab03.setStyleName("fi_starLabel");
@@ -1239,7 +1246,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel01.add(sa_infoButton01);
 		verticalPanel10.add(horizontalPanel01);
 		verticalPanel10.add(new HTML("<br>"));
-		PushButton sa_addCatButton = GuiModification.addCatButton(sa_addCatTable, sa_addCatMap, verticalPanel67);
+		Label sa_addCatButton = GuiModification.addCatButton(sa_addCatTable, sa_addCatMap, verticalPanel67);
 		horizontalPanel31.add(sa_addCatButton);
 		SimplePanel sa_infoButton = Elements.addInfoButton("newCheckBox");
 		sa_infoButton.getElement().setAttribute("style", "margin-top: 1px !important;");
@@ -1252,6 +1259,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel02.add(sa_comArea);
 		horizontalPanel02.add(sa_infoButton02);
 		verticalPanel10.add(horizontalPanel02);
+		
+		sa_comArea.setName("scientificComments");
+		
 		sa_gazChemistry.setStyleName("sa_checkBox3");
 		sa_radIation.setStyleName("sa_checkBox3");
 		sa_aeroSol.setStyleName("sa_checkBox3");
@@ -1363,6 +1373,15 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel06.add(gi_infoButton02);
 		verticalPanel11.add(horizontalPanel06);
 		verticalPanel11.setSpacing(10);
+		
+		gi_northText.setName("northBound");
+		gi_southText.setName("southBound");
+		gi_minText.setName("minAltitude");
+		gi_maxText.setName("maxAltitude");
+		gi_westText.setName("westBound");
+		gi_eastText.setName("eastBound");
+		gi_comArea.setName("geographicComments");
+		
 		gi_boundingLabel.setStyleName("gi_titleText");
 		gi_northText.setStyleName("gi_textBox");
 		gi_southText.setStyleName("gi_textBox");
@@ -1462,6 +1481,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel08.add(af_comArea);
 		horizontalPanel08.add(af_infoButton02);
 		verticalPanel20.add(horizontalPanel08);
+		
+		af_comArea.setName("atmosphericComments");
+		
 		af_comLabel.setStyleName("af_titleText");
 		af_comArea.setStyleName("sa_textArea");
 		af_stationary.setStyleName("af_checkBox");
@@ -1550,6 +1572,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel10.add(ct_comArea);
 		horizontalPanel10.add(ct_infoButton02);
 		verticalPanel25.add(horizontalPanel10);
+		
+		ct_comArea.setName("typesComments");
+		
 		ct_comLabel.setStyleName("ct_titleText");
 		ct_comArea.setStyleName("sa_textArea");
 		ct_waterClouds.setStyleName("ct_checkBox");
@@ -1630,6 +1655,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel12.add(cp_comArea);
 		horizontalPanel12.add(cp_infoButton02);
 		verticalPanel30.add(horizontalPanel12);
+		
+		cp_comArea.setName("particlesComments");
+		
 		cp_comLabel.setStyleName("cp_titleText");
 		cp_comArea.setStyleName("sa_textArea");
 		cp_rain.setStyleName("ct_checkBox");
@@ -1708,6 +1736,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel14.add(lo_comArea);
 		horizontalPanel14.add(lo_infoButton02);
 		verticalPanel35.add(horizontalPanel14);
+		
+		lo_comArea.setName("surfacesComments");
+		
 		lo_comLabel.setStyleName("lo_titleText");
 		lo_comArea.setStyleName("sa_textArea");
 		lo_ocean.setStyleName("lo_checkBox");
@@ -1781,6 +1812,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel16.add(ar_comArea);
 		horizontalPanel16.add(ar_infoButton02);
 		verticalPanel38.add(horizontalPanel16);
+		
+		ar_comArea.setName("measurementComments");
+		
 		ar_inCloud.setStyleName("sa_checkBox");
 		ar_subCloud.setStyleName("sa_checkBox");
 		ar_nearSurface.setStyleName("sa_checkBox2");
@@ -1850,6 +1884,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel18.add(fm_comArea);
 		horizontalPanel18.add(fm_infoButton02);
 		verticalPanel41.add(horizontalPanel18);
+		
+		fm_comArea.setName("manoeuvreComments");
+		
 		fm_separated.setStyleName("sa_checkBox");
 		fm_stacked.setStyleName("sa_checkBox");
 		fm_comLabel.setStyleName("fm_titleText");
@@ -1928,6 +1965,9 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel20.add(sc_comArea);
 		horizontalPanel20.add(sc_infoButton02);
 		verticalPanel47.add(horizontalPanel20);
+		
+		sc_comArea.setName("satelliteComments");
+		
 		sc_other2.setStyleName("sa_checkBox");
 		verticalPanel43.setStyleName("sa_verticalPanel");
 		sc_msg.setStyleName("sa_checkBox");
@@ -1981,7 +2021,6 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel21.add(so_groundSitesLabel);
 		horizontalPanel21.add(so_groundSitesBox);
 		horizontalPanel21.add(Utilities.addListButton(so_groundSitesTable, so_groundSitesBox, so_groundSitesList));
-		//verticalPanel48.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel48.add(horizontalPanel21);
 		verticalPanel49.add(so_groundSitesTable);
 		verticalPanel48.add(verticalPanel49);
@@ -1991,7 +2030,6 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel22.add(so_researchVesselsLabel);
 		horizontalPanel22.add(so_researchVesselsBox);
 		horizontalPanel22.add(Utilities.addListButton(so_researchVesselsTable, so_researchVesselsBox, so_researchVesselsList));
-		//verticalPanel51.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel51.add(horizontalPanel22);
 		verticalPanel52.add(so_researchVesselsTable);
 		verticalPanel51.add(verticalPanel52);
@@ -2001,7 +2039,6 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel23.add(so_armSitesLabel);
 		horizontalPanel23.add(so_armSitesBox);
 		horizontalPanel23.add(Utilities.addListButton(so_armSitesTable, so_armSitesBox, so_armSitesList));
-		//verticalPanel53.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel53.add(horizontalPanel23);
 		verticalPanel54.add(so_armSitesTable);
 		verticalPanel53.add(verticalPanel54);
@@ -2011,7 +2048,6 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel24.add(so_mobileSitesLabel);
 		horizontalPanel24.add(so_mobileSitesBox);
 		horizontalPanel24.add(Utilities.addListButton(so_mobileSitesTable, so_mobileSitesBox, so_mobileSitesList));
-		//verticalPanel56.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_RIGHT);
 		verticalPanel56.add(horizontalPanel24);
 		verticalPanel57.add(so_mobileSitesTable);
 		verticalPanel56.add(verticalPanel57);
@@ -2076,6 +2112,9 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel89.add(horizontalPanel72);
 		verticalPanel89.add(verticalPanel66);
 		verticalPanel66.add(nf_comArea);
+		
+		nf_comArea.setName("additionalNotes");
+		
 		nf_comArea.setStyleName("sa_textArea");
 		nf_mainLab.setStyleName("fi_mainText");
 		nf_mainLab2.setStyleName("fi_mainText2");
@@ -2124,12 +2163,8 @@ public class Asmm_eufar implements EntryPoint {
 					PopupMessages.uploadImageURL();
 				}
 			});
-		addButton.getElement().setAttribute("style", "width: 160px !important; height: 18px !important; margin-left: 20px !important; "
-				+ "font-family: MyFontBold !important; font-size: 14px !important; text-align: center !important; padding-top: 5px "
-				+ "!important; color: #4f4f4f !important;");
-		urlButton.getElement().setAttribute("style", "width: 180px !important; height: 18px !important; margin-left: 40px !important; "
-				+ "font-family: MyFontBold !important; font-size: 14px !important; text-align: center !important; padding-top: 5px "
-				+ "!important; color: #4f4f4f !important;");
+		addButton.setStyleName("im_imageButton");
+		urlButton.setStyleName("im_urlButton");
 		informationLab.setStyleName("im_textLabel");
 		imageLab.setStyleName("im_imageTextLabel");
 		captionLab.setStyleName("im_captionTextLabel");
@@ -2298,71 +2333,50 @@ public class Asmm_eufar implements EntryPoint {
 		rootLogger.log(Level.INFO, "Check of all fields in progress...");
 		int notCompleted = 0;
 		int widgetIndex = -1;
+		Widget parent;
 		Utilities.runCheckDefault();
-		List<DateBox> allDateBox = $("*", subDockPanel).widgets(DateBox.class);
-		for (int i = 0; i < allDateBox.size(); i++) {
-			if (!runCorrect(allDateBox.get(i))) {
+		if (fi_dateText.getValue().after(new Date())) {
+			notCompleted++;
+			parent = fi_dateText.getParent();
+			while (!(parent instanceof ScrollPanel)) {
+				parent = parent.getParent();
+			}
+			widgetIndex = tabPanel.getWidgetIndex(parent);
+			tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #241CED !important;");
+			fi_dateText.getElement().setAttribute("style","border-color: #241CED !important;");
+		}
+		for (int i = 0; i < requiredField.size(); i++) {
+			if (requiredField.get(i).isVisible()) {
+				if (requiredField.get(i).getText() == "") {
+					parent = requiredField.get(i).getParent();
+					while (!(parent instanceof ScrollPanel)) {
+						parent = parent.getParent();
+					}
+					widgetIndex = tabPanel.getWidgetIndex(parent);
+					tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
+					notCompleted++;
+					requiredField.get(i).getElement().setAttribute("style","border-color: #ED1C24 !important;");
+				} else {
+					if (!runCorrect(requiredField.get(i), correctField.get(i))) {
+						parent = requiredField.get(i).getParent();
+						while (!(parent instanceof ScrollPanel)) {
+							parent = parent.getParent();
+						}
+						widgetIndex = tabPanel.getWidgetIndex(parent);
+						if (tabPanel.getTabWidget(widgetIndex).getElement().getStyle().getColor() != "rgb(237, 28, 36)") {
+							tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: rgb(0,0,200) !important;");
+						}
+						notCompleted++;
+					}
+				}
+			}
+		}
+		for (int i = 0; i < requiredListbox.size(); i++) {
+			if (requiredListbox.get(i).getSelectedItemText() == "Make a choice...") {
+				tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+				requiredListbox.get(i).getElement().setAttribute("style","border-color: #ED1C24 !important;");
 				notCompleted++;
 			}
-		}
-		Widget parent;
-		for (Map.Entry<TextBoxBase, Label> entry : requiredField.entrySet()) {
-			Label label = entry.getValue();
-			TextBoxBase textBox = entry.getKey();
-			parent = textBox.getParent();
-			try {
-				while (!(parent instanceof ScrollPanel)) {
-					parent = parent.getParent();
-				}
-				if (textBox.getText() == "") {
-					if (label == null) {
-						textBox.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-						widgetIndex = tabPanel.getWidgetIndex(parent);
-						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
-					} else if (label.getText() == "Spatial resolution:") {} 
-					else {
-						notCompleted++;
-						textBox.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-						widgetIndex = tabPanel.getWidgetIndex(parent);
-						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
-					}
-				} else {
-					if (!runCorrect(textBox)) {
-						notCompleted++;
-						widgetIndex = tabPanel.getWidgetIndex(parent);
-						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #241CED !important;");
-					}
-				}
-			} catch (Exception ex) {
-				rootLogger.log(Level.WARNING, "the widget has no parent: " + ex.getMessage());
-			}
-		}
-		if (fi_operatorText.getSelectedItemText() == "Make a choice...") {
-			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-			fi_operatorText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-		} else if (fi_operatorText.getSelectedItemText() == "Other...") {
-			if (fi_otherOpsText.getText() == "") {
-				fi_otherOpsText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-			}
-			if (fi_otherAiText.getText() == "") {
-				fi_otherAiText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-			}
-		}
-		if (fi_aircraftText.getSelectedItemText() == "Make a choice...") {
-			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-			fi_aircraftText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-		}
-		if (geoLocationLst.getSelectedItemText() == "Make a choice...") {
-			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-			geoLocationLst.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-		}
-		if (geoDetailLst.getSelectedItemText() == "Make a choice...") {
-			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-			geoDetailLst.getElement().setAttribute("style","border-color: #ED1C24 !important;");
-		}
-		if (ci_roleText.getSelectedItemText() == "Make a choice...") {
-			tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-			ci_roleText.getElement().setAttribute("style","border-color: #ED1C24 !important;");
 		}
 		rootLogger.log(Level.INFO, "Check of all fields finished.");
 		if (notCompleted > 0) {
@@ -2373,70 +2387,31 @@ public class Asmm_eufar implements EntryPoint {
 	}
 	
 	
-	// check if all TextBoxes have been correctly filled in before saving it
-	private boolean runCorrect(final TextBoxBase textBox) {
-		rootLogger.log(Level.INFO, "Check of text in all fields in progress...");
+	// check if all TextBoxes have been correctly filled in before saving it - 2
+	private static boolean runCorrect(final TextBoxBase textBox, final String string) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Check of text in textbox in progress...");
 		boolean result = true;
-		for (Map.Entry<TextBoxBase, String> entry : correctField.entrySet()) {
-			String string = entry.getValue();
-			TextBoxBase textBoxE = entry.getKey();
-			if (textBoxE == textBox) {
-				switch (string) {
+			switch (string) {
 				case "number":
-					try { 
-						Double.parseDouble(textBox.getText());
-					} 
-					catch (NumberFormatException e) {
-						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+					if (!textBox.getText().matches("^[-+]?\\d+(\\.\\d+)?$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
 						result = false;
 					}
 					break;
 				case "string":
-					try {
-						Double.parseDouble(textBox.getText());
-						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+					if (textBox.getText().matches("^[-+]?\\d+(\\.\\d+)?$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
 						result = false;
-					} catch (NumberFormatException e) {}
+					}
 					break;
 				case "email":
-					boolean isEmail = false;
-					for (char ch: textBox.getText().toCharArray()) {
-						if (ch == '@') {
-							isEmail = true;
-						}
-					}
-					if (!isEmail) {
-						textBox.getElement().setAttribute("style","border-color: #241CED !important;");
+					if (!textBox.getText().matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
 						result = false;
 					}
 					break;
-				}
 			}
-		}
-		rootLogger.log(Level.INFO, "Check of text in all fields finished.");
-		return result;
-	}
-		
-		
-	// check if all DateBoxes have been correctly set before saving it
-	private boolean runCorrect(final DateBox dateBox) {
-		rootLogger.log(Level.INFO, "Check of a datebox in progress...");
-		boolean result = true;		
-		Date actualDate = new Date();
-		Date boxDate = dateBox.getValue();
-		Widget parent;
-		int widgetIndex = -1;
-		if (boxDate.after(actualDate)) {
-			result = false;
-			dateBox.getElement().setAttribute("style","border-color: #241CED !important;");
-			parent = dateBox.getParent();
-			while (!(parent instanceof ScrollPanel)) {
-				parent = parent.getParent();
-			}
-			widgetIndex = tabPanel.getWidgetIndex(parent);
-			tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #241CED !important;");
-		}
-		rootLogger.log(Level.INFO, "Check of a datebox finished.");
+		rootLogger.log(Level.INFO, "Check of text in textbox finished.");
 		return result;
 	}
 	
@@ -2455,6 +2430,8 @@ public class Asmm_eufar implements EntryPoint {
 			final Button saveButton = new Button("Save");
 			final Button cancelButton = new Button("Cancel");
 			final Button createButton = new Button("Clear without saving");	
+			final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+			image.setSize("68px", "68px");
 			saveButton.addClickHandler(new ClickHandler() {			
 				@Override
 				public void onClick(ClickEvent event) {
@@ -2476,7 +2453,7 @@ public class Asmm_eufar implements EntryPoint {
 				}
 			});
 			infoDialog.setGlassEnabled(true);
-			horizontalPanel01.add(Resources.popupImage("warning"));
+			horizontalPanel01.add(image);
 			verticalPanel02.add(label);
 			verticalPanel02.add(label2);
 			horizontalPanel01.add(verticalPanel02);
@@ -2517,6 +2494,8 @@ public class Asmm_eufar implements EntryPoint {
 			final Button saveButton = new Button("Save");
 			final Button cancelButton = new Button("Cancel");
 			final Button openButton = new Button("Open without saving");
+			final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+			image.setSize("68px", "68px");
 			saveButton.addClickHandler(new ClickHandler() {			
 				@Override
 				public void onClick(ClickEvent event) {
@@ -2538,7 +2517,7 @@ public class Asmm_eufar implements EntryPoint {
 				}
 			});
 			infoDialog.setGlassEnabled(true);
-			horizontalPanel01.add(Resources.popupImage("warning"));
+			horizontalPanel01.add(image);
 			verticalPanel02.add(label);
 			verticalPanel02.add(label2);
 			horizontalPanel01.add(verticalPanel02);

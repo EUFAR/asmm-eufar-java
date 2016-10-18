@@ -176,7 +176,7 @@ public class xmlOpen {
 			///////////////////////
 			NodeList scientificAims = doc.getElementsByTagName("sa_code");
 			for (int i=0; i< scientificAims.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.saScroll, Asmm_eufar.scientificMap, scientificAims.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.saScroll, Materials.scientificMap(), scientificAims.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.sa_comArea.setText(doc.getElementsByTagName("sa_other").item(0).getFirstChild().getNodeValue());
@@ -225,7 +225,7 @@ public class xmlOpen {
 			}
 			NodeList geographicInformation = doc.getElementsByTagName("gr_code");
 			for (int i=0; i< geographicInformation.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.giScroll, Asmm_eufar.geographicMap, geographicInformation.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.giScroll, Materials.geographicMap(), geographicInformation.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.gi_comArea.setText(doc.getElementsByTagName("gr_other").item(0).getFirstChild().getNodeValue());
@@ -244,7 +244,7 @@ public class xmlOpen {
 			/////////////////////////////////////
 			NodeList atmosphericFeatures = doc.getElementsByTagName("af_code");
 			for (int i=0; i< atmosphericFeatures.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.afScroll, Asmm_eufar.synopticMap, atmosphericFeatures.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.afScroll, Materials.synopticMap(), atmosphericFeatures.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.af_comArea.setText(doc.getElementsByTagName("af_other").item(0).getFirstChild().getNodeValue());
@@ -263,7 +263,7 @@ public class xmlOpen {
 			///////////////////////////////////////////////////
 			NodeList cloudTypes = doc.getElementsByTagName("ct_code");
 			for (int i=0; i< cloudTypes.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.ctScroll, Asmm_eufar.cloudMap, cloudTypes.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.ctScroll, Materials.cloudMap(), cloudTypes.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.ct_comArea.setText(doc.getElementsByTagName("ct_other").item(0).getFirstChild().getNodeValue());
@@ -282,7 +282,7 @@ public class xmlOpen {
 			//////////////////////////////////////////////////////////
 			NodeList cpapTypes = doc.getElementsByTagName("ps_code");
 			for (int i=0; i< cpapTypes.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.cpScroll, Asmm_eufar.cpapMap, cpapTypes.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.cpScroll, Materials.cpapMap(), cpapTypes.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.cp_comArea.setText(doc.getElementsByTagName("ps_other").item(0).getFirstChild().getNodeValue());
@@ -301,7 +301,7 @@ public class xmlOpen {
 			/////////////////////////////////////////
 			NodeList surfacesOverflown = doc.getElementsByTagName("so_code");
 			for (int i=0; i< surfacesOverflown.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.loScroll, Asmm_eufar.surfacesMap, surfacesOverflown.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.loScroll, Materials.surfacesMap(), surfacesOverflown.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.lo_comArea.setText(doc.getElementsByTagName("so_other").item(0).getFirstChild().getNodeValue());
@@ -320,7 +320,7 @@ public class xmlOpen {
 			/////////////////////////////////////
 			NodeList rangeMeasurement = doc.getElementsByTagName("ar_code");
 			for (int i=0; i< rangeMeasurement.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.arScroll, Asmm_eufar.measurementMap, rangeMeasurement.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.arScroll, Materials.measurementMap(), rangeMeasurement.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.ar_comArea.setText(doc.getElementsByTagName("ar_other").item(0).getFirstChild().getNodeValue());
@@ -339,7 +339,7 @@ public class xmlOpen {
 			/////////////////////////////////
 			NodeList flightManoeuvre = doc.getElementsByTagName("ft_code");
 			for (int i=0; i< flightManoeuvre.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.fmScroll, Asmm_eufar.manoeuvreMap, flightManoeuvre.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.fmScroll, Materials.manoeuvreMap(), flightManoeuvre.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.fm_comArea.setText(doc.getElementsByTagName("ft_other").item(0).getFirstChild().getNodeValue());
@@ -358,7 +358,7 @@ public class xmlOpen {
 			//////////////////////////////
 			NodeList satelliteCoordination = doc.getElementsByTagName("sc_code");
 			for (int i=0; i< satelliteCoordination.getLength(); i++) {
-				Utilities.checkBox(Asmm_eufar.scScroll, Asmm_eufar.satelliteMap, satelliteCoordination.item(i).getFirstChild().getNodeValue());
+				Utilities.checkBox(Asmm_eufar.scScroll, Materials.satelliteMap(), satelliteCoordination.item(i).getFirstChild().getNodeValue());
 			}
 			try {
 				Asmm_eufar.sc_comArea.setText(doc.getElementsByTagName("sc_other").item(0).getFirstChild().getNodeValue());
