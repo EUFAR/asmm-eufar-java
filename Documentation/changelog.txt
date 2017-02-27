@@ -12,6 +12,17 @@ ONLINE VERSION TESTED ON:
     - Vivaldi 1.40+
 
 
+February 24 2017, Release version 1.2.6 [ONLINE]
+================================================
+  FIXED:
+    - xml code for checkboxes couldn't be parsed if an old xml file, created before version 1.2.0, was uploaded into ASMM. It has been fixed.
+    - values for bounding box coordinates were saved even if a letter is present. It has been fixed.
+    - corrected few issues with style.
+    
+  MODIFIED:
+    - if a user add a letter or a sign in the textboxes dedicated to coordinates, ASMM will clean the string to save it according to EUFAR requirements.
+
+
 October 18 2016, Release version 1.2.5 [ONLINE]
 ===============================================
   MODIFIED:

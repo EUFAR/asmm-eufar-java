@@ -53,6 +53,32 @@ public class Materials {
 		map.put(Asmm_eufar.sa_dynAmics, "Dynamics (Boundary-layer)");
 		return map;
 	}
+	
+	
+	public static HashMap<HorizontalPanel, String> scientificMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.sa_satCalval, "satelliteCalVal");
+		map.put(Asmm_eufar.sa_antPollution, "anthroPollution");
+		map.put(Asmm_eufar.sa_mesoImpacts, "mesoscaleImpacts");
+		map.put(Asmm_eufar.sa_microPhysics, "cloudMicrophysics");
+		map.put(Asmm_eufar.sa_dyNamics, "cloudDynamics");
+		map.put(Asmm_eufar.sa_radProperties, "cloudRadiative");
+		map.put(Asmm_eufar.sa_convDynamics, "cloudConvection");
+		map.put(Asmm_eufar.sa_gazChemistry, "gasChem");
+		map.put(Asmm_eufar.sa_oxyDants, "gasChemOrganics");
+		map.put(Asmm_eufar.sa_orgAnics, "gasChemOxidants");
+		map.put(Asmm_eufar.sa_other1, "gasChemOther");
+		map.put(Asmm_eufar.sa_aeroSol, "aerosol");
+		map.put(Asmm_eufar.sa_cloudImpacts, "aerosolMicrophysical");
+		map.put(Asmm_eufar.sa_radImpacts, "aerosolRadiative");
+		map.put(Asmm_eufar.sa_radIation,"radiation");
+		map.put(Asmm_eufar.sa_atmSpectroscopy, "radiationAtmosSpectroscopy");
+		map.put(Asmm_eufar.sa_surfProperties, "radiationSurfProperties");
+		map.put(Asmm_eufar.sa_other2, "radiationOther");
+		map.put(Asmm_eufar.sa_cloud, "blCloud");
+		map.put(Asmm_eufar.sa_dynAmics, "blDynamics");
+		return map;
+	}
 
 	
 	public static HashMap<HorizontalPanel, String> geographicMap() {
@@ -65,6 +91,20 @@ public class Materials {
 		map.put(Asmm_eufar.gi_continental,"Continental");
 		map.put(Asmm_eufar.gi_oceanicIslands,"Oceanic islands");
 		map.put(Asmm_eufar.gi_other,"Other (Geographical region)");
+		return map;
+	}
+	
+	
+	public static HashMap<HorizontalPanel, String> geographicMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.gi_polar,"polar");
+		map.put(Asmm_eufar.gi_midLatitudes,"midLatitudes");
+		map.put(Asmm_eufar.gi_subTropical,"subTropical");
+		map.put(Asmm_eufar.gi_tropical,"tropical");
+		map.put(Asmm_eufar.gi_maritime,"maritime");
+		map.put(Asmm_eufar.gi_continental,"continental");
+		map.put(Asmm_eufar.gi_oceanicIslands,"oceanicIslands");
+		map.put(Asmm_eufar.gi_other,"other");
 		return map;
 	}
 	
@@ -93,6 +133,30 @@ public class Materials {
 	}
 	
 	
+	public static HashMap<HorizontalPanel, String> synopticMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.af_stationary,"stationary");
+		map.put(Asmm_eufar.af_antiStationary,"stationaryAnticyclonic");
+		map.put(Asmm_eufar.af_cycloStationary,"stationaryCyclonic");
+		map.put(Asmm_eufar.af_warmFront,"warmFront");
+		map.put(Asmm_eufar.af_warmBelt,"warmConveyorBelt");
+		map.put(Asmm_eufar.af_coldFront,"coldFront");
+		map.put(Asmm_eufar.af_occludedFront,"occludedFront");
+		map.put(Asmm_eufar.af_warmSector,"warmSector");
+		map.put(Asmm_eufar.af_airMass,"postColdFrontalAirMass");
+		map.put(Asmm_eufar.af_airOutbreack,"arcticColdAirOutbreak");
+		map.put(Asmm_eufar.af_orographicInfluence,"orographicInfluence");
+		map.put(Asmm_eufar.af_seabreezeFront,"seaBreezeFront");
+		map.put(Asmm_eufar.af_foldIntrusion,"stratosphericFold");
+		map.put(Asmm_eufar.af_convergenceLine,"extendedConvergenceLine");
+		map.put(Asmm_eufar.af_easterlyWave,"easterlyWave");
+		map.put(Asmm_eufar.af_equatorialWave,"equatorialWave");
+		map.put(Asmm_eufar.af_tropicalCyclone,"tropycalCyclone");
+		map.put(Asmm_eufar.af_organizedConvection,"mesoscaleOrganizedConvection");
+		return map;
+	}
+	
+	
 	public static HashMap<HorizontalPanel, String> cloudMap() {
 		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
 		map.put(Asmm_eufar.ct_waterClouds,"Water clouds");
@@ -109,6 +173,26 @@ public class Materials {
 		map.put(Asmm_eufar.ct_statiformClouds,"Deep frontal statiform clouds");
 		map.put(Asmm_eufar.ct_freeAbove,"Cloud-free above aircraft");
 		map.put(Asmm_eufar.ct_freeBelow,"Cloud-free below aircraft");
+		return map;
+	}
+	
+	
+	public static HashMap<HorizontalPanel, String> cloudMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.ct_waterClouds,"waterClouds");
+		map.put(Asmm_eufar.ct_mixedphasedClouds,"mixedPhaseClouds");
+		map.put(Asmm_eufar.ct_iceClouds,"iceClouds");
+		map.put(Asmm_eufar.ct_cirrus,"cirrus");
+		map.put(Asmm_eufar.ct_contrails,"contrails");
+		map.put(Asmm_eufar.ct_stratocumulus,"stratocumulus");
+		map.put(Asmm_eufar.ct_shallowCumulus,"shallowCumulus");
+		map.put(Asmm_eufar.ct_cumulusCongestus,"cumulusCongestus");
+		map.put(Asmm_eufar.ct_cumulTower,"cumulonimbusToweringCumulus");
+		map.put(Asmm_eufar.ct_altoStracumul,"altostratusAltocumulus");
+		map.put(Asmm_eufar.ct_waveClouds,"waveClouds");
+		map.put(Asmm_eufar.ct_statiformClouds,"deepFrontalStratiformClouds");
+		map.put(Asmm_eufar.ct_freeAbove,"cloudFreeAboveAircraft");
+		map.put(Asmm_eufar.ct_freeBelow,"cloudFreeBelowAircraft");
 		return map;
 	}
 	
@@ -131,6 +215,24 @@ public class Materials {
 	}
 	
 	
+	public static HashMap<HorizontalPanel, String> cpapMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.cp_rain,"rain");
+		map.put(Asmm_eufar.cp_drizzle,"drizzle");
+		map.put(Asmm_eufar.cp_dropletsLiquid,"droplets");
+		map.put(Asmm_eufar.cp_pristineCrystals,"pristineIceCrystals");
+		map.put(Asmm_eufar.cp_snowAggregates,"snowOrAggregates");
+		map.put(Asmm_eufar.cp_graupelHail,"graupelOrHail");
+		map.put(Asmm_eufar.cp_saltAerosol,"seaSaltAerosol");
+		map.put(Asmm_eufar.cp_continentalAerosol,"continentalAerosol");
+		map.put(Asmm_eufar.cp_urbanPlume,"urbanPlume");
+		map.put(Asmm_eufar.cp_biomassBurning,"biomassBurning");
+		map.put(Asmm_eufar.cp_desertDust,"desertOrMineralDust");
+		map.put(Asmm_eufar.cp_volcanicAsh,"volcanicAsh");
+		return map;
+	}
+	
+	
 	public static HashMap<HorizontalPanel, String> surfacesMap() {
 		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
 		map.put(Asmm_eufar.lo_ocean,"Ocean");
@@ -149,6 +251,24 @@ public class Materials {
 	}
 	
 	
+	public static HashMap<HorizontalPanel, String> surfacesMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.lo_ocean,"ocean");
+		map.put(Asmm_eufar.lo_semiArid,"semiArid");
+		map.put(Asmm_eufar.lo_seaIce,"seaIce");
+		map.put(Asmm_eufar.lo_desert,"desert");
+		map.put(Asmm_eufar.lo_snow,"snow");
+		map.put(Asmm_eufar.lo_urban,"urban");
+		map.put(Asmm_eufar.lo_lakeIce,"lakeIce");
+		map.put(Asmm_eufar.lo_mountainous,"mountainous");
+		map.put(Asmm_eufar.lo_vegetation,"vegetation");
+		map.put(Asmm_eufar.lo_hilly,"hilly");
+		map.put(Asmm_eufar.lo_forest,"forest");
+		map.put(Asmm_eufar.lo_flat,"flat");
+		return map;
+	}
+	
+	
 	public static HashMap<HorizontalPanel, String> measurementMap() {
 		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
 		map.put(Asmm_eufar.ar_boundaryLayer,"Boundary-layer");
@@ -159,6 +279,20 @@ public class Materials {
 		map.put(Asmm_eufar.ar_midTroposphere,"Mid troposphere");
 		map.put(Asmm_eufar.ar_upperTroposphere,"Upper troposphere");
 		map.put(Asmm_eufar.ar_lowerstratosphere,"Lower stratosphere");
+		return map;
+	}
+	
+	
+	public static HashMap<HorizontalPanel, String> measurementMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.ar_boundaryLayer,"boundaryLayer");
+		map.put(Asmm_eufar.ar_nearSurface,"blNearSurface");
+		map.put(Asmm_eufar.ar_subCloud,"blSubCloud");
+		map.put(Asmm_eufar.ar_inCloud,"blInCloud");
+		map.put(Asmm_eufar.ar_lowerTroposphere,"lowerTroposphere");
+		map.put(Asmm_eufar.ar_midTroposphere,"midTroposphere");
+		map.put(Asmm_eufar.ar_upperTroposphere,"upperTroposphere");
+		map.put(Asmm_eufar.ar_lowerstratosphere,"lowerStratosphere");
 		return map;
 	}
 	
@@ -178,6 +312,21 @@ public class Materials {
 	}
 	
 	
+	public static HashMap<HorizontalPanel, String> manoeuvreMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.fm_levelRuns,"straightLevelRuns");
+		map.put(Asmm_eufar.fm_stacked,"stackedStraightLevelRuns");
+		map.put(Asmm_eufar.fm_separated,"separatedStraightLevelRuns");
+		map.put(Asmm_eufar.fm_racetracks,"racetracks");
+		map.put(Asmm_eufar.fm_orbits,"orbits");
+		map.put(Asmm_eufar.fm_lagrangianDescents,"lagrangianDescents");
+		map.put(Asmm_eufar.fm_ascDescents,"deepProfileAscentDescents");
+		map.put(Asmm_eufar.fm_dropsondeDeployed,"dropsondeDeployed");
+		map.put(Asmm_eufar.fm_selfCalibration,"selfCalibration");
+		return map;
+	}
+	
+	
 	public static HashMap<HorizontalPanel, String> satelliteMap() {
 		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
 		map.put(Asmm_eufar.sc_metop,"METOP (Polar)");
@@ -193,6 +342,25 @@ public class Materials {
 		map.put(Asmm_eufar.sc_airs,"AIRS");
 		map.put(Asmm_eufar.sc_cris,"CriS");
 		map.put(Asmm_eufar.sc_amsuMhs,"AMSU/MHS");
+		return map;
+	}
+	
+	
+	public static HashMap<HorizontalPanel, String> satelliteMapOld() {
+		HashMap<HorizontalPanel, String> map = new HashMap<HorizontalPanel, String>();
+		map.put(Asmm_eufar.sc_metop,"polarMetop");
+		map.put(Asmm_eufar.sc_npoess,"polarNpoess");
+		map.put(Asmm_eufar.sc_atrain,"polarAtrain");
+		map.put(Asmm_eufar.sc_other,"polarOther");
+		map.put(Asmm_eufar.sc_msg,"geosynchMsg");
+		map.put(Asmm_eufar.sc_other2,"geosynchOther");
+		map.put(Asmm_eufar.sc_modis,"modis");
+		map.put(Asmm_eufar.sc_cloudsat,"cloudsat");
+		map.put(Asmm_eufar.sc_caliop,"caliop");
+		map.put(Asmm_eufar.sc_iasi,"iasi");
+		map.put(Asmm_eufar.sc_airs,"airs");
+		map.put(Asmm_eufar.sc_cris,"cris");
+		map.put(Asmm_eufar.sc_amsuMhs,"amsuMhs");
 		return map;
 	}
 	
@@ -813,6 +981,18 @@ public class Materials {
 	}
 	
 	
+	public static ArrayList<TextBoxBase> nonrequiredTextboxLst() {
+		ArrayList<TextBoxBase> list = new ArrayList<TextBoxBase>();
+		list.add(Asmm_eufar.gi_northText);
+		list.add(Asmm_eufar.gi_southText);
+		list.add(Asmm_eufar.gi_eastText);
+		list.add(Asmm_eufar.gi_westText);
+		list.add(Asmm_eufar.gi_minText);
+		list.add(Asmm_eufar.gi_maxText);
+		return list;
+	}
+	
+	
 	public static ArrayList<String> correctTextboxLst() {
 		ArrayList<String> list = new ArrayList<String>();
 		list.add("string");
@@ -827,6 +1007,18 @@ public class Materials {
 	}
 	
 	
+	public static ArrayList<String> correctTextboxLst2() {
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("number");
+		list.add("number");
+		list.add("number");
+		list.add("number");
+		list.add("number");
+		list.add("number");
+		return list;
+	}
+	
+	
 	public static ArrayList<ListBox> requiredListboxLst() {
 		ArrayList<ListBox> list = new ArrayList<ListBox>();
 		list.add(Asmm_eufar.fi_operatorText);
@@ -835,6 +1027,31 @@ public class Materials {
 		list.add(Asmm_eufar.geoDetailLst);
 		list.add(Asmm_eufar.ci_roleText);
 		return list;
+	}
+	
+	
+	public static HashMap<String, Integer> coordinateLst() {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("°n", 2);
+		map.put("°e", 2);
+		map.put("°N", 2);
+		map.put("°E", 2);
+		map.put("n", 1);
+		map.put("e", 1);
+		map.put("m", 1);
+		map.put("N", 1);
+		map.put("E", 1);
+		map.put("M", 1);
+		map.put("°s", -2);
+		map.put("°w", -2);
+		map.put("°S", -2);
+		map.put("°W", -2);
+		map.put("s", -1);
+		map.put("w", -1);
+		map.put("S", -1);
+		map.put("W", -1);
+		map.put("°", 0);
+		return map;
 	}
 	
 	

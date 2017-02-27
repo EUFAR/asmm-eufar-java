@@ -74,7 +74,7 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.5 (2016-10-18)");
+	public static String asmmVersion = new String("1.2.6 (2017-24-02)");
 	public static String gwtVersion = new String("2.7.0");
 	public static String eclipseVersion = new String("4.6.1");
 	public static String javaVersion = new String("1.8");
@@ -83,8 +83,10 @@ public class Asmm_eufar implements EntryPoint {
 	public static String titleString = new String("ASMM Creator");
 	public static Boolean isModified = new Boolean(false);
 	private ArrayList<TextBoxBase> requiredField = Materials.requiredTextboxLst();
+	private ArrayList<TextBoxBase> nonrequiredField = Materials.nonrequiredTextboxLst();
 	private ArrayList<ListBox> requiredListbox = Materials.requiredListboxLst();
 	private ArrayList<String> correctField = Materials.correctTextboxLst();
+	private ArrayList<String> correctField2 = Materials.correctTextboxLst2();
 	public static String asmmPath = new String("");
 	private VerticalPanel verticalPanel101 = new VerticalPanel();
 	private HorizontalPanel horizontalPanel90 = new HorizontalPanel();
@@ -313,7 +315,7 @@ public class Asmm_eufar implements EntryPoint {
 	private Label gi_boundingLabel = new Label("Geographic bounding box");
 	private Label gi_nsLabel = new Label("North/South latitudes");
 	private Label gi_weLabel = new Label("West/East longitudes");
-	private Label gi_mmLabel = new Label("Min/Max altitudes (m)");
+	public static Label gi_mmLabel = new Label("Min/Max altitudes (m)");
 	private Label gi_comLabel = new Label("Comments");
 	private Label gi_situationLabel = new Label("Geographic situation");
 	public static TextArea gi_comArea = new TextArea();
@@ -1178,11 +1180,9 @@ public class Asmm_eufar implements EntryPoint {
 		ci_cellFormatter.setHorizontalAlignment(0, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		ci_cellFormatter.setHorizontalAlignment(1, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		ci_cellFormatter.setHorizontalAlignment(2, 0, HasHorizontalAlignment.ALIGN_RIGHT);
-		
 		ci_nameText.setName("contactName");
 		ci_emailText.setName("contactEmail");
 		ci_roleText.setName("roleText");
-		
 		ci_starLab01.setStyleName("fi_starLabel");
 		ci_starLab02.setStyleName("fi_starLabel");
 		ci_starLab03.setStyleName("fi_starLabel");
@@ -1259,9 +1259,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel02.add(sa_comArea);
 		horizontalPanel02.add(sa_infoButton02);
 		verticalPanel10.add(horizontalPanel02);
-		
 		sa_comArea.setName("scientificComments");
-		
 		sa_gazChemistry.setStyleName("sa_checkBox3");
 		sa_radIation.setStyleName("sa_checkBox3");
 		sa_aeroSol.setStyleName("sa_checkBox3");
@@ -1373,7 +1371,6 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel06.add(gi_infoButton02);
 		verticalPanel11.add(horizontalPanel06);
 		verticalPanel11.setSpacing(10);
-		
 		gi_northText.setName("northBound");
 		gi_southText.setName("southBound");
 		gi_minText.setName("minAltitude");
@@ -1381,7 +1378,6 @@ public class Asmm_eufar implements EntryPoint {
 		gi_westText.setName("westBound");
 		gi_eastText.setName("eastBound");
 		gi_comArea.setName("geographicComments");
-		
 		gi_boundingLabel.setStyleName("gi_titleText");
 		gi_northText.setStyleName("gi_textBox");
 		gi_southText.setStyleName("gi_textBox");
@@ -1481,9 +1477,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel08.add(af_comArea);
 		horizontalPanel08.add(af_infoButton02);
 		verticalPanel20.add(horizontalPanel08);
-		
 		af_comArea.setName("atmosphericComments");
-		
 		af_comLabel.setStyleName("af_titleText");
 		af_comArea.setStyleName("sa_textArea");
 		af_stationary.setStyleName("af_checkBox");
@@ -1572,9 +1566,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel10.add(ct_comArea);
 		horizontalPanel10.add(ct_infoButton02);
 		verticalPanel25.add(horizontalPanel10);
-		
 		ct_comArea.setName("typesComments");
-		
 		ct_comLabel.setStyleName("ct_titleText");
 		ct_comArea.setStyleName("sa_textArea");
 		ct_waterClouds.setStyleName("ct_checkBox");
@@ -1655,9 +1647,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel12.add(cp_comArea);
 		horizontalPanel12.add(cp_infoButton02);
 		verticalPanel30.add(horizontalPanel12);
-		
 		cp_comArea.setName("particlesComments");
-		
 		cp_comLabel.setStyleName("cp_titleText");
 		cp_comArea.setStyleName("sa_textArea");
 		cp_rain.setStyleName("ct_checkBox");
@@ -1736,9 +1726,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel14.add(lo_comArea);
 		horizontalPanel14.add(lo_infoButton02);
 		verticalPanel35.add(horizontalPanel14);
-		
 		lo_comArea.setName("surfacesComments");
-		
 		lo_comLabel.setStyleName("lo_titleText");
 		lo_comArea.setStyleName("sa_textArea");
 		lo_ocean.setStyleName("lo_checkBox");
@@ -1812,9 +1800,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel16.add(ar_comArea);
 		horizontalPanel16.add(ar_infoButton02);
 		verticalPanel38.add(horizontalPanel16);
-		
 		ar_comArea.setName("measurementComments");
-		
 		ar_inCloud.setStyleName("sa_checkBox");
 		ar_subCloud.setStyleName("sa_checkBox");
 		ar_nearSurface.setStyleName("sa_checkBox2");
@@ -1884,9 +1870,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel18.add(fm_comArea);
 		horizontalPanel18.add(fm_infoButton02);
 		verticalPanel41.add(horizontalPanel18);
-		
 		fm_comArea.setName("manoeuvreComments");
-		
 		fm_separated.setStyleName("sa_checkBox");
 		fm_stacked.setStyleName("sa_checkBox");
 		fm_comLabel.setStyleName("fm_titleText");
@@ -1965,9 +1949,7 @@ public class Asmm_eufar implements EntryPoint {
 		horizontalPanel20.add(sc_comArea);
 		horizontalPanel20.add(sc_infoButton02);
 		verticalPanel47.add(horizontalPanel20);
-		
 		sc_comArea.setName("satelliteComments");
-		
 		sc_other2.setStyleName("sa_checkBox");
 		verticalPanel43.setStyleName("sa_verticalPanel");
 		sc_msg.setStyleName("sa_checkBox");
@@ -2112,9 +2094,7 @@ public class Asmm_eufar implements EntryPoint {
 		verticalPanel89.add(horizontalPanel72);
 		verticalPanel89.add(verticalPanel66);
 		verticalPanel66.add(nf_comArea);
-		
 		nf_comArea.setName("additionalNotes");
-		
 		nf_comArea.setStyleName("sa_textArea");
 		nf_mainLab.setStyleName("fi_mainText");
 		nf_mainLab2.setStyleName("fi_mainText2");
@@ -2368,6 +2348,21 @@ public class Asmm_eufar implements EntryPoint {
 						}
 						notCompleted++;
 					}
+				}
+			}
+		}
+		for (int i = 0; i < nonrequiredField.size(); i++) {
+			if (nonrequiredField.get(i).getText() != "") {
+				if (!runCorrect(nonrequiredField.get(i), correctField2.get(i))) {
+					parent = nonrequiredField.get(i).getParent();
+					while (!(parent instanceof ScrollPanel)) {
+						parent = parent.getParent();
+					}
+					widgetIndex = tabPanel.getWidgetIndex(parent);
+					if (tabPanel.getTabWidget(widgetIndex).getElement().getStyle().getColor() != "rgb(237, 28, 36)") {
+						tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: rgb(0,0,200) !important;");
+					}
+					notCompleted++;
 				}
 			}
 		}

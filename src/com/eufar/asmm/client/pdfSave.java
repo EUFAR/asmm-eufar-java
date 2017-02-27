@@ -23,7 +23,12 @@ public class pdfSave {
 		
 		for (int i = 0; i < textboxLst.size(); i++) {
 			TextBox textBox = new TextBox();
-			textBox.setText(textboxLst.get(i).getText());
+			if (Materials.nonrequiredTextboxLst().contains(textboxLst.get(i))) {
+				String string = Utilities.addCoordinateText(textboxLst.get(i).getText(), textboxLst.get(i));
+				textBox.setText(string);
+			} else {
+				textBox.setText(textboxLst.get(i).getText());
+			}
 			textBox.setName(textboxLst.get(i).getName());
 			verticalPanel.add(textBox);
 		}

@@ -1008,6 +1008,12 @@ public class PopupMessages {
 				+ "<u>TESTED ON:</u><ul><li>Firefox 38+</li><li>Chrome 44+</li><li>Internet Explorer 11 (failed on one computer and succeeded "
 				+ "on others)</li><li>Safari 5+</li><li>Opera 30+</li><li>Vivaldi 1.4+</li></ul><br>"
 				
+				+ "<b><u>February 24 2017, Release version 1.2.6 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>xml code "
+				+ "for checkboxes couldn't be parsed if an old xml file, created before version 1.2.0, was uploaded into ASMM. It has been fixed."
+				+ "</li><li>values for bounding box coordinates were saved even if a letter is present. It has been fixed.</li><li>corrected few "
+				+ "issues with style.</li></ul></li></ul><ul style='list-style-type:none'><li>MODIFIED:<ul><li>if a user add a letter or a sign in"
+				+ " the textboxes dedicated to coordinates, ASMM will clean the string to save it according to EUFAR requirements.</li></ul></li>"
+				+ "</ul><br>"
 				+ "<b><u>October 18 2016, Release version 1.2.5 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>MODIFIED:<ul><li>almost "
 				+ "all icons have been move to a Resources file for better performance.</li><li>almost all icons have been converted to svg"
 				+ " format for better rendering with high and low resolution screens.</li><li>few graphical elements have been modified.</li>"

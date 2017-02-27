@@ -399,9 +399,46 @@ public class Utilities {
 		Asmm_eufar.imageLab.setVisible(imageTextState);
 		Asmm_eufar.captionLab.setVisible(imageTextState);
 		Asmm_eufar.fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");
+		Asmm_eufar.gi_mmLabel.getElement().setAttribute("style", "margin-left: 210px !important;");
 		for (int i = 0; i < 9; i++) {
 			Asmm_eufar.tabPanel.getTabWidget(i).getElement().setAttribute("style","color: white !important;");
 		}
 		Asmm_eufar.rootLogger.log(Level.INFO, "Default display set.");
+	}
+	
+	
+	/// clean string containing coordinates if letters are present
+	public static String cleanCoordinateString(String string) {
+		for (Entry<String, Integer> entry : Materials.coordinateLst().entrySet()) {
+			if (string.indexOf(entry.getKey()) != -1) {
+				string = string.substring(0, string.indexOf(entry.getKey()));
+				if (entry.getValue() < 0) {
+					string = "-" + string;
+				}
+				break;
+			}
+		}
+		return string;
+	}
+	
+	
+	/// add text to coordinate string for pdf report
+	public static String addCoordinateText(String string, TextBoxBase textboxbase) {
+		if (textboxbase == Asmm_eufar.gi_northText || textboxbase == Asmm_eufar.gi_southText) {
+			if (string.contains("-")) {
+				string = string.substring(1) + "S";
+			} else {
+				string = string + "N";
+			}
+		} else if (textboxbase == Asmm_eufar.gi_eastText || textboxbase == Asmm_eufar.gi_westText) {
+			if (string.contains("-")) {
+				string = string.substring(1) + "W";
+			} else {
+				string = string + "E";
+			}
+		} else if (textboxbase == Asmm_eufar.gi_minText || textboxbase == Asmm_eufar.gi_maxText) {
+			string = string + "m";
+		}
+		return string;
 	}
 }
