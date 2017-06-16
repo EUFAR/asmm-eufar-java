@@ -383,13 +383,13 @@ public class Materials {
 		list.add("Alfred Wegener Institute");
 		list.add("CNR - Istituto per i Sistemi Agricoli e Forestali del Mediterraneo");
 		list.add("CNR - Istituto di Metodologie per l'Analisi Ambientale");
+		list.add("CzechGlobe");
 		list.add("Deutsches Zentrum fur Luft- und Raumfahrt");
 		list.add("ENVISCOPE");
 		list.add("NERC - Facility for Airborne Atmospheric Measurements");
 		list.add("FUB - Institut fur Weltraumwissenschaften");
 		list.add("Instituto Nacional de Tecnica Aeroespacial");
 		list.add("KIT - Institute of Meteorology and Climate Research");
-		list.add("NERC - Airborne Research and Survey Facility");
 		list.add("NERC - British Antarctic Survey");
 		list.add("SAFIRE");
 		list.add("UEDIN - Airborne GeoSciences");
@@ -409,11 +409,11 @@ public class Materials {
 		list.add("Learjet 35");
 		list.add("BAe-146");
 		list.add("Cessna 207");
-		list.add("CASA-212 AR");
-		list.add("CASA-212 RS");
+		list.add("CASA-212 AR EC-DTV");
+		list.add("CASA-212 RS EC-DUQ");
 		list.add("Enduro");
-		list.add("Dornier DO-228");
-		list.add("DHC-6 Twin Otter");
+		list.add("DHC-6 Twin Otter VP-FAZ");
+		list.add("DHC-6 Twin Otter VP-FBL");
 		list.add("ATR-42");
 		list.add("Piper PA23");
 		list.add("HK36TTC ECO Dimona");
@@ -946,6 +946,7 @@ public class Materials {
 		String[][] string = {{"Alfred Wegener Institute","BT-67 POLAR 5","AWI","BT-67"},
 	        {"CNR - Istituto per i Sistemi Agricoli e Forestali del Mediterraneo","Sky Arrow 650","CNR-ISAFoM","Sky Arrow 650"},
 	        {"CNR - Istituto di Metodologie per l'Analisi Ambientale","Partenavia P-68","CNR-IMAA","P-68"},
+	        {"CzechGlobe","Cessna 208","CzechGlobe","Cessna 208"},
 	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Cessna 208","DLR","Cessna 208"},
 	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Dornier DO-228 D-CFFU","DLR","DO-228 D-CFFU"},
 	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Dornier DO-228 D-CODE","DLR","DO-228 D-CODE"},
@@ -954,11 +955,12 @@ public class Materials {
 	        {"ENVISCOPE","Partenavia P-68","Enviscope","P-68"},
 	        {"NERC - Facility for Airborne Atmospheric Measurements","BAe-146","FAAM","BAe-146"},
 	        {"FUB - Institut fur Weltraumwissenschaften","Cessna 207","FUB-ISS","Cessna 207"},
-	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 AR","INTA","CASA-212 AR"},
-	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 RS","INTA","CASA-212 RS"},
+	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 AR EC-DTV","INTA","CASA-212 EC-DTV"},
+	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 RS EC-DUQ","INTA","CASA-212 EC-DUQ"},
 	        {"KIT - Institute of Meteorology and Climate Research","Enduro","KIT-IMK-IFU","Enduro"},
-	        {"NERC - Airborne Research and Survey Facility","Dornier DO-228","NERC-ARSF","DO-228"},
-	        {"NERC - British Antarctic Survey","DHC-6 Twin Otter","NERC-BAS","DHC-6"},
+	        {"NERC - Airborne Research Facility","Dornier DO-228","NERC-ARF","DO-228"},
+	        {"NERC - British Antarctic Survey","DHC-6 Twin Otter VP-FAZ","NERC-BAS","DHC-6 VP-FAZ"},
+	        {"NERC - British Antarctic Survey","DHC-6 Twin Otter VP-FBL","NERC-BAS","DHC-6 VP-FBL"},
 	        {"SAFIRE","ATR-42","SAFIRE","ATR-42"},
 	        {"SAFIRE","Mystere/Falcon 20","SAFIRE","Mystere/Falcon 20"},
 	        {"SAFIRE","Piper PA23","SAFIRE","PA23"},
