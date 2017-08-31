@@ -30,8 +30,46 @@ public class PopupMessages {
 	
 	public enum infoEnum{NEWCHECKBOX, INFOSOUTHNORTH, INFOWESTEAST, INFOMINMAX, PROJECTACRONYM, DATE, FLIGHTIDENTIFIER, MISSIONSCIENTIST,
 		FLIGHTMANAGER, OPERATOR, LOCATION, CONTACTNAME, CONTACTROLE, CONTACTEMAIL, COMMENTS, CHECKBOXES, SURFACEOBSERVATIONS;}
-	
-	
+
+
+	// Information about the new API, since v1.3.0
+	public static void apiInformation() {
+		final DialogBox aboutDialog = new DialogBox();
+		final VerticalPanel verticalPanel01 = new VerticalPanel();
+		final HorizontalPanel horizontalPanel01 = new HorizontalPanel();
+		final HTML label = new HTML("<p>Since version 1.3.0, ASMM is now directly connected to the EUFAR database through an API. It will load "
+				+ "automatically project data, aicraft data and operators data. The list of operators and aircraft in ASMM is now automatically "
+				+ "updated from the EUFAR database.</p><p>The <b>Project acronym TextBox</b>"
+				+ " has been replaced by a <b>SuggestBox</b>. Just write the first letters of a project acronym, and ASMM will list you all projects incl"
+				+ "uding those letters. Then just select a project in the list, and the relevant fields will be automatically filled in.</p>"
+				+ "<p>Because of the structure of the EUFAR database, in ASMM, only the following fields will be automatically filled in: Project acronym,"
+				+ " Mission scientist, Operator and Platform/Aircraft.");
+		final Button button = new Button("Ok");
+		final Image image = new Image(Asmm_eufar.resources.warningPopup().getSafeUri());
+		image.setSize("68px", "68px");
+		button.addClickHandler(new ClickHandler() {			
+			@Override
+			public void onClick(ClickEvent event) {
+				aboutDialog.hide();
+			}
+		});
+		aboutDialog.setGlassEnabled(true);
+		horizontalPanel01.add(image);
+		horizontalPanel01.add(label);
+		verticalPanel01.add(horizontalPanel01);
+		verticalPanel01.setHorizontalAlignment(HasHorizontalAlignment.ALIGN_CENTER);
+		verticalPanel01.add(button);
+		aboutDialog.add(verticalPanel01);
+		label.setStyleName("aboutExplorerText");
+		button.addStyleName("aboutExplorerButton");
+		aboutDialog.setStyleName("aboutExplorerPanel");
+		aboutDialog.setSize("500px","180px");
+		aboutDialog.setModal(true);
+		aboutDialog.center();
+		aboutDialog.show();
+	}	
+
+
 	// create a popup panel displaying a changelog
 	public static void changelogPanel() {
 		final DialogBox myOpenDialog = new DialogBox();
@@ -1020,7 +1058,8 @@ public class PopupMessages {
 				+ "li></ul></li></ul><ul style='list-style-type:none'><li>MODIFIED:<ul><li>the list of countries has been modified to reflect th"
 				+ "e ISO 3166-1 list with alpha-2 codes.</li><li>the functions to read, write, print and check xml code have been modified to ta"
 				+ "ke into account the new API, the new operators/aircraft object and the new country list.</li><li>the code of the application "
-				+ "has been cleaned.</li></ul></li></ul><br>"
+				+ "has been cleaned.</li><li>a new popup panel has been added to inform all users of the different modifications induced by the "
+				+ "integration of the new API.</li></ul></li></ul><br>"
 				+ "<b><u>February 24 2017, Release version 1.2.6 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>xml code "
 				+ "for checkboxes couldn't be parsed if an old xml file, created before version 1.2.0, was uploaded into ASMM. It has been fixed."
 				+ "</li><li>values for bounding box coordinates were saved even if a letter is present. It has been fixed.</li><li>corrected few "

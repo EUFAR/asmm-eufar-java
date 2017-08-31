@@ -20,16 +20,18 @@ public class FetchDataFromServer extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp)
 			throws ServletException, IOException {
-	
+		
+		System.out.println("FetchDataFromServer - the function started");
 		BufferedReader reader = null;
 		HashMap<String, String> urlMap = new HashMap<String, String>();
-		urlMap.put("projects", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
-		urlMap.put("aircraft", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
-		urlMap.put("operators", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
-		urlMap.put("instruments", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
+		urlMap.put("projects", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
+		urlMap.put("aircraft", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
+		urlMap.put("operators", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
+		urlMap.put("instruments", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx/");
 		
 	    try {
 	    	String flux = req.getParameter("flux");
+	    	System.out.println("FetchDataFromServer - flux: " + flux);
 	    	URL url = new URL(urlMap.get(flux));
 	        reader = new BufferedReader(new InputStreamReader(url.openStream()));
 	        StringBuffer buffer = new StringBuffer();

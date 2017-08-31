@@ -2342,6 +2342,10 @@ public class Asmm_eufar implements EntryPoint {
 				}
 			}
 		});
+		
+		
+		// Information about the new API, since v1.3.0
+		PopupMessages.apiInformation();
 	}	
 		
 	

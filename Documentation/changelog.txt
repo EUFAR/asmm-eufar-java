@@ -21,6 +21,7 @@ August 31 2017, Release version 1.3.0 [ONLINE]
     - the arcraft and operators are now updated automatically based on EUFAR database.
     - a link to the EUFAR website has been added to the header.
     - xml code for the operator country, aircraft manufacturer and aircraft registration number has been added to the ASMM xml file to expand querry possibilities in a database.
+    - a new popup panel has been added to inform all users of the different modifications induced by the integration of the new API.
     
   FIXED:
     - when clearing, opening or checking a document, a TextArea item wasn't stylized properly.
