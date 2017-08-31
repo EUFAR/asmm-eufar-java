@@ -12,6 +12,28 @@ ONLINE VERSION TESTED ON:
     - Vivaldi 1.40+
 
 
+August 31 2017, Release version 1.3.0 [ONLINE]
+==============================================
+  The new API of the EUFAR website has been implemented in ASMM. The user has now the possibility to select a project from the Project acronym textbox, the function will then fill in different fields automatically.
+  
+  ADDED:
+    - a new function to retrieve data from EUFAR database has been put in place.
+    - the arcraft and operators are now updated automatically based on EUFAR database.
+    - a link to the EUFAR website has been added to the header.
+    - xml code for the operator country, aircraft manufacturer and aircraft registration number has been added to the ASMM xml file to expand querry possibilities in a database.
+    
+  FIXED:
+    - when clearing, opening or checking a document, a TextArea item wasn't stylized properly.
+    - in the "Supporting Surface-based Observations" section, a same word can be entered more than one time in each textarea. It has been fixed.
+    - the use could create more than one checkbox with the same name. It has been fixed.
+    - when a user add an image, the delete icon was too big, and the image size was messed up. It has been fixed.
+    
+  MODIFIED:
+    - the list of countries has been modified to reflect the ISO 3166-1 list with alpha-2 codes.
+    - the functions to read, write, print and check xml code have been modified to take into account the new API, the new operators/aircraft object and the new country list.
+    - the code of the application has been cleaned.
+
+
 February 24 2017, Release version 1.2.6 [ONLINE]
 ================================================
   FIXED:

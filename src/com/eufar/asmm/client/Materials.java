@@ -9,6 +9,7 @@ import com.google.gwt.resources.client.DataResource.MimeType;
 import com.google.gwt.resources.client.ImageResource;
 import com.google.gwt.user.client.ui.HorizontalPanel;
 import com.google.gwt.user.client.ui.ListBox;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
 import com.google.gwt.user.client.ui.VerticalPanel;
 
@@ -376,54 +377,16 @@ public class Materials {
 		return list;
 	}
 	
-	public static ArrayList<String> operatorList() {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("Make a choice...");
-		list.add("Other...");
-		list.add("Alfred Wegener Institute");
-		list.add("CNR - Istituto per i Sistemi Agricoli e Forestali del Mediterraneo");
-		list.add("CNR - Istituto di Metodologie per l'Analisi Ambientale");
-		list.add("CzechGlobe");
-		list.add("Deutsches Zentrum fur Luft- und Raumfahrt");
-		list.add("ENVISCOPE");
-		list.add("NERC - Facility for Airborne Atmospheric Measurements");
-		list.add("FUB - Institut fur Weltraumwissenschaften");
-		list.add("Instituto Nacional de Tecnica Aeroespacial");
-		list.add("KIT - Institute of Meteorology and Climate Research");
-		list.add("NERC - British Antarctic Survey");
-		list.add("SAFIRE");
-		list.add("UEDIN - Airborne GeoSciences");
-    	return list;
+	
+	public static ArrayList<SuggestBox> suggestboxLst() {
+		ArrayList<SuggestBox> list = new ArrayList<SuggestBox>();
+		list.add(Asmm_eufar.fi_campaignText);
+		return list;
 	}
-	
-	
-	public static ArrayList<String> aircraftList() {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("BT-67 POLAR 5");
-		list.add("Sky Arrow 650");
-		list.add("Partenavia P-68");
-		list.add("Cessna 208");
-		list.add("Dornier DO-228 D-CFFU");
-		list.add("Dornier DO-228 D-CODE");
-		list.add("Mystere/Falcon 20");
-		list.add("Learjet 35");
-		list.add("BAe-146");
-		list.add("Cessna 207");
-		list.add("CASA-212 AR EC-DTV");
-		list.add("CASA-212 RS EC-DUQ");
-		list.add("Enduro");
-		list.add("DHC-6 Twin Otter VP-FAZ");
-		list.add("DHC-6 Twin Otter VP-FBL");
-		list.add("ATR-42");
-		list.add("Piper PA23");
-		list.add("HK36TTC ECO Dimona");
-    	return list;
-    }
 	
 	
 	public static ArrayList<TextBoxBase> textboxLst() {
 		ArrayList<TextBoxBase> list = new ArrayList<TextBoxBase>();
-		list.add(Asmm_eufar.fi_campaignText);
 		list.add(Asmm_eufar.fi_flightText);
 		list.add(Asmm_eufar.fi_scientistText);
 		list.add(Asmm_eufar.fi_managerText);
@@ -642,341 +605,304 @@ public class Materials {
 		list.add("Western Europe");
 		return list;
 	}
-
 	
-	public static ArrayList<String> countryList() {
-		ArrayList<String> list = new ArrayList<String>();
-		list.add("Make a choice...");
-		list.add("Afghanistan");
-		list.add("Albania");
-		list.add("Algeria");
-		list.add("Amazonia");
-		list.add("American Samoa");
-		list.add("Amsterdam And St. Paul Islands");
-		list.add("Andaman Islands");
-		list.add("Andorra");
-		list.add("Angola");
-		list.add("Anguilla");
-		list.add("Antigua And Barbuda");
-		list.add("Argentina");
-		list.add("Armenia");
-		list.add("Aruba");
-		list.add("Ascension Island");
-		list.add("Australia");
-		list.add("Austria");
-		list.add("Azerbaijan");
-		list.add("Bahamas");
-		list.add("Bahrain");
-		list.add("Baker Island");
-		list.add("Bangladesh");
-		list.add("Barbados");
-		list.add("Belarus");
-		list.add("Belgium");
-		list.add("Belize");
-		list.add("Benin");
-		list.add("Bhutan");
-		list.add("Bolivia");
-		list.add("Bonaire");
-		list.add("Bosnia And Herzegovina");
-		list.add("Botswana");
-		list.add("Bouvet Island");
-		list.add("Brazil");
-		list.add("British Isles");
-		list.add("Brunei");
-		list.add("Bulgaria");
-		list.add("Burkina Faso");
-		list.add("Burma");
-		list.add("Burundi");
-		list.add("Cambodia");
-		list.add("Cameroon");
-		list.add("Canada");
-		list.add("Caribbean");
-		list.add("Cayman Islands");
-		list.add("Central African Republic");
-		list.add("Ceuta");
-		list.add("Chad");
-		list.add("Channel Islands");
-		list.add("Chile");
-		list.add("China");
-		list.add("Christmas Island");
-		list.add("Cocos Islands");
-		list.add("Colombia");
-		list.add("Comoros");
-		list.add("Congo, Democratic Republic");
-		list.add("Congo, Republic");
-		list.add("Cook Islands");
-		list.add("Corsica");
-		list.add("Costa Rica");
-		list.add("Cote D'ivoire");
-		list.add("Croatia");
-		list.add("Crozet Islands");
-		list.add("Cuba");
-		list.add("Curacao");
-		list.add("Cyprus");
-		list.add("Czech Republic");
-		list.add("Denmark");
-		list.add("Dhekelia");
-		list.add("Djibouti");
-		list.add("Dominica");
-		list.add("Dominican Republic");
-		list.add("Ecuador");
-		list.add("Egypt");
-		list.add("El Salvador");
-		list.add("Equatorial Guinea");
-		list.add("Eritrea");
-		list.add("Estonia");
-		list.add("Ethiopia");
-		list.add("Faeroe Islands");
-		list.add("Falkland Islands");
-		list.add("Fiji");
-		list.add("Finland");
-		list.add("France");
-		list.add("French Guiana");
-		list.add("French Polynesia");
-		list.add("Gabon");
-		list.add("Galapagos Islands");
-		list.add("Gambia");
-		list.add("Gaza Strip");
-		list.add("Georgia, Republic");
-		list.add("Germany");
-		list.add("Ghana");
-		list.add("Gibraltar");
-		list.add("Gough Island");
-		list.add("Greece");
-		list.add("Greenland");
-		list.add("Grenada");
-		list.add("Guadeloupe");
-		list.add("Guam");
-		list.add("Guatemala");
-		list.add("Guinea");
-		list.add("Guinea-Bissau");
-		list.add("Guyana");
-		list.add("Haiti");
-		list.add("Hawaii Island");
-		list.add("Hawaiian Islands");
-		list.add("Honduras");
-		list.add("Hong Kong");
-		list.add("Howland Island");
-		list.add("Hungary");
-		list.add("Iceland");
-		list.add("India");
-		list.add("Indonesia");
-		list.add("Iran");
-		list.add("Iraq");
-		list.add("Ireland");
-		list.add("Israel");
-		list.add("Italy");
-		list.add("Jamaica");
-		list.add("Japan");
-		list.add("Jarvis Island");
-		list.add("Johnston Atoll");
-		list.add("Jordan");
-		list.add("Kahoolawe");
-		list.add("Kauai");
-		list.add("Kazakhstan");
-		list.add("Kenya");
-		list.add("Kerguelen Islands");
-		list.add("Kingman Reef");
-		list.add("Kiribati");
-		list.add("Kosovo");
-		list.add("Kuwait");
-		list.add("Kyrgyzstan");
-		list.add("Laeso");
-		list.add("Lake Chad");
-		list.add("Lake Malawi");
-		list.add("Lake Tanganyika");
-		list.add("Lake Victoria");
-		list.add("Lanai");
-		list.add("Laos");
-		list.add("Latvia");
-		list.add("Lebanon");
-		list.add("Lesotho");
-		list.add("Liberia");
-		list.add("Libya");
-		list.add("Liechtenstein");
-		list.add("Lithuania");
-		list.add("Luxembourg");
-		list.add("Macau");
-		list.add("Macedonia");
-		list.add("Madagascar");
-		list.add("Madeira");
-		list.add("Malawi");
-		list.add("Malaysia");
-		list.add("Maldives");
-		list.add("Mali");
-		list.add("Malta");
-		list.add("Marshall Islands");
-		list.add("Martinique");
-		list.add("Maui");
-		list.add("Mauritania");
-		list.add("Mauritius");
-		list.add("Melanesia");
-		list.add("Mexico");
-		list.add("Micronesia");
-		list.add("Midway Atoll");
-		list.add("Moldova");
-		list.add("Molokai");
-		list.add("Monaco");
-		list.add("Mongolia");
-		list.add("Montenegro");
-		list.add("Montserrat");
-		list.add("Morocco");
-		list.add("Mozambique");
-		list.add("Namibia");
-		list.add("Nauru");
-		list.add("Navassa Island");
-		list.add("Nepal");
-		list.add("Netherlands Antilles");
-		list.add("Netherlands");
-		list.add("New Caledonia");
-		list.add("New Zealand");
-		list.add("Nicaragua");
-		list.add("Nicobar Islands");
-		list.add("Niger");
-		list.add("Nigeria");
-		list.add("Niihau");
-		list.add("Niue");
-		list.add("Norfolk Island");
-		list.add("North Korea");
-		list.add("Northern Mariana Islands");
-		list.add("Norway");
-		list.add("Oahu");
-		list.add("Okinawa");
-		list.add("Oman");
-		list.add("Pakistan");
-		list.add("Palau");
-		list.add("Palestine");
-		list.add("Palmyra Atoll");
-		list.add("Panama");
-		list.add("Papua New Guinea");
-		list.add("Paraguay");
-		list.add("Peru");
-		list.add("Philippines");
-		list.add("Pitcairn Island");
-		list.add("Pitcairn Islands");
-		list.add("Poland");
-		list.add("Polynesia");
-		list.add("Portugal");
-		list.add("Puerto Rico");
-		list.add("Qatar");
-		list.add("Red Sea");
-		list.add("Reunion");
-		list.add("Romania");
-		list.add("Russia");
-		list.add("Rwanda");
-		list.add("Saba");
-		list.add("Sable Island");
-		list.add("Samoa");
-		list.add("San Marino");
-		list.add("Sao Tome And Principe");
-		list.add("Sardinia");
-		list.add("Saudi Arabia");
-		list.add("Scandinavia");
-		list.add("Senegal");
-		list.add("Serbia");
-		list.add("Seychelles");
-		list.add("Sicily");
-		list.add("Sierra Leone");
-		list.add("Singapore");
-		list.add("Slovakia");
-		list.add("Slovenia");
-		list.add("Solomon Islands");
-		list.add("Somalia");
-		list.add("South Africa");
-		list.add("South Georgia Island");
-		list.add("South Korea");
-		list.add("South Orkney Islands");
-		list.add("South Sandwich Islands");
-		list.add("Spain");
-		list.add("Spratly Islands");
-		list.add("Sri Lanka");
-		list.add("St Barthelemy");
-		list.add("St Eustatius");
-		list.add("St Helena");
-		list.add("St Kitts And Nevis");
-		list.add("St Lucia");
-		list.add("St Maarten");
-		list.add("St Martin");
-		list.add("St Pierre And Miquelon");
-		list.add("St Vincent And The Grenadines");
-		list.add("Sudan");
-		list.add("Suriname");
-		list.add("Svalbard And Jan Mayen");
-		list.add("Swaziland");
-		list.add("Sweden");
-		list.add("Switzerland");
-		list.add("Syria");
-		list.add("Taiwan");
-		list.add("Tajikistan");
-		list.add("Tanzania");
-		list.add("Thailand");
-		list.add("Togo");
-		list.add("Tokelau");
-		list.add("Tonga");
-		list.add("Trinidad And Tobago");
-		list.add("Tristan Da Cunha");
-		list.add("Tunisia");
-		list.add("Turkey");
-		list.add("Turkmenistan");
-		list.add("Turks And Caicos Islands");
-		list.add("Tuvalu");
-		list.add("Uganda");
-		list.add("Ukraine");
-		list.add("United Arab Emirates");
-		list.add("United Kingdom");
-		list.add("United States of America");
-		list.add("Uruguay");
-		list.add("Uzbekistan");
-		list.add("Vanuatu");
-		list.add("Vatican City");
-		list.add("Venezuela");
-		list.add("Vietnam");
-		list.add("Virgin Islands");
-		list.add("Wake Island");
-		list.add("Wallis And Futuna Islands");
-		list.add("Yemen");
-		list.add("Zambia");
-		list.add("Zanzibar");
-		list.add("Zimbabwe");
-		return list;
+	
+	public static HashMap<String, String> countryCodeList() {
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("Afghanistan","AF");
+		map.put("Aland Islands","AX");
+		map.put("Albania","AL");
+		map.put("Algeria","DZ");
+		map.put("American Samoa","AS");
+		map.put("Andorra","AD");
+		map.put("Angola","AO");
+		map.put("Anguilla","AI");
+		map.put("Antarctica","AQ");
+		map.put("Antigua And Barbuda","AG");
+		map.put("Argentina","AR");
+		map.put("Armenia","AM");
+		map.put("Aruba","AW");
+		map.put("Australia","AU");
+		map.put("Austria","AT");
+		map.put("Azerbaijan","AZ");
+		map.put("Bahamas","BS");
+		map.put("Bahrain","BH");
+		map.put("Bangladesh","BD");
+		map.put("Barbados","BB");
+		map.put("Belarus","BY");
+		map.put("Belgium","BE");
+		map.put("Belize","BZ");
+		map.put("Benin","BJ");
+		map.put("Bermuda","BM");
+		map.put("Bhutan","BT");
+		map.put("Bolivia","BO");
+		map.put("Bonaire","BQ");
+		map.put("Bosnia And Herzegovina","BA");
+		map.put("Botswana","BW");
+		map.put("Bouvet Island","BV");
+		map.put("Brazil","BR");
+		map.put("British Indian Ocean Territory","IO");
+		map.put("Brunei","BN");
+		map.put("Bulgaria","BG");
+		map.put("Burkina Faso","BF");
+		map.put("Burundi","BI");
+		map.put("Cabo Verde","CV");
+		map.put("Cambodia","KH");
+		map.put("Cameroon","CM");
+		map.put("Canada","CA");
+		map.put("Cayman Islands","KY");
+		map.put("Central African Republic","CF");
+		map.put("Chad","TD");
+		map.put("Chile","CL");
+		map.put("China","CN");
+		map.put("Christmas Island","CX");
+		map.put("Cocos Islands","CC");
+		map.put("Colombia","CO");
+		map.put("Comoros","KM");
+		map.put("Congo, Democratic Republic","CD");
+		map.put("Congo, Republic","CG");
+		map.put("Cook Islands","CK");
+		map.put("Costa Rica","CR");
+		map.put("Cote d'Ivoire","CI");
+		map.put("Croatia","HR");
+		map.put("Cuba","CU");
+		map.put("Curacao","CW");
+		map.put("Cyprus","CY");
+		map.put("Czech Republic","CZ");
+		map.put("Denmark","DK");
+		map.put("Djibouti","DJ");
+		map.put("Dominica","DM");
+		map.put("Dominican Republic","DO");
+		map.put("Ecuador","EC");
+		map.put("Egypt","EG");
+		map.put("El Salvador","SV");
+		map.put("Equatorial Guinea","GQ");
+		map.put("Eritrea","ER");
+		map.put("Estonia","EE");
+		map.put("Ethiopia","ET");
+		map.put("Falkland Islands","KF");
+		map.put("Faroe Islands","FO");
+		map.put("Fiji","FJ");
+		map.put("Finland","FI");
+		map.put("France","FR");
+		map.put("French Guiana","GF");
+		map.put("French Polynesia","PF");
+		map.put("French Southern Territories","TF");
+		map.put("Gabon","GA");
+		map.put("Gambia","GM");
+		map.put("Georgia, Republic","GE");
+		map.put("Germany","DE");
+		map.put("Ghana","GH");
+		map.put("Gibraltar","GI");
+		map.put("Greece","GR");
+		map.put("Greenland","GL");
+		map.put("Grenada","GD");
+		map.put("Guadeloupe","GP");
+		map.put("Guam","GU");
+		map.put("Guatemala","GT");
+		map.put("Guernsey","GG");
+		map.put("Guinea","GN");
+		map.put("Guinea-Bissau","GW");
+		map.put("Guyana","GY");
+		map.put("Haiti","HT");
+		map.put("Heard Island and McDonald","HM");
+		map.put("Holy See","VA");
+		map.put("Honduras","HN");
+		map.put("Hong Kong","HK");
+		map.put("Hungary","HU");
+		map.put("Iceland","IS");
+		map.put("India","IN");
+		map.put("Indonesia","ID");
+		map.put("Iran","IR");
+		map.put("Iraq","IQ");
+		map.put("Ireland","IE");
+		map.put("Isle of Man","IM");
+		map.put("Israel","IL");
+		map.put("Italy","IT");
+		map.put("Jamaica","JM");
+		map.put("Japan","JP");
+		map.put("Jersey","JE");
+		map.put("Jordan","JO");
+		map.put("Kazakhstan","KZ");
+		map.put("Kenya","KE");
+		map.put("Kiribati","KI");
+		map.put("Korea (the Democratic People's Republic of)","KP");
+		map.put("Korea (the Republic of)","KR");
+		map.put("Kuwait","KW");
+		map.put("Kyrgyzstan","KG");
+		map.put("Lao People's Democratic Republic (the)","LA");
+		map.put("Latvia","LV");
+		map.put("Lebanon","LB");
+		map.put("Lesotho","LS");
+		map.put("Liberia","LR");
+		map.put("Libya","LY");
+		map.put("Liechtenstein","LI");
+		map.put("Lithuania","LT");
+		map.put("Luxembourg","LU");
+		map.put("Macao","MO");
+		map.put("Macedonia","MK");
+		map.put("Madagascar","MG");
+		map.put("Malawi","MW");
+		map.put("Malaysia","MY");
+		map.put("Maldives","MV");
+		map.put("Mali","ML");
+		map.put("Malta","MT");
+		map.put("Marshall Islands","MH");
+		map.put("Martinique","MQ");
+		map.put("Mauritania","MR");
+		map.put("Mauritius","MU");
+		map.put("Mayotte","YT");
+		map.put("Mexico","MX");
+		map.put("Micronesia","FM");
+		map.put("Moldova","MD");
+		map.put("Monaco","MC");
+		map.put("Mongolia","MN");
+		map.put("Montenegro","ME");
+		map.put("Montserrat","MS");
+		map.put("Morocco","MA");
+		map.put("Mozambique","MZ");
+		map.put("Myanmar","MM");
+		map.put("Namibia","NA");
+		map.put("Nauru","NR");
+		map.put("Nepal","NP");
+		map.put("Netherlands","NL");
+		map.put("New Caledonia","NC");
+		map.put("New Zealand","NZ");
+		map.put("Nicaragua","NI");
+		map.put("Niger","NE");
+		map.put("Nigeria","NG");
+		map.put("Niue","NU");
+		map.put("Norfolk Island","NF");
+		map.put("Northern Mariana Islands","MP");
+		map.put("Norway","NO");
+		map.put("Oman","OM");
+		map.put("Pakistan","PK");
+		map.put("Palau","PW");
+		map.put("Palestine","PS");
+		map.put("Panama","PA");
+		map.put("Papua New Guinea","PG");
+		map.put("Paraguay","PY");
+		map.put("Peru","PE");
+		map.put("Philippines","PH");
+		map.put("Pitcairn","PN");
+		map.put("Poland","PL");
+		map.put("Portugal","PT");
+		map.put("Puerto Rico","PR");
+		map.put("Qatar","QA");
+		map.put("Reunion","RE");
+		map.put("Romania","RO");
+		map.put("Russia","RU");
+		map.put("Rwanda","RW");
+		map.put("Saint Helena, Ascension and Tristan da Cunha","SH");
+		map.put("Saint Kitts and Nevis","KN");
+		map.put("Saint Lucia","LC");
+		map.put("Saint Martin","MF");
+		map.put("Saint Pierre and Miquelon","PM");
+		map.put("Saint Vincent and the Grenadines","VC");
+		map.put("Samoa","WS");
+		map.put("San Marino","SM");
+		map.put("Sao Tome And Principe","ST");
+		map.put("Saudi Arabia","SA");
+		map.put("Senegal","SN");
+		map.put("Serbia","RS");
+		map.put("Seychelles","SC");
+		map.put("Sierra Leone","SL");
+		map.put("Singapore","SG");
+		map.put("Sint Maarten","SX");
+		map.put("Slovakia","SK");
+		map.put("Slovenia","SI");
+		map.put("Solomon Islands","SB");
+		map.put("Somalia","SO");
+		map.put("South Africa","ZA");
+		map.put("South Georgia and the South Sandwich Island","GS");
+		map.put("South Sudan","SS");
+		map.put("Spain","ES");
+		map.put("Sri Lanka","LK");
+		map.put("Sudan","SD");
+		map.put("Suriname","SR");
+		map.put("Svalbard And Jan Mayen","SJ");
+		map.put("Swaziland","SZ");
+		map.put("Sweden","SE");
+		map.put("Switzerland","CH");
+		map.put("Syria","SY");
+		map.put("Taiwan","TW");
+		map.put("Tajikistan","TJ");
+		map.put("Tanzania","TZ");
+		map.put("Thailand","TH");
+		map.put("Timor-Leste","TL");
+		map.put("Togo","TG");
+		map.put("Tokelau","TK");
+		map.put("Tonga","TO");
+		map.put("Trinidad And Tobago","TT");
+		map.put("Tunisia","TN");
+		map.put("Turkey","TR");
+		map.put("Turkmenistan","TM");
+		map.put("Turks And Caicos Islands","TC");
+		map.put("Tuvalu","TV");
+		map.put("Uganda","UG");
+		map.put("Ukraine","UA");
+		map.put("United Arab Emirates","AE");
+		map.put("United Kingdom","GB");
+		map.put("United States Minor Outlying Islands","UM");
+		map.put("United States of America","US");
+		map.put("Uruguay","UY");
+		map.put("Uzbekistan","UZ");
+		map.put("Vanuatu","VU");
+		map.put("Venezuela","VE");
+		map.put("Vietnam","VN");
+		map.put("Virgin Islands (British)","VG");
+		map.put("Virgin Islands (U.S.)","VI");
+		map.put("Wallis And Futuna","WF");
+		map.put("Western Sahara","EH");
+		map.put("Yemen","YE");
+		map.put("Zambia","ZM");
+		map.put("Zimbabwe","ZW");
+		return map;
 	}
 
 	
-	public static String[][] operatorsAircraft() {
-		String[][] string = {{"Alfred Wegener Institute","BT-67 POLAR 5","AWI","BT-67"},
-	        {"CNR - Istituto per i Sistemi Agricoli e Forestali del Mediterraneo","Sky Arrow 650","CNR-ISAFoM","Sky Arrow 650"},
-	        {"CNR - Istituto di Metodologie per l'Analisi Ambientale","Partenavia P-68","CNR-IMAA","P-68"},
-	        {"CzechGlobe","Cessna 208","CzechGlobe","Cessna 208"},
-	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Cessna 208","DLR","Cessna 208"},
-	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Dornier DO-228 D-CFFU","DLR","DO-228 D-CFFU"},
-	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Dornier DO-228 D-CODE","DLR","DO-228 D-CODE"},
-	        {"Deutsches Zentrum fur Luft- und Raumfahrt","Mystere/Falcon 20","DLR","Mystere/Falcon 20"},
-	        {"ENVISCOPE","Learjet 35","Enviscope","Learjet 35"},
-	        {"ENVISCOPE","Partenavia P-68","Enviscope","P-68"},
-	        {"NERC - Facility for Airborne Atmospheric Measurements","BAe-146","FAAM","BAe-146"},
-	        {"FUB - Institut fur Weltraumwissenschaften","Cessna 207","FUB-ISS","Cessna 207"},
-	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 AR EC-DTV","INTA","CASA-212 EC-DTV"},
-	        {"Instituto Nacional de Tecnica Aeroespacial","CASA-212 RS EC-DUQ","INTA","CASA-212 EC-DUQ"},
-	        {"KIT - Institute of Meteorology and Climate Research","Enduro","KIT-IMK-IFU","Enduro"},
-	        {"NERC - Airborne Research Facility","Dornier DO-228","NERC-ARF","DO-228"},
-	        {"NERC - British Antarctic Survey","DHC-6 Twin Otter VP-FAZ","NERC-BAS","DHC-6 VP-FAZ"},
-	        {"NERC - British Antarctic Survey","DHC-6 Twin Otter VP-FBL","NERC-BAS","DHC-6 VP-FBL"},
-	        {"SAFIRE","ATR-42","SAFIRE","ATR-42"},
-	        {"SAFIRE","Mystere/Falcon 20","SAFIRE","Mystere/Falcon 20"},
-	        {"SAFIRE","Piper PA23","SAFIRE","PA23"},
-	        {"UEDIN - Airborne GeoSciences","HK36TTC ECO Dimona","UEDIN-IAES","HK36TTC ECO Dimona"}};
+	public static String[][] newOperatorsAircraft() {
+		String[][] string = {{"AWI","Basler Turbo Conversions, BT-67","C-GAWI","DE"},
+				{"CNR-ISAFoM","3I / Magnaghi Aeronautica, Sky Arrow 650 TCNS","I-AMMO","IT"},
+				{"CNR-IMAA","Partenavia / Vulcanair, P-68 Observer 2","I-OBPC","IT"},
+				{"CzechGlobe","Cessna Aircraft Company, C-208 B Grand Caravan","OK-CZG","CZ"},
+				{"DLR","Cessna Aircraft Company, C-208 B Grand Caravan","D-FDLR","DE"},
+				{"DLR","Dornier Flugzeugwerke, Do 228 - 212","D-CFFU","DE"},
+				{"DLR","Dornier Flugzeugwerke, Do 228 - 101","D-CODE","DE"},
+				{"DLR","Dassault Aviation, Mystere / Falcon 20 E-5","D-CMET","DE"},
+				{"Enviscope","Partenavia / Vulcanair, P-68B","D-GERY","DE"},
+				{"Enviscope","Learjet / Bombardier Aerospace, 35A","D-CGFD","DE"},
+				{"FAAM","BAE Systems, BAe146-301","G-LUXE","GB"},
+				{"FUB","Cessna Aircraft Company, T207A Turbo Skywagon","D-EAFU","DE"},
+				{"INTA","Construcciones Aeronauticas S.A, C-212-200","EC-DTV","ES"},
+				{"INTA","Construcciones Aeronauticas S.A, C-212-200","EC-DUQ","ES"},
+				{"KIT, IMK-IFU","Ultraleichtflug Schmidtler, Enduro","D-MIFU","DE"},
+				{"NERC","De Havilland Canada, DHC-6 Twin Otter","VP-FAZ","GB"},
+				{"NERC","De Havilland Canada, DHC-6 Twin Otter","VP-FBL","GB"},
+				{"SAFIRE","ATR, ATR42-320","F-HMTO","FR"},
+				{"SAFIRE","Piper Aircraft, PA23-250 Aztec","F-BLEB","FR"},
+				{"SAFIRE","Dassault Aviation, Mystere / Falcon 20 GF","F-GBTM","FR"},
+				{"UEDIN","Diamond Aircraft, HK36 TTC ECO Dimona","G-GEOS","GB"}};
 		return string;
+	}
+	
+	
+	public static ArrayList<SuggestBox> requiredSuggestboxLst() {
+		ArrayList<SuggestBox> list = new ArrayList<SuggestBox>();
+		list.add(Asmm_eufar.fi_campaignText);
+		return list;
 	}
 	
 	
 	public static ArrayList<TextBoxBase> requiredTextboxLst() {
 		ArrayList<TextBoxBase> list = new ArrayList<TextBoxBase>();
 		list.add(Asmm_eufar.fi_flightText);
-		list.add(Asmm_eufar.fi_campaignText);
 		list.add(Asmm_eufar.fi_scientistText);
 		list.add(Asmm_eufar.fi_managerText);
 		list.add(Asmm_eufar.fi_otherOpsText);
 		list.add(Asmm_eufar.fi_otherAiText);
+		list.add(Asmm_eufar.fi_otherManText);
+		list.add(Asmm_eufar.fi_otherRegText);
 		list.add(Asmm_eufar.ci_nameText);
 		list.add(Asmm_eufar.ci_emailText);
 		return list;
@@ -995,8 +921,16 @@ public class Materials {
 	}
 	
 	
+	public static ArrayList<String> correctSuggestboxLst() {
+		ArrayList<String> list = new ArrayList<String>();
+		list.add("string");
+		return list;
+	}
+	
+	
 	public static ArrayList<String> correctTextboxLst() {
 		ArrayList<String> list = new ArrayList<String>();
+		list.add("string");
 		list.add("string");
 		list.add("string");
 		list.add("string");
@@ -1025,6 +959,7 @@ public class Materials {
 		ArrayList<ListBox> list = new ArrayList<ListBox>();
 		list.add(Asmm_eufar.fi_operatorText);
 		list.add(Asmm_eufar.fi_aircraftText);
+		list.add(Asmm_eufar.fi_otherCntText);
 		list.add(Asmm_eufar.geoLocationLst);
 		list.add(Asmm_eufar.geoDetailLst);
 		list.add(Asmm_eufar.ci_roleText);
@@ -1121,7 +1056,4 @@ public class Materials {
         @MimeType("image/svg+xml")
         DataResource imagePopup();
     }
-	
-	
-	
 }

@@ -2,7 +2,9 @@ package com.eufar.asmm.client;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +17,7 @@ import com.google.gwt.core.client.EntryPoint;
 import com.google.gwt.core.client.GWT;
 import com.google.gwt.core.client.Scheduler;
 import com.google.gwt.core.client.Scheduler.ScheduledCommand;
+import com.google.gwt.dom.client.Style.Cursor;
 import com.google.gwt.dom.client.Style.Unit;
 import com.google.gwt.event.dom.client.ChangeEvent;
 import com.google.gwt.event.dom.client.ChangeHandler;
@@ -24,10 +27,18 @@ import com.google.gwt.event.dom.client.MouseOutEvent;
 import com.google.gwt.event.dom.client.MouseOutHandler;
 import com.google.gwt.event.dom.client.MouseOverEvent;
 import com.google.gwt.event.dom.client.MouseOverHandler;
+import com.google.gwt.event.logical.shared.SelectionEvent;
+import com.google.gwt.event.logical.shared.SelectionHandler;
 import com.google.gwt.event.logical.shared.ValueChangeEvent;
 import com.google.gwt.event.logical.shared.ValueChangeHandler;
 import com.google.gwt.event.shared.HandlerRegistration;
 import com.google.gwt.event.shared.UmbrellaException;
+import com.google.gwt.http.client.Request;
+import com.google.gwt.http.client.RequestBuilder;
+import com.google.gwt.http.client.RequestCallback;
+import com.google.gwt.http.client.RequestException;
+import com.google.gwt.http.client.Response;
+import com.google.gwt.http.client.URL;
 import com.google.gwt.i18n.client.DateTimeFormat;
 import com.google.gwt.user.client.Command;
 import com.google.gwt.user.client.Window;
@@ -47,9 +58,11 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.MenuBar;
 import com.google.gwt.user.client.ui.MenuItem;
+import com.google.gwt.user.client.ui.MultiWordSuggestOracle;
 import com.google.gwt.user.client.ui.RootLayoutPanel;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
@@ -57,6 +70,11 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 import com.google.gwt.user.client.ui.Widget;
 import com.google.gwt.user.client.ui.FlexTable.FlexCellFormatter;
 import com.google.gwt.user.datepicker.client.DateBox;
+import com.google.gwt.xml.client.Document;
+import com.google.gwt.xml.client.Element;
+import com.google.gwt.xml.client.NodeList;
+import com.google.gwt.xml.client.XMLParser;
+
 
 
 public class Asmm_eufar implements EntryPoint {
@@ -74,17 +92,19 @@ public class Asmm_eufar implements EntryPoint {
 	public static String myPDFName = new String("");
 	public static String creationDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
 	public static String revisionDate = new String(DateTimeFormat.getFormat("yyyy-MM-dd").format(new Date()));
-	public static String asmmVersion = new String("1.2.6 (2017-24-02)");
+	public static String asmmVersion = new String("1.3.0 (2017-31-08)");
 	public static String gwtVersion = new String("2.7.0");
-	public static String eclipseVersion = new String("4.6.1");
+	public static String eclipseVersion = new String("4.6.3");
 	public static String javaVersion = new String("1.8");
-	public static String jasperVersion = new String("6.3.1");
+	public static String jasperVersion = new String("6.4.1");
 	public static String xmlVersion = new String("v1.0a");
 	public static String titleString = new String("ASMM Creator");
 	public static Boolean isModified = new Boolean(false);
 	private ArrayList<TextBoxBase> requiredField = Materials.requiredTextboxLst();
+	private ArrayList<SuggestBox> requiredSugField = Materials.requiredSuggestboxLst();
 	private ArrayList<TextBoxBase> nonrequiredField = Materials.nonrequiredTextboxLst();
 	private ArrayList<ListBox> requiredListbox = Materials.requiredListboxLst();
+	private ArrayList<String> correctSuggestField = Materials.correctSuggestboxLst();
 	private ArrayList<String> correctField = Materials.correctTextboxLst();
 	private ArrayList<String> correctField2 = Materials.correctTextboxLst2();
 	public static String asmmPath = new String("");
@@ -100,6 +120,11 @@ public class Asmm_eufar implements EntryPoint {
 	public static Resources resources = GWT.create(Materials.Resources.class);
 	public static ArrayList<HorizontalPanel> newCheckboxLst = new ArrayList<HorizontalPanel>();
 	public static ArrayList<String> newCheckboxNameLst = new ArrayList<String>();
+	public static HashMap<String, HashMap<String, String>> aircraftDBMap = new HashMap<String, HashMap<String, String>>();
+	public static HashMap<String, HashMap<String, String>> projectsDBMap = new HashMap<String, HashMap<String, String>>();
+	public static HashMap<String, HashMap<String, String>> operatorsDBMap = new HashMap<String, HashMap<String, String>>();
+	public static HashMap<String, HashMap<String, String>> instrumentsDBMap = new HashMap<String, HashMap<String, String>>();
+	public static MultiWordSuggestOracle oracle = new MultiWordSuggestOracle();
 	
 	
 	// Header items
@@ -170,11 +195,13 @@ public class Asmm_eufar implements EntryPoint {
 	public static ScrollPanel fiScroll = new ScrollPanel(verticalPanel58);
 	public static DateBox fi_dateText = new DateBox();
 	public static TextBox fi_flightText = new TextBox();
-	public static TextBox fi_campaignText = new TextBox();
+	public static SuggestBox fi_campaignText = new SuggestBox(oracle);
 	public static TextBox fi_scientistText = new TextBox();
 	public static TextBox fi_managerText = new TextBox();
 	public static TextBox fi_otherOpsText = new TextBox();
 	public static TextBox fi_otherAiText = new TextBox();
+	public static TextBox fi_otherManText = new TextBox();
+	public static TextBox fi_otherRegText = new TextBox();
 	private Label fi_starLab01 = new Label("*");
 	private Label fi_starLab02 = new Label("*");
 	private Label fi_starLab03 = new Label("*");
@@ -183,6 +210,9 @@ public class Asmm_eufar implements EntryPoint {
 	private Label fi_starLab06 = new Label("*");
 	private Label fi_starLab07 = new Label("*");
 	private Label fi_starLab08 = new Label("*");
+	public static Label fi_starLab09 = new Label("*");
+	public static Label fi_starLab10 = new Label("*");
+	public static Label fi_starLab11 = new Label("*");
 	private Label fi_flightInfo = new Label("Flight Information");
 	public static Label fi_flightLabel = new Label("Flight identifier");
 	public static Label fi_dateLabel = new Label("Date");
@@ -192,21 +222,23 @@ public class Asmm_eufar implements EntryPoint {
 	private Label fi_aircraftLabel = new Label("Platform/Aircraft");
 	private Label fi_operatorLabel = new Label("Operator");
 	private Label fi_countryLabel = new Label("Location");
+	public static Label fi_otherManLabel = new Label("Manufacturer");
+	public static Label fi_otherRegLabel = new Label("Registration number");
+	public static Label fi_otherCntLabel = new Label("Country");
 	public static Image fi_operatorImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
 	public static Image fi_aircraftImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
 	private Image geoFollowImage = new Image(Asmm_eufar.resources.forward().getSafeUri());
 	public static ListBox fi_operatorText = new ListBox();
 	public static ListBox fi_aircraftText = new ListBox();
+	public static ListBox fi_otherCntText = new ListBox();
 	public static ListBox geoLocationLst = new ListBox();
 	public static ListBox geoDetailLst = new ListBox();
-	public static ArrayList<String> countryList = Materials.countryList();
+	public static HashMap<String, String> countryList = Materials.countryCodeList();
 	public static ArrayList<String> continentList = Materials.continentList();
 	public static ArrayList<String> oceanList = Materials.oceanList();
 	public static ArrayList<String> regionList = Materials.regionList();
 	public static ArrayList<String> locationList = Materials.locationList();
-	public static ArrayList<String> operatorList = Materials.operatorList();
-	public static ArrayList<String> aircraftList = Materials.aircraftList();
-	public static String[][] operatorsAircraft = Materials.operatorsAircraft();
+	public static String[][] operatorsAircraft = Materials.newOperatorsAircraft();
 	public static SimplePanel fi_infoButton01 = Elements.addInfoButton("PROJECTACRONYM");
 	public static SimplePanel fi_infoButton02 = Elements.addInfoButton("DATE");
 	public static SimplePanel fi_infoButton03 = Elements.addInfoButton("FLIGHTIDENTIFIER");
@@ -710,8 +742,9 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		});
 	}
-	
+
 				
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	private void onModuleLoad2() {
 		rootLogger.log(Level.INFO, "***************************************************************");
 		rootLogger.log(Level.INFO, "ASMM has started on: " + Navigator.getUserAgent());
@@ -719,7 +752,14 @@ public class Asmm_eufar implements EntryPoint {
 			asmmPath = GWT.getHostPageBaseURL();
 		}
 		rootLogger.log(Level.INFO, "PATH: " + asmmPath);
-
+		
+		
+		// reading data from EUFAR database
+		parseXMLDataFromServer("aircraft");
+		parseXMLDataFromServer("projects");
+		parseXMLDataFromServer("operators");
+		parseXMLDataFromServer("instruments");
+		
 		
 		// Commands in the menu bar
 		Command aboutWindow = new Command() {
@@ -728,20 +768,17 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		};
 		
-		
 		Command aboutStandard = new Command() {
 			public void execute() {
 				PopupMessages.aboutStandard();
 			}
 		};
 		
-		
 		Command newFile = new Command() {
 			public void execute() {
 				newFile();
 			}
 		};
-		
 		
 		Command openFile = new Command() {
 			public void execute() {
@@ -756,13 +793,11 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		};
 		
-		
 		Command printFile = new Command() {
 			public void execute() {
 			PopupMessages.printFile();
 			}
 		};
-		
 		
 		Command launchHelpPage = new Command()  {
 			public void execute() {
@@ -770,13 +805,11 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		};
 		
-		
 		Command launchN7SPPage = new Command()  {
 			public void execute() {
 				Window.open("http://www.eufar.net/cms/standards-and-protocols/", "_blank", "");
 			}
 		};
-		
 		
 		Command exitFile = new Command()  {
 			public void execute() {
@@ -784,13 +817,11 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		};
 		
-		
 		Command displayChangelog = new Command() {
 			public void execute() {
 				PopupMessages.changelogPanel();
 			}
 		};
-		
 		
 		Command goFlight = new Command() {
 			public void execute() {
@@ -872,6 +903,12 @@ public class Asmm_eufar implements EntryPoint {
 		
 
 		// Assemble the header
+		hdTitleLab.getElement().getStyle().setCursor(Cursor.POINTER); 
+		hdTitleLab.addClickHandler(new ClickHandler() {
+			public void onClick(ClickEvent event) {
+				Window.open("http://www.eufar.net", "_self", "");
+			}
+		});
 		horizontalPanel87.add(hdTitleLab);
 		horizontalPanel87.setStyleName("headerHorizontalPanel");
 		horizontalPanel87.getElement().setAttribute("style", "background-position: " + screen_width/6 + "px;");
@@ -1007,22 +1044,41 @@ public class Asmm_eufar implements EntryPoint {
 				+ "margin-bottom:30px;\" />"));
 		verticalPanel59.add(ci_contactInfo);
 		verticalPanel59.add(ciGrid);
-		Utilities.populateListBox(fi_operatorText, operatorList, 0);
+		Utilities.populateOperatorsListBox(fi_operatorText, operatorsAircraft, 0);
 		Utilities.populateListBox(geoLocationLst, locationList, 0);
+		Utilities.populateListBox(fi_otherCntText, countryList, 0);
 		horizontalPanel26.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel27.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel30.setVerticalAlignment(HasVerticalAlignment.ALIGN_MIDDLE);
 		horizontalPanel26.add(fi_operatorText);
 		horizontalPanel26.add(fi_operatorImage);
 		horizontalPanel26.add(fi_otherOpsText);
+		horizontalPanel26.add(fi_otherCntLabel);
+		horizontalPanel26.add(fi_starLab11);
+		horizontalPanel26.add(fi_otherCntText);
+		horizontalPanel26.add(fi_otherRegLabel);
+		horizontalPanel26.add(fi_starLab10);
+		horizontalPanel26.add(fi_otherRegText);
 		horizontalPanel26.add(fi_infoButton06);
 		horizontalPanel27.add(fi_aircraftText);
 		horizontalPanel27.add(fi_aircraftImage);
 		horizontalPanel27.add(fi_otherAiText);
+		horizontalPanel27.add(fi_otherManLabel);
+		horizontalPanel27.add(fi_starLab09);
+		horizontalPanel27.add(fi_otherManText);
 		fi_operatorImage.setVisible(false);
 		fi_otherOpsText.setVisible(false);
 		fi_aircraftImage.setVisible(false);
 		fi_otherAiText.setVisible(false);
+		fi_starLab09.setVisible(false);
+		fi_starLab10.setVisible(false);
+		fi_starLab11.setVisible(false);
+		fi_otherManLabel.setVisible(false);
+		fi_otherRegLabel.setVisible(false);
+		fi_otherCntLabel.setVisible(false);
+		fi_otherCntText.setVisible(false);
+		fi_otherRegText.setVisible(false);
+		fi_otherManText.setVisible(false);
 		horizontalPanel75.add(fi_campaignLabel);
 		horizontalPanel75.add(fi_starLab01);
 		horizontalPanel76.add(fi_dateLabel);
@@ -1083,7 +1139,6 @@ public class Asmm_eufar implements EntryPoint {
 		fi_cellFormatter.setHorizontalAlignment(7, 0, HasHorizontalAlignment.ALIGN_RIGHT);
 		fi_aircraftText.setEnabled(false);
 		geoDetailLst.setEnabled(false);
-		fi_campaignText.setName("flightCampaign");
 		fi_dateText.getTextBox().setName("date");
 		fi_flightText.setName("flightNumber");
 		fi_scientistText.setName("flightScientist");
@@ -1099,10 +1154,19 @@ public class Asmm_eufar implements EntryPoint {
 		fi_starLab06.setStyleName("fi_starLabel");
 		fi_starLab07.setStyleName("fi_starLabel");
 		fi_starLab08.setStyleName("fi_starLabel");
+		fi_starLab09.setStyleName("fi_starLabel");
+		fi_starLab10.setStyleName("fi_starLabel");
+		fi_starLab11.setStyleName("fi_starLabel");
+		fi_otherManLabel.setStyleName("fi_textLabel2");
+		fi_otherRegLabel.setStyleName("fi_textLabel3");
+		fi_otherCntLabel.setStyleName("fi_textLabel4");
+		fi_otherCntText.setStyleName("fi_textList2");
+		fi_otherRegText.setStyleName("fi_textBox3");
+		fi_otherManText.setStyleName("fi_textBox");
 		fi_operatorImage.setStyleName("fi_image");
 		fi_aircraftImage.setStyleName("fi_image");
-		fi_otherOpsText.setStyleName("fi_textBox");
-		fi_otherAiText.setStyleName("fi_textBox");
+		fi_otherOpsText.setStyleName("fi_textBox2");
+		fi_otherAiText.setStyleName("fi_textBox2");
 		geoLocationLst.setStyleName("geoTextList");
 		geoDetailLst.setStyleName("geoTextList");
 		geoFollowImage.setStyleName("fi_image");
@@ -1112,8 +1176,6 @@ public class Asmm_eufar implements EntryPoint {
 		fi_managerText.setStyleName("fi_textBox");
 		fi_aircraftText.setStyleName("fi_textList2");
 		fi_operatorText.setStyleName("fi_textList2");
-		fi_operatorText.setName("operatorText");
-		fi_aircraftText.setName("aircraftText");
 		fiGrid.setStyleName("fi_grid");
 		ciGrid.setStyleName("ci_grid");
 		fi_dateText.setStyleName("fi_dateBox");
@@ -1146,6 +1208,14 @@ public class Asmm_eufar implements EntryPoint {
 				Utilities.geoLocationSet(geoLocationLst.getSelectedIndex());
 			}
 		});
+		fi_campaignText.addSelectionHandler(new SelectionHandler() {
+			@Override
+			public void onSelection(SelectionEvent event) {
+				String selected = fi_campaignText.getText();
+				GuiModification.fillInFieldsFromProject(selected);
+			}
+        });
+		
 		fi_mainLab.setStyleName("fi_mainText");
 		fi_mainLab2.setStyleName("fi_mainText2");
 		fi_pathLab.setStyleName("fi_pathText");
@@ -2197,7 +2267,16 @@ public class Asmm_eufar implements EntryPoint {
 		rp.clear();
 		rp.add(Asmm_eufar.subDockPanel);
 		rootLogger.log(Level.INFO, "Main panel initialized");
-
+		
+		
+		// Associate suggestboxes with an eventHandler
+		fi_campaignText.addValueChangeHandler(new ValueChangeHandler() {
+			@Override
+			public void onValueChange(ValueChangeEvent event) {
+				Utilities.docIsModified();
+			}
+		});
+		
 		
 		// Associate textboxes with an eventHandler
 		List<TextBoxBase> allTextBox = $("*", subDockPanel).widgets(TextBoxBase.class);
@@ -2351,6 +2430,32 @@ public class Asmm_eufar implements EntryPoint {
 				}
 			}
 		}
+		for (int i = 0; i < requiredSugField.size(); i++) {
+			if (requiredSugField.get(i).isVisible()) {
+				if (requiredSugField.get(i).getText() == "") {
+					parent = requiredSugField.get(i).getParent();
+					while (!(parent instanceof ScrollPanel)) {
+						parent = parent.getParent();
+					}
+					widgetIndex = tabPanel.getWidgetIndex(parent);
+					tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: #ED1C24 !important;");
+					notCompleted++;
+					requiredSugField.get(i).getElement().setAttribute("style","border-color: #ED1C24 !important;");
+				} else {
+					if (!runCorrect(requiredSugField.get(i), correctSuggestField.get(i))) {
+						parent = requiredSugField.get(i).getParent();
+						while (!(parent instanceof ScrollPanel)) {
+							parent = parent.getParent();
+						}
+						widgetIndex = tabPanel.getWidgetIndex(parent);
+						if (tabPanel.getTabWidget(widgetIndex).getElement().getStyle().getColor() != "rgb(237, 28, 36)") {
+							tabPanel.getTabWidget(widgetIndex).getElement().setAttribute("style","color: rgb(0,0,200) !important;");
+						}
+						notCompleted++;
+					}
+				}
+			}
+		}
 		for (int i = 0; i < nonrequiredField.size(); i++) {
 			if (nonrequiredField.get(i).getText() != "") {
 				if (!runCorrect(nonrequiredField.get(i), correctField2.get(i))) {
@@ -2367,10 +2472,12 @@ public class Asmm_eufar implements EntryPoint {
 			}
 		}
 		for (int i = 0; i < requiredListbox.size(); i++) {
-			if (requiredListbox.get(i).getSelectedItemText() == "Make a choice...") {
-				tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
-				requiredListbox.get(i).getElement().setAttribute("style","border-color: #ED1C24 !important;");
-				notCompleted++;
+			if (requiredListbox.get(i).isVisible()) {
+				if (requiredListbox.get(i).getSelectedItemText() == "Make a choice...") {
+					tabPanel.getTabWidget(0).getElement().setAttribute("style","color: #ED1C24 !important;");
+					requiredListbox.get(i).getElement().setAttribute("style","border-color: #ED1C24 !important;");
+					notCompleted++;
+				}
 			}
 		}
 		rootLogger.log(Level.INFO, "Check of all fields finished.");
@@ -2384,6 +2491,35 @@ public class Asmm_eufar implements EntryPoint {
 	
 	// check if all TextBoxes have been correctly filled in before saving it - 2
 	private static boolean runCorrect(final TextBoxBase textBox, final String string) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Check of text in textbox in progress...");
+		boolean result = true;
+			switch (string) {
+				case "number":
+					if (!textBox.getText().matches("^[-+]?\\d+(\\.\\d+)?$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
+						result = false;
+					}
+					break;
+				case "string":
+					if (textBox.getText().matches("^[-+]?\\d+(\\.\\d+)?$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
+						result = false;
+					}
+					break;
+				case "email":
+					if (!textBox.getText().matches("^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$")) {
+						textBox.getElement().setAttribute("style","border-color: rgb(0,0,200) !important;");
+						result = false;
+					}
+					break;
+			}
+		rootLogger.log(Level.INFO, "Check of text in textbox finished.");
+		return result;
+	}
+	
+	
+	// check if all SuggestBoxes have been correctly filled in before saving it - 3
+	private static boolean runCorrect(final SuggestBox textBox, final String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Check of text in textbox in progress...");
 		boolean result = true;
 			switch (string) {
@@ -2535,6 +2671,180 @@ public class Asmm_eufar implements EntryPoint {
 			infoDialog.show();
 		} else {
 			PopupMessages.openAction();
+		}
+	}
+	
+	
+	// request XML from EUFAR server and build a HashMap containing informations
+	public void parseXMLDataFromServer(final String field) {
+		String JSON_URL = asmmPath + "FetchDataFromServer?flux=" + field;
+		String url = URL.encode(JSON_URL);
+		RequestBuilder builder = new RequestBuilder(RequestBuilder.GET, url);
+	    try {
+	    	@SuppressWarnings("unused")
+			Request request = builder.sendRequest(null, new RequestCallback() {
+			    public void onError(Request request, Throwable exception) {
+			    	rootLogger.log(Level.WARNING, "An error occured after the sending of the request : " + exception.getMessage());
+			    }
+			    public void onResponseReceived(Request request, Response response) {
+			    	if (200 == response.getStatusCode()) {
+			    		rootLogger.log(Level.INFO, "response received from server, parsing " + field + "...");
+			    		Document doc = XMLParser.parse(response.getText());
+			    		if (field == "aircraft") {
+			    			NodeList aircraftNode = doc.getElementsByTagName("aircraft");
+			    			String[][] updatedOperatorsAircraft = new String[aircraftNode.getLength()][4];
+			    			for (int i = 0; i < aircraftNode.getLength(); i++) {
+			    				HashMap<String, String> map = new HashMap<String, String>();
+			    				String acronym = "";
+			    				try {
+			    					acronym = ((Element) aircraftNode.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}
+			    				String registration_number = "";
+			    				try {
+			    					registration_number = ((Element) aircraftNode.item(i)).getElementsByTagName("registration_number").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}
+			    				String operator = "";
+			    				try {
+			    					operator = ((Element) aircraftNode.item(i)).getElementsByTagName("operator").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}
+			    				String country = "";
+			    				try {
+			    					country = ((Element) aircraftNode.item(i)).getElementsByTagName("country").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}
+			    				String manufacturer_and_aircraft_type = "";
+			    				try {
+			    					manufacturer_and_aircraft_type = ((Element) aircraftNode.item(i)).getElementsByTagName("manufacturer_and_aircraft_type").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}	
+				    			map.put("acronym", acronym);
+				    			map.put("registration number", registration_number);
+				    			map.put("operator", operator);
+				    			map.put("country", country);
+				    			map.put("manufacturer and aircraft type", manufacturer_and_aircraft_type);
+			    				aircraftDBMap.put(((Element) aircraftNode.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue(), map);
+			    				updatedOperatorsAircraft[i] = new String[]{operator,manufacturer_and_aircraft_type,registration_number,country};
+			    			}
+			    			operatorsAircraft = updatedOperatorsAircraft;
+			    			String operator = null;
+			    			String aircraft = null;
+			    			if (fi_operatorText.getSelectedItemText() != "Make your choice...") {
+			    				operator = fi_operatorText.getSelectedItemText();
+			    			}
+			    			if (fi_aircraftText.getSelectedItemText() != "Make your choice...") {
+			    				aircraft = fi_aircraftText.getSelectedItemText();
+			    			}
+			    			fi_operatorText.clear();
+			    			Utilities.populateOperatorsListBox(fi_operatorText, operatorsAircraft, 0);
+			    			if (operator != null) {
+			    				Utilities.checkList(operator, Asmm_eufar.fi_operatorText);
+			    			}
+			    			if (aircraft != null) {
+			    				Utilities.checkList(aircraft, Asmm_eufar.fi_aircraftText);
+			    			}
+			    		} else if (field == "projects") {
+			    			NodeList project = doc.getElementsByTagName("project");
+			    			for (int i = 0; i < project.getLength(); i++) {
+			    				HashMap<String, String> map = new HashMap<String, String>();
+			    				try {
+				    				map.put("acronym", ((Element) project.item(i)).getElementsByTagName("acronym").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("acronym", "");
+			    					
+			    				}
+			    				try {
+				    				map.put("title", ((Element) project.item(i)).getElementsByTagName("title").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("title","");
+			    				}
+			    				
+			    				try {
+				    				map.put("leader", ((Element) project.item(i)).getElementsByTagName("leader").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("leader","");
+			    				}
+			    				
+			    				try {
+				    				map.put("abstract", ((Element) project.item(i)).getElementsByTagName("abstract").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("abstract","");
+			    				}
+			    				
+			    				try {
+				    				map.put("aircraft", ((Element) project.item(i)).getElementsByTagName("aircraft").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("aircraft","");
+			    				}
+			    				
+			    				try {
+				    				map.put("operator", ((Element) project.item(i)).getElementsByTagName("operator").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("operator","");
+			    				}
+			    				
+			    				try {
+				    				map.put("campaign_start", ((Element) project.item(i)).getElementsByTagName("campaign_start").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("campaign_start","");
+			    				}
+			    				
+			    				try {
+				    				map.put("campaign_end", ((Element) project.item(i)).getElementsByTagName("campaign_end").
+				    						item(0).getFirstChild().getNodeValue());
+			    				} catch (Exception ex) {
+			    					map.put("campaign_end","");
+			    				}
+			    				MultiWordSuggestOracle multiWordOracle = (MultiWordSuggestOracle)fi_campaignText.getSuggestOracle();
+				    			projectsDBMap.put(((Element) project.item(i)).getElementsByTagName("acronym").
+				    					item(0).getFirstChild().getNodeValue(), map);
+				    			for(Entry<String, HashMap<String, String>> e : projectsDBMap.entrySet()) {
+				    				multiWordOracle.add(e.getKey().toString());
+				    		    }
+			    			}
+			    		} else if (field == "operators") {
+			    			NodeList operator = doc.getElementsByTagName("operator");
+		    				for (int i = 0; i < operator.getLength(); i++) {
+		    					HashMap<String, String> map = new HashMap<String, String>();
+			    				map.put("acronym", ((Element) operator.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue());
+			    				map.put("name", ((Element) operator.item(i)).getElementsByTagName("name").
+			    						item(0).getFirstChild().getNodeValue());
+			    				operatorsDBMap.put(((Element) operator.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue(), map);
+		    				}
+			    		} else if (field == "instruments") {
+			    			NodeList instrument = doc.getElementsByTagName("operator");
+		    				for (int i = 0; i < instrument.getLength(); i++) {
+		    					HashMap<String, String> map = new HashMap<String, String>();
+			    				map.put("acronym", ((Element) instrument.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue());
+			    				map.put("name", ((Element) instrument.item(i)).getElementsByTagName("name").
+			    						item(0).getFirstChild().getNodeValue());
+			    				map.put("manufacturer", ((Element) instrument.item(i)).getElementsByTagName("manufacturer").
+			    						item(0).getFirstChild().getNodeValue());
+			    				instrumentsDBMap.put(((Element) instrument.item(i)).getElementsByTagName("acronym").
+			    						item(0).getFirstChild().getNodeValue(), map);
+		    				}
+			    		}
+			    		rootLogger.log(Level.INFO, "parsing finished, map object ready");
+			    	} else {
+			    		rootLogger.log(Level.WARNING, "An error occured during the processing of the response : " + response.getStatusText());
+			    	}
+			    }
+			});
+		} catch (RequestException e) {
+			rootLogger.log(Level.WARNING, "An error occured during the sending of the request : " + e.getMessage());
 		}
 	}
 }

@@ -45,65 +45,82 @@ public class xmlOpen {
 			} catch (Exception ex) {
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'flightmanager' failed: " + ex.getMessage());
 			}
-			int l = 0;
-			int k = 0;
-			String operator = "";
-			String aircraft = "";
+			String registrationNumber = null;
+			String operator = null;
+			String aircraft = null;
+			String country = null;
+			String manufacturer = null;
+			try {
+				registrationNumber = doc.getElementsByTagName("registrationnumber").item(0).getFirstChild().getNodeValue();
+			} catch (Exception ex) {
+				registrationNumber = null;
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'egistrationNumber' failed: " + ex.getMessage());
+			}
 			try {
 				operator = doc.getElementsByTagName("operator").item(0).getFirstChild().getNodeValue();
-				if (operator.length() > 0) {
-					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
-						if (operator == Asmm_eufar.operatorsAircraft[i][2]) {
-							l = 1;
-							for (int j = 0; j < Asmm_eufar.operatorList.size(); j++) {
-								if (Asmm_eufar.operatorsAircraft[i][0] == Asmm_eufar.operatorList.get(j)) {
-									Asmm_eufar.fi_operatorText.setSelectedIndex(j);
-									GuiModification.aircraftSelection(Asmm_eufar.operatorsAircraft[j][0]);
-									break;
-								}
-							}
-						}
-					}
-					if (l == 0) {
-						Asmm_eufar.fi_operatorText.setSelectedIndex(1);
-						GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
-						Asmm_eufar.fi_otherOpsText.setText(operator);
-					}
-				}
 			} catch (Exception ex) {
+				operator = null;
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'operator' failed: " + ex.getMessage());
 			}
-			
 			try {
 				aircraft = doc.getElementsByTagName("platform").item(0).getFirstChild().getNodeValue();
+			} catch (Exception ex) {
+				aircraft = null;
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'aircraft' failed: " + ex.getMessage());
+			}
+			try {
+				country = doc.getElementsByTagName("operatorcountry").item(0).getFirstChild().getNodeValue();
+			} catch (Exception ex) {
+				country = null;
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'country' failed: " + ex.getMessage());
+			}
+			try {
+				manufacturer = doc.getElementsByTagName("manufacturer").item(0).getFirstChild().getNodeValue();
+			} catch (Exception ex) {
+				manufacturer = null;
+				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'manufacturer' failed: " + ex.getMessage());
+			}
+			int numberFound = 0;
+			if (registrationNumber != null) {
 				for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
-					if (aircraft == Asmm_eufar.operatorsAircraft[i][3]) {
-						k = 1;
-						if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][1]) {
-							break;
-						} else if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == "Make a choice...") {
-							for (int j = 0; j < Asmm_eufar.fi_aircraftText.getItemCount(); j++) {
-								if (Asmm_eufar.operatorsAircraft[i][1] == Asmm_eufar.fi_aircraftText.getItemText(j)) {
-									Asmm_eufar.fi_aircraftText.setSelectedIndex(j);
-									break;
-								}
+					if (registrationNumber == Asmm_eufar.operatorsAircraft[i][2]) {
+						numberFound = 1;
+						operator = Asmm_eufar.operatorsAircraft[i][0];
+						int index = Asmm_eufar.operatorsAircraft[i][1].indexOf(", ");
+						aircraft = Asmm_eufar.operatorsAircraft[i][1].substring(index + 2);
+						Utilities.checkList(operator, Asmm_eufar.fi_operatorText);
+						GuiModification.aircraftSelection(operator);
+						for (int j = 0; j < Asmm_eufar.fi_aircraftText.getItemCount(); j++) {
+							if (Asmm_eufar.fi_aircraftText.getItemText(j) == aircraft) {
+								Asmm_eufar.fi_aircraftText.setSelectedIndex(j);
+								break;
+							} else if  (Asmm_eufar.fi_aircraftText.getItemText(j) == aircraft + " - " + registrationNumber) {
+								Asmm_eufar.fi_aircraftText.setSelectedIndex(j);
+								break;
 							}
-						}
+						}	
 					}
 				}
-				if (l == 0) {
-					Asmm_eufar.fi_otherAiText.setText(aircraft);
-				} else if (l == 1 & k == 0) {
-					String tmp = Asmm_eufar.fi_operatorText.getSelectedItemText();
+				if (numberFound == 0) {
+					GuiModification.aircraftSelection("Other...");
 					Asmm_eufar.fi_operatorText.setSelectedIndex(1);
-					GuiModification.aircraftSelection(Asmm_eufar.fi_operatorText.getSelectedItemText());
-					Asmm_eufar.fi_otherOpsText.setText(tmp);
+					Asmm_eufar.fi_otherOpsText.setText(operator);
 					Asmm_eufar.fi_otherAiText.setText(aircraft);
+					Asmm_eufar.fi_otherManText.setText(manufacturer);
+					Asmm_eufar.fi_otherRegText.setText(registrationNumber);
+					Utilities.checkList(country, Asmm_eufar.fi_otherCntText);
 				}
-			} catch (Exception ex) {
-				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'platform' failed: " + ex.getMessage());
+			} else {
+				if (operator != null || aircraft != null || country != null || manufacturer != null) {
+					GuiModification.aircraftSelection("Other...");
+					Asmm_eufar.fi_operatorText.setSelectedIndex(1);
+					Asmm_eufar.fi_otherOpsText.setText(operator);
+					Asmm_eufar.fi_otherAiText.setText(aircraft);
+					Asmm_eufar.fi_otherManText.setText(manufacturer);
+					Asmm_eufar.fi_otherRegText.setText(registrationNumber);
+					Utilities.checkList(country, Asmm_eufar.fi_otherCntText);
+				}
 			}
-			int indexToFind = -1;
 			try {
 				String description = doc.getElementsByTagName("localisation").item(0).getFirstChild().getNodeValue();
 				for (int i = 0; i < Asmm_eufar.continentList.size(); i++) {
@@ -114,12 +131,15 @@ public class xmlOpen {
 						break;
 					}
 				}
-				for (int i = 0; i < Asmm_eufar.countryList.size(); i++) {
-					if (description == Asmm_eufar.countryList.get(i)) {
-						Utilities.geoLocationSet(2);
-						Asmm_eufar.geoDetailLst.setSelectedIndex(i);
-						Asmm_eufar.geoLocationLst.setSelectedIndex(2);
-						break;
+				String value = Asmm_eufar.countryList.get(description);
+				if (value != null) {
+					Asmm_eufar.geoLocationLst.setSelectedIndex(2);
+					Utilities.geoLocationSet(2);
+					for (int i = 0; i < Asmm_eufar.geoDetailLst.getItemCount(); i++) {
+						if (description == Asmm_eufar.geoDetailLst.getItemText(i)) {
+							Asmm_eufar.geoDetailLst.setSelectedIndex(i);
+							break;
+						}
 					}
 				}
 				for (int i = 0; i < Asmm_eufar.oceanList.size(); i++) {
@@ -151,7 +171,7 @@ public class xmlOpen {
 			} catch (Exception ex) {
 				Asmm_eufar.rootLogger.log(Level.WARNING, "Element 'contactname' failed: " + ex.getMessage());
 			}
-			indexToFind = -1;
+			int indexToFind = -1;
 			try {
 				for (int i=0; i < Asmm_eufar.ci_roleText.getItemCount(); i++) {
 					if (Asmm_eufar.ci_roleText.getItemText(i).equals(doc.getElementsByTagName("contactrole").item(0).getFirstChild().

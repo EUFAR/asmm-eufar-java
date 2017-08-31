@@ -567,8 +567,8 @@ public class PopupMessages {
 					final int row = Asmm_eufar.imageTab.getRowCount();
 					final Image image = new Image("tmp/" + ret);
 					final Image delImage = new Image(Asmm_eufar.resources.delete().getSafeUri());
-					image.setSize("21px","21px");
-					image.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
+					delImage.setSize("21px","21px");
+					delImage.getElement().setAttribute("style", "margin-left: 2px; margin-top: 2px; height: 21px; width: 21px;");
 					final SimplePanel delButton = new SimplePanel(delImage);
 					final Label label = new Label(captionText);	
 					Asmm_eufar.imagePath.add("tmp/" + ret);
@@ -870,7 +870,6 @@ public class PopupMessages {
 		infoDialog.setSize("300px","100px");
 		infoDialog.setModal(true);
 		infoDialog.center();
-		
 		infoDialog.show();
 	}
 	
@@ -1008,6 +1007,20 @@ public class PopupMessages {
 				+ "<u>TESTED ON:</u><ul><li>Firefox 38+</li><li>Chrome 44+</li><li>Internet Explorer 11 (failed on one computer and succeeded "
 				+ "on others)</li><li>Safari 5+</li><li>Opera 30+</li><li>Vivaldi 1.4+</li></ul><br>"
 				
+				+ "<b><u>August 31 2017, Release version 1.3.0 [ONLINE]</u></b><br>The new API of the EUFAR website has been implemented in ASMM"
+				+ ". The user has now the possibility to select a project from the Project acronym textbox, the function will then fill in diffe"
+				+ "rent fields automatically.<ul style='list-style-type:none'><li>ADDED:<ul><li>a new function to retrieve data from EUFAR datab"
+				+ "ase has been put in place.</li><li>the arcraft and operators are now updated automatically based on EUFAR database.</li><li>a"
+				+ " link to the EUFAR website has been added to the header.</li><li>xml code for the operator country, aircraft manufacturer and"
+				+ " aircraft registration number has been added to the ASMM xml file to expand querry possibilities in a database.</li></ul></li>"
+				+ "</ul><ul style='list-style-type:none'><li>FIXED:<ul><li>when clearing, opening or checking a document, a TextArea item wasn't"
+				+ " stylized properly.</li><li>in the 'Supporting Surface-based Observations' section, a same word can be entered more than one "
+				+ "time in each textarea. It has been fixed.</li><li>the use could create more than one checkbox with the same name. It has been"
+				+ " fixed.</li><li>when a user add an image, the delete icon was too big, and the image size was messed up. It has been fixed.</"
+				+ "li></ul></li></ul><ul style='list-style-type:none'><li>MODIFIED:<ul><li>the list of countries has been modified to reflect th"
+				+ "e ISO 3166-1 list with alpha-2 codes.</li><li>the functions to read, write, print and check xml code have been modified to ta"
+				+ "ke into account the new API, the new operators/aircraft object and the new country list.</li><li>the code of the application "
+				+ "has been cleaned.</li></ul></li></ul><br>"
 				+ "<b><u>February 24 2017, Release version 1.2.6 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>xml code "
 				+ "for checkboxes couldn't be parsed if an old xml file, created before version 1.2.0, was uploaded into ASMM. It has been fixed."
 				+ "</li><li>values for bounding box coordinates were saved even if a letter is present. It has been fixed.</li><li>corrected few "

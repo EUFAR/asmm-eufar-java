@@ -31,12 +31,30 @@ public class GuiModification {
 			Asmm_eufar.fi_otherOpsText.setVisible(false);
 			Asmm_eufar.fi_aircraftImage.setVisible(false);
 			Asmm_eufar.fi_otherAiText.setVisible(false);
+			Asmm_eufar.fi_starLab09.setVisible(false);
+			Asmm_eufar.fi_starLab10.setVisible(false);
+			Asmm_eufar.fi_starLab11.setVisible(false);
+			Asmm_eufar.fi_otherManLabel.setVisible(false);
+			Asmm_eufar.fi_otherRegLabel.setVisible(false);
+			Asmm_eufar.fi_otherCntLabel.setVisible(false);
+			Asmm_eufar.fi_otherCntText.setVisible(false);
+			Asmm_eufar.fi_otherRegText.setVisible(false);
+			Asmm_eufar.fi_otherManText.setVisible(false);
 			Asmm_eufar.rootLogger.log(Level.INFO, "Aircraft panel cleared");
 		} else if (string == "Other...") {
 			Asmm_eufar.fi_operatorImage.setVisible(true);
 			Asmm_eufar.fi_otherOpsText.setVisible(true);
 			Asmm_eufar.fi_aircraftImage.setVisible(true);
 			Asmm_eufar.fi_otherAiText.setVisible(true);
+			Asmm_eufar.fi_starLab09.setVisible(true);
+			Asmm_eufar.fi_starLab10.setVisible(true);
+			Asmm_eufar.fi_starLab11.setVisible(true);
+			Asmm_eufar.fi_otherManLabel.setVisible(true);
+			Asmm_eufar.fi_otherRegLabel.setVisible(true);
+			Asmm_eufar.fi_otherCntLabel.setVisible(true);
+			Asmm_eufar.fi_otherCntText.setVisible(true);
+			Asmm_eufar.fi_otherRegText.setVisible(true);
+			Asmm_eufar.fi_otherManText.setVisible(true);
 			Asmm_eufar.fi_otherOpsText.setText("");
 			Asmm_eufar.fi_otherAiText.setText("");
 			Asmm_eufar.fi_aircraftText.clear();
@@ -48,12 +66,36 @@ public class GuiModification {
 			Asmm_eufar.fi_otherOpsText.setVisible(false);
 			Asmm_eufar.fi_aircraftImage.setVisible(false);
 			Asmm_eufar.fi_otherAiText.setVisible(false);
+			Asmm_eufar.fi_starLab09.setVisible(false);
+			Asmm_eufar.fi_starLab10.setVisible(false);
+			Asmm_eufar.fi_starLab11.setVisible(false);
+			Asmm_eufar.fi_otherManLabel.setVisible(false);
+			Asmm_eufar.fi_otherRegLabel.setVisible(false);
+			Asmm_eufar.fi_otherCntLabel.setVisible(false);
+			Asmm_eufar.fi_otherCntText.setVisible(false);
+			Asmm_eufar.fi_otherRegText.setVisible(false);
+			Asmm_eufar.fi_otherManText.setVisible(false);
 			Asmm_eufar.fi_aircraftText.setEnabled(true);
 			Asmm_eufar.fi_aircraftText.clear();
 			Asmm_eufar.fi_aircraftText.addItem("Make a choice...");
 			for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
 				if (Asmm_eufar.fi_operatorText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][0]) {
-					Asmm_eufar.fi_aircraftText.addItem(Asmm_eufar.operatorsAircraft[i][1]);
+					String fullAircraft = Asmm_eufar.operatorsAircraft[i][1];
+					try {
+						if (fullAircraft == Asmm_eufar.operatorsAircraft[i - 1][1] & 
+								Asmm_eufar.operatorsAircraft[i][0] == Asmm_eufar.operatorsAircraft[i - 1][0]) {
+							fullAircraft = fullAircraft + " - " + Asmm_eufar.operatorsAircraft[i][2];
+						}
+					} catch (Exception e) {}
+					try {
+						if (fullAircraft == Asmm_eufar.operatorsAircraft[i + 1][1] &
+								Asmm_eufar.operatorsAircraft[i][0] == Asmm_eufar.operatorsAircraft[i + 1][0]) {
+							fullAircraft = fullAircraft + " - " + Asmm_eufar.operatorsAircraft[i][2];
+						}
+					} catch (Exception e) {}
+					int index = fullAircraft.indexOf(", ");
+					String aircraft = fullAircraft.substring(index + 2);
+					Asmm_eufar.fi_aircraftText.addItem(aircraft);
 					Asmm_eufar.rootLogger.log(Level.INFO, "Operator selected: " + Asmm_eufar.fi_operatorText.getSelectedItemText());
 				}
 			}
@@ -95,6 +137,12 @@ public class GuiModification {
 								Asmm_eufar.rootLogger.log(Level.INFO, "No name entered...");
 								return;
 							}
+							for (int i = 0; i < Asmm_eufar.newCheckboxLst.size(); i++) {
+								if (textBox.getText() == ((CheckBox) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
+									Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox already exists...");
+									return;
+								}
+							}
 							if (flexTable.getRowCount() == 0) {
 								final Label label03 = new Label("User-defined");
 								verticalPanel.add(flexTable);
@@ -118,7 +166,6 @@ public class GuiModification {
 							Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 							final HorizontalPanel checkBox = Elements.checkBox(textBox.getText(),parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 							checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-							//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 							((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 								@Override
 								public void onClick(ClickEvent event) {
@@ -126,10 +173,7 @@ public class GuiModification {
 								}
 							});
 							horizontalPanel02.add(checkBox);
-							
 							Asmm_eufar.newCheckboxLst.add(checkBox);
-							//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
-							
 							flexTable.setWidget(row - 1, cell, horizontalPanel02);
 							checkboxDialog.hide();
 							Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
@@ -142,6 +186,12 @@ public class GuiModification {
 						if (value != null || textBox.getText() == "") {
 							Asmm_eufar.rootLogger.log(Level.INFO, "No name entered...");
 							return;
+						}
+						for (int i = 0; i < Asmm_eufar.newCheckboxLst.size(); i++) {
+							if (textBox.getText() == ((CheckBox) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
+								Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox already exists...");
+								return;
+							}
 						}
 						if (flexTable.getRowCount() == 0) {
 							final Label label03 = new Label("User-defined");
@@ -166,7 +216,6 @@ public class GuiModification {
 						Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + textBox.getText() + " / " + textBox.getValue());
 						final HorizontalPanel checkBox = Elements.checkBox(textBox.getText(), parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 						checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-						//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
 						((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 							@Override
 							public void onClick(ClickEvent event) {
@@ -176,8 +225,6 @@ public class GuiModification {
 						horizontalPanel02.add(checkBox);
 						
 						Asmm_eufar.newCheckboxLst.add(checkBox);
-						//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + textBox.getValue());
-						
 						flexTable.setWidget(row - 1, cell, horizontalPanel02);
 						checkboxDialog.hide();
 						Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
@@ -235,7 +282,6 @@ public class GuiModification {
 		treeMap.put(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string, string);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Proposed checkbox: " + string + " / " + string);
 		checkBox.getElement().setAttribute("style", "color: #4f4f4f !important;");
-		//((CheckBox) checkBox.getWidget(0)).setName(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
 		((CheckBox) checkBox.getWidget(0)).addClickHandler(new ClickHandler() {
 			@Override
 			public void onClick(ClickEvent event) {
@@ -245,11 +291,43 @@ public class GuiModification {
 		
 		((CheckBox) checkBox.getWidget(0)).setValue(true);
 		horizontalPanel01.add(checkBox);
-		
 		Asmm_eufar.newCheckboxLst.add(checkBox);
-		//Asmm_eufar.newCheckboxNameLst.add(parent + "UD" + Integer.toString(row) + Integer.toString(cell) + string);
-		
 		flexTable.setWidget(row - 1, cell, horizontalPanel01);
 		Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox added");
+	}
+	
+	
+	// Fill in autmatically other fields from project acronym
+	public static void fillInFieldsFromProject(final String acronym) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "fillInFieldsFromProject requested from: " + acronym);
+		String operator = null;
+		String aircraft_manufacturer = null;
+		HashMap<String, String> projectData = null;
+		String aircraft = null;
+		try {
+			projectData = Asmm_eufar.projectsDBMap.get(acronym);
+			Asmm_eufar.fi_scientistText.setText(projectData.get("leader"));
+			String platform = projectData.get("aircraft");
+			HashMap<String, String> platformData = Asmm_eufar.aircraftDBMap.get(platform);
+			operator = platformData.get("operator");
+			aircraft_manufacturer = platformData.get("manufacturer and aircraft type");
+			int index = aircraft_manufacturer.indexOf(", ");
+			aircraft = aircraft_manufacturer.substring(index + 2);
+			if (operator == "INTA" || operator == "NERC") {
+				aircraft = aircraft + " - " + platformData.get("registration number");
+			}
+		} catch (Exception e) {};
+		if (projectData != null) {
+			try {
+				Utilities.checkList(operator, Asmm_eufar.fi_operatorText);
+				aircraftSelection(operator);
+				Utilities.checkList(aircraft, Asmm_eufar.fi_aircraftText);
+			} catch (Exception ex) {
+				Utilities.checkList("Other...", Asmm_eufar.fi_operatorText);
+				aircraftSelection("Other...");
+				Asmm_eufar.fi_otherOpsText.setText(operator);
+				Asmm_eufar.fi_otherAiText.setText(aircraft);
+			}
+		}
 	}
 }

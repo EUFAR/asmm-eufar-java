@@ -159,6 +159,33 @@
 }
 
 
+.fi_textLabel2 {
+  margin-left: 20px;
+  font-family: MyFontBold;
+  color: #4f4f4f;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+.fi_textLabel3 {
+  margin-left: 20px;
+  font-family: MyFontBold;
+  color: #4f4f4f;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
+.fi_textLabel4 {
+  margin-left: 51px;
+  font-family: MyFontBold;
+  color: #4f4f4f;
+  font-size: 14px;
+  text-align: justify;
+}
+
+
 .fi_textLabelTitle {
   font-family: MyFontBold;
   color: #4f4f4f;
@@ -170,8 +197,9 @@
 
 
 .fi_image {
-  margin-left: 20px;
-  margin-top: 2px;
+  margin-left: 10px;
+  margin-right: -10px;
+  margin-top: 3px;
   height: 15px;
   width: 20px;
 }
@@ -195,7 +223,7 @@
 
 
 .fi_textList2 {
-  width: 200px;
+  width: 150px;
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -212,7 +240,7 @@
 
 
 .fi_textList2:disabled {
-  width: 200px;
+  width: 150px;
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -239,6 +267,44 @@
 .fi_textBox:focus {
   border: 1px solid #ffa126;
 }
+
+
+.fi_textBox2 {
+  width: 150px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFontItalic;
+  margin-left: 20px;
+  background: rgb(238,238,238);
+  color: #4f4f4f;
+}
+
+
+.fi_textBox2:focus {
+  border: 1px solid #ffa126;
+}
+
+
+.fi_textBox3 {
+  width: 70px;
+  height: 17px;
+  padding: 3px 3px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  font-family: MyFontItalic;
+  margin-left: 20px;
+  background: rgb(238,238,238);
+  color: #4f4f4f;
+}
+
+
+.fi_textBox2:focus {
+  border: 1px solid #ffa126;
+}
+
+
 
 
 .fi_verticalPanel {
@@ -1451,7 +1517,7 @@
 
 
 .geoTextList {
-  width: 200px;
+  width: 150px;
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;
@@ -1462,7 +1528,7 @@
 }
 
 .geoTextList:disabled {
-  width: 200px;
+  width: 150px;
   height: 25px;
   border: 1px solid #ccc;
   font-size: 14px;

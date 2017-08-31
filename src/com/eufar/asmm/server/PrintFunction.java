@@ -57,7 +57,6 @@ public class PrintFunction extends HttpServlet {
         // list all objects and parameters
         List<Map<String, ?>> objectMap = new ArrayList<Map<String, ?>> ();
         Map<String,Object> map = new HashMap<String, Object>();
-        
         for (Entry<String, String[]> entry : request.getParameterMap().entrySet()) {
             String name = entry.getKey();
             String value = request.getParameter(name);
@@ -89,7 +88,6 @@ public class PrintFunction extends HttpServlet {
 	            	} else {
 	            		System.out.println("PrintFunction - picture: the file can't be read.");
 	            	}
-	            	
 	            	System.out.println("PrintFunction - caption: " + value);
             	}
             }
@@ -140,7 +138,6 @@ public class PrintFunction extends HttpServlet {
  
         } catch (Exception ex) {
         	System.out.println("A problem occured during PDF generation: " + ex);
-            
         } finally {
             servletOutputStream.flush();
             servletOutputStream.close();

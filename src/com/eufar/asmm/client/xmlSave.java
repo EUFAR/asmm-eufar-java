@@ -4,6 +4,7 @@ import static com.google.gwt.query.client.GQuery.$;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 import java.util.logging.Level;
 
 import com.google.gwt.i18n.client.DateTimeFormat;
@@ -24,7 +25,7 @@ public class xmlSave {
 		try {
 			Document doc = XMLParser.createDocument();
 			Element rootElement = doc.createElement("asmm:MissionMetadata");
-			rootElement.setAttribute("xmlns:asmm","http://www.eufar.net/ASMM");
+			rootElement.setAttribute("xmlns:asmm","http://http://asmm.eufar.net/");
 			Element xcreationDate = doc.createElement("asmm:CreationDate");
 			xcreationDate.appendChild(doc.createTextNode(Asmm_eufar.creationDate));
 			rootElement.appendChild(xcreationDate);
@@ -55,47 +56,94 @@ public class xmlSave {
 			flightInformation.appendChild(flightManager);
 			Element flightAircraft = doc.createElement("asmm:Platform");
 			Element flightOperator = doc.createElement("asmm:Operator");
+			Element flightOperatorCountry = doc.createElement("asmm:OperatorCountry");
+			Element flightManufacturer = doc.createElement("asmm:Manufacturer");
+			Element flightRegistrationNumber = doc.createElement("asmm:RegistrationNumber");
 			if (Asmm_eufar.fi_otherAiText.isVisible() == true) {
 				flightAircraft.appendChild(doc.createTextNode(Asmm_eufar.fi_otherAiText.getText()));
 				flightInformation.appendChild(flightAircraft);			
 				flightOperator.appendChild(doc.createTextNode(Asmm_eufar.fi_otherOpsText.getText()));
 				flightInformation.appendChild(flightOperator);
+				flightOperatorCountry.appendChild(doc.createTextNode(Asmm_eufar.fi_otherCntText.getSelectedItemText()));
+				flightInformation.appendChild(flightOperatorCountry);
+				flightManufacturer.appendChild(doc.createTextNode(Asmm_eufar.fi_otherManText.getText()));
+				flightInformation.appendChild(flightManufacturer);
+				flightRegistrationNumber.appendChild(doc.createTextNode(Asmm_eufar.fi_otherRegText.getText()));
+				flightInformation.appendChild(flightRegistrationNumber);
 			} else {
 				if (Asmm_eufar.fi_operatorText.getSelectedItemText() == "Make a choice...") {
 					flightAircraft.appendChild(doc.createTextNode(""));
 					flightInformation.appendChild(flightAircraft);			
 					flightOperator.appendChild(doc.createTextNode(""));
 					flightInformation.appendChild(flightOperator);
+					flightOperatorCountry.appendChild(doc.createTextNode(""));
+					flightInformation.appendChild(flightOperatorCountry);
+					flightManufacturer.appendChild(doc.createTextNode(""));
+					flightInformation.appendChild(flightManufacturer);
+					flightRegistrationNumber.appendChild(doc.createTextNode(""));
+					flightInformation.appendChild(flightRegistrationNumber);
 				} else {
-					int k = 0;
-					int j = 0;
-					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
-						if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][1]) {
-							k = 1;
-							flightAircraft.appendChild(doc.createTextNode(Asmm_eufar.operatorsAircraft[i][3]));
-							flightInformation.appendChild(flightAircraft);
-							break;
-						}
-					}
-					for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
-						if (Asmm_eufar.fi_operatorText.getSelectedItemText() == Asmm_eufar.operatorsAircraft[i][0]) {
-							j = 1;
-							flightOperator.appendChild(doc.createTextNode(Asmm_eufar.operatorsAircraft[i][2]));
-							flightInformation.appendChild(flightOperator);
-							break;
-						}
-					}
-					if (k == 0) {
+					if (Asmm_eufar.fi_aircraftText.getSelectedItemText() == "Make a choice...") {
 						flightAircraft.appendChild(doc.createTextNode(""));
 						flightInformation.appendChild(flightAircraft);
-					}
-					if (j == 0) {
-						flightOperator.appendChild(doc.createTextNode(""));
+						flightOperator.appendChild(doc.createTextNode(Asmm_eufar.fi_operatorText.getSelectedItemText()));
 						flightInformation.appendChild(flightOperator);
+						flightOperatorCountry.appendChild(doc.createTextNode(""));
+						flightInformation.appendChild(flightOperatorCountry);
+						flightManufacturer.appendChild(doc.createTextNode(""));
+						flightInformation.appendChild(flightManufacturer);
+						flightRegistrationNumber.appendChild(doc.createTextNode(""));
+						flightInformation.appendChild(flightRegistrationNumber);
+					} else {
+						String manufacturer = null;
+						String country = null;
+						String operator = Asmm_eufar.fi_operatorText.getSelectedItemText();
+						String aircraft = Asmm_eufar.fi_aircraftText.getSelectedItemText();
+						String registration = null;
+						int index = -1;
+						index = aircraft.indexOf(" - ");
+						if (index != -1) {
+							registration = aircraft.substring(index + 3);
+							if (registration.length() > 3) {
+								aircraft = aircraft.substring(0, index);
+							}
+						}
+						for (int i = 0; i < Asmm_eufar.operatorsAircraft.length; i++) {
+							if (registration != null && registration.length() > 3 ) {
+								if (registration == Asmm_eufar.operatorsAircraft[i][2]) {
+									index = Asmm_eufar.operatorsAircraft[i][1].indexOf(", ");
+									manufacturer = Asmm_eufar.operatorsAircraft[i][1].substring(0, index);
+									country = Asmm_eufar.operatorsAircraft[i][3];
+									break;
+								}
+							} else {
+								index  = Asmm_eufar.operatorsAircraft[i][1].indexOf(", ");
+								String aircraft_from_table = Asmm_eufar.operatorsAircraft[i][1].substring(index + 2);
+								if (aircraft == aircraft_from_table) {
+									manufacturer = Asmm_eufar.operatorsAircraft[i][1].substring(0, index);
+									country = Asmm_eufar.operatorsAircraft[i][3];
+									registration = Asmm_eufar.operatorsAircraft[i][2];
+								}
+							}
+						}
+						for (Entry<String, String> entry : Asmm_eufar.countryList.entrySet()) {
+							if (country == entry.getValue()) {
+								country = entry.getKey();
+								break;
+							}
+						}
+						flightAircraft.appendChild(doc.createTextNode(aircraft));
+						flightInformation.appendChild(flightAircraft);
+						flightOperator.appendChild(doc.createTextNode(operator));
+						flightInformation.appendChild(flightOperator);
+						flightOperatorCountry.appendChild(doc.createTextNode(country));
+						flightInformation.appendChild(flightOperatorCountry);
+						flightManufacturer.appendChild(doc.createTextNode(manufacturer));
+						flightInformation.appendChild(flightManufacturer);
+						flightRegistrationNumber.appendChild(doc.createTextNode(registration));
+						flightInformation.appendChild(flightRegistrationNumber);
 					}
-
 				}
-
 			}
 			Element flightCountry = doc.createElement("asmm:Localisation");
 			if (Asmm_eufar.geoDetailLst.getSelectedItemText() != null) {

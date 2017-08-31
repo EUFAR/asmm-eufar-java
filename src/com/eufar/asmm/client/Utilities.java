@@ -3,6 +3,7 @@ package com.eufar.asmm.client;
 import static com.google.gwt.query.client.GQuery.$;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import com.google.gwt.user.client.ui.Label;
 import com.google.gwt.user.client.ui.ListBox;
 import com.google.gwt.user.client.ui.ScrollPanel;
 import com.google.gwt.user.client.ui.SimplePanel;
+import com.google.gwt.user.client.ui.SuggestBox;
 import com.google.gwt.user.client.ui.TextArea;
 import com.google.gwt.user.client.ui.TextBox;
 import com.google.gwt.user.client.ui.TextBoxBase;
@@ -67,6 +69,47 @@ public class Utilities {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Populating finished");
 	}
 	
+	
+	// populate easily listbox with HashMap keys
+	public static void populateListBox(ListBox listBox, HashMap<String, String> map, int defaultItem) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Populating " + listBox.getName() + " in progress...");
+		ArrayList<String> list = new ArrayList<String>();
+		for (Entry<String, String> entry : map.entrySet()) {
+			list.add(entry.getKey());
+		}
+		Collections.sort(list, String.CASE_INSENSITIVE_ORDER);
+		list.add(0, "Make a choice...");
+		for (int i=0; i<list.size(); i++) {
+			listBox.addItem(list.get(i));
+		}
+		listBox.setItemSelected(defaultItem, true);
+		Asmm_eufar.rootLogger.log(Level.INFO, "Populating finished");
+	}
+	
+	
+	// populate easily Listbox of operators
+	public static void populateOperatorsListBox(ListBox listBox, String[][] list, int defaultItem) {
+		Asmm_eufar.rootLogger.log(Level.INFO, "Populating " + listBox.getName() + " in progress...");
+		ArrayList<String> arraylist = new ArrayList<String>();
+		for (int i=0; i<list.length; i++) {
+				arraylist.add(list[i][0]);
+		}
+		Collections.sort(arraylist, String.CASE_INSENSITIVE_ORDER);
+		arraylist.add(0, "Other...");
+		arraylist.add(0, "Make a choice...");
+		for (int i=0; i<arraylist.size(); i++) {
+			if (i > 0) {
+				if (arraylist.get(i) != arraylist.get(i-1)) {
+					listBox.addItem(arraylist.get(i));
+				}
+			} else {
+				listBox.addItem(arraylist.get(i));
+			}
+		}
+		listBox.setItemSelected(defaultItem, true);
+		Asmm_eufar.rootLogger.log(Level.INFO, "Populating finished");
+	}
+	
 
 	// find the correct text and index in a List Box from an entry in an xml file
 	public static void checkList(TreeMap<String, String> treeMap, String string, ListBox listBox) {
@@ -78,17 +121,26 @@ public class Utilities {
 				break;
 			}
 		}
-		int indexToFind = -1;
 		for (int i = 0; i < listBox.getItemCount(); i++) {
 			if (listBox.getItemText(i).equals(key)) {
-				indexToFind = i;
+				listBox.setSelectedIndex(i);
 				break;
 			}
 		}
-		listBox.setSelectedIndex(indexToFind);
 	}
 
-
+	
+	// find the correct text and index in a List Box from an entry in an xml file
+	public static void checkList(String string, ListBox listBox) {
+		for (int i = 0; i < listBox.getItemCount(); i++) {
+			if (listBox.getItemText(i).equals(string)) {
+				listBox.setSelectedIndex(i);
+				break;
+			}
+		}
+	}
+	
+	
 	// find the correct check box in a panel, and tick or untick it, from an entry in an xml file
 	public static void checkBox(ScrollPanel scrollPanel, HashMap<HorizontalPanel, String> hashMap, String string) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Link between checkbox and treeMap invoked...");
@@ -156,6 +208,7 @@ public class Utilities {
 		for (int i = 0; i < allCheckBox.size(); i = i + 1) {
 			allCheckBox.get(i).setValue(false);
 		}
+		Asmm_eufar.fi_campaignText.setText("");
 		Asmm_eufar.fi_dateText.setValue(new Date());
 		Asmm_eufar.ci_roleText.setSelectedIndex(0);
 		Asmm_eufar.so_groundSitesList.clear();
@@ -230,12 +283,23 @@ public class Utilities {
 			Asmm_eufar.verticalPanel75.remove(1);
 		}
 		Asmm_eufar.fi_operatorText.setSelectedIndex(0);
+		Asmm_eufar.fi_otherCntText.setSelectedIndex(0);
 		Asmm_eufar.fi_aircraftText.clear();
 		Asmm_eufar.fi_aircraftText.setEnabled(false);
 		Asmm_eufar.fi_otherOpsText.setVisible(false);
 		Asmm_eufar.fi_otherAiText.setVisible(false);
+		Asmm_eufar.fi_otherManText.setVisible(false);
+		Asmm_eufar.fi_otherRegText.setVisible(false);
+		Asmm_eufar.fi_otherCntText.setVisible(false);
+		Asmm_eufar.fi_starLab09.setVisible(false);
+		Asmm_eufar.fi_starLab10.setVisible(false);
+		Asmm_eufar.fi_starLab11.setVisible(false);
+		Asmm_eufar.fi_otherManLabel.setVisible(false);
+		Asmm_eufar.fi_otherRegLabel.setVisible(false);
+		Asmm_eufar.fi_otherCntLabel.setVisible(false);
 		Asmm_eufar.fi_operatorImage.setVisible(false);
 		Asmm_eufar.fi_aircraftImage.setVisible(false);
+		Asmm_eufar.nf_comArea.getElement().setAttribute("style", "margin-top: 20px; width: 1016px;");
 		Asmm_eufar.geoLocationLst.setSelectedIndex(0);
 		Utilities.geoLocationSet(0);
 		Asmm_eufar.imageTab.removeAllRows();
@@ -261,6 +325,12 @@ public class Utilities {
 					if (widget.getText() == "") {
 						Asmm_eufar.rootLogger.log(Level.INFO, "No name entered...");
 						return;
+					}
+					for (int i = 0; i < itemList.size(); i++) {
+						if (widget.getText() == itemList.get(i)) {
+							Asmm_eufar.rootLogger.log(Level.INFO, "String already exists...");
+							return;
+						}
 					}
 					Asmm_eufar.rootLogger.log(Level.INFO, "Item added to list (keyboard): " + widget.getText() + " / " + widget.getName());
 					Utilities.docIsModified();
@@ -297,7 +367,14 @@ public class Utilities {
 		image.addClickHandler(new ClickHandler() {
 			public void onClick(ClickEvent event) {
 				if (widget.getText() == "") {
+					Asmm_eufar.rootLogger.log(Level.INFO, "No name entered...");
 					return;
+				}
+				for (int i = 0; i < itemList.size(); i++) {
+					if (widget.getText() == itemList.get(i)) {
+						Asmm_eufar.rootLogger.log(Level.INFO, "String already exists...");
+						return;
+					}
 				}
 				Asmm_eufar.rootLogger.log(Level.INFO, "Item proposed to list (mouse): " + widget.getText() + " / " + widget.getName());
 				Utilities.docIsModified();
@@ -370,6 +447,7 @@ public class Utilities {
 		boolean imageTextState = Asmm_eufar.imageLab.isVisible();
 		List<Label> allLabel = $("*", Asmm_eufar.subDockPanel).widgets(Label.class);
 		List<TextBoxBase> allBox = $("*", Asmm_eufar.subDockPanel).widgets(TextBoxBase.class);
+		List<SuggestBox> suggestBox = $("*", Asmm_eufar.subDockPanel).widgets(SuggestBox.class);
 		List<DateBox> allDateBox = $("*", Asmm_eufar.subDockPanel).widgets(DateBox.class);
 		List<ListBox> allListBox = $("*", Asmm_eufar.subDockPanel).widgets(ListBox.class);
 		for (int i = 0; i < allLabel.size(); i++) {
@@ -381,6 +459,11 @@ public class Utilities {
 			String style = allBox.get(i).getStylePrimaryName();
 			allBox.get(i).getElement().setAttribute("style","");
 			allBox.get(i).setStyleName(style);
+		}
+		for (int i = 0; i < suggestBox.size(); i++) {
+			String style = suggestBox.get(i).getStylePrimaryName();
+			suggestBox.get(i).getElement().setAttribute("style","");
+			suggestBox.get(i).setStyleName(style);
 		}
 		for (int i = 0; i < allDateBox.size(); i++) {
 			String style = allDateBox.get(i).getStylePrimaryName();
@@ -396,10 +479,20 @@ public class Utilities {
 		Asmm_eufar.fi_otherAiText.setVisible(otherOpsState);
 		Asmm_eufar.fi_operatorImage.setVisible(otherOpsState);
 		Asmm_eufar.fi_aircraftImage.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherManText.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherRegText.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherCntText.setVisible(otherOpsState);
+		Asmm_eufar.fi_starLab09.setVisible(otherOpsState);
+		Asmm_eufar.fi_starLab10.setVisible(otherOpsState);
+		Asmm_eufar.fi_starLab11.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherManLabel.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherRegLabel.setVisible(otherOpsState);
+		Asmm_eufar.fi_otherCntLabel.setVisible(otherOpsState);
 		Asmm_eufar.imageLab.setVisible(imageTextState);
 		Asmm_eufar.captionLab.setVisible(imageTextState);
 		Asmm_eufar.fi_dateText.getElement().setAttribute("Style","margin-left: 20px !important;");
 		Asmm_eufar.gi_mmLabel.getElement().setAttribute("style", "margin-left: 210px !important;");
+		Asmm_eufar.nf_comArea.getElement().setAttribute("style", "margin-top: 20px; width: 1016px;");
 		for (int i = 0; i < 9; i++) {
 			Asmm_eufar.tabPanel.getTabWidget(i).getElement().setAttribute("style","color: white !important;");
 		}

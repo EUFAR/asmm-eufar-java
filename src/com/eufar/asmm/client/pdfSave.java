@@ -13,16 +13,19 @@ import com.google.gwt.user.client.ui.VerticalPanel;
 
 public class pdfSave {
 	
-	// preparation of the printing
+	// preparation of the printing, all fields are copy/past in textboxes
 	public static void createPrint(final VerticalPanel verticalPanel) {
 		Asmm_eufar.rootLogger.log(Level.INFO, "Preparation of all data for the report in progress...");
 		final ArrayList<TextBoxBase> textboxLst = Materials.textboxLst();
 		final ArrayList<ListBox> listboxLst = Materials.listboxLst();
 		final ArrayList<HorizontalPanel> checkboxLst = Materials.checkboxLst();
 		checkboxLst.addAll(Asmm_eufar.newCheckboxLst);
-		
+		TextBox textBox = new TextBox();
+		textBox.setName("flightCampaign");
+		textBox.setText(Asmm_eufar.fi_campaignText.getText());
+		verticalPanel.add(textBox);
 		for (int i = 0; i < textboxLst.size(); i++) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			if (Materials.nonrequiredTextboxLst().contains(textboxLst.get(i))) {
 				String string = Utilities.addCoordinateText(textboxLst.get(i).getText(), textboxLst.get(i));
 				textBox.setText(string);
@@ -34,7 +37,7 @@ public class pdfSave {
 		}
 		
 		for (int i = 0; i< listboxLst.size(); i++) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			if (listboxLst.get(i).getSelectedItemText() == "Other...") {
 				if (listboxLst.get(i).getName() == "operatorText") {
 					textBox.setText(Asmm_eufar.fi_otherOpsText.getText());
@@ -54,7 +57,7 @@ public class pdfSave {
 		verticalPanel.add(dateBox);
 		
 		for (int i = 0; i < checkboxLst.size(); i++) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			CheckBox checkbox = (CheckBox) checkboxLst.get(i).getWidget(0);
 			if (checkbox.getName().contains("UD")) {
 				if (checkbox.getValue() == true) {
@@ -74,7 +77,7 @@ public class pdfSave {
 		}
 		
 		if (!Asmm_eufar.so_groundSitesList.isEmpty()) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			String string = new String();
 			textBox.setName("groundSites");
 			for (int i = 0; i < Asmm_eufar.so_groundSitesList.size(); i++) {
@@ -89,7 +92,7 @@ public class pdfSave {
 		}
 
 		if (Asmm_eufar.so_armSitesList.isEmpty() == false) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			String string = new String();
 			textBox.setName("armSites");
 			for (int i = 0; i < Asmm_eufar.so_armSitesList.size(); i++) {
@@ -104,7 +107,7 @@ public class pdfSave {
 		}
 		
 		if (Asmm_eufar.so_researchVesselsList.isEmpty() == false) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			textBox.setName("researchVessels");
 			String string = new String();
 			for (int i = 0; i < Asmm_eufar.so_researchVesselsList.size(); i++) {
@@ -119,7 +122,7 @@ public class pdfSave {
 		}
 		
 		if (Asmm_eufar.so_mobileSitesList.isEmpty() == false) {
-			TextBox textBox = new TextBox();
+			textBox = new TextBox();
 			textBox.setName("mobileSites");
 			String string = new String();
 			for (int i = 0; i < Asmm_eufar.so_mobileSitesList.size(); i++) {
@@ -135,7 +138,7 @@ public class pdfSave {
 		
 		if (Asmm_eufar.imagePath.isEmpty() == false) {
 			for (int i = 0; i < Asmm_eufar.imagePath.size(); i++) {
-				TextBox textBox = new TextBox();
+				textBox = new TextBox();
 				textBox.setName("image" + Integer.toString(i));
 				textBox.setText(Asmm_eufar.imagePath.get(i) + "*" + Asmm_eufar.imageCaption.get(i));
 				verticalPanel.add(textBox);
