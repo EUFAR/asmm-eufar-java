@@ -46,11 +46,6 @@
 	<url-pattern>/image</url-pattern>
   </servlet-mapping>
   
-  
-  
-  
-  
-  
   <servlet>
     <servlet-name>FetchDataFromServer</servlet-name>
     <servlet-class>com.eufar.asmm.server.FetchDataFromServer</servlet-class>
@@ -60,11 +55,6 @@
     <servlet-name>FetchDataFromServer</servlet-name>
     <url-pattern>/FetchDataFromServer</url-pattern>
   </servlet-mapping>
-  
-  
-  
-  
-  
   
   <filter>
  	<filter-name>clearCache</filter-name>

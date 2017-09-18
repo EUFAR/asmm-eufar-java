@@ -75,8 +75,6 @@ import com.google.gwt.xml.client.Element;
 import com.google.gwt.xml.client.NodeList;
 import com.google.gwt.xml.client.XMLParser;
 
-
-
 public class Asmm_eufar implements EntryPoint {
 
 	public static Logger rootLogger = Logger.getLogger("");
@@ -2697,6 +2695,7 @@ public class Asmm_eufar implements EntryPoint {
 			    		if (field == "aircraft") {
 			    			NodeList aircraftNode = doc.getElementsByTagName("aircraft");
 			    			String[][] updatedOperatorsAircraft = new String[aircraftNode.getLength()][4];
+			    			int k = 0;
 			    			for (int i = 0; i < aircraftNode.getLength(); i++) {
 			    				HashMap<String, String> map = new HashMap<String, String>();
 			    				String acronym = "";
@@ -2704,6 +2703,8 @@ public class Asmm_eufar implements EntryPoint {
 			    					acronym = ((Element) aircraftNode.item(i)).getElementsByTagName("acronym").
 			    						item(0).getFirstChild().getNodeValue();
 			    				} catch (Exception ex) {}
+			    				HashMap<String, String> acronymTest = null;
+			    				acronymTest = aircraftDBMap.get(acronym);
 			    				String registration_number = "";
 			    				try {
 			    					registration_number = ((Element) aircraftNode.item(i)).getElementsByTagName("registration_number").
@@ -2724,11 +2725,18 @@ public class Asmm_eufar implements EntryPoint {
 			    					manufacturer_and_aircraft_type = ((Element) aircraftNode.item(i)).getElementsByTagName("manufacturer_and_aircraft_type").
 			    						item(0).getFirstChild().getNodeValue();
 			    				} catch (Exception ex) {}	
+			    				String link = "";
+			    				try {
+			    					link = ((Element) aircraftNode.item(i)).getElementsByTagName("large_image").
+			    						item(0).getFirstChild().getNodeValue();
+			    				} catch (Exception ex) {}	
+
 				    			map.put("acronym", acronym);
 				    			map.put("registration number", registration_number);
 				    			map.put("operator", operator);
 				    			map.put("country", country);
 				    			map.put("manufacturer and aircraft type", manufacturer_and_aircraft_type);
+				    			map.put("image link", link);
 			    				aircraftDBMap.put(((Element) aircraftNode.item(i)).getElementsByTagName("acronym").
 			    						item(0).getFirstChild().getNodeValue(), map);
 			    				updatedOperatorsAircraft[i] = new String[]{operator,manufacturer_and_aircraft_type,registration_number,country};

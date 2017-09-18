@@ -25,7 +25,7 @@ public class xmlSave {
 		try {
 			Document doc = XMLParser.createDocument();
 			Element rootElement = doc.createElement("asmm:MissionMetadata");
-			rootElement.setAttribute("xmlns:asmm","http://http://asmm.eufar.net/");
+			rootElement.setAttribute("xmlns:asmm","http://www.eufar.net/ASMM");
 			Element xcreationDate = doc.createElement("asmm:CreationDate");
 			xcreationDate.appendChild(doc.createTextNode(Asmm_eufar.creationDate));
 			rootElement.appendChild(xcreationDate);

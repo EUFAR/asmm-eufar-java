@@ -67,7 +67,7 @@ public class PopupMessages {
 		aboutDialog.setModal(true);
 		aboutDialog.center();
 		aboutDialog.show();
-	}	
+	}
 
 
 	// create a popup panel displaying a changelog
