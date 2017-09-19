@@ -24,10 +24,10 @@ public class FetchDataFromServer extends HttpServlet {
 		System.out.println("FetchDataFromServer - the function started");
 		BufferedReader reader = null;
 		HashMap<String, String> urlMap = new HashMap<String, String>();
-		urlMap.put("projects", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		urlMap.put("aircraft", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		urlMap.put("operators", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-		urlMap.put("instruments", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		urlMap.put("projects", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		urlMap.put("aircraft", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		urlMap.put("operators", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+		urlMap.put("instruments", "http://xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 		
 	    try {
 	    	String flux = req.getParameter("flux");

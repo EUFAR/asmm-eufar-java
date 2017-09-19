@@ -171,7 +171,7 @@ public class Materials {
 		map.put(Asmm_eufar.ct_cumulTower,"Cumulonimbus/towering cumulus");
 		map.put(Asmm_eufar.ct_altoStracumul,"Altostratus/altocumulus");
 		map.put(Asmm_eufar.ct_waveClouds,"Wave clouds");
-		map.put(Asmm_eufar.ct_statiformClouds,"Deep frontal statiform clouds");
+		map.put(Asmm_eufar.ct_statiformClouds,"Deep frontal stratiform clouds");
 		map.put(Asmm_eufar.ct_freeAbove,"Cloud-free above aircraft");
 		map.put(Asmm_eufar.ct_freeBelow,"Cloud-free below aircraft");
 		return map;

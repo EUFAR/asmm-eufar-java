@@ -34,6 +34,9 @@
         <xs:element ref="asmm:FlightManager"/>
         <xs:element ref="asmm:Platform"/>
         <xs:element ref="asmm:Operator"/>
+        <xs:element ref="asmm:OperatorCountry"/>
+        <xs:element ref="asmm:Manufacturer"/>
+        <xs:element ref="asmm:RegistrationNumber"/>
         <xs:element ref="asmm:Localisation"/>
       </xs:sequence>
     </xs:complexType>
@@ -45,6 +48,9 @@
   <xs:element name="FlightManager" type="xs:string"/>
   <xs:element name="Platform" type="xs:string"/>
   <xs:element name="Operator" type="xs:string"/>
+  <xs:element name="OperatorCountry" type="xs:string"/>
+  <xs:element name="Manufacturer" type="xs:string"/>
+  <xs:element name="RegistrationNumber" type="xs:string"/>
   <xs:element name="Localisation" type="xs:string"/>
   <xs:element name="ContactInfo">
     <xs:complexType>
@@ -70,26 +76,26 @@
   <xs:element name="SA_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="satelliteCalVal"/>
-        <xs:enumeration value="aerosol"/>
-        <xs:enumeration value="aerosolRadiative"/>
-        <xs:enumeration value="aerosolMicrophysical"/>
-        <xs:enumeration value="anthroPollution"/>
-        <xs:enumeration value="mesoscaleImpacts"/>
-        <xs:enumeration value="cloudMicrophysics"/>
-        <xs:enumeration value="cloudDynamics"/>
-        <xs:enumeration value="cloudRaditave"/>
-        <xs:enumeration value="cloudConvection"/>
-        <xs:enumeration value="blCloud"/>
-        <xs:enumeration value="blDynamics"/>
-        <xs:enumeration value="radiation"/>
-        <xs:enumeration value="radiationAtmosSpectroscopy"/>
-        <xs:enumeration value="radiationSurfProperties"/>
-        <xs:enumeration value="radiationOther"/>
-        <xs:enumeration value="gasChem"/>
-        <xs:enumeration value="gasChemOxidants"/>
-        <xs:enumeration value="gasChemOrganics"/>
-        <xs:enumeration value="gasChemOther"/>
+        <xs:enumeration value="Satellite Cal/Val"/>
+        <xs:enumeration value="Aerosol"/>
+        <xs:enumeration value="Radiative properties/impacts (Aerosol)"/>
+        <xs:enumeration value="Cloud microphysical impacts (Aerosol)"/>
+        <xs:enumeration value="Anthropogenic pollution"/>
+        <xs:enumeration value="Mesoscale atmospheric impacts"/>
+        <xs:enumeration value="Microphysics (Cloud)"/>
+        <xs:enumeration value="Dynamics (Cloud)"/>
+        <xs:enumeration value="Radiative properties (Cloud)"/>
+        <xs:enumeration value="Convection dynamics (Cloud)"/>
+        <xs:enumeration value="Cloud (Boundary-layer)"/>
+        <xs:enumeration value="Dynamics (Boundary-layer)"/>
+        <xs:enumeration value="Radiation"/>
+        <xs:enumeration value="Atmospheric spectroscopy (Radiation)"/>
+        <xs:enumeration value="Surface properties/retrievals (Radiation)"/>
+        <xs:enumeration value="Other (Radiation)"/>
+        <xs:enumeration value="Gas chemistry"/>
+        <xs:enumeration value="Oxydants (Gas chemistry)"/>
+        <xs:enumeration value="Organics (Gas chemistry)"/>
+        <xs:enumeration value="Other (Gas chemistry)"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -126,14 +132,14 @@
   <xs:element name="GR_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="polar"/>
-        <xs:enumeration value="midLatitudes"/>
-        <xs:enumeration value="subTropical"/>
-        <xs:enumeration value="tropical"/>
-        <xs:enumeration value="maritime"/>
-        <xs:enumeration value="continental"/>
-        <xs:enumeration value="oceanicIslands"/>
-        <xs:enumeration value="other"/>
+        <xs:enumeration value="Polar"/>
+        <xs:enumeration value="Mid-latitudes"/>
+        <xs:enumeration value="Sub-tropical"/>
+        <xs:enumeration value="Tropical"/>
+        <xs:enumeration value="Maritime"/>
+        <xs:enumeration value="Continental"/>
+        <xs:enumeration value="Oceanic islands"/>
+        <xs:enumeration value="Other (Geographical region)"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -151,24 +157,24 @@
   <xs:element name="AF_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="stationary"/>
-        <xs:enumeration value="stationaryAnticyclonic"/>
-        <xs:enumeration value="stationaryCyclonic"/>
-        <xs:enumeration value="warmFront"/>
-        <xs:enumeration value="warmConveyorBelt"/>
-        <xs:enumeration value="coldFront"/>
-        <xs:enumeration value="occludedFront"/>
-        <xs:enumeration value="warmSector"/>
-        <xs:enumeration value="postColdFrontalAirMass"/>
-        <xs:enumeration value="arcticColdAirOutbreak"/>
-        <xs:enumeration value="orographicInfluence"/>
-        <xs:enumeration value="seaBreezeFront"/>
-        <xs:enumeration value="stratosphericFold"/>
-        <xs:enumeration value="extendedConvergenceLine"/>
-        <xs:enumeration value="easterlyWave"/>
-        <xs:enumeration value="equatorialWave"/>
-        <xs:enumeration value="tropicalCyclone"/>
-        <xs:enumeration value="mesoscaleOrganizedConvection"/>
+        <xs:enumeration value="Stationary"/>
+        <xs:enumeration value="Stationary anticyclonic"/>
+        <xs:enumeration value="Stationary cyclonic"/>
+        <xs:enumeration value="Warm front"/>
+        <xs:enumeration value="Warm conveyor belt"/>
+        <xs:enumeration value="Cold front"/>
+        <xs:enumeration value="Occluded front"/>
+        <xs:enumeration value="Warm sector"/>
+        <xs:enumeration value="Post-cold-frontal air-mass"/>
+        <xs:enumeration value="Arctic cold-air outbreak"/>
+        <xs:enumeration value="Orographic influence"/>
+        <xs:enumeration value="Sea-breeze front"/>
+        <xs:enumeration value="Stratospheric fold/intrusion"/>
+        <xs:enumeration value="Extended convergence line"/>
+        <xs:enumeration value="Easterly wave"/>
+        <xs:enumeration value="Equatorial wave"/>
+        <xs:enumeration value="Tropical cyclone"/>
+        <xs:enumeration value="Mesoscale organized convection"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -186,20 +192,20 @@
   <xs:element name="CT_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="waterClouds"/>
-        <xs:enumeration value="mixedPhaseClouds"/>
-        <xs:enumeration value="iceClouds"/>
-        <xs:enumeration value="cirrus"/>
-        <xs:enumeration value="contrails"/>
-        <xs:enumeration value="stratocumulus"/>
-        <xs:enumeration value="shallowCumulus"/>
-        <xs:enumeration value="cumulusCongestus"/>
-        <xs:enumeration value="cumulonimbusToweringCumulus"/>
-        <xs:enumeration value="altostratusAltocumulus"/>
-        <xs:enumeration value="waveClouds"/>
-        <xs:enumeration value="deepFrontalStratiformClouds"/>
-        <xs:enumeration value="cloudFreeAboveAircraft"/>
-        <xs:enumeration value="cloudFreeBelowAircraft"/>
+        <xs:enumeration value="Water clouds"/>
+        <xs:enumeration value="Mixed-phase clouds"/>
+        <xs:enumeration value="Ice clouds"/>
+        <xs:enumeration value="Cirrus"/>
+        <xs:enumeration value="Contrails"/>
+        <xs:enumeration value="Stratocumulus"/>
+        <xs:enumeration value="Shallow cumulus"/>
+        <xs:enumeration value="Cumulus congestus"/>
+        <xs:enumeration value="Cumulonimbus/towering cumulus"/>
+        <xs:enumeration value="Altostratus/altocumulus"/>
+        <xs:enumeration value="Wave clouds"/>
+        <xs:enumeration value="Deep frontal stratiform clouds"/>
+        <xs:enumeration value="Cloud-free above aircraft"/>
+        <xs:enumeration value="Cloud-free below aircraft"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -217,18 +223,18 @@
   <xs:element name="PS_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="rain"/>
-        <xs:enumeration value="drizzle"/>
-        <xs:enumeration value="droplets"/>
-        <xs:enumeration value="pristineIceCrystals"/>
-        <xs:enumeration value="snowOrAggregates"/>
-        <xs:enumeration value="graupelOrHail"/>
-        <xs:enumeration value="seaSaltAerosol"/>
-        <xs:enumeration value="continentalAerosol"/>
-        <xs:enumeration value="urbanPlume"/>
-        <xs:enumeration value="biomassBurning"/>
-        <xs:enumeration value="desertOrMineralDust"/>
-        <xs:enumeration value="volcanicAsh"/>
+        <xs:enumeration value="Rain"/>
+        <xs:enumeration value="Drizzle"/>
+        <xs:enumeration value="Droplets (Liquid)"/>
+        <xs:enumeration value="Pristine ice crystals"/>
+        <xs:enumeration value="Snow/aggregates"/>
+        <xs:enumeration value="Graupel/hail"/>
+        <xs:enumeration value="Sea-salt aerosol"/>
+        <xs:enumeration value="Continental aerosol"/>
+        <xs:enumeration value="Urban plume"/>
+        <xs:enumeration value="Biomass burning"/>
+        <xs:enumeration value="Desert/mineral dust"/>
+        <xs:enumeration value="Volcanic ash"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -246,18 +252,18 @@
   <xs:element name="SO_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="ocean"/>
-        <xs:enumeration value="semiArid"/>
-        <xs:enumeration value="seaIce"/>
-        <xs:enumeration value="desert"/>
-        <xs:enumeration value="snow"/>
-        <xs:enumeration value="urban"/>
-        <xs:enumeration value="lakeIce"/>
-        <xs:enumeration value="mountainous"/>
-        <xs:enumeration value="vegetation"/>
-        <xs:enumeration value="hilly"/>
-        <xs:enumeration value="forest"/>
-        <xs:enumeration value="flat"/>
+        <xs:enumeration value="Ocean"/>
+        <xs:enumeration value="Semi-arid"/>
+        <xs:enumeration value="Sea-ice"/>
+        <xs:enumeration value="Desert"/>
+        <xs:enumeration value="Snow"/>
+        <xs:enumeration value="Urban"/>
+        <xs:enumeration value="Lake-ice"/>
+        <xs:enumeration value="Mountainous"/>
+        <xs:enumeration value="Vegetation"/>
+        <xs:enumeration value="Hilly"/>
+        <xs:enumeration value="Forest"/>
+        <xs:enumeration value="Flat"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -275,14 +281,14 @@
   <xs:element name="AR_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="boundaryLayer"/>
-        <xs:enumeration value="blNearSurface"/>
-        <xs:enumeration value="blSubCloud"/>
-        <xs:enumeration value="blInCloud"/>
-        <xs:enumeration value="lowerTroposphere"/>
-        <xs:enumeration value="midTroposphere"/>
-        <xs:enumeration value="upperTroposphere"/>
-        <xs:enumeration value="lowerStratosphere"/>
+        <xs:enumeration value="Boundary-layer"/>
+        <xs:enumeration value="Near-surface (Boundary-layer)"/>
+        <xs:enumeration value="Sub-cloud (Boundary-layer)"/>
+        <xs:enumeration value="In-cloud (Boundary-layer)"/>
+        <xs:enumeration value="Lower troposphere"/>
+        <xs:enumeration value="Mid troposphere"/>
+        <xs:enumeration value="Upper troposphere"/>
+        <xs:enumeration value="Lower stratosphere"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -300,15 +306,15 @@
   <xs:element name="FT_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="straightLevelRuns"/>
-        <xs:enumeration value="stackedStraightLevelRuns"/>
-        <xs:enumeration value="separatedStraightLevelRuns"/>
-        <xs:enumeration value="racetracks"/>
-        <xs:enumeration value="orbits"/>
-        <xs:enumeration value="lagrangianDescents"/>
-        <xs:enumeration value="deepProfileAscentsDescents"/>
-        <xs:enumeration value="dropsondeDeployed"/>
-        <xs:enumeration value="selfCalibration"/>
+        <xs:enumeration value="Straight/level runs"/>
+        <xs:enumeration value="Stacked (Straight/level runs)"/>
+        <xs:enumeration value="Separated (Straight/level runs)"/>
+        <xs:enumeration value="Racetracks"/>
+        <xs:enumeration value="Orbits"/>
+        <xs:enumeration value="Lagrangian descents"/>
+        <xs:enumeration value="Deep profile ascents/descents"/>
+        <xs:enumeration value="Dropsonde deployed"/>
+        <xs:enumeration value="Self-calibration"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
@@ -326,19 +332,19 @@
   <xs:element name="SC_Code">
     <xs:simpleType>
       <xs:restriction base="xs:NCName">
-        <xs:enumeration value="polarMetop"/>
-        <xs:enumeration value="polarNpoess"/>
-        <xs:enumeration value="polarAtrain"/>
-        <xs:enumeration value="polarOther"/>
-        <xs:enumeration value="geosynchMsg"/>
-        <xs:enumeration value="geosynchOther"/>
-        <xs:enumeration value="modis"/>
-        <xs:enumeration value="cloudsat"/>
-        <xs:enumeration value="caliop"/>
-        <xs:enumeration value="iasi"/>
-        <xs:enumeration value="airs"/>
-        <xs:enumeration value="cris"/>
-        <xs:enumeration value="amsuMhs"/>
+        <xs:enumeration value="METOP (Polar)"/>
+        <xs:enumeration value="NPOESS (Polar)"/>
+        <xs:enumeration value="A-train (Polar)"/>
+        <xs:enumeration value="Other (Polar)"/>
+        <xs:enumeration value="MSG (Geosynch)"/>
+        <xs:enumeration value="Other (Geosynch)"/>
+        <xs:enumeration value="MODIS"/>
+        <xs:enumeration value="Cloudsat"/>
+        <xs:enumeration value="CALIOP"/>
+        <xs:enumeration value="IASI"/>
+        <xs:enumeration value="AIRS"/>
+        <xs:enumeration value="CriS"/>
+        <xs:enumeration value="AMSU/MHS"/>
       </xs:restriction>
     </xs:simpleType>
   </xs:element>
