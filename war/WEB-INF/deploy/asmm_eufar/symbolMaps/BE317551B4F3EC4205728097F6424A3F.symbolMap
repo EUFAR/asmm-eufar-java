@@ -776,10 +776,10 @@ Al,com.eufar.asmm.client.Elements$1::Elements$1() <init>,com.eufar.asmm.client.E
 Bl,com.eufar.asmm.client.Elements$1::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.Elements$1,onClick,com/eufar/asmm/client/Elements.java,37,0
 a,com.eufar.asmm.client.Elements$1::val$context1,com.eufar.asmm.client.Elements$1,val$context1,com/eufar/asmm/client/Elements.java,36,-1
 b,com.eufar.asmm.client.Elements$1::val$infoButton2,com.eufar.asmm.client.Elements$1,val$infoButton2,com/eufar/asmm/client/Elements.java,36,-1
-Cl,com.eufar.asmm.client.GuiModification::addCat(Lcom/google/gwt/user/client/ui/FlexTable;Ljava/util/TreeMap;Lcom/google/gwt/user/client/ui/VerticalPanel;Ljava/lang/String;)V,com.eufar.asmm.client.GuiModification,addCat,com/eufar/asmm/client/GuiModification.java,259,0
+Cl,com.eufar.asmm.client.GuiModification::addCat(Lcom/google/gwt/user/client/ui/FlexTable;Ljava/util/TreeMap;Lcom/google/gwt/user/client/ui/VerticalPanel;Ljava/lang/String;)V,com.eufar.asmm.client.GuiModification,addCat,com/eufar/asmm/client/GuiModification.java,258,0
 Dl,com.eufar.asmm.client.GuiModification::addCatButton(Lcom/google/gwt/user/client/ui/FlexTable;Ljava/util/TreeMap;Lcom/google/gwt/user/client/ui/VerticalPanel;)Lcom/google/gwt/user/client/ui/Label;,com.eufar.asmm.client.GuiModification,addCatButton,com/eufar/asmm/client/GuiModification.java,110,0
 El,com.eufar.asmm.client.GuiModification::aircraftSelection(Ljava/lang/String;)V,com.eufar.asmm.client.GuiModification,aircraftSelection,com/eufar/asmm/client/GuiModification.java,25,0
-Fl,com.eufar.asmm.client.GuiModification::fillInFieldsFromProject(Ljava/lang/String;)V,com.eufar.asmm.client.GuiModification,fillInFieldsFromProject,com/eufar/asmm/client/GuiModification.java,301,0
+Fl,com.eufar.asmm.client.GuiModification::fillInFieldsFromProject(Ljava/lang/String;)V,com.eufar.asmm.client.GuiModification,fillInFieldsFromProject,com/eufar/asmm/client/GuiModification.java,300,0
 GuiModification$1,,com.eufar.asmm.client.GuiModification$1,,com/eufar/asmm/client/GuiModification.java,113,-1
 Gl,com.eufar.asmm.client.GuiModification$1::GuiModification$1() <init>,com.eufar.asmm.client.GuiModification$1,GuiModification$1,com/eufar/asmm/client/GuiModification.java,113,0
 Hl,com.eufar.asmm.client.GuiModification$1::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$1,onClick,com/eufar/asmm/client/GuiModification.java,114,0
@@ -812,13 +812,13 @@ g,com.eufar.asmm.client.GuiModification$1$2::val$verticalPanel5,com.eufar.asmm.c
 GuiModification$1$2$1,,com.eufar.asmm.client.GuiModification$1$2$1,,com/eufar/asmm/client/GuiModification.java,219,-1
 Ol,com.eufar.asmm.client.GuiModification$1$2$1::GuiModification$1$2$1(Lcom/eufar/asmm/client/GuiModification$1$2;) <init>,com.eufar.asmm.client.GuiModification$1$2$1,GuiModification$1$2$1,com/eufar/asmm/client/GuiModification.java,219,0
 Pl,com.eufar.asmm.client.GuiModification$1$2$1::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$1$2$1,onClick,com/eufar/asmm/client/GuiModification.java,221,0
-GuiModification$1$3,,com.eufar.asmm.client.GuiModification$1$3,,com/eufar/asmm/client/GuiModification.java,233,-1
-Ql,com.eufar.asmm.client.GuiModification$1$3::GuiModification$1$3(Lcom/eufar/asmm/client/GuiModification$1;) <init>,com.eufar.asmm.client.GuiModification$1$3,GuiModification$1$3,com/eufar/asmm/client/GuiModification.java,233,0
-Rl,com.eufar.asmm.client.GuiModification$1$3::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$1$3,onClick,com/eufar/asmm/client/GuiModification.java,234,0
-a,com.eufar.asmm.client.GuiModification$1$3::val$checkboxDialog2,com.eufar.asmm.client.GuiModification$1$3,val$checkboxDialog2,com/eufar/asmm/client/GuiModification.java,233,-1
-GuiModification$2,,com.eufar.asmm.client.GuiModification$2,,com/eufar/asmm/client/GuiModification.java,285,-1
-Sl,com.eufar.asmm.client.GuiModification$2::GuiModification$2() <init>,com.eufar.asmm.client.GuiModification$2,GuiModification$2,com/eufar/asmm/client/GuiModification.java,285,0
-Tl,com.eufar.asmm.client.GuiModification$2::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$2,onClick,com/eufar/asmm/client/GuiModification.java,287,0
+GuiModification$1$3,,com.eufar.asmm.client.GuiModification$1$3,,com/eufar/asmm/client/GuiModification.java,232,-1
+Ql,com.eufar.asmm.client.GuiModification$1$3::GuiModification$1$3(Lcom/eufar/asmm/client/GuiModification$1;) <init>,com.eufar.asmm.client.GuiModification$1$3,GuiModification$1$3,com/eufar/asmm/client/GuiModification.java,232,0
+Rl,com.eufar.asmm.client.GuiModification$1$3::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$1$3,onClick,com/eufar/asmm/client/GuiModification.java,233,0
+a,com.eufar.asmm.client.GuiModification$1$3::val$checkboxDialog2,com.eufar.asmm.client.GuiModification$1$3,val$checkboxDialog2,com/eufar/asmm/client/GuiModification.java,232,-1
+GuiModification$2,,com.eufar.asmm.client.GuiModification$2,,com/eufar/asmm/client/GuiModification.java,284,-1
+Sl,com.eufar.asmm.client.GuiModification$2::GuiModification$2() <init>,com.eufar.asmm.client.GuiModification$2,GuiModification$2,com/eufar/asmm/client/GuiModification.java,284,0
+Tl,com.eufar.asmm.client.GuiModification$2::onClick(Lcom/google/gwt/event/dom/client/ClickEvent;)V,com.eufar.asmm.client.GuiModification$2,onClick,com/eufar/asmm/client/GuiModification.java,286,0
 Ul,com.eufar.asmm.client.Materials::checkboxLst()Ljava/util/ArrayList;,com.eufar.asmm.client.Materials,checkboxLst,com/eufar/asmm/client/Materials.java,425,0
 Vl,com.eufar.asmm.client.Materials::cloudMap()Ljava/util/HashMap;,com.eufar.asmm.client.Materials,cloudMap,com/eufar/asmm/client/Materials.java,161,0
 Wl,com.eufar.asmm.client.Materials::countryCodeList()Ljava/util/HashMap;,com.eufar.asmm.client.Materials,countryCodeList,com/eufar/asmm/client/Materials.java,610,0
@@ -2610,9 +2610,9 @@ JL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModificatio
 KL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1$1_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1$1_2_classLit,com/eufar/asmm/client/GuiModification.java,132,-1
 LL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1$2$1_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1$2$1_2_classLit,com/eufar/asmm/client/GuiModification.java,219,-1
 ML,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1$2_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1$2_2_classLit,com/eufar/asmm/client/GuiModification.java,183,-1
-NL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1$3_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1$3_2_classLit,com/eufar/asmm/client/GuiModification.java,233,-1
+NL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1$3_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1$3_2_classLit,com/eufar/asmm/client/GuiModification.java,232,-1
 OL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$1_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$1_2_classLit,com/eufar/asmm/client/GuiModification.java,113,-1
-PL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$2_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$2_2_classLit,com/eufar/asmm/client/GuiModification.java,285,-1
+PL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_GuiModification$2_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_GuiModification$2_2_classLit,com/eufar/asmm/client/GuiModification.java,284,-1
 QL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_PopupMessages$10_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_PopupMessages$10_2_classLit,com/eufar/asmm/client/PopupMessages.java,360,-1
 RL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_PopupMessages$11_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_PopupMessages$11_2_classLit,com/eufar/asmm/client/PopupMessages.java,373,-1
 SL,com.google.gwt.lang.ClassLiteralHolder::Lcom_eufar_asmm_client_PopupMessages$12_2_classLit,com.google.gwt.lang.ClassLiteralHolder,Lcom_eufar_asmm_client_PopupMessages$12_2_classLit,com/eufar/asmm/client/PopupMessages.java,393,-1
@@ -4676,10 +4676,9 @@ Ldb,com.google.gwt.user.client.ui.CheckBox::$getValue(Lcom/google/gwt/user/clien
 Mdb,com.google.gwt.user.client.ui.CheckBox::$setValue(Lcom/google/gwt/user/client/ui/CheckBox;Ljava/lang/Boolean;Z)V,com.google.gwt.user.client.ui.CheckBox,$setValue,com/google/gwt/user/client/ui/CheckBox.java,440,0
 Ndb,com.google.gwt.user.client.ui.CheckBox::CheckBox() <init>,com.google.gwt.user.client.ui.CheckBox,CheckBox,com/google/gwt/user/client/ui/CheckBox.java,85,0
 Odb,com.google.gwt.user.client.ui.CheckBox::CheckBox(Lcom/google/gwt/dom/client/Element;) <init>,com.google.gwt.user.client.ui.CheckBox,CheckBox,com/google/gwt/user/client/ui/CheckBox.java,176,0
-a,com.google.gwt.user.client.ui.CheckBox::directionalTextHelper,com.google.gwt.user.client.ui.CheckBox,directionalTextHelper,com/google/gwt/user/client/ui/CheckBox.java,76,-1
 Pdb,com.google.gwt.user.client.ui.CheckBox::getTabIndex()I,com.google.gwt.user.client.ui.CheckBox,getTabIndex,com/google/gwt/user/client/ui/CheckBox.java,247,0
-b,com.google.gwt.user.client.ui.CheckBox::inputElem,com.google.gwt.user.client.ui.CheckBox,inputElem,com/google/gwt/user/client/ui/CheckBox.java,77,-1
-c,com.google.gwt.user.client.ui.CheckBox::labelElem,com.google.gwt.user.client.ui.CheckBox,labelElem,com/google/gwt/user/client/ui/CheckBox.java,78,-1
+a,com.google.gwt.user.client.ui.CheckBox::inputElem,com.google.gwt.user.client.ui.CheckBox,inputElem,com/google/gwt/user/client/ui/CheckBox.java,77,-1
+b,com.google.gwt.user.client.ui.CheckBox::labelElem,com.google.gwt.user.client.ui.CheckBox,labelElem,com/google/gwt/user/client/ui/CheckBox.java,78,-1
 Qdb,com.google.gwt.user.client.ui.CheckBox::onLoad()V,com.google.gwt.user.client.ui.CheckBox,onLoad,com/google/gwt/user/client/ui/CheckBox.java,507,0
 Rdb,com.google.gwt.user.client.ui.CheckBox::onUnload()V,com.google.gwt.user.client.ui.CheckBox,onUnload,com/google/gwt/user/client/ui/CheckBox.java,517,0
 Sdb,com.google.gwt.user.client.ui.CheckBox::setTabIndex(I)V,com.google.gwt.user.client.ui.CheckBox,setTabIndex,com/google/gwt/user/client/ui/CheckBox.java,393,0

@@ -138,7 +138,7 @@ public class GuiModification {
 								return;
 							}
 							for (int i = 0; i < Asmm_eufar.newCheckboxLst.size(); i++) {
-								if (textBox.getText() == ((CheckBox) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
+								if (textBox.getText() == ((Label) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
 									Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox already exists...");
 									return;
 								}
@@ -188,7 +188,7 @@ public class GuiModification {
 							return;
 						}
 						for (int i = 0; i < Asmm_eufar.newCheckboxLst.size(); i++) {
-							if (textBox.getText() == ((CheckBox) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
+							if (textBox.getText() == ((Label) Asmm_eufar.newCheckboxLst.get(i).getWidget(1)).getText()) {
 								Asmm_eufar.rootLogger.log(Level.INFO, "Checkbox already exists...");
 								return;
 							}
@@ -223,7 +223,6 @@ public class GuiModification {
 							}
 						});
 						horizontalPanel02.add(checkBox);
-						
 						Asmm_eufar.newCheckboxLst.add(checkBox);
 						flexTable.setWidget(row - 1, cell, horizontalPanel02);
 						checkboxDialog.hide();

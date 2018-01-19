@@ -1045,6 +1045,8 @@ public class PopupMessages {
 				+ "<u>TESTED ON:</u><ul><li>Firefox 38+</li><li>Chrome 44+</li><li>Internet Explorer 11 (failed on one computer and succeeded "
 				+ "on others)</li><li>Safari 5+</li><li>Opera 30+</li><li>Vivaldi 1.4+</li></ul><br>"
 				
+				+ "<b><u>January 19 2018, Release version 1.3.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>when a user"
+				+ " tried to create more than one checkbox, ASMM crashed. It has been fixed.</li></ul></li></ul><br>"
 				+ "<b><u>August 31 2017, Release version 1.3.0 [ONLINE]</u></b><br>The new API of the EUFAR website has been implemented in ASMM"
 				+ ". The user has now the possibility to select a project from the Project acronym textbox, the function will then fill in diffe"
 				+ "rent fields automatically.<ul style='list-style-type:none'><li>ADDED:<ul><li>a new function to retrieve data from EUFAR datab"
