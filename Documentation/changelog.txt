@@ -12,6 +12,12 @@ ONLINE VERSION TESTED ON:
     - Vivaldi 1.40+
 
 
+January 29 2018, Release version 1.3.2 [ONLINE]
+===============================================
+  MODIFIED:
+    - the email adress linked to ASMM has been changed.
+
+
 January 19 2018, Release version 1.3.1 [ONLINE]
 ===============================================
   FIXED:
