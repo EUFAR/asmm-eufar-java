@@ -153,8 +153,8 @@ public class PopupMessages {
 				+ "owned by <a href=http://community.jaspersoft.com/project/jasperreports-library><span style=\" text-decoration: underline; "
 				+ "color:#0000ff;\">JasperSoft</a>.<br><br>For more information, or to report a bug, please contact <a href='mailto:"
 				+ "bureau.at.eufar.net'><span style=\" text-decoration: underline; color:#0000ff;\">bureau.at.eufar.net</a>.<br><br>The "
-				+ "latest offline version and source code of the ASMM Creator can be found at <a href=https://github.com/eufarn7sp/asmm-eufar-"
-				+ "java><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/eufarn7sp/asmm-eufar-java</a>.");
+				+ "latest offline version and source code of the ASMM Creator can be found at <a href=https://github.com/EUFAR/asmm-eufar-"
+				+ "java><span style=\" text-decoration: underline; color:#0000ff;\">https://github.com/EUFAR/asmm-eufar-java</a>.");
 		final Button button = new Button("Ok");
 		final Image image = new Image(Asmm_eufar.resources.aboutPopup().getSafeUri());
 		image.setSize("68px", "68px");
@@ -188,7 +188,7 @@ public class PopupMessages {
 		final HTML label = new HTML("The Airborne Science Mission Metadata (ASMM) standard aims to harmonise descriptive information of science "
 				+ "research flights. This common description will allow users of the airborne science data to search datasets for specific "
 				+ "meteorological conditions, geographical regions, cloud-types encountered, particles sampled, and other parameters not evident "
-				+ "from the data itself.<br><br>For more information, please read the following document: <a href=https://github.com/eufarn7sp/asmm"
+				+ "from the data itself.<br><br>For more information, please read the following document: <a href=https://github.com/EUFAR/asmm"
 				+ "-eufar/blob/master/Documentation/ASMM%20-%20XML%20Implementation%20Rules.pdf><span style=\" text-decoration: underline; color"
 				+ ":#0000ff;\">ASMM - XML Implementation Rules.pdf</a>");
 		final Button button = new Button("Ok");
@@ -1045,6 +1045,8 @@ public class PopupMessages {
 				+ "<u>TESTED ON:</u><ul><li>Firefox 38+</li><li>Chrome 44+</li><li>Internet Explorer 11 (failed on one computer and succeeded "
 				+ "on others)</li><li>Safari 5+</li><li>Opera 30+</li><li>Vivaldi 1.4+</li></ul><br>"
 				
+				+ "<b><u>January 31 2018, Release version 1.3.3 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>links to the"
+				+ " ASMM GitHub repository have been fixed.</li></ul></li></ul><br>"
 				+ "<b><u>January 29 2018, Release version 1.3.2 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>MODIFIED:<ul><li>the email"
 				+ " adress linked to ASMM has been changed.</li></ul></li></ul><br>"
 				+ "<b><u>January 19 2018, Release version 1.3.1 [ONLINE]</u></b><br><ul style='list-style-type:none'><li>FIXED:<ul><li>when a user"
